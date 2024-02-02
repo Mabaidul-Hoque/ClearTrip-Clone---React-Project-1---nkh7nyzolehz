@@ -1,0 +1,44 @@
+
+#result-navbar {
+    height: 19vh;
+    padding: 15px 120px;
+    border-bottom: 1px solid lightgray;
+}
+
+
+.logo-section{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;   
+}
+.cleartrip-logo{
+    margin-bottom: -10px;
+}
+.depart-date-result{
+    width: 150px;
+    
+}
+.return-date-result {
+    width: 150px;
+}.search-btn {
+    width: 150px;
+    
+}
+
+.result-source-input{
+    width: 180px;
+    height: 40px;
+    padding-left: 20px;
+}
+
+.source-city-result-pop{
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+}
+.source-city-result-pop:hover{
+    background-color: #EFF5FC;
+}

@@ -1,0 +1,96 @@
+.autoComplete {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .inputBox {
+    width: 19rem;
+    height: 56px;
+    border-radius: 6px;
+    border: 1px solid #D3D3D3;
+    font-size: 16px;
+    padding-left: 60px;
+  }
+  .inputBox:focus {
+    outline: 0;
+   border-color: #0f53a0;
+  }
+  .source-dest-container{
+    position: relative;
+    display: flex;
+    
+  }
+  .flight-input-dropdown {
+    width: 50%;
+    max-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 5px 20px;
+    border-radius: 7px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    box-shadow: 1px 1px 10px 1px gray;
+    margin-top: 60px;
+    position: absolute;
+    z-index: 100;
+    overflow: hidden;
+    font-weight: 500;
+  }
+  .flight-option{
+    width: 100%;
+    padding: 5px;
+    /* text-align: left; */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    
+  }
+  .flight-option:hover{
+    cursor: pointer;
+    background-color: #EFF5FC;
+  }
+  .flight-option button{
+    border: none;
+    background-color: inherit;
+    font-weight: bold;
+    margin-right: 5px;
+    color: gray;
+    padding: 4px;
+  }
+  .flight-option button:hover{
+    cursor: pointer;
+    background-color: #3366CC;
+    color: #EFF5FC;
+  }
+  .destination-popper{
+    display: flex;
+    flex-direction: column;
+    border-radius: 7px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    overflow: hidden;
+    box-shadow: 1px 1px 10px 1px gray;
+    margin-top: 10px;
+    position: absolute;
+    z-index: 100;
+  }
+  .dropdown > div {
+    text-align: left;
+    height: 18px;
+    padding: 8px;
+    color: rgb(43, 43, 43);
+    /* border-top: 1px solid gray; */
+  }
+  .dropdown > div:first-child {
+    border-top: 0;
+  }
+
+.city-name{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}  

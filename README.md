@@ -68,3 +68,29 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+Added Material ui Library adn emotionfor external css using run npm install @mui/material @emotion/react @emotion/styled
+
+Added phosphor-icons/core for icons using run npm add @phosphor-icons/core
+
+<!-- FontProvider -->
+
+created customized theme using createTheme and use a function Frontprovider with the help of ThemeProvider imported from @mui/material/styles
+
+<!-- Integration of customize css i js using makeStyles -->
+
+steps: > install @mui/styles package run npm i @mui/styles --save --force > after installation
+import { makeStyles } from "@mui/styles";
+make a custom useStyle name and inside this use classes name to write css in js like below
+const useStyles = makeStyles((theme) => ({
+root: {
+display: "flex",
+backgroundColor: theme.palette.primary.main,
+color: theme.palette.common.white,
+},
+text: {
+background: "red",
+color: "blue",
+},
+}));
+export default useStyles; > Now where you want to use just import that useStyles and use with classname on any element like this <div classname={classes.text}></div> in this div.text it will apply all the css written on the useStyles file

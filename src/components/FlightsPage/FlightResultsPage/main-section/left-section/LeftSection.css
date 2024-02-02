@@ -1,0 +1,79 @@
+.sort-by-stops, 
+.sort-by-depart-time,
+.sort-by-price,
+.sort-by-airlines
+{
+    font-size: medium;
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.stop-options,
+.depart-time-options
+{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 13px;
+    cursor: pointer;
+}
+.stop-options:hover,
+.depart-time-options:hover
+{
+    background-color: #F7F7F7;
+}
+
+.stop-input{
+    font-size: larger;
+    width: 10px;
+}
+/* changing checkbox field  */
+input[type=checkbox] {
+    margin: 4px 0 0;
+    line-height: normal;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.flight-time-range{
+    font-size: 13px;
+}
+.checkbox-time,
+.airline-options
+{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    
+}
+
+.price-tag,
+.price-tag-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.multi-airline{
+    padding-bottom: 7px;
+    border-bottom: 1px solid lightgray;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,98 @@
+
+#hotel-page{
+    padding-top: 32px;
+    display: flex;
+}
+
+.hotel-search-header h1{
+    color: #292929;
+}
+.hotel-search-header h4{
+    color: #444444;
+}
+
+#hotel-search-card{
+    width: 51vw;
+    height: 47vh;
+    border: 1px solid #E6E6E6;
+    border-radius: 10px;
+    padding: 20px;
+    
+}
+.hotel-search-location-date-room{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 30px;
+}
+#hotel-search-card{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 30px;
+    padding-left: 30px;
+}
+.location-data{
+    padding-top: 20px;
+    position: relative;
+}
+.place-icon{
+    position: absolute;
+    left: 1.7rem;
+    bottom: 0.9rem;
+}
+.location{
+    width: 39rem;
+    height: 59px;
+    border: 1px solid #D3D3D3;
+    border-radius: 7px;
+    padding-left: 50px; 
+}
+input[placeholder="Search your favourite hotels"]{
+    font-size: 18px;
+    
+}
+.date-room-input{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+}
+.date-picker{
+    /* position: static; */
+    display: flex;
+}
+
+/* .room-dropdown-btn{
+   
+} */
+
+.search-hotels-btn-container{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 20px;
+}
+.search-hotels-btn{
+    width: 12rem;
+    height: 49px;
+    border: none;
+    border-radius: 7px;
+    color: #FFFFFF;
+    background-color: #F77728;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+}
+.search-hotels-btn:hover{
+    background-color: #D4581D;
+}
+
+
+
+
+

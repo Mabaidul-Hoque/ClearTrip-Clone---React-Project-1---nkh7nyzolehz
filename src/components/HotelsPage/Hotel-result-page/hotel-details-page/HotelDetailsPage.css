@@ -1,0 +1,146 @@
+
+
+#hotel-name{
+    width: 12vw;
+    height: 50px;
+}
+.topic{
+    padding-bottom: 5px;
+}
+.active-topic {
+    color: black;
+    border-bottom: 2px solid;
+}
+.details{
+    /* border: 1px solid;    */
+}
+.left-details{
+    /* border: 1px solid; */
+    width: 50%;
+}
+.right-details{
+    /* border: 1px solid; */
+    width: 50%;
+}
+.hotel-details-main{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+
+.image-carosel{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+.prev-btn , 
+.next-btn{
+    z-index: 1;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    visibility: hidden;
+}
+.prev-btn{
+    left: 1rem;
+}
+.next-btn{
+    right: 1rem;
+}
+.image-carosel:hover .prev-btn{
+    visibility: visible;
+}
+.image-carosel:hover .next-btn{
+    visibility: visible;
+}
+.image-carosel>img{
+    width: 48vw;
+    height: 60vh;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.select-room-btn{
+    width: 12vw;
+    height: 50px;
+    color: white;
+    background-color: #FF4F17;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 400;
+}
+.select-room-btn:hover{
+    cursor: pointer;
+    background-color: #CE4501;
+}
+
+.rooms>h2{
+    margin-bottom: 20px;
+}
+.room-cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.room-price{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.bed-details{
+    margin-top: 20px;
+}
+.room-book-btn{
+    width: 100%;
+    height: 40px;
+    border: none;
+    color: white;
+    background-color: #FF4F17;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 7px;
+}
+.room-book-btn:hover{
+    cursor: pointer;
+    background-color: #CE4501;
+}
+
+.gen-header{
+    margin-bottom: 7px;
+}
+.gen-sub-header, .review-rating {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.review-rating{
+    font-size: 20px;
+    font-weight: 600;
+}
+.breakfast-plan>div{
+    font-size: 18px;
+    font-weight: 500;
+}
+.amentities{
+    margin-top: 40px;
+}
+.amenty{
+    margin-top: 10px;
+}
+.amentities-list{
+    list-style-type: none;
+    margin-top: 20px;
+}

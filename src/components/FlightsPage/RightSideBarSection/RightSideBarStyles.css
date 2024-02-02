@@ -1,0 +1,38 @@
+.css-rh92k-MuiPaper-root-MuiMobileStepper-root{
+    padding: 0;
+    margin-top: -3.5rem;
+    margin-bottom: 1rem;
+}
+
+/* .css-rh92k-MuiPaper-root-MuiMobileStepper-root {
+    padding: 0;
+    margin-top: -5rem;
+} */
+
+.offer-card{
+    position: relative;
+}
+
+.offer-card-texts{
+    position: absolute;
+    top: 2rem;
+    color: #FFFFFF;
+}
+
+.more-offer {
+    color: #1A1A1A;
+    height: 37vh;
+}
+
+.offer-card-texts {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    flex-direction: column;
+    
+}
+
+/* booking classes */
+/* .booking-class-btns{
+    border-radius: 20px;
+} */

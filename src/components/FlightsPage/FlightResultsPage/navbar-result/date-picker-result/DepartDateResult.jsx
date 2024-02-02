@@ -1,0 +1,46 @@
+import React from "react";
+import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
+import { Button } from "@mui/material";
+import { forwardRef } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "../ResultNavbar.css";
+
+const DepartDateResult = () => {
+  const contextValues = useFlightSearch();
+  const { handleDepartDateChange, departDay, departDate } =
+    contextValues.departvalue;
+
+  const ExampleCustomInput = forwardRef(({ departDay, onClick }, ref) => (
+    <Button
+      sx={{
+        background: "#FFFFFF",
+        color: "#1A1A1A",
+        border: "1px solid lightgray",
+        borderRadius: "5px",
+        textTransform: "none",
+        fontSize: "16px",
+        "&:focus": {
+          borderColor: "#3366CC",
+        },
+      }}
+      className="depart-date-result"
+      onClick={onClick}
+      ref={ref}
+    >
+      {localStorage.getItem("day")}
+    </Button>
+  ));
+
+  return (
+    <DatePicker
+      className="date-picker-btn"
+      required
+      selected={departDate}
+      onChange={handleDepartDateChange}
+      customInput={<ExampleCustomInput departDay={departDay} />}
+    />
+  );
+};
+
+export default DepartDateResult;

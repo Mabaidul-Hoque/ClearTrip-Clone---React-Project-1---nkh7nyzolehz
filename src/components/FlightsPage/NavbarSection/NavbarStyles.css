@@ -1,0 +1,32 @@
+
+.logo{
+    height: 3rem;
+    width: 10rem;   
+}
+.leftSection {
+    text-decoration: none; 
+    width: 13rem;
+    line-height: 1.7;
+    font-size: 18px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    border:  none;
+    background-color: inherit;  
+    color: black;
+    padding: 7px 15px;
+    border-radius: 7px;
+} 
+.leftSection:hover{
+    color: #3366CC;
+    background-color: #EFF5FC;
+}
+.active-left-btn {
+    background-color: #D6E8FC;
+    color: #3366CC;
+}
+.active-left-btn:hover {
+    background-color: #D6E8FC;
+    color: #3366CC;
+}
