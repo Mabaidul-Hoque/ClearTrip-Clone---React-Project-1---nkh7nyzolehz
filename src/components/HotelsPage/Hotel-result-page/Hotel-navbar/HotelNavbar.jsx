@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from "react";
-import "../HotelResultPage.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
-import DepartDate from "../../../FlightsPage/FlightSearchCard/DepartDate";
-import ReturnDate from "../../../FlightsPage/FlightSearchCard/ReturnDate";
-import AddRooms from "../../AddRooms";
-import HotelInputSection from "../../Hotel-search-card/HotelInputSection";
+import { MenuItem, Menu, Slider, Stack, Typography } from "@mui/material";
+import styled from "@emotion/styled";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import Menu from "@mui/material/Menu";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 import CheckCircleSharpIcon from "@mui/icons-material/CheckCircleSharp";
 
-import { OPTION } from "../../Hotels";
+import "../HotelResultPage.css";
 import StarCategory from "./StarCategory";
 import { CheckInOutDate } from "../check-in-out-date/CheckInOutDate";
 import { useAuth } from "../../../../UseContext/AuthorizationProvider";
-import { MenuItem, Slider, Stack, Typography } from "@mui/material";
-import { styled } from "@mui/styles";
+import HotelInputSection from "../../Hotel-search-card/HotelInputSection";
+import AddRooms from "../../AddRooms";
+import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
+import { OPTION } from "../../Hotels";
 
 const PrettoSlider = styled(Slider)({
   color: "black",

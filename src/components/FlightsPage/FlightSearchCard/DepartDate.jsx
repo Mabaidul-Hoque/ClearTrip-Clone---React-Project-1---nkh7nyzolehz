@@ -2,12 +2,10 @@ import React, { useRef, useState } from "react";
 import { forwardRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import useFlightSectionStyles from "./FlightSearchCardStyles";
 import { Button } from "@mui/material";
 import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
 
 const DepartDate = () => {
-  const classes = useFlightSectionStyles();
   const contextValues = useFlightSearch();
   const { handleDepartDateChange, departDay, departDate, handleClick } =
     contextValues.departvalue;
@@ -25,7 +23,7 @@ const DepartDate = () => {
           borderColor: "#3366CC",
         },
       }}
-      className={classes.exampleCustomInput}
+      className="depart-day-btn"
       onClick={onClick}
       ref={ref}
     >
@@ -36,7 +34,6 @@ const DepartDate = () => {
     <DatePicker
       className="date-picker-btn"
       onClick={handleClick}
-      // ref={buttonRef}
       required
       selected={departDate}
       onChange={handleDepartDateChange}

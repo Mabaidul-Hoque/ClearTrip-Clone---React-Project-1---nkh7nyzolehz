@@ -27,35 +27,22 @@ export default function FlightSearchCard() {
   const [fareBtnIndex, setFareBtnIndex] = useState(0);
   const [isSwitch, setIsSwitch] = useState(false);
   const contextValues = useFlightSearch();
-  const [inputValue, setInputValue] = useState("");
+  // const [inputValue, setInputValue] = useState("");
 
   const {
-    handleSourceChange,
-    handleDestinationChange,
-    sourceRef,
-    destinationRef,
+    // handleSourceChange,
+    // handleDestinationChange,
+    // sourceRef,
+    // destinationRef,
     source,
     destination,
     cityNameCodes,
-    setSource,
+    // setSource,
   } = contextValues.sourceDestValue;
 
   const { airportNames } = contextValues.fecthValues;
   const { handleSearchClick } = contextValues.searchPlane;
   const { departDay } = contextValues.departvalue;
-
-  const classes = useFlightSectionStyles();
-
-  // const handleSearch = (value, cb) => {
-  //   // just to explian API call
-
-  //   let tempOptions = [...OPTION, ...airportNames];
-  //   tempOptions = tempOptions.filter((item) =>
-  //     item["name"]?.toLowerCase().includes(value.toLowerCase())
-  //   );
-  //   // setOptions
-  //   cb(tempOptions);
-  // };
 
   const handleNavigation = () => {
     if (
@@ -66,7 +53,6 @@ export default function FlightSearchCard() {
     ) {
       navigate("/flights/results");
     }
-    // console.log("source-card", source);
   };
 
   return (
@@ -75,12 +61,7 @@ export default function FlightSearchCard() {
         {/* passenger addtion popper */}
         <PassengerAdd />
         {/* fare btns section */}
-        <Box
-          pl={1}
-          mb={2}
-          className={classes.fareBtnsContainer}
-          component="div"
-        >
+        <Box pl={1} mb={2} className="fare-btns-container" component="div">
           {fareBtnTexts.map((fareBtnText, index) => (
             <Box
               component="button"
@@ -112,25 +93,9 @@ export default function FlightSearchCard() {
               htmlColor="#808080"
               sx={{ position: "absolute", left: "3.5%", top: "0.7rem" }}
             />
-            {/* <input
-              type="text"
-              id="source-input"
-              name="source-input"
-              list="data"
-              // value={source}
-              onChange={(e) => handleSourceChange(e.target.value)}
-            />
-            <datalist id="data">
-              {airportNames.map((city) => (
-                <option key={city._id}>{city.iata_code}</option>
-              ))}
-            </datalist> */}
-
             <DepartCityInput
               options={airportNames}
               noOptionText={"No Match Found"}
-              // onSearch={handleSearch}
-              // optionKey={"iata_code"}
               optionCount={5}
             />
           </div>
@@ -153,39 +118,16 @@ export default function FlightSearchCard() {
               htmlColor="#808080"
               sx={{ position: "absolute", right: "16rem", top: "0.8rem" }}
             />
-            {/* <input
-              type="text"
-              id="destination-input"
-              name="destination-input"
-              list="data"
-              // value={source}
-              onChange={(e) => handleDestinationChange(e.target.value)}
-            />
-            <datalist
-              style={{ width: "500px" }}
-              className="source-dropdown"
-              id="data"
-            >
-              {airportNames.map((airportName) => (
-                <option
-                  value={`${airportName.iata_code} - ${airportName.city}, IN`}
-                  key={airportName._id}
-                ></option>
-              ))}
-            </datalist> */}
-
             <DestinationCityInput
               options={airportNames}
               noOptionText={"No Match Found"}
-              // onSearch={handleSearch}
-              // optionKey={"iata_code"}
               optionCount={5}
             />
           </div>
         </Box>
         {/*  date picker and ssearch flight section  */}
-        <Box className={classes.searchBtnContainer} component="div">
-          <div className={classes.customDatePicker}>
+        <Box className="search-btn-conatiner" component="div">
+          <div className="flight-date-picker">
             <DepartDate />
             <ReturnDate />
           </div>

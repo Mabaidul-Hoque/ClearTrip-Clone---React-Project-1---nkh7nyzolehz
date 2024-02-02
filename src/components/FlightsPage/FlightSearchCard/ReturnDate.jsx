@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import { forwardRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import useFlightSectionStyles from "./FlightSearchCardStyles";
 import { Button } from "@mui/material";
 import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
 
 const ReturnDate = () => {
-  const classes = useFlightSectionStyles();
   const contextValues = useFlightSearch();
   const { handleReturnDateChange, returnDay, returnDate } =
     contextValues.returnValue;
@@ -25,7 +23,7 @@ const ReturnDate = () => {
           borderColor: "#3366CC",
         },
       }}
-      className={classes.exampleCustomInput}
+      className="return-day-btn"
       onClick={onClick}
       ref={ref}
     >

@@ -4,7 +4,6 @@ import MenuList from "@mui/material/MenuList";
 import { Box, Stack, Typography } from "@mui/material";
 import ControlPointOutlinedIcon from "@mui/icons-material/ControlPointOutlined";
 import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
-import useFlightSectionStyles from "./FlightSearchCardStyles";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import Grow from "@mui/material/Grow";
 import Paper from "@mui/material/Paper";
@@ -22,8 +21,6 @@ const passengerAddbBtnTexts = [
 ];
 
 const PassengerAdd = () => {
-  const classes = useFlightSectionStyles();
-
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [bookingTypeIndex, setTookingTypeIndex] = React.useState(0);
@@ -31,15 +28,12 @@ const PassengerAdd = () => {
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
-
   const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-
     setOpen(false);
   };
-
   function handleListKeyDown(event) {
     if (event.key === "Tab") {
       event.preventDefault();
@@ -89,7 +83,7 @@ const PassengerAdd = () => {
                 placement === "bottom-start" ? "left top" : "left bottom",
             }}
           >
-            <Paper className={classes.passengerAdditon}>
+            <Paper className="add-passenger">
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList
                   sx={{
@@ -199,7 +193,7 @@ const PassengerAdd = () => {
                     <Box
                       mb={2}
                       mt={2.5}
-                      className={classes.passengerAddbBtnContainer}
+                      className="add-passenger-container"
                       component="div"
                       color="text.secondary"
                     >

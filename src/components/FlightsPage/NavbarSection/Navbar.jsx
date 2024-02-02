@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./NavbarStyles.css";
 import { OffersContext } from "../../../UseContext/OffersUrlProvider";
 import { Box, Typography, Button, Stack } from "@mui/material";
-import { styled } from "@mui/styles";
+
 import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
 import Modal from "@mui/material/Modal";
 import CloseIcon from "@mui/icons-material/Close";
@@ -11,6 +11,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SignupPage from "../../Login-signup/SignupPage";
 import LoginPage from "../../Login-signup/LoginPage";
 import { useAuth } from "../../../UseContext/AuthorizationProvider";
+import styled from "@emotion/styled";
 // import { useAuth } from "../../UseContext/AuthorizationProvider";
 
 // const leftLogoUrl = "../../../public/assets/Cleartrip_Original.svg.png";

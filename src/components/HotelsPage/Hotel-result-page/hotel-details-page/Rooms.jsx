@@ -1,9 +1,7 @@
 import React from "react";
-import Paper from "@mui/material/Paper";
-import { Stack } from "@mui/material";
+import { Stack, Paper } from "@mui/material";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
-import { styled } from "@mui/styles";
-import { makeStyles } from "@mui/styles";
+import styled from "@emotion/styled";
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   width: "26vw",

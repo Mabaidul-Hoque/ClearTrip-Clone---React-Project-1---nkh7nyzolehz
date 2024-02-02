@@ -70,6 +70,14 @@ input[type="text"]{
     width: 200px;
 }
 
+.recent-search-card{
+    width: 12rem;
+    height: 5rem;
+    margin-left: -1.2rem;
+    margin-top: -0.5rem;
+    margin-bottom: -0.5rem;
+}
+
 
 
 

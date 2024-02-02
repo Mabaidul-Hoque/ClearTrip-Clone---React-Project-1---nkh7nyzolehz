@@ -5,7 +5,6 @@ import { PaperCard } from "../../CustomizedCards/";
 import { fetchOffers } from "../../../Apis/OffersApi";
 import { OffersContext } from "../../../UseContext/OffersUrlProvider";
 import { useTheme } from "@mui/material/styles";
-import SwipeableViews from "react-swipeable-views";
 import { Link } from "react-router-dom";
 import "./RightSideBarStyles.css";
 import Sweepper from "./Sweepper";
@@ -56,7 +55,7 @@ const RightSideBar = () => {
       <Box component="div">
         <PaperCard width="20vw" height="36vh" borderRadius="10px">
           <Box ml={"-1rem"} mt={"-1rem"} sx={{ width: "18vw" }}>
-            <SwipeableViews
+            {/* <SwipeableViews
               axis={theme.direction === "rtl" ? "x-reverse" : "x"}
               index={activeStep}
               onChangeIndex={handleStepChange}
@@ -102,7 +101,7 @@ const RightSideBar = () => {
                   ) : null}
                 </div>
               ))}
-            </SwipeableViews>
+            </SwipeableViews> */}
 
             <Sweepper
               maxSteps={maxSteps}

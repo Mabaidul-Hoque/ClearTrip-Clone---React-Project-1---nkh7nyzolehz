@@ -44,24 +44,6 @@ const MainContent = () => {
             airplane={airplane}
           />
         ))}
-
-        {/* {(nonStop ||
-        oneStop ||
-        twoStop ||
-        isEarlyMorning ||
-        isMorning ||
-        isAfterNoon ||
-        isEvening ||
-        isNight
-          ? filteredAirplanes
-          : airplanes
-        ).map((airplane, index) => (
-          <MainContentCard
-            index={index}
-            key={airplane._id + index}
-            airplane={airplane}
-          />
-        ))} */}
       </Stack>
     </div>
   );

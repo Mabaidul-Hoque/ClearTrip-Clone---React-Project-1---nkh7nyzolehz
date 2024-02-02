@@ -3,14 +3,12 @@ import { useTheme } from "@mui/material/styles";
 import MobileStepper from "@mui/material/MobileStepper";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import SwipeableViews from "react-swipeable-views";
-import { autoPlay } from "react-swipeable-views-utils";
 import { Typography, Box, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./RightSideBarStyles.css";
 import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+// const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const SwipeableTextMobileStepper = memo((props) => {
   const { offers } = props;
@@ -32,7 +30,7 @@ const SwipeableTextMobileStepper = memo((props) => {
 
   return (
     <Box sx={{ width: "20vw" }}>
-      <AutoPlaySwipeableViews
+      {/* <AutoPlaySwipeableViews
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={activeStep}
         onChangeIndex={handleStepChange}
@@ -80,7 +78,7 @@ const SwipeableTextMobileStepper = memo((props) => {
             ) : null}
           </div>
         ))}
-      </AutoPlaySwipeableViews>
+      </AutoPlaySwipeableViews> */}
       <MobileStepper
         className="css-rh92k-MuiPaper-root-MuiMobileStepper-root"
         steps={maxSteps}

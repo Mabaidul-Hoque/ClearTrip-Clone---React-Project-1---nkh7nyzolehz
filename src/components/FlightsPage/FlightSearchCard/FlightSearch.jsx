@@ -2,13 +2,10 @@ import { Typography, Box, Stack } from "@mui/material";
 import React, { useState } from "react";
 import FlightSearchCard from "./FlightSearchCard";
 import PaperCardRecentSearch from "../RecentSearch/PaperCardRecentSearch";
-import useFlightSectionStyles from "./FlightSearchCardStyles";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
 import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
 
 const FlightSearch = () => {
-  const [inputValue, setInputValue] = useState("");
-  const classes = useFlightSectionStyles();
   return (
     <Box component="div">
       <Box mb={4} sx={{ textAlign: "left" }} component="div">
@@ -51,7 +48,7 @@ const FlightSearch = () => {
               flexDirection={"row"}
               justifyContent={"space-between"}
               alignItems={"center"}
-              className={classes.recentSearchMiniCard}
+              className="recent-search-card"
             >
               <Box>
                 <Stack
@@ -82,7 +79,7 @@ const FlightSearch = () => {
               flexDirection={"row"}
               justifyContent={"space-between"}
               alignItems={"center"}
-              className={classes.recentSearchMiniCard}
+              className="recent-search-card"
             >
               <Box>
                 <Stack
@@ -114,7 +111,7 @@ const FlightSearch = () => {
               flexDirection={"row"}
               justifyContent={"space-between"}
               alignItems={"center"}
-              className={classes.recentSearchMiniCard}
+              className="recent-search-card"
             >
               <Box>
                 <Stack

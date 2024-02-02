@@ -239,10 +239,8 @@ import "./FlightSearchCard.css";
 import { Paper } from "@mui/material";
 const DestinationCityInput = ({
   options,
-  onSearch,
   onSelect,
   optionKey = "iata_code",
-  optionCount = 5,
   noOptionText = "No Items",
 }) => {
   const [searchText, setSearchText] = useState("");
@@ -261,7 +259,6 @@ const DestinationCityInput = ({
   const selectHandle = (val) => {
     setFocus(false);
     setSearchText("");
-
     if (onSelect) {
       onSelect(val);
       return;
@@ -270,13 +267,6 @@ const DestinationCityInput = ({
   };
 
   const handleChange = ({ target }) => {
-    // setSearchText(target.value);
-    // if (onSearch) {
-    //   onSearch(target.value, (data) => setAllOption(data));
-    //   setSearchText(target.value);
-    //   return;
-    // }
-
     let tempOptions = [...options];
     tempOptions = tempOptions.filter((obj) =>
       obj[optionKey]?.toLowerCase().includes(target.value?.toLowerCase())
@@ -305,8 +295,6 @@ const DestinationCityInput = ({
         className="flight-input-dropdown"
         style={{
           display: focus ? "flex" : "none",
-          // oneOption Height * count - 1st borderTop (1px)
-          // maxHeight: `${35 * optionCount - 1}px`,
         }}
       >
         {!allOption.length ? (
