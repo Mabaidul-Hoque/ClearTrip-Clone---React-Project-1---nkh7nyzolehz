@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./NavbarStyles.css";
-import { OffersContext } from "../../../UseContext/OffersUrlProvider";
+import { OffersContext } from "../../../UseContext/OfferDetailsProvider";
 import { Box, Typography, Button, Stack } from "@mui/material";
 
 import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";

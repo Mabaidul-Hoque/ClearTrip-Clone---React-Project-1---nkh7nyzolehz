@@ -1,13 +1,13 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { fetchOffers } from "../Apis/OffersApi";
 
 export const OffersContext = createContext();
 
-export const OffersUrlProvider = ({ children }) => {
+export const OfferDetailsProvider = ({ children }) => {
   const [offers, setOffers] = useState([]);
   const [offersUrlFilter, setOffersUrlFilter] = useState("ALL");
 
-  const handleFlightBtn = () => {
+  const handleOfferFecth = () => {
     // let type = "";
 
     // if (offersUrlFilter === "ALL") type = "ALL";
@@ -22,10 +22,13 @@ export const OffersUrlProvider = ({ children }) => {
     // }
   };
 
+  useEffect(() => {
+    handleOfferFecth();
+  }, []);
+
   const offersValue = {
     offersUrlFilter,
     setOffersUrlFilter,
-    handleFlightBtn,
     offers,
     setOffers,
   };

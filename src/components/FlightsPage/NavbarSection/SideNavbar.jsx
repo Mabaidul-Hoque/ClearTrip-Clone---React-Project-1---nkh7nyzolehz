@@ -6,7 +6,7 @@ import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlin
 import LuggageOutlinedIcon from "@mui/icons-material/LuggageOutlined";
 import Box from "@mui/material/Box";
 import { Link, useLocation } from "react-router-dom";
-import { OffersContext } from "../../../UseContext/OffersUrlProvider";
+import { OffersContext } from "../../../UseContext/OfferDetailsProvider";
 import { useHotelContext } from "../../../UseContext/HotelDetailsProvider";
 
 const SideNavbar = () => {

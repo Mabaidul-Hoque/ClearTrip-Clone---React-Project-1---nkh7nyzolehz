@@ -4,11 +4,6 @@
     margin-bottom: 1rem;
 }
 
-/* .css-rh92k-MuiPaper-root-MuiMobileStepper-root {
-    padding: 0;
-    margin-top: -5rem;
-} */
-
 .offer-card{
     position: relative;
 }
@@ -32,7 +27,86 @@
     
 }
 
-/* booking classes */
-/* .booking-class-btns{
-    border-radius: 20px;
-} */
+/* carosel */
+.carousel-container-up, 
+.carousel-container-down{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    
+}
+.carousel-item-up, 
+.carousel-item-down{
+    height: 35vh;
+    position: relative;
+    border-radius: 7px;
+}
+.offer-details{
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    margin-left: 20px;
+}
+.offer-details>button{
+    border: none;
+    margin-top: 10px;
+    padding: 7px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+.carousel-item-up>img{
+    width: 21vw;
+    height: 35vh;
+}
+.up-prev-btn, 
+.up-next-btn,
+.down-prev-btn,
+.down-next-btn
+{
+    margin-bottom: 1rem;
+    border-radius: 2px;
+    border: none;
+    padding: 2px;
+    z-index: 1;
+    cursor: pointer;
+}
+.up-prev-btn,
+.down-prev-btn{
+    margin-right: -2.2rem;
+}
+.up-next-btn,
+.down-next-btn{
+    margin-left: -2.2rem;
+}
+.down-prev-btn,
+.down-next-btn{
+    background-color: rgb(179, 176, 176);
+}
+.inActive{
+    display: none;
+}
+.carousel-item {
+    height: 30vh;
+}
+.carousel-item-down{
+    border: 1px solid lightgray;
+}
+.carousel-item-down>div{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.know-more-btn{
+    border: none;
+    font-weight: 500;
+    background-color: inherit;
+}
+
+

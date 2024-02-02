@@ -1,7 +1,7 @@
 import React from "react";
 
-const Offers = () => {
+const OffersPage = () => {
   return <div>Offer page</div>;
 };
 
-export default Offers;
+export default OffersPage;

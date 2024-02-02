@@ -5,12 +5,12 @@ import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Hotels from "./components/HotelsPage/Hotels";
 import Flights from "./components/FlightsPage/Flights";
-import Offers from "./components/OffersPage/Offers";
+import Offers from "./components/OffersPage/OffersPage";
 import MyTrip from "./components/MyTripPage/MyTrip";
 import FlightResultsPage from "./components/FlightsPage/FlightResultsPage/FlightResultsPage";
 import { FlightsSearchProvider } from "./UseContext/FlightsSearchProvider";
 import { HotelDetailsProvider } from "./UseContext/HotelDetailsProvider";
-import { OffersUrlProvider } from "./UseContext/OffersUrlProvider";
+import { OfferDetailsProvider } from "./UseContext/OfferDetailsProvider";
 import HotelResultPage from "./components/HotelsPage/Hotel-result-page/HotelResultPage";
 import HotelDetailsPage from "./components/HotelsPage/Hotel-result-page/hotel-details-page/HotelDetailsPage";
 import AuthorizationProvider from "./UseContext/AuthorizationProvider";
@@ -66,7 +66,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
   <AuthorizationProvider>
-    <OffersUrlProvider>
+    <OfferDetailsProvider>
       <HotelDetailsProvider>
         <FlightsSearchProvider>
           <RouterProvider router={router}>
@@ -74,7 +74,7 @@ root.render(
           </RouterProvider>
         </FlightsSearchProvider>
       </HotelDetailsProvider>
-    </OffersUrlProvider>
+    </OfferDetailsProvider>
   </AuthorizationProvider>
   // </React.StrictMode>
 );
