@@ -6,18 +6,18 @@ import FlightResultProvider from "../../../../UseContext/FlightResultProvider";
 
 const MainSection = () => {
   return (
-    <FlightResultProvider>
-      <Stack
-        flexDirection={"row"}
-        justifyContent={"flex-start"}
-        alignItems={"flex-start"}
-        gap={2}
-        id="main-section-container"
-      >
-        <LeftSideSortingBar />
-        <MainContent />
-      </Stack>
-    </FlightResultProvider>
+    // <FlightResultProvider>
+    <Stack
+      flexDirection={"row"}
+      justifyContent={"flex-start"}
+      alignItems={"flex-start"}
+      gap={2}
+      id="main-section-container"
+    >
+      <LeftSideSortingBar />
+      <MainContent />
+    </Stack>
+    // </FlightResultProvider>
   );
 };
 

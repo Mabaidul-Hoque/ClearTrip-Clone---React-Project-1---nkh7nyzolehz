@@ -9,29 +9,39 @@ import { useNavigate } from "react-router-dom";
 
 import { useDebounce } from "../../../CustomHooks/useDebouce";
 import ImageCarousel from "./image-carousel/ImageCarousel";
+import { Pagination, Stack } from "@mui/material";
 
 const HotelResultPage = () => {
-  const { recommededFilterInfo, hotelDetails, inputInfo } = useHotelContext();
+  const [demoCount, setDemoCount] = useState(0);
+  const { hotelSearchHandler, recommededFilterInfo, hotelDetails, inputInfo } =
+    useHotelContext();
   const {
     setSingleHotel,
     setHotels,
     hotels,
     filteredHotels,
     setFilteredHotels,
+    hotelPage,
+    setHotelPage,
   } = hotelDetails;
-  const { highLow } = recommededFilterInfo;
+  const { handleHotelFilter } = recommededFilterInfo;
   const { handleInputPlaceChange } = inputInfo;
+  const { handleHotelSearchBtn } = hotelSearchHandler;
 
   const memoizedFilteredHotels = useMemo(
     () => filteredHotels,
     [filteredHotels]
   );
 
-  // useEffect(() => {
-  //   fetchHotels(localStorage.getItem("inputPlace")).then((resp) => {
-  //     setFilteredHotels(resp.data.hotels);
-  //   });
-  // }, []);
+  // const memoizedHotels = useMemo(
+  //   () => filteredHotels,
+  //   [filteredHotels]
+  // );
+
+  useEffect(() => {
+    setDemoCount((prev) => prev + 1);
+    handleHotelSearchBtn();
+  }, [hotelPage]);
 
   const handleSingleHotelClick = (hotelID) => {
     fetchSingleHotel(hotelID).then((response) => {
@@ -40,7 +50,14 @@ const HotelResultPage = () => {
     });
   };
 
-  console.log("filteredHotels", filteredHotels);
+  // console.log("filteredHotels", filteredHotels);
+  // console.log("demoCount", demoCount);
+  // console.log("Hotels", hotels);
+
+  const handleChange = (event, value) => {
+    setHotelPage(value);
+  };
+
   return (
     <div id="hotel-result-page">
       <HotelNavbar />
@@ -49,33 +66,12 @@ const HotelResultPage = () => {
       ></div>
 
       <main id="hotel-result-page-main">
-        {memoizedFilteredHotels.length > 0 ? (
-          memoizedFilteredHotels.map((hotel) => (
+        {
+          (memoizedFilteredHotels.length > 0
+            ? memoizedFilteredHotels
+            : hotels
+          ).map((hotel) => (
             <div key={hotel._id} className="hotel-card">
-              {/* <div className="result-carosel">
-                <button
-                  className="res-prev-btn"
-                  onClick={() => goToPreviousImage(hotel.images)}
-                >
-                  <KeyboardArrowLeftOutlinedIcon />
-                </button>
-                <img
-                  loading="lazy"
-                  src={hotel.images && hotel.images[currentImageIndex]}
-                  alt={hotel.name}
-                  onClick={() => {
-                    handleSingleHotelClick(hotel._id);
-                    navigate(`/hotels/results/${hotel._id}`);
-                  }}
-                />
-
-                <button
-                  className="res-next-btn"
-                  onClick={() => goToNextImage(hotel.images)}
-                >
-                  <KeyboardArrowRightOutlinedIcon />
-                </button>
-              </div> */}
               <ImageCarousel
                 handleSingleHotelClick={handleSingleHotelClick}
                 hotel={hotel}
@@ -100,18 +96,29 @@ const HotelResultPage = () => {
               </div>
             </div>
           ))
-        ) : (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <h1 style={{ textAlign: "center" }}>NO Hotels are Available!</h1>
-          </div>
-        )}
+          // : (
+          //   <div
+          //     style={{
+          //       display: "flex",
+          //       justifyContent: "center",
+          //       alignItems: "center",
+          //     }}
+          //   >
+          //     <h1 style={{ textAlign: "center" }}>NO Hotels are Available!</h1>
+          //   </div>
+        }
       </main>
+
+      <Stack mt={4} mb={4} flexDirection={"row"} justifyContent={"center"}>
+        <div>
+          <Pagination
+            count={5}
+            color="primary"
+            page={hotelPage}
+            onChange={handleChange}
+          />
+        </div>
+      </Stack>
     </div>
   );
 };

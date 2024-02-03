@@ -9,13 +9,16 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import { Link, useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
-import DeaprtCity from "./source-destination/DepartCity";
-import DestinationCity from "./source-destination/DestinationCity";
 import DepartDateResult from "./date-picker-result/DepartDateResult";
 import ReturnDateResult from "./date-picker-result/ReturnDateResult";
 import Traveller from "./Traveller";
 import { fetchAirportNames } from "../../../../Apis/AirportNamesApi";
 import { useAuth } from "../../../../UseContext/AuthorizationProvider";
+import ResultDepartCity from "./source-destination/ResultDepartCity";
+import ResultDestinationCity from "./source-destination/ResultDestinationCity";
+import { fetchFlights } from "../../../../Apis/FlightSearchApi";
+import { useFlightSearch } from "../../../../UseContext/FlightsSearchProvider";
+import { useFlightResult } from "../../../../UseContext/FlightResultProvider";
 const leftLogoUrl = "../../../../public/assets/Cleartrip_Original.svg.png";
 
 const RightButton = styled(Button)({
@@ -34,14 +37,26 @@ const ResultNavbar = () => {
   const [airportNames, setAirportNames] = useState([]);
   const navigate = useNavigate();
   const { tokenDetails, logSignDetails, handleLogout } = useAuth();
-  const { token, setToken } = tokenDetails;
+  const { token } = tokenDetails;
   const { handleLoginOpen, setLogInPagePath } = logSignDetails;
 
+  const { searchPlane } = useFlightSearch();
+  const { handleSearchClick } = searchPlane;
+
+  const { airplaneDetails } = useFlightResult();
+  const { setFilteredAirplanes, sourceVal, destinationVal, dayVal } =
+    airplaneDetails;
+
+  // check after remove
   useEffect(() => {
     fetchAirportNames().then((res) => {
       setAirportNames(res.data.airports);
     });
   }, []);
+
+  const handleResultFlightSearch = () => {
+    setFilteredAirplanes(handleSearchClick);
+  };
 
   return (
     <Stack id="result-navbar">
@@ -127,9 +142,17 @@ const ResultNavbar = () => {
           alignItems={"center"}
           gap={1}
         >
-          <DeaprtCity airportNames={airportNames} />
+          <ResultDepartCity
+            options={airportNames}
+            noOptionText={"No Match Found"}
+            optionCount={5}
+          />
           <SyncAltOutlinedIcon htmlColor="#ED6521" />
-          <DestinationCity airportNames={airportNames} />
+          <ResultDestinationCity
+            options={airportNames}
+            noOptionText={"No Match Found"}
+            optionCount={5}
+          />
         </Stack>
         <Box>
           <DepartDateResult />
@@ -153,6 +176,7 @@ const ResultNavbar = () => {
               bgcolor: "#000000",
             },
           }}
+          onClick={handleResultFlightSearch}
         >
           Search
         </Button>

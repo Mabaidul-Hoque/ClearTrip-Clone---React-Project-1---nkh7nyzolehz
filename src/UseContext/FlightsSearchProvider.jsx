@@ -82,10 +82,12 @@ export const FlightsSearchProvider = ({ children }) => {
       const day = localStorage.getItem("day").substring(0, 3);
       if (sourceVal !== null && destinationVal !== null && day !== null) {
         fetchFlights(sourceVal, destinationVal, day).then((response) => {
+          console.log("flight result page search btn ", response.data.flights);
           setAirplanes(response.data.flights);
         });
       } else {
         fetchFlights(sourceVal, destinationVal, day).then((response) => {
+          console.log(response.data.flights);
           setAirplanes(response.data.flights);
         });
       }

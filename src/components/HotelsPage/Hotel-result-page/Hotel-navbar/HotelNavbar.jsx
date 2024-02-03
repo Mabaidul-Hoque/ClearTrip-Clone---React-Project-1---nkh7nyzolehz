@@ -46,7 +46,8 @@ const HotelNavbar = () => {
   const { token } = tokenDetails;
   const { handleLoginOpen, setLogInPagePath } = logSignDetails;
 
-  const { recommededFilterInfo, filterbyPriceInfo } = useHotelContext();
+  const { recommededFilterInfo, filterbyPriceInfo, hotelDetails } =
+    useHotelContext();
   const {
     handleFilterbyPrice,
     handleHotelFilter,
@@ -61,23 +62,13 @@ const HotelNavbar = () => {
     handleLowHighBtn,
   } = recommededFilterInfo;
   const { hotelPrice, setHotelPrice, handleHotelPrice } = filterbyPriceInfo;
-
+  const { setHotelPage } = hotelDetails;
   const hotelPriceDebounce = useDebounce(hotelPrice, 500);
   const navigate = useNavigate();
 
   useEffect(() => {
     handleHotelFilter();
   }, [hotelPriceDebounce]);
-
-  const handleSearch = (value, cb) => {
-    // just to explian API call
-    let tempOptions = [...OPTION, { name: "piyush" }];
-    tempOptions = tempOptions.filter((item) =>
-      item["name"]?.toLowerCase().includes(value.toLowerCase())
-    );
-    // setOptions
-    cb(tempOptions);
-  };
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -102,7 +93,7 @@ const HotelNavbar = () => {
             hotelInputClass="hotel-result-input-box"
             options={OPTION}
             noOptionText={"No Match Found"}
-            onSearch={handleSearch}
+            // onSearch={handleSearch}
             optionKey={"name"}
             optionCount={5}
           />
@@ -222,7 +213,16 @@ const HotelNavbar = () => {
           justifyContent={"flex-start"}
           alignItems={"center"}
         >
-          <Typography sx={{ width: "20vw", fontSize: "16px", fontw: "500" }}>
+          <Typography
+            sx={{
+              marginRight: "20px",
+              fontSize: "16px",
+              fontw: "700",
+              border: "1px solid #D3D3D3",
+              padding: "7px 9px",
+              borderRadius: "15px",
+            }}
+          >
             Sort by price
           </Typography>
           <PrettoSlider

@@ -1,5 +1,7 @@
 
-
+.hotel-res-login{
+    cursor: pointer;
+}
 #hotel-name{
     width: 12vw;
     height: 50px;
@@ -11,9 +13,7 @@
     color: black;
     border-bottom: 2px solid;
 }
-.details{
-    /* border: 1px solid;    */
-}
+
 .left-details{
     /* border: 1px solid; */
     width: 50%;

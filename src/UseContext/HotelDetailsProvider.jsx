@@ -4,6 +4,7 @@ import React, {
   useState,
   useEffect,
   useRef,
+  useCallback,
 } from "react";
 import { fetchHotels } from "../Apis/HotelDetailsApi";
 import {
@@ -37,42 +38,51 @@ export const HotelDetailsProvider = ({ children }) => {
   const [filterItems, setFilterItems] = useState({});
   const [price, setPrice] = useState(0);
   const [hotelPrice, setHotelPrice] = useState(10000);
+
+  const [hotelPage, setHotelPage] = useState(1);
+
   // const hotelPriceDebounce = useDebounce(filterItems, 500);
 
   const handleInputChange = (val) => {
+    setInputPlace(val);
+  };
+  const handleInputPlaceChange = (val) => {
     setInputPlace(val);
   };
 
   const handleHotelSearchBtn = () => {
     localStorage.setItem("inputPlace", inputPlace);
 
-    fetchHotels(inputPlace).then((resp) => {
+    fetchHotels(inputPlace, 10, hotelPage).then((resp) => {
       setHotels(resp.data.hotels);
     });
   };
 
-  const handleInputPlaceChange = (val) => {
-    setInputPlace(val);
-  };
-  // const handleFocus = (val) => {
-  //   setFocus(val);
-  // };
-
-  const handleFilterbyPrice = () => {
-    fetchSortByPrice(localStorage.getItem("inputPlace"), price).then((resp) => {
+  const handleFilterbyPrice = useCallback(() => {
+    fetchSortByPrice(
+      localStorage.getItem("inputPlace"),
+      10,
+      hotelPage,
+      price
+    ).then((resp) => {
       // console.log("hotels by price high to low  ", resp);
       setFilteredHotels(resp.data.hotels);
     });
-  };
-  const handleHotelFilter = () => {
+  }, [inputPlace, price]);
+
+  const handleHotelFilter = useCallback(() => {
     const JSONFilter = JSON.stringify(filterItems);
-    fetchFilteredHotels(localStorage.getItem("inputPlace"), JSONFilter).then(
-      (response) => {
-        console.log("response for fetchFilteredHotels", response);
-        setFilteredHotels(response.data.hotels);
-      }
-    );
-  };
+    fetchFilteredHotels(
+      localStorage.getItem("inputPlace"),
+      10,
+      hotelPage,
+      JSONFilter
+    ).then((response) => {
+      // console.log("response for fetchFilteredHotels", response);
+
+      setFilteredHotels(response.data.hotels);
+    });
+  }, [inputPlace, filterItems]);
 
   const handleHotelPrice = () => {
     if (hotelPrice >= 1000 && hotelPrice <= 10000) {
@@ -110,8 +120,10 @@ export const HotelDetailsProvider = ({ children }) => {
       setHotels,
       singleHotel,
       setSingleHotel,
+      hotelPage,
+      setHotelPage,
     },
-    hotelFecthValues: {
+    hotelSearchHandler: {
       handleHotelSearchBtn,
     },
 

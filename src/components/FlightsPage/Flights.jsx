@@ -3,11 +3,11 @@ import React from "react";
 import "./FlightPage.css";
 import FlightSearch from "./FlightSearchCard/FlightSearch";
 import RightSideBar from "./RightSideBarSection/RightSideBar";
-import FlightsSearchProvider from "../../UseContext/FlightsSearchProvider";
+import FlightResultProvider from "../../UseContext/FlightResultProvider";
 
 const Flights = () => {
   return (
-    <FlightsSearchProvider>
+    <FlightResultProvider>
       <Stack
         flexDirection={"row"}
         justifyContent={"space-between"}
@@ -22,7 +22,7 @@ const Flights = () => {
         <FlightSearch />
         <RightSideBar />
       </Stack>
-    </FlightsSearchProvider>
+    </FlightResultProvider>
   );
 };
 

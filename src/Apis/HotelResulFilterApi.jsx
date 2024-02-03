@@ -1,7 +1,7 @@
-export async function fetchSortByPrice(location, price) {
+export async function fetchSortByPrice(location, limit, page, price) {
   try {
     const res = await fetch(
-      `https://academics.newtonschool.co/api/v1/bookingportals/hotel?search={"location":"${location}"}&sort={"avgCostPerNight":${price}}`,
+      `https://academics.newtonschool.co/api/v1/bookingportals/hotel?search={"location":"${location}"}&limit=${limit}&page=${page}&sort={"avgCostPerNight":${price}}`,
       {
         method: "GET",
         headers: {
@@ -16,10 +16,10 @@ export async function fetchSortByPrice(location, price) {
   }
 }
 
-export async function fetchFilteredHotels(location, filterItems) {
+export async function fetchFilteredHotels(location, limit, page, filterItems) {
   try {
     const res = await fetch(
-      `https://academics.newtonschool.co/api/v1/bookingportals/hotel?search={"location":"${location}"}&filter=${filterItems}`,
+      `https://academics.newtonschool.co/api/v1/bookingportals/hotel?search={"location":"${location}"}&limit=${limit}&page=${page}&filter=${filterItems}`,
       {
         method: "GET",
         headers: {

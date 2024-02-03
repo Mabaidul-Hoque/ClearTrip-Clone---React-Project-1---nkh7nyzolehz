@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
-import "./FlightSearchCard.css";
-import { Box, Paper, Stack } from "@mui/material";
-const DestinationCityInput = ({
+import { useEffect, useRef, useState } from "react";
+import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
+import "../ResultNavbar.css";
+import { Paper, Stack } from "@mui/material";
+
+const ResultDepartCity = ({
   options,
   onSelect,
   optionKey = "iata_code",
@@ -14,12 +15,11 @@ const DestinationCityInput = ({
   const [focus, setFocus] = useState(false);
 
   const contextValues = useFlightSearch();
-  const { handleDestinationChange, destinationRef } =
-    contextValues.sourceDestValue;
+  const { handleSourceChange, sourceRef } = contextValues.sourceDestValue;
 
   useEffect(() => {
     setAllOption(options);
-    handleDestinationChange(selected);
+    handleSourceChange(selected);
 
     document.addEventListener("click", handleOutsideClick);
 
@@ -29,10 +29,7 @@ const DestinationCityInput = ({
   }, [options, selected]);
 
   const handleOutsideClick = (event) => {
-    if (
-      destinationRef.current &&
-      !destinationRef.current.contains(event.target)
-    ) {
+    if (sourceRef.current && !sourceRef.current.contains(event.target)) {
       setFocus(false);
     }
   };
@@ -44,6 +41,7 @@ const DestinationCityInput = ({
       onSelect(val);
       return;
     }
+    setSelected(val[optionKey]);
     setSelected(`${val.iata_code} ${val.city}, IN`);
   };
 
@@ -59,16 +57,19 @@ const DestinationCityInput = ({
   return (
     <div className="autoComplete">
       <input
-        ref={destinationRef}
-        className="inputBox"
-        placeholder="Where to?"
+        ref={sourceRef}
+        className="result-input-source"
+        placeholder={localStorage.getItem("source")}
         value={selected || searchText}
+        onChange={handleChange}
         onFocus={() => {
           setSelected("");
           setFocus(true);
         }}
-        onChange={handleChange}
         style={{
+          width: "14vw",
+          height: "40px",
+
           borderBottomLeftRadius: searchText ? 0 : "",
           borderBottomRightRadius: searchText ? 0 : "",
         }}
@@ -86,10 +87,11 @@ const DestinationCityInput = ({
             <div
               className="flight-option"
               key={`${index}`}
-              onClick={() => selectHandle(option)}
+              onClick={() => {
+                selectHandle(option);
+              }}
             >
               <button className="option-btn">{option.iata_code}</button>
-
               <Stack
                 flexDirection={"row"}
                 sx={{ textAlign: "left", width: "80%" }}
@@ -107,4 +109,4 @@ const DestinationCityInput = ({
     </div>
   );
 };
-export default DestinationCityInput;
+export default ResultDepartCity;

@@ -16,7 +16,7 @@ export const OfferDetailsProvider = ({ children }) => {
 
     // if (type !== undefined || type !== "") {
     fetchOffers().then((res) => {
-      console.log(res);
+      // console.log(res);
       setOffers(res.data.offers);
     });
     // }

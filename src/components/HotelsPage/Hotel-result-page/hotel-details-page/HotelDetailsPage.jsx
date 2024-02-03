@@ -18,6 +18,7 @@ import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import Rooms from "./Rooms";
+import HotelDetailsInput from "./HotelDetailsInput";
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   width: "45vw",
@@ -58,22 +59,12 @@ const HotelDetailsPage = () => {
     );
   };
 
-  const handleSearch = (value, cb) => {
-    // just to explian API call
-    let tempOptions = [...OPTION, { name: "piyush" }];
-    tempOptions = tempOptions.filter((item) =>
-      item["name"]?.toLowerCase().includes(value.toLowerCase())
-    );
-    // setOptions
-    cb(tempOptions);
-  };
-
   useEffect(() => {
     fetchSingleHotel(userID).then((response) => {
-      console.log("singleHotel", response);
+      // console.log("singleHotel", response);
       setSingleHotel(response.data);
     });
-  }, []);
+  }, [userID]);
 
   return (
     <div className="hotel-details-page">
@@ -88,13 +79,11 @@ const HotelDetailsPage = () => {
               />
             </Link>
             <div className="logo-login-middle">
-              <HotelInputSection
-                hotelInputClass="hotel-result-input-box"
+              <HotelDetailsInput
                 options={OPTION}
-                noOptionText={"No Match Found"}
-                onSearch={handleSearch}
+                singleHotel={singleHotel}
                 optionKey={"name"}
-                optionCount={5}
+                noOptionText={"No Match Found"}
               />
               <CheckInOutDate />
               <AddRooms width="13vw" height="46px" />
@@ -228,16 +217,26 @@ const HotelDetailsPage = () => {
               </button>
             </div>
             <DemoPaper variant="outlined">
-              <Stack
-                flexDirection={"row"}
-                justifyContent={"flex-start"}
-                alignContent={"center"}
-                style={{ fontSize: "24px", fontWeight: "600" }}
-              >
-                <span>
-                  <CurrencyRupeeIcon />
-                </span>
-                <span>{Math.ceil(singleHotel.avgCostPerNight)}</span>
+              <Stack flexDirection={"row"} alignItems={"center"} gap={"5px"}>
+                <div
+                  style={{
+                    fontSize: "24px",
+                    fontWeight: "600",
+                  }}
+                >
+                  <CurrencyRupeeIcon style={{ marginBottom: "-4px" }} />
+                  <span>{Math.ceil(singleHotel.avgCostPerNight)}</span>
+                </div>
+                <div>
+                  <span>
+                    +{" "}
+                    <CurrencyRupeeIcon
+                      fontSize="sm"
+                      style={{ marginBottom: "-2px" }}
+                    />
+                    500 tax / night
+                  </span>
+                </div>
               </Stack>
               <button className="select-room-btn">Select room</button>
             </DemoPaper>

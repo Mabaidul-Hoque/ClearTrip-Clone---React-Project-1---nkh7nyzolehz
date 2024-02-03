@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
-import "./FlightSearchCard.css";
+import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
+import "../ResultNavbar.css";
 import { Box, Paper, Stack } from "@mui/material";
-const DestinationCityInput = ({
+import { fetchFlights } from "../../../../../Apis/FlightSearchApi";
+const ResultDestinationCity = ({
   options,
   onSelect,
   optionKey = "iata_code",
@@ -60,8 +61,8 @@ const DestinationCityInput = ({
     <div className="autoComplete">
       <input
         ref={destinationRef}
-        className="inputBox"
-        placeholder="Where to?"
+        className="result-input-destination"
+        placeholder={localStorage.getItem("destination")}
         value={selected || searchText}
         onFocus={() => {
           setSelected("");
@@ -69,6 +70,9 @@ const DestinationCityInput = ({
         }}
         onChange={handleChange}
         style={{
+          width: "14vw",
+          height: "40px",
+
           borderBottomLeftRadius: searchText ? 0 : "",
           borderBottomRightRadius: searchText ? 0 : "",
         }}
@@ -107,4 +111,4 @@ const DestinationCityInput = ({
     </div>
   );
 };
-export default DestinationCityInput;
+export default ResultDestinationCity;

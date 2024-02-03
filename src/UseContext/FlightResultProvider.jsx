@@ -20,9 +20,9 @@ const FlightResultContext = createContext();
 
 export const useFlightResult = () => {
   const context = useContext(FlightResultContext);
-  if (!context) {
-    throw new Error("context is undefined");
-  }
+  // if (!context) {
+  //   throw new Error("context is undefined");
+  // }
   return context;
 };
 
@@ -43,6 +43,8 @@ export const FlightResultProvider = ({ children }) => {
   const [isPrice, setIsPrice] = useState(true);
   const [filteredAirplanes, setFilteredAirplanes] = useState([]);
   const [filterItems, setFilterItems] = useState({});
+  const [limit, setLimit] = useState(5);
+  const [page, setPage] = useState(0);
 
   const [demoStop, setDemoStop] = useState(false);
 
@@ -70,17 +72,21 @@ export const FlightResultProvider = ({ children }) => {
 
   const handleFlightResultFilter = () => {
     const JSONFilter = JSON.stringify(filterItems);
+
     fetchFilteredFlights(
       sourceVal.current,
       destinationVal.current,
       dayVal.current,
+      limit,
+      page,
       JSONFilter
     ).then((response) => {
-      console.log("fetch filtered flights", response.data.flights);
+      // console.log("fetch filtered flights", response.data.flights);
       setFilteredAirplanes(response.data.flights);
     });
   };
   const handlePriceFilter = (flightPrice) => {
+    setPage(1);
     if (flightPrice >= 1000 && flightPrice <= 10000) {
       filterItems.ticketPrice = {
         $lte: flightPrice,
@@ -90,6 +96,7 @@ export const FlightResultProvider = ({ children }) => {
     handleFlightResultFilter();
   };
   const handleNightFilter = () => {
+    setPage(1);
     if (!isNight) {
       const newObj = {
         $lte: "23:59",
@@ -99,8 +106,10 @@ export const FlightResultProvider = ({ children }) => {
     } else {
       delete filterItems["departureTime"];
     }
+    handleFlightResultFilter();
   };
   const handleEveningFilter = () => {
+    setPage(1);
     if (!isEvening) {
       const newObj = {
         $lte: "19:59",
@@ -110,8 +119,10 @@ export const FlightResultProvider = ({ children }) => {
     } else {
       delete filterItems["departureTime"];
     }
+    handleFlightResultFilter();
   };
   const handleAfterNoonFilter = () => {
+    setPage(1);
     if (!isAfterNoon) {
       const newObj = {
         $lte: "15:59",
@@ -121,8 +132,10 @@ export const FlightResultProvider = ({ children }) => {
     } else {
       delete filterItems["departureTime"];
     }
+    handleFlightResultFilter();
   };
   const handleMorningFilter = () => {
+    setPage(1);
     if (!isMorning) {
       const newObj = {
         $lte: "11:59",
@@ -132,8 +145,10 @@ export const FlightResultProvider = ({ children }) => {
     } else {
       delete filterItems["departureTime"];
     }
+    handleFlightResultFilter();
   };
   const handleEarlyMorningFilter = () => {
+    setPage(1);
     if (!isEarlyMorning) {
       const newObj = {
         $lte: "07:59",
@@ -143,33 +158,40 @@ export const FlightResultProvider = ({ children }) => {
     } else {
       delete filterItems["departureTime"];
     }
+    handleFlightResultFilter();
   };
 
   const handleNonStopFilter = () => {
+    setPage(1);
     if (!nonStop) {
       setFilterItems((prev) => ({ ...prev, stops: "0" }));
       // handleFlightResultFilter();
     } else {
       delete filterItems["stops"];
     }
+    handleFlightResultFilter();
   };
 
   const handleOneStopFilter = () => {
+    setPage(1);
     if (!oneStop) {
       setFilterItems((prev) => ({ ...prev, stops: "1" }));
       // handleFlightResultFilter();
     } else {
       delete filterItems["stops"];
     }
+    handleFlightResultFilter();
   };
 
   const handleTwoStopFilter = () => {
+    setPage(1);
     if (!twoStop) {
       setFilterItems((prev) => ({ ...prev, stops: "2" }));
       // handleFlightResultFilter();
     } else {
       delete filterItems["stops"];
     }
+    handleFlightResultFilter();
   };
 
   const handleId = (value) => {
@@ -203,6 +225,8 @@ export const FlightResultProvider = ({ children }) => {
       setFilteredAirplanes,
       handleFlightResultFilter,
       setFilterItems,
+      page,
+      setPage,
     },
     flightViewDetails: {
       airplaneId,

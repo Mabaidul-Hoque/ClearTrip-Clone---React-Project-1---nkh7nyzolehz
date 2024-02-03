@@ -42,8 +42,8 @@ export const OPTION = [
 ];
 
 const Hotels = () => {
-  const { hotelFecthValues, inputInfo } = useHotelContext();
-  const { handleHotelSearchBtn } = hotelFecthValues;
+  const { hotelSearchHandler, inputInfo } = useHotelContext();
+  const { handleHotelSearchBtn } = hotelSearchHandler;
   const { focus, setFocus } = inputInfo;
   const { tokenDetails } = useAuth();
   const { token } = tokenDetails;

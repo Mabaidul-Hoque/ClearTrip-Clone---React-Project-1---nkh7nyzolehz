@@ -1,7 +1,7 @@
-export async function fetchHotels(location) {
+export async function fetchHotels(location, limit, page) {
   try {
     const res = await fetch(
-      `https://academics.newtonschool.co/api/v1/bookingportals/hotel?search={"location":"${location}"}`,
+      `https://academics.newtonschool.co/api/v1/bookingportals/hotel?search={"location":"${location}"}&limit=${limit}&page=${page}`,
       {
         method: "GET",
         headers: {

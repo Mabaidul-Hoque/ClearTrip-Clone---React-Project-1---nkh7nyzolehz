@@ -1,25 +1,29 @@
-import { useEffect, useState } from "react";
-import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
-import "./FlightSearchCard.css";
-import { Box, Paper, Stack } from "@mui/material";
-const DestinationCityInput = ({
+import { useEffect, useRef, useState } from "react";
+import "./HotelDetailsPage.css";
+import { Paper } from "@mui/material";
+import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
+import { useLocation } from "react-router-dom";
+import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
+
+const HotelDetailsInput = ({
   options,
-  onSelect,
-  optionKey = "iata_code",
+  singleHotel,
+  optionKey = "name",
   noOptionText = "No Items",
 }) => {
   const [searchText, setSearchText] = useState("");
   const [selected, setSelected] = useState("");
   const [allOption, setAllOption] = useState(options || []);
-  const [focus, setFocus] = useState(false);
 
-  const contextValues = useFlightSearch();
-  const { handleDestinationChange, destinationRef } =
-    contextValues.sourceDestValue;
+  const hotelSearchRef = useRef();
+  const { pathname } = useLocation();
+
+  const { inputInfo } = useHotelContext();
+  const { handleInputPlaceChange, focus, setFocus } = inputInfo;
 
   useEffect(() => {
     setAllOption(options);
-    handleDestinationChange(selected);
+    handleInputPlaceChange(selected.split(",")[0].trim().toLocaleLowerCase());
 
     document.addEventListener("click", handleOutsideClick);
 
@@ -30,21 +34,21 @@ const DestinationCityInput = ({
 
   const handleOutsideClick = (event) => {
     if (
-      destinationRef.current &&
-      !destinationRef.current.contains(event.target)
+      hotelSearchRef.current &&
+      !hotelSearchRef.current.contains(event.target)
     ) {
       setFocus(false);
     }
   };
 
   const selectHandle = (val) => {
-    setFocus(false);
     setSearchText("");
+
     if (onSelect) {
       onSelect(val);
       return;
     }
-    setSelected(`${val.iata_code} ${val.city}, IN`);
+    setSelected(val[optionKey]);
   };
 
   const handleChange = ({ target }) => {
@@ -59,47 +63,44 @@ const DestinationCityInput = ({
   return (
     <div className="autoComplete">
       <input
-        ref={destinationRef}
-        className="inputBox"
-        placeholder="Where to?"
-        value={selected || searchText}
+        ref={hotelSearchRef}
+        placeholder={singleHotel.name}
         onFocus={() => {
           setSelected("");
           setFocus(true);
         }}
+        value={selected || searchText}
         onChange={handleChange}
         style={{
+          height: "44px",
+          border: " 1px solid #D3D3D3",
+          fontSize: "16px",
           borderBottomLeftRadius: searchText ? 0 : "",
           borderBottomRightRadius: searchText ? 0 : "",
+          paddingLeft: "15px",
+          fontWeight: "500",
         }}
       />
       <Paper
-        className="flight-input-dropdown"
+        className="dropdown"
         style={{
           display: focus ? "flex" : "none",
         }}
       >
+        <p className="top-text">Popular destinations</p>
         {!allOption.length ? (
           <div> {noOptionText} </div>
         ) : (
           allOption.map((option, index) => (
             <div
-              className="flight-option"
+              className="place-option"
               key={`${index}`}
               onClick={() => selectHandle(option)}
             >
-              <button className="option-btn">{option.iata_code}</button>
-
-              <Stack
-                flexDirection={"row"}
-                sx={{ textAlign: "left", width: "80%" }}
-              >
-                <span>{option.city}</span>
-                <span>,</span>
-                <span>IN</span>
-                <span>-</span>
-                <span className="city-name">{option.name}</span>
-              </Stack>
+              <div style={{ marginLeft: "30px" }}>{option[optionKey]}</div>
+              <div className="location-icon">
+                <FmdGoodOutlinedIcon fontSize="medium" htmlColor="gray" />
+              </div>
             </div>
           ))
         )}
@@ -107,4 +108,4 @@ const DestinationCityInput = ({
     </div>
   );
 };
-export default DestinationCityInput;
+export default HotelDetailsInput;
