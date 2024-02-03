@@ -72,7 +72,7 @@ const Navbar = ({ handleLoginOpen }) => {
 
         <LoginButton
           onClick={() => {
-            pathname === "/flights"
+            pathname === "/" || pathname === "/flights"
               ? setLogInPagePath("/flights")
               : setLogInPagePath("/hotels");
             token ? handleLogout() : handleLoginOpen();
