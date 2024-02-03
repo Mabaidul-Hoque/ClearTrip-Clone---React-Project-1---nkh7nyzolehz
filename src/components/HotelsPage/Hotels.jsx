@@ -5,15 +5,16 @@ import { Stack } from "@mui/material";
 import RightSideBar from "../FlightsPage/RightSideBarSection/RightSideBar";
 import DepartDate from "../FlightsPage/FlightSearchCard/DepartDate";
 import ReturnDate from "../FlightsPage/FlightSearchCard/ReturnDate";
-// import PassengerAdd from "../FlightsPage/FlightSearchCard/PassengerAdd";
 import AddRooms from "./AddRooms";
-import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
-import PlaceIcon from "@mui/icons-material/Place";
+// import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
+// import PlaceIcon from "@mui/icons-material/Place";
 import HotelInputSection from "./Hotel-search-card/HotelInputSection";
 import { useHotelContext } from "../../UseContext/HotelDetailsProvider";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../UseContext/AuthorizationProvider";
 import LoginPage from "../Login-signup/LoginPage";
+import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
+import FmdGoodIcon from "@mui/icons-material/FmdGood";
 
 export const OPTION = [
   { name: "Kolkata, West Bengal" },
@@ -41,22 +42,13 @@ export const OPTION = [
 ];
 
 const Hotels = () => {
-  const { focus, hotelFecthValues } = useHotelContext();
+  const { hotelFecthValues, inputInfo } = useHotelContext();
   const { handleHotelSearchBtn } = hotelFecthValues;
+  const { focus, setFocus } = inputInfo;
   const { tokenDetails } = useAuth();
   const { token } = tokenDetails;
 
   const navigate = useNavigate();
-
-  const handleSearch = (value, cb) => {
-    // just to explian API call
-    let tempOptions = [...OPTION, { name: "piyush" }];
-    tempOptions = tempOptions.filter((item) =>
-      item["name"]?.toLowerCase().includes(value.toLowerCase())
-    );
-    // setOptions
-    cb(tempOptions);
-  };
 
   return (
     <div id="hotel-page">
@@ -82,18 +74,17 @@ const Hotels = () => {
                   hotelInputClass="hotel-input-box"
                   options={OPTION}
                   noOptionText={"No Match Found"}
-                  onSearch={handleSearch}
                   optionKey={"name"}
                   optionCount={5}
                 />
               </div>
               {focus ? (
                 <span className="place-icon">
-                  <PlaceIcon fontSize="medium" htmlColor="orange" />
+                  <FmdGoodIcon fontSize="medium" htmlColor="blue" />
                 </span>
               ) : (
                 <span className="place-icon">
-                  <PlaceOutlinedIcon fontSize="medium" htmlColor="orange" />
+                  <FmdGoodOutlinedIcon fontSize="medium" htmlColor="gray" />
                 </span>
               )}
             </div>

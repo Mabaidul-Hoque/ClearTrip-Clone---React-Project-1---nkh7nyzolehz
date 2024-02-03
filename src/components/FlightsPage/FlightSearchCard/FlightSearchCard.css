@@ -10,32 +10,34 @@
     border: 1px solid #D3D3D3;
     font-size: 16px;
     padding-left: 60px;
+    transition: 0.5s ease-in-out;
   }
   .inputBox:focus {
     outline: 0;
-   border-color: #0f53a0;
+    border-color: #0f53a0;
+    scale: 1.05;
   }
   .source-dest-container{
     position: relative;
     display: flex;
-    
   }
   .flight-input-dropdown {
-    width: 50%;
+    width: 19.8rem;
     max-height: 40vh;
+    margin-left: -6px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     gap: 5px;
-    padding: 5px 20px;
+    padding: 5px 10px;
     border-radius: 7px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     box-shadow: 1px 1px 10px 1px gray;
     margin-top: 60px;
     position: absolute;
-    z-index: 100;
+    z-index: 1;
     overflow: hidden;
     font-weight: 500;
   }
@@ -53,15 +55,18 @@
     cursor: pointer;
     background-color: #EFF5FC;
   }
-  .flight-option button{
+  .option-btn{
+    text-align: left;
     border: none;
     background-color: inherit;
     font-weight: bold;
-    margin-right: 5px;
+    /* margin-right: 5px; */
     color: gray;
     padding: 4px;
+    width: 20%;
+    /* border: 1px solid; */
   }
-  .flight-option button:hover{
+  .option-btn:hover{
     cursor: pointer;
     background-color: #3366CC;
     color: #EFF5FC;
@@ -90,6 +95,7 @@
   }
 
 .city-name{
+  
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -133,3 +139,5 @@
   border: 1px solid lightgray;
   border-radius: 5px;
 }
+
+

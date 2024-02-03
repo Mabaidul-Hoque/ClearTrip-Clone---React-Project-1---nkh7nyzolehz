@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MenuItem, Menu, Slider, Stack, Typography } from "@mui/material";
 import styled from "@emotion/styled";
@@ -15,6 +15,7 @@ import HotelInputSection from "../../Hotel-search-card/HotelInputSection";
 import AddRooms from "../../AddRooms";
 import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
 import { OPTION } from "../../Hotels";
+import { useDebounce } from "../../../../CustomHooks/useDebouce";
 
 const PrettoSlider = styled(Slider)({
   color: "black",
@@ -61,7 +62,12 @@ const HotelNavbar = () => {
   } = recommededFilterInfo;
   const { hotelPrice, setHotelPrice, handleHotelPrice } = filterbyPriceInfo;
 
+  const hotelPriceDebounce = useDebounce(hotelPrice, 500);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    handleHotelFilter();
+  }, [hotelPriceDebounce]);
 
   const handleSearch = (value, cb) => {
     // just to explian API call
@@ -79,10 +85,6 @@ const HotelNavbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  useEffect(() => {
-    handleHotelFilter();
-  }, [hotelPrice]);
 
   return (
     <nav className="hotel-result-navbar">
@@ -231,7 +233,6 @@ const HotelNavbar = () => {
             aria-label="pretto slider"
             onChange={(e) => {
               setHotelPrice(e.target.value);
-
               handleHotelPrice();
             }}
           />
@@ -241,4 +242,4 @@ const HotelNavbar = () => {
   );
 };
 
-export default HotelNavbar;
+export default memo(HotelNavbar);

@@ -73,7 +73,7 @@ const HotelDetailsPage = () => {
       console.log("singleHotel", response);
       setSingleHotel(response.data);
     });
-  }, [userID]);
+  }, []);
 
   return (
     <div className="hotel-details-page">

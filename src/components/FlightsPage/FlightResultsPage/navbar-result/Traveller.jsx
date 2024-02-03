@@ -12,24 +12,26 @@ import ExpandLessOutlinedIcon from "@mui/icons-material/ExpandLessOutlined";
 import PersonIcon from "@mui/icons-material/Person";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import Button from "@mui/material/Button";
+import styled from "@emotion/styled";
+
+const TravellerPaper = styled(Button)({
+  border: "1px solid #D3D3D3",
+  height: "42px",
+});
 
 const Traveller = () => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-  const [bookingTypeIndex, setTookingTypeIndex] = React.useState(0);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
-
   const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-
     setOpen(false);
   };
-
   function handleListKeyDown(event) {
     if (event.key === "Tab") {
       event.preventDefault();
@@ -41,23 +43,24 @@ const Traveller = () => {
 
   return (
     <Stack direction="column" spacing={2}>
-      <Button
-        ref={anchorRef}
-        variant="outlined"
-        sx={{ color: "#1A1A1A" }}
-        id="composition-button"
-        aria-controls={open ? "composition-menu" : undefined}
-        aria-expanded={open ? "true" : undefined}
-        aria-haspopup="true"
-        onClick={handleToggle}
-      >
-        <span>1 tarveller</span>
-        <ExpandMoreOutlinedIcon htmlColor="#999999" />
-      </Button>
+      <TravellerPaper>
+        <Button
+          ref={anchorRef}
+          variant="outlined"
+          id="composition-button"
+          aria-controls={open ? "composition-menu" : undefined}
+          aria-expanded={open ? "true" : undefined}
+          aria-haspopup="true"
+          onClick={handleToggle}
+        >
+          <span>1 tarveller</span>
+          <ExpandMoreOutlinedIcon htmlColor="#999999" />
+        </Button>
+      </TravellerPaper>
 
       <Popper
         open={open}
-        sx={{ zIndex: "1" }}
+        sx={{ zIndex: "1", width: "23vw", padding: "10px" }}
         anchorEl={anchorRef.current}
         role={undefined}
         placement="bottom-start"
@@ -72,7 +75,12 @@ const Traveller = () => {
                 placement === "bottom-start" ? "left top" : "left bottom",
             }}
           >
-            <Paper>
+            <Paper
+              sx={{
+                padding: "10px 20px",
+                marginLeft: "-16px",
+              }}
+            >
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList
                   sx={{
@@ -94,7 +102,11 @@ const Traveller = () => {
                     }}
                   >
                     <Box>
-                      <Typography fontSize={"16px"} variant="h6">
+                      <Typography
+                        fontSize={"16px"}
+                        fontWeight={"600"}
+                        variant="h6"
+                      >
                         Adults
                       </Typography>
                       <Typography fontSize={"14px"}>(12+ Years)</Typography>
@@ -125,7 +137,11 @@ const Traveller = () => {
                     }}
                   >
                     <Box>
-                      <Typography fontSize={"16px"} variant="h6">
+                      <Typography
+                        fontSize={"16px"}
+                        fontWeight={"600"}
+                        variant="h6"
+                      >
                         Children
                       </Typography>
                       <Typography fontSize={"14px"}>(2 - 12 yrs)</Typography>
@@ -156,7 +172,11 @@ const Traveller = () => {
                     }}
                   >
                     <Box>
-                      <Typography fontSize={"16px"} variant="h6">
+                      <Typography
+                        fontSize={"16px"}
+                        fontWeight={"600"}
+                        variant="h6"
+                      >
                         Infants
                       </Typography>
                       <Typography fontSize={"14px"}>(Below 2 yrs)</Typography>
@@ -179,13 +199,27 @@ const Traveller = () => {
                     </Stack>
                   </Box>
                   <Box>
-                    <Box mb={2} mt={2.5} component="div" color="text.secondary">
-                      {/* {passengerAddbBtnTexts.map(
-                        (passengerAddbBtnText, index) => ( */}
+                    <Box
+                      mb={2}
+                      mt={2.5}
+                      component="div"
+                      color="text.secondary"
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "flex-end",
+                      }}
+                      onClick={handleClose}
+                    >
                       <Box
                         component="button"
                         sx={{
-                          border: "1px solid lightgray",
+                          border: "none",
+                          borderRadius: "5px",
+                          width: "8rem",
+                          height: "40px",
+                          bgcolor: "green",
+                          color: "whitesmoke",
                           "&:hover": {
                             cursor: "pointer",
                           },

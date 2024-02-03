@@ -15,7 +15,14 @@ const RightSideBar = () => {
   const [activeStep, setActiveStep] = useState(0);
   const maxSteps = Math.abs(offers.length - 10);
 
+  const { handleOfferFecth } = useContext(OffersContext);
+
   console.log("offers", offers);
+
+  useEffect(() => {
+    handleOfferFecth();
+  }, []);
+
   // const goToPreviousImage = () => {
   //   setCurrentImageIndex((prevIndex) =>
   //     prevIndex === 0 ? offers.length - 1 : prevIndex - 1

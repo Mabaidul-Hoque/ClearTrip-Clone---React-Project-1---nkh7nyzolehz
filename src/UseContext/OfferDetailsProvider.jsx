@@ -22,15 +22,12 @@ export const OfferDetailsProvider = ({ children }) => {
     // }
   };
 
-  useEffect(() => {
-    handleOfferFecth();
-  }, []);
-
   const offersValue = {
     offersUrlFilter,
     setOffersUrlFilter,
     offers,
     setOffers,
+    handleOfferFecth,
   };
   return (
     <OffersContext.Provider value={offersValue}>

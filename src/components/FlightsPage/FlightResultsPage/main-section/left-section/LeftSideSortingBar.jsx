@@ -31,8 +31,9 @@ const PrettoSlider = styled(Slider)({
 });
 
 const LeftSideSortingBar = () => {
-  const [maxTicketPrice, setMaxTicketPrice] = useState(0);
-  const [minTicketPrice, setMinTicketPrice] = useState(10000000);
+  // const [maxTicketPrice, setMaxTicketPrice] = useState(0);
+  // const [minTicketPrice, setMinTicketPrice] = useState(10000000);
+  const [checkedBox, setCheckedBox] = useState(null);
 
   const {
     airplaneDetails,
@@ -41,7 +42,7 @@ const LeftSideSortingBar = () => {
     priceSortDetails,
   } = useFlightResult();
 
-  const { airplanes, filteredAirplanes } = airplaneDetails;
+  const { setFilterItems, handleFlightResultFilter } = airplaneDetails;
   const {
     stop,
     handleStopBnt,
@@ -54,6 +55,9 @@ const LeftSideSortingBar = () => {
     handleNonStopFilter,
     handleTwoStopFilter,
     handleOneStopFilter,
+
+    demoStop,
+    setDemoStop,
   } = stopsSortDetails;
   const {
     handleDeparaturebtn,
@@ -85,35 +89,34 @@ const LeftSideSortingBar = () => {
   } = priceSortDetails;
 
   // useEffect(() => {
-  //   findMaxMinPriceFlight();
-  //   console.log({
-  //     maxTicketPrice,
-  //     minTicketPrice,
-  //   });
-  // }, []);
-  // const findMaxMinPriceFlight = () => {
-  //   let ticketPrices = [];
-  //   const interval = setInterval(() => {
-  //     if (filteredAirplanes.length < 0) {
-  //     } else {
-  //       ticketPrices = [...filteredAirplanes];
-  //     }
-  //   }, [100]);
-  //   clearInterval(interval);
+  //   handleFlightResultFilter();
+  // }, [
+  //   nonStop,
+  //   oneStop,
+  //   twoStop,
+  //   isEarlyMorning,
+  //   isMorning,
+  //   isAfterNoon,
+  //   isEvening,
+  //   isNight,
+  // ]);
 
-  //   const prices = ticketPrices.map((flight) => flight.ticketPrice);
-  //   const maxTicketPrice = Math.max(...prices);
-  //   const minTicketPrice = Math.min(...prices);
-  //   console.log({
-  //     ticketPrices,
-  //     filteredAirplanes,
-  //     prices,
-  //     maxTicketPrice,
-  //     minTicketPrice,
-  //   });
-  //   setMaxTicketPrice(maxTicketPrice);
-  //   setMinTicketPrice(minTicketPrice);
-  // };
+  // useEffect(() => {
+  //   console.log("left side sorting bar use effect");
+  //   if (checkedBox === "non-stop") {
+  //     // delete setFilterItems("stops");
+  //     setFilterItems((prev) => ({ ...prev, stops: "0" }));
+  //     handleFlightResultFilter();
+  //   } else if (checkedBox === "one-stop") {
+  //     // delete setFilterItems("stops");
+  //     setFilterItems((prev) => ({ ...prev, stops: "1" }));
+  //     handleFlightResultFilter();
+  //   } else if (checkedBox === "two-stop") {
+  //     // delete setFilterItems("stops");
+  //     setFilterItems((prev) => ({ ...prev, stops: "2" }));
+  //     handleFlightResultFilter();
+  //   }
+  // }, [checkedBox]);
 
   return (
     <div id="left-side-sorting-container">
@@ -141,6 +144,8 @@ const LeftSideSortingBar = () => {
               <div
                 onClick={() => {
                   setNonStop((prev) => !prev);
+                  // setFilterItems((prev) => ({ ...prev, stops: "0" }));
+                  // setCheckedBox("non-stop");
                   handleNonStopFilter();
                 }}
                 className="stop-options"
@@ -148,39 +153,46 @@ const LeftSideSortingBar = () => {
                 <input
                   className="stop-input"
                   type="checkbox"
-                  value="non-stop"
+                  id="non-stop"
                   checked={nonStop}
-                  onChange={(e) => {}}
+                  // checked={checkedBox === "non-stop"}
+                  onChange={(e) => console.log(e)}
                 />
                 <span>Non-stop</span>
               </div>
               <div
                 onClick={() => {
                   setOneStop((prev) => !prev);
+                  setCheckedBox("one-stop");
+
                   handleOneStopFilter();
                 }}
                 className="stop-options"
               >
                 <input
                   type="checkbox"
-                  value="one-stop"
+                  id="one-stop"
                   checked={oneStop}
-                  onChange={(e) => {}}
+                  // checked={checkedBox === "one-stop"}
+                  onChange={(e) => console.log(e)}
                 />
                 <span>1 stop</span>
               </div>
               <div
                 onClick={() => {
                   setTwoStop((prev) => !prev);
+
+                  // setCheckedBox("two-stop");
                   handleTwoStopFilter();
                 }}
                 className="stop-options"
               >
                 <input
                   type="checkbox"
-                  value="two-stop"
+                  id="two-stop"
                   checked={twoStop}
-                  onChange={(e) => {}}
+                  // checked={checkedBox === "two-stop"}
+                  onChange={(e) => console.log(e)}
                 />
                 <span>2 stop</span>
               </div>
@@ -355,11 +367,12 @@ const LeftSideSortingBar = () => {
                   value={rupee}
                   min={2000}
                   max={3000}
-                  valueLabelDisplay="off"
+                  defaultValue={3000}
+                  valueLabelDisplay="auto"
                   aria-label="pretto slider"
                   onChange={(e) => {
-                    handlePriceChnage(e.target.value);
-                    handlePriceFilter();
+                    // handlePriceChnage(e.target.value);
+                    handlePriceFilter(e.target.value);
                   }}
                 />
               </Box>

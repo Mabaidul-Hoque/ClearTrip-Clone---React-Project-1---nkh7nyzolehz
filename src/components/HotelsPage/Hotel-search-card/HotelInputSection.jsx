@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
 import "./HotelSearchCard.css";
 import { Paper } from "@mui/material";
 import { useHotelContext } from "../../../UseContext/HotelDetailsProvider";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 import { useLocation } from "react-router-dom";
+import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 
 const HotelInputSection = ({
   options,
-  onSearch,
   onSelect,
   optionKey = "name",
-  optionCount = 5,
   noOptionText = "No Items",
   hotelInputClass,
 }) => {
@@ -19,19 +18,33 @@ const HotelInputSection = ({
   const [selected, setSelected] = useState("");
   const [allOption, setAllOption] = useState(options || []);
 
+  const hotelSearchRef = useRef();
   const { pathname } = useLocation();
 
   const { inputInfo } = useHotelContext();
-
-  const { handleInputPlaceChange, inputPlace, handleFocus, focus } = inputInfo;
+  const { handleInputPlaceChange, focus, setFocus } = inputInfo;
 
   useEffect(() => {
     setAllOption(options);
     handleInputPlaceChange(selected.split(",")[0].trim().toLocaleLowerCase());
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
   }, [options, selected]);
 
+  const handleOutsideClick = (event) => {
+    if (
+      hotelSearchRef.current &&
+      !hotelSearchRef.current.contains(event.target)
+    ) {
+      setFocus(false);
+    }
+  };
+
   const selectHandle = (val) => {
-    handleFocus(false);
     setSearchText("");
 
     if (onSelect) {
@@ -60,6 +73,7 @@ const HotelInputSection = ({
   return (
     <div className="autoComplete">
       <input
+        ref={hotelSearchRef}
         className={hotelInputClass}
         placeholder={
           pathname === "/hotels/results"
@@ -68,11 +82,11 @@ const HotelInputSection = ({
                 .substring(0, 1)
                 .toLocaleUpperCase()}` +
               `${localStorage.getItem("inputPlace").substring(1)}`
-            : "Enter hotel name..."
+            : "Enter locality, landmark, city or hotel"
         }
         onFocus={() => {
           setSelected("");
-          handleFocus(true);
+          setFocus(true);
         }}
         value={selected || searchText}
         onChange={handleChange}
@@ -99,7 +113,7 @@ const HotelInputSection = ({
             >
               <div style={{ marginLeft: "30px" }}>{option[optionKey]}</div>
               <div className="location-icon">
-                <PlaceOutlinedIcon fontSize="medium" htmlColor="orange" />
+                <FmdGoodOutlinedIcon fontSize="medium" htmlColor="gray" />
               </div>
             </div>
           ))

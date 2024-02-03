@@ -6,8 +6,6 @@ import React, {
   useRef,
 } from "react";
 
-import { useNavigate } from "react-router-dom";
-
 import { fetchFlights } from "../Apis/FlightSearchApi";
 import { fetchAirportNames } from "../Apis/AirportNamesApi";
 
@@ -69,7 +67,6 @@ export const FlightsSearchProvider = ({ children }) => {
   const handleSearchClick = () => {
     localStorage.setItem("source", source);
     localStorage.setItem("destination", destination);
-    // localStorage.setItem("day", departDay.substring(0, 3));
     localStorage.setItem("day", departDay);
 
     if (
@@ -85,20 +82,27 @@ export const FlightsSearchProvider = ({ children }) => {
       const day = localStorage.getItem("day").substring(0, 3);
       if (sourceVal !== null && destinationVal !== null && day !== null) {
         fetchFlights(sourceVal, destinationVal, day).then((response) => {
-          // console.log(response.data.flights);
           setAirplanes(response.data.flights);
         });
       } else {
         fetchFlights(sourceVal, destinationVal, day).then((response) => {
-          // console.log(response.data.flights);
           setAirplanes(response.data.flights);
         });
       }
     } else {
-      // if (source === "" && destination === "")
-      //   sourceRef.current.firstChild.focus();
-      // else if (source === "") sourceRef.current.firstChild.focus();
-      // else if (destination === "") destinationRef.current.firstChild.focus();
+      if (source === "" && destination === "") sourceRef.current.focus();
+      else if (source === "") sourceRef.current.focus();
+      else if (destination === "") destinationRef.current.focus();
+
+      if (
+        source !== "" &&
+        destination !== "" &&
+        source.substring(0, 3) === destination.substring(0, 3)
+      ) {
+        alert(
+          "Please provide correct INPUT values, either you have encountered SAME source and destination place or airport city name isn't correct"
+        );
+      }
     }
   };
 
@@ -137,10 +141,11 @@ export const FlightsSearchProvider = ({ children }) => {
       handleDestinationChange,
       source,
       destination,
-      sourceRef,
-      destinationRef,
+
       cityNameCodes,
       setSource,
+      sourceRef,
+      destinationRef,
     },
     searchPlane: {
       handleSearchClick,

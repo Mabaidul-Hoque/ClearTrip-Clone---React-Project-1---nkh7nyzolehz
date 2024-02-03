@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../FlightPage.css";
+import "./FlightSearchCard.css";
 import { Box, Button } from "@mui/material";
 import SwapHorizontalCircleOutlinedIcon from "@mui/icons-material/SwapHorizontalCircleOutlined";
 import useFlightSectionStyles from "./FlightSearchCardStyles";
@@ -23,23 +24,12 @@ const fareBtnTexts = [
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 export default function FlightSearchCard() {
-  const navigate = useNavigate();
   const [fareBtnIndex, setFareBtnIndex] = useState(0);
   const [isSwitch, setIsSwitch] = useState(false);
+
+  const navigate = useNavigate();
   const contextValues = useFlightSearch();
-  // const [inputValue, setInputValue] = useState("");
-
-  const {
-    // handleSourceChange,
-    // handleDestinationChange,
-    // sourceRef,
-    // destinationRef,
-    source,
-    destination,
-    cityNameCodes,
-    // setSource,
-  } = contextValues.sourceDestValue;
-
+  const { source, destination, cityNameCodes } = contextValues.sourceDestValue;
   const { airportNames } = contextValues.fecthValues;
   const { handleSearchClick } = contextValues.searchPlane;
   const { departDay } = contextValues.departvalue;
@@ -91,7 +81,12 @@ export default function FlightSearchCard() {
           <div id="source-container">
             <FlightTakeoffOutlinedIcon
               htmlColor="#808080"
-              sx={{ position: "absolute", left: "3.5%", top: "0.7rem" }}
+              sx={{
+                position: "absolute",
+                left: "3.5%",
+                top: "0.7rem",
+                zIndex: "1",
+              }}
             />
             <DepartCityInput
               options={airportNames}
@@ -107,6 +102,7 @@ export default function FlightSearchCard() {
               position: "absolute",
               left: "18rem",
               top: "0.5rem",
+              zIndex: "1",
               "&:hover": {
                 cursor: "pointer",
               },
@@ -116,7 +112,12 @@ export default function FlightSearchCard() {
           <div id="destination-container">
             <FlightLandOutlinedIcon
               htmlColor="#808080"
-              sx={{ position: "absolute", right: "16rem", top: "0.8rem" }}
+              sx={{
+                position: "absolute",
+                right: "16rem",
+                top: "0.8rem",
+                zIndex: "1",
+              }}
             />
             <DestinationCityInput
               options={airportNames}

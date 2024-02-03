@@ -9,6 +9,7 @@
 }
 .hotel-search-header h4{
     color: #444444;
+    font-weight: 500;
 }
 
 #hotel-search-card{
@@ -34,6 +35,9 @@
     gap: 30px;
     padding-left: 30px;
 }
+/* .location-icon:hover{
+    background-color: blue;
+} */
 .location-data{
     padding-top: 20px;
     position: relative;

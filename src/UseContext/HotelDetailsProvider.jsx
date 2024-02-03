@@ -10,6 +10,7 @@ import {
   fetchFilteredHotels,
   fetchSortByPrice,
 } from "../Apis/HotelResulFilterApi";
+import { useDebounce } from "../CustomHooks/useDebouce";
 
 const HotelContext = createContext();
 
@@ -22,6 +23,7 @@ export const useHotelContext = () => {
 };
 
 export const HotelDetailsProvider = ({ children }) => {
+  const [focus, setFocus] = useState(false);
   const [topRated, setTopRated] = useState(false);
   const [highLow, sethighLow] = useState(false);
   const [lowHigh, setLowHigh] = useState(false);
@@ -29,13 +31,13 @@ export const HotelDetailsProvider = ({ children }) => {
   const [fourStar, setFourStar] = useState(false);
   const [threeStar, setThreeStar] = useState(false);
   const [filteredHotels, setFilteredHotels] = useState([]);
-  const [focus, setFocus] = useState(false);
   const [inputPlace, setInputPlace] = useState("");
   const [hotels, setHotels] = useState([]);
   const [singleHotel, setSingleHotel] = useState({});
   const [filterItems, setFilterItems] = useState({});
   const [price, setPrice] = useState(0);
   const [hotelPrice, setHotelPrice] = useState(10000);
+  // const hotelPriceDebounce = useDebounce(filterItems, 500);
 
   const handleInputChange = (val) => {
     setInputPlace(val);
@@ -52,9 +54,9 @@ export const HotelDetailsProvider = ({ children }) => {
   const handleInputPlaceChange = (val) => {
     setInputPlace(val);
   };
-  const handleFocus = (val) => {
-    setFocus(val);
-  };
+  // const handleFocus = (val) => {
+  //   setFocus(val);
+  // };
 
   const handleFilterbyPrice = () => {
     fetchSortByPrice(localStorage.getItem("inputPlace"), price).then((resp) => {
@@ -95,10 +97,11 @@ export const HotelDetailsProvider = ({ children }) => {
   const handleHighLowBtn = () => {
     setPrice(-1);
   };
+  // usecallback
   const handleLowHighBtn = () => {
     setPrice(1);
   };
-
+  // usememo
   const hotelDetails = {
     hotelDetails: {
       filteredHotels,
@@ -146,8 +149,8 @@ export const HotelDetailsProvider = ({ children }) => {
       handleInputPlaceChange,
       inputPlace,
       handleInputChange,
-      handleFocus,
       focus,
+      setFocus,
     },
   };
 

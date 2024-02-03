@@ -41,9 +41,10 @@ export const FlightResultProvider = ({ children }) => {
   const [isEvening, setIsEvening] = useState(false);
   const [isNight, setIsNight] = useState(false);
   const [isPrice, setIsPrice] = useState(true);
-  const [rupee, setRupee] = useState(3000);
   const [filteredAirplanes, setFilteredAirplanes] = useState([]);
   const [filterItems, setFilterItems] = useState({});
+
+  const [demoStop, setDemoStop] = useState(false);
 
   const sourceVal = useRef(localStorage.getItem("source").substring(0, 3));
   const destinationVal = useRef(
@@ -55,6 +56,19 @@ export const FlightResultProvider = ({ children }) => {
   const { airplanes, setAirplanes } = contextValues.fecthValues;
 
   useEffect(() => {
+    handleFlightResultFilter();
+  }, [
+    nonStop,
+    oneStop,
+    twoStop,
+    isEarlyMorning,
+    isMorning,
+    isAfterNoon,
+    isEvening,
+    isNight,
+  ]);
+
+  const handleFlightResultFilter = () => {
     const JSONFilter = JSON.stringify(filterItems);
     fetchFilteredFlights(
       sourceVal.current,
@@ -65,233 +79,96 @@ export const FlightResultProvider = ({ children }) => {
       console.log("fetch filtered flights", response.data.flights);
       setFilteredAirplanes(response.data.flights);
     });
-  }, [
-    nonStop,
-    oneStop,
-    twoStop,
-    isEarlyMorning,
-    isMorning,
-    isAfterNoon,
-    isEvening,
-    isNight,
-    rupee,
-  ]);
-
-  // const findMaxMinPriceFlight = () => {
-  //   const ticketPrices = airplanes.map((flight) => flight.ticketPrice);
-  //   const maxTicketPrice = Math.max(...ticketPrices);
-  //   const minTicketPrice = Math.min(...ticketPrices);
-  //   setMaxTicketPrice(maxTicketPrice);
-  //   setMinTicketPrice(minTicketPrice);
-  // };
-
-  const handlePriceFilter = () => {
-    if (rupee >= 1000 && rupee <= 10000) {
+  };
+  const handlePriceFilter = (flightPrice) => {
+    if (flightPrice >= 1000 && flightPrice <= 10000) {
       filterItems.ticketPrice = {
-        $lte: rupee,
+        $lte: flightPrice,
         $gte: 1000,
       };
     }
-  };
-
-  const handlePriceChnage = (price) => {
-    setRupee(price);
+    handleFlightResultFilter();
   };
   const handleNightFilter = () => {
     if (!isNight) {
-      filterItems.departureTime = {
+      const newObj = {
         $lte: "23:59",
         $gte: "20:00",
       };
-
-      // fetchFlightsByDepartTime(
-      //   sourceVal.current,
-      //   destinationVal.current,
-      //   dayVal.current,
-      //   "20:00",
-      //   "23:59"
-      // ).then((response) => {
-      //   console.log("response from night only", response);
-      //   setFilteredAirplanes(response.data.flights);
-      // });
+      setFilterItems((prev) => ({ ...prev, departureTime: newObj }));
     } else {
       delete filterItems["departureTime"];
-      //   setFilteredAirplanes((prev) => {
-      //     return prev.filter((flight) => {
-      //       const departureTime = new Date(`1970-01-01T${flight.departureTime}`);
-      //       const eightPM = new Date(`1970-01-01T20:00`);
-      //       const midNight = new Date(`1970-01-01T23:59`);
-      //       return departureTime < eightPM || departureTime > midNight;
-      //     });
-      //   });
     }
   };
   const handleEveningFilter = () => {
     if (!isEvening) {
-      filterItems.departureTime = {
+      const newObj = {
         $lte: "19:59",
         $gte: "16:00",
       };
-
-      // fetchFlightsByDepartTime(
-      //   sourceVal.current,
-      //   destinationVal.current,
-      //   dayVal.current,
-      //   "16:00",
-      //   "19:59"
-      // ).then((response) => {
-      //   setFilteredAirplanes(response.data.flights);
-      // });
+      setFilterItems((prev) => ({ ...prev, departureTime: newObj }));
     } else {
       delete filterItems["departureTime"];
-      //   setFilteredAirplanes((prev) => {
-      //     return prev.filter((flight) => {
-      //       const departureTime = new Date(`1970-01-01T${flight.departureTime}`);
-      //       const foruPM = new Date(`1970-01-01T16:00`);
-      //       const eightPM = new Date(`1970-01-01T19:59`);
-      //       return departureTime < foruPM || departureTime > eightPM;
-      //     });
-      //   });
     }
   };
   const handleAfterNoonFilter = () => {
     if (!isAfterNoon) {
-      filterItems.departureTime = {
+      const newObj = {
         $lte: "15:59",
         $gte: "12:00",
       };
-
-      // fetchFlightsByDepartTime(
-      //   sourceVal.current,
-      //   destinationVal.current,
-      //   dayVal.current,
-      //   "12:00",
-      //   "15:59"
-      // ).then((response) => {
-      //   setFilteredAirplanes(response.data.flights);
-      // });
+      setFilterItems((prev) => ({ ...prev, departureTime: newObj }));
     } else {
       delete filterItems["departureTime"];
-      //   setFilteredAirplanes((prev) => {
-      //     return prev.filter((flight) => {
-      //       const departureTime = new Date(`1970-01-01T${flight.departureTime}`);
-      //       const noon = new Date(`1970-01-01T12:00`);
-      //       const foruPM = new Date(`1970-01-01T15:59`);
-      //       return departureTime < noon || departureTime > foruPM;
-      //     });
-      //   });
     }
   };
   const handleMorningFilter = () => {
     if (!isMorning) {
-      filterItems.departureTime = {
+      const newObj = {
         $lte: "11:59",
         $gte: "08:00",
       };
-      // fetchFlightsByDepartTime(
-      //   sourceVal.current,
-      //   destinationVal.current,
-      //   dayVal.current,
-      //   "08:00",
-      //   "11:59"
-      // ).then((response) => {
-      //   setFilteredAirplanes(response.data.flights);
-      // });
+      setFilterItems((prev) => ({ ...prev, departureTime: newObj }));
     } else {
       delete filterItems["departureTime"];
-      //   setFilteredAirplanes((prev) => {
-      //     return prev.filter((flight) => {
-      //       const departureTime = new Date(`1970-01-01T${flight.departureTime}`);
-      //       const earlymorning = new Date(`1970-01-01T08:00`);
-      //       const noon = new Date(`1970-01-01T11:59`);
-      //       return departureTime < earlymorning || departureTime > noon;
-      //     });
-      //   });
     }
   };
   const handleEarlyMorningFilter = () => {
     if (!isEarlyMorning) {
-      filterItems.departureTime = {
+      const newObj = {
         $lte: "07:59",
         $gte: "00:00",
       };
-
-      // fetchFlightsByDepartTime(
-      //   sourceVal.current,
-      //   destinationVal.current,
-      //   dayVal.current,
-      //   "00:00",
-      //   "07:59"
-      // ).then((response) => {
-      //   setFilteredAirplanes(response.data.flights);
-      // });
+      setFilterItems((prev) => ({ ...prev, departureTime: newObj }));
     } else {
       delete filterItems["departureTime"];
-      //   setFilteredAirplanes((prev) => {
-      //     return prev.filter((flight) => {
-      //       const departureTime = new Date(`1970-01-01T${flight.departureTime}`);
-      //       const midnight = new Date(`1970-01-01T00:00`);
-      //       const eightAM = new Date(`1970-01-01T07:59`);
-      //       return departureTime < midnight || departureTime > eightAM;
-      //     });
-      //   });
     }
   };
 
   const handleNonStopFilter = () => {
     if (!nonStop) {
-      filterItems.stops = "0";
-      // fetchFlightsFilterByStops(
-      //   sourceVal.current,
-      //   destinationVal.current,
-      //   dayVal.current,
-      //   0
-      // ).then((response) => {
-      //   setFilteredAirplanes(response.data.flights);
-      // });
+      setFilterItems((prev) => ({ ...prev, stops: "0" }));
+      // handleFlightResultFilter();
     } else {
       delete filterItems["stops"];
-      // setFilteredAirplanes(() =>
-      //   filteredAirplanes.filter((data) => data.stops !== 0)
-      // );
     }
   };
 
   const handleOneStopFilter = () => {
     if (!oneStop) {
-      filterItems.stops = "1";
-      // fetchFlightsFilterByStops(
-      //   sourceVal.current,
-      //   destinationVal.current,
-      //   dayVal.current,
-      //   1
-      // ).then((response) => {
-      //   setFilteredAirplanes(response.data.flights);
-      // });
+      setFilterItems((prev) => ({ ...prev, stops: "1" }));
+      // handleFlightResultFilter();
     } else {
       delete filterItems["stops"];
-      //   setFilteredAirplanes(() =>
-      //     filteredAirplanes.filter((data) => data.stops !== 1)
-      //   );
     }
   };
 
   const handleTwoStopFilter = () => {
     if (!twoStop) {
-      filterItems.stops = "2";
-      // fetchFlightsFilterByStops(
-      //   sourceVal.current,
-      //   destinationVal.current,
-      //   dayVal.current,
-      //   2
-      // ).then((response) => {
-      //   setFilteredAirplanes(response.data.flights);
-      // });
+      setFilterItems((prev) => ({ ...prev, stops: "2" }));
+      // handleFlightResultFilter();
     } else {
       delete filterItems["stops"];
-      //   setFilteredAirplanes(() =>
-      //     filteredAirplanes.filter((data) => data.stops !== 2)
-      //   );
     }
   };
 
@@ -324,6 +201,8 @@ export const FlightResultProvider = ({ children }) => {
       setAirplanes,
       filteredAirplanes,
       setFilteredAirplanes,
+      handleFlightResultFilter,
+      setFilterItems,
     },
     flightViewDetails: {
       airplaneId,
@@ -344,6 +223,9 @@ export const FlightResultProvider = ({ children }) => {
       handleNonStopFilter,
       handleTwoStopFilter,
       handleOneStopFilter,
+
+      demoStop,
+      setDemoStop,
     },
     departSortDetails: {
       isDeparature,
@@ -367,8 +249,8 @@ export const FlightResultProvider = ({ children }) => {
     priceSortDetails: {
       handlePricebtn,
       isPrice,
-      handlePriceChnage,
-      rupee,
+      // handlePriceChnage,
+      // rupee,
       handlePriceFilter,
       // maxTicketPrice,
       // minTicketPrice,

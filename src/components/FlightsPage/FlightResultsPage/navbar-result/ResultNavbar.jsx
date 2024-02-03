@@ -8,20 +8,14 @@ import HeadsetMicOutlinedIcon from "@mui/icons-material/HeadsetMicOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
-// import DeaprtCityInput from "../../FlightSearchCard/DeaprtCityInput";
-// import DestinationCityInput from "../../FlightSearchCard/DestinationCityInput";
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import DeaprtCity from "./source-destination/DepartCity";
 import DestinationCity from "./source-destination/DestinationCity";
-// import DepartDate from "../../FlightSearchCard/DepartDate";
-// import ReturnDate from "../../FlightSearchCard/ReturnDate";
 import DepartDateResult from "./date-picker-result/DepartDateResult";
 import ReturnDateResult from "./date-picker-result/ReturnDateResult";
 import Traveller from "./Traveller";
-// import DepartDate from "../../FlightSearchCard/DepartDate";
 import { fetchAirportNames } from "../../../../Apis/AirportNamesApi";
 import { useAuth } from "../../../../UseContext/AuthorizationProvider";
-
 const leftLogoUrl = "../../../../public/assets/Cleartrip_Original.svg.png";
 
 const RightButton = styled(Button)({
@@ -42,10 +36,6 @@ const ResultNavbar = () => {
   const { tokenDetails, logSignDetails, handleLogout } = useAuth();
   const { token, setToken } = tokenDetails;
   const { handleLoginOpen, setLogInPagePath } = logSignDetails;
-
-  // const handleLogoClick = () => {
-  //   navigate("/");
-  // };
 
   useEffect(() => {
     fetchAirportNames().then((res) => {
@@ -68,10 +58,10 @@ const ResultNavbar = () => {
               alt="cleartrip-logo"
             />
           </Link>
-          <RightButton>
+          <RightButton onClick={() => navigate("/flights")}>
             <LocalAirportOutlinedIcon htmlColor="#3366CC" />
           </RightButton>
-          <RightButton>
+          <RightButton onClick={() => navigate("/hotels")}>
             <HotelIcon htmlColor="#999999" fontSize="large" />
           </RightButton>
         </div>
@@ -163,7 +153,6 @@ const ResultNavbar = () => {
               bgcolor: "#000000",
             },
           }}
-          // onClick={() => handleSearchClick()}
         >
           Search
         </Button>

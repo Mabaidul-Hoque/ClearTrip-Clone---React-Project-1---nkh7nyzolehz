@@ -236,7 +236,7 @@
 import { useEffect, useState } from "react";
 import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
 import "./FlightSearchCard.css";
-import { Paper } from "@mui/material";
+import { Box, Paper, Stack } from "@mui/material";
 const DestinationCityInput = ({
   options,
   onSelect,
@@ -249,12 +249,28 @@ const DestinationCityInput = ({
   const [focus, setFocus] = useState(false);
 
   const contextValues = useFlightSearch();
-  const { handleDestinationChange } = contextValues.sourceDestValue;
+  const { handleDestinationChange, destinationRef } =
+    contextValues.sourceDestValue;
 
   useEffect(() => {
     setAllOption(options);
     handleDestinationChange(selected);
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
   }, [options, selected]);
+
+  const handleOutsideClick = (event) => {
+    if (
+      destinationRef.current &&
+      !destinationRef.current.contains(event.target)
+    ) {
+      setFocus(false);
+    }
+  };
 
   const selectHandle = (val) => {
     setFocus(false);
@@ -278,6 +294,7 @@ const DestinationCityInput = ({
   return (
     <div className="autoComplete">
       <input
+        ref={destinationRef}
         className="inputBox"
         placeholder="Where to?"
         value={selected || searchText}
@@ -306,12 +323,18 @@ const DestinationCityInput = ({
               key={`${index}`}
               onClick={() => selectHandle(option)}
             >
-              <button>{option.iata_code}</button>
-              <span>{option.city}</span>
-              <span>,</span>
-              <span>IN</span>
-              <span>-</span>
-              <span className="city-name">{option.name}</span>
+              <button className="option-btn">{option.iata_code}</button>
+
+              <Stack
+                flexDirection={"row"}
+                sx={{ textAlign: "left", width: "80%" }}
+              >
+                <span>{option.city}</span>
+                <span>,</span>
+                <span>IN</span>
+                <span>-</span>
+                <span className="city-name">{option.name}</span>
+              </Stack>
             </div>
           ))
         )}

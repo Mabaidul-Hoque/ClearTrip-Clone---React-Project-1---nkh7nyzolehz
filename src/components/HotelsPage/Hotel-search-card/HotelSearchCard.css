@@ -59,3 +59,7 @@
   cursor: pointer;
   background-color: #EFF5FC;
 }
+
+.place-option:hover .location-icon:hover{
+  color: blue;
+}

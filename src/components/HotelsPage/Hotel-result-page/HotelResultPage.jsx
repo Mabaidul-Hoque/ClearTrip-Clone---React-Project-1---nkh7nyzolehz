@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./HotelResultPage.css";
 import HotelNavbar from "./Hotel-navbar/HotelNavbar";
 import { fetchHotels, fetchSingleHotel } from "../../../Apis/HotelDetailsApi";
@@ -6,14 +6,11 @@ import { useHotelContext } from "../../../UseContext/HotelDetailsProvider";
 import StarsIcon from "@mui/icons-material/Stars";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { useNavigate } from "react-router-dom";
-import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
-import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
+
+import { useDebounce } from "../../../CustomHooks/useDebouce";
+import ImageCarousel from "./image-carousel/ImageCarousel";
 
 const HotelResultPage = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const navigate = useNavigate();
-
   const { recommededFilterInfo, hotelDetails, inputInfo } = useHotelContext();
   const {
     setSingleHotel,
@@ -25,21 +22,16 @@ const HotelResultPage = () => {
   const { highLow } = recommededFilterInfo;
   const { handleInputPlaceChange } = inputInfo;
 
-  useEffect(() => {
-    fetchHotels(localStorage.getItem("inputPlace")).then((resp) => {
-      setFilteredHotels(resp.data.hotels);
-    });
-  }, []);
+  const memoizedFilteredHotels = useMemo(
+    () => filteredHotels,
+    [filteredHotels]
+  );
 
-  const goToPreviousImage = (images) => {
-    setCurrentImageIndex(
-      (prevIndex) => (prevIndex - 1 + images.length) % images.length
-    );
-  };
-
-  const goToNextImage = (images) => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
+  // useEffect(() => {
+  //   fetchHotels(localStorage.getItem("inputPlace")).then((resp) => {
+  //     setFilteredHotels(resp.data.hotels);
+  //   });
+  // }, []);
 
   const handleSingleHotelClick = (hotelID) => {
     fetchSingleHotel(hotelID).then((response) => {
@@ -57,10 +49,10 @@ const HotelResultPage = () => {
       ></div>
 
       <main id="hotel-result-page-main">
-        {filteredHotels.length > 0 ? (
-          filteredHotels.map((hotel) => (
+        {memoizedFilteredHotels.length > 0 ? (
+          memoizedFilteredHotels.map((hotel) => (
             <div key={hotel._id} className="hotel-card">
-              <div className="result-carosel">
+              {/* <div className="result-carosel">
                 <button
                   className="res-prev-btn"
                   onClick={() => goToPreviousImage(hotel.images)}
@@ -68,6 +60,7 @@ const HotelResultPage = () => {
                   <KeyboardArrowLeftOutlinedIcon />
                 </button>
                 <img
+                  loading="lazy"
                   src={hotel.images && hotel.images[currentImageIndex]}
                   alt={hotel.name}
                   onClick={() => {
@@ -82,8 +75,11 @@ const HotelResultPage = () => {
                 >
                   <KeyboardArrowRightOutlinedIcon />
                 </button>
-              </div>
-
+              </div> */}
+              <ImageCarousel
+                handleSingleHotelClick={handleSingleHotelClick}
+                hotel={hotel}
+              />
               <div className="hotel-card-title">
                 <span>{hotel.name}</span>
                 <div>
