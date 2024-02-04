@@ -7,12 +7,23 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
 
 import { planes } from "../../../../../static-data/StaticData";
+import { useNavigate } from "react-router-dom";
+import { fetchFlightBookingInfo } from "../../../../../Apis/BookingApi";
 
 const MainContentCard = ({ airplane, planeLogoName, index }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [airplaneId, setAirplaneId] = useState(-1);
 
+  const navigate = useNavigate();
+
   // console.log("planeLogoName", planeLogoName);
+
+  const handleBookBtn = () => {
+    fetchFlightBookingInfo(airplane.flightID).then((resp) => {
+      console.log("Booking successful:", resp);
+    });
+    navigate(`/flights/itinerary/${airplane.flightID}`);
+  };
 
   const handleId = (value) => {
     setAirplaneId(value);
@@ -150,7 +161,11 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
           </span>
         </Stack>
         <div>
-          <button style={{ fontSize: "16px" }} className="book-btn">
+          <button
+            style={{ fontSize: "16px" }}
+            className="book-btn"
+            onClick={handleBookBtn}
+          >
             Book
           </button>
         </div>

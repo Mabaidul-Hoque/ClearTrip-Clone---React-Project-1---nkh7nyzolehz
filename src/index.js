@@ -16,6 +16,7 @@ import HotelDetailsPage from "./components/HotelsPage/Hotel-result-page/hotel-de
 import AuthorizationProvider from "./UseContext/AuthorizationProvider";
 import SignupPage from "./components/Login-signup/SignupPage";
 import LoginPage from "./components/Login-signup/LoginPage";
+import FlightBookingPage from "./components/FlightsPage/FlightResultsPage/flight-booking-page/FlightBookingPage";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
   {
     path: "/flights/results",
     element: <FlightResultsPage />,
+  },
+  {
+    path: "/flights/itinerary/:flightId",
+    element: <FlightBookingPage />,
   },
   {
     path: "/hotels/results",

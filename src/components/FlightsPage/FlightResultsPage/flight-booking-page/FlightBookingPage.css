@@ -1,0 +1,64 @@
+
+.flight-booking-navabr,
+#flight-booking-main{
+    width: 85%;
+    margin: 0 auto;
+}
+
+#booking-details{
+    max-width: 40vw;
+}
+#price-cards{
+    max-width: 30vw;
+}
+
+
+.number-circle{
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+    font-weight: 500;
+    background: #fff;
+    border: 1px solid gray;
+    color: #666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.dashed-line-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: 5px;
+  }
+  
+  .start-circle,
+  .end-circle {
+    position: absolute;
+    
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #999999; /* Replace with your desired color */
+  }
+  .start-circle{
+    top: 1px;
+  }
+  .end-circle {
+    bottom: 5px;
+  }
+  
+  .dashed-line {
+    height: 100px; /* Replace with your desired height */
+    border-left: 2px dashed #999999; /* Replace with your desired color */
+    margin-left: 5px; /* Adjust the margin based on your design */
+  }
+
+ .fare{
+    display: flex;
+    justify-content: space-between;
+ } 
+  
