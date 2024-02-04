@@ -33,15 +33,22 @@ const RightButton = styled(Button)({
   },
 });
 
-const ResultNavbar = () => {
+const ResultNavbar = ({ fetchFlightData }) => {
+  // const [resDepartDate, seResDepartDate] = useState(new Date());
+  // const [resReturnDate, seResReturnDate] = useState(new Date());
+  // const [resDepartDay, setResDepartDay] = useState("");
+  // const [resReturnDay, setResReturnDay] = useState("");
+  // const [resSource, setResSource] = useState("");
+  // const [resDestination, setResDestination] = useState("");
+
   const [airportNames, setAirportNames] = useState([]);
   const navigate = useNavigate();
   const { tokenDetails, logSignDetails, handleLogout } = useAuth();
   const { token } = tokenDetails;
   const { handleLoginOpen, setLogInPagePath } = logSignDetails;
 
-  const { searchPlane } = useFlightSearch();
-  const { handleSearchClick } = searchPlane;
+  const { fecthValues } = useFlightSearch();
+  const { setAirplanes } = fecthValues;
 
   const { airplaneDetails } = useFlightResult();
   const { setFilteredAirplanes, sourceVal, destinationVal, dayVal } =
@@ -55,7 +62,7 @@ const ResultNavbar = () => {
   }, []);
 
   const handleResultFlightSearch = () => {
-    setFilteredAirplanes(handleSearchClick);
+    setAirplanes(fetchFlightData);
   };
 
   return (

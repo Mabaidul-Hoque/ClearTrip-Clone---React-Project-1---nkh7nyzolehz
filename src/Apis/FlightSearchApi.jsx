@@ -1,6 +1,7 @@
-export async function fetchFlights(source, destination, day, limit, page) {
+export async function fetchFlights(source, destination, day) {
+  // &limit=${limit}&page=${page}
   try {
-    const flightsUrl = `https://academics.newtonschool.co/api/v1/bookingportals/flight?search={"source":"${source}","destination":"${destination}"}&day=${day}&limit=${limit}&page=${page}`;
+    const flightsUrl = `https://academics.newtonschool.co/api/v1/bookingportals/flight?search={"source":"${source}","destination":"${destination}"}&day=${day}`;
     const res = await fetch(flightsUrl, {
       method: "GET",
       headers: {

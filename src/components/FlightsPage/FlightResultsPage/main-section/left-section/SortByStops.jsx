@@ -3,19 +3,28 @@ import React, { useEffect, useState } from "react";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
+import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 
-const SortByStops = () => {
+const SortByStops = ({ fetchFlightData }) => {
   const [stop, setStop] = useState(true);
   const [nonStop, setNonStop] = useState(false);
   const [oneStop, setOneStop] = useState(false);
   const [twoStop, setTwoStop] = useState(false);
+  //   const [checkedBox, setCheckedBox] = useState(null);
 
+  const { searchPlane } = useFlightSearch();
+  const { handleSearchClick } = searchPlane;
   const { airplaneDetails } = useFlightResult();
   const { handleFlightResultFilter, filterItems, setFilterItems, setPage } =
     airplaneDetails;
 
   useEffect(() => {
-    handleFlightResultFilter();
+    if (nonStop || oneStop || twoStop) {
+      handleFlightResultFilter();
+    } else {
+      // handleFlightResultFilter();
+      fetchFlightData();
+    }
   }, [nonStop, oneStop, twoStop]);
 
   //   will check later
@@ -48,7 +57,6 @@ const SortByStops = () => {
     } else {
       delete filterItems["stops"];
     }
-    handleFlightResultFilter();
   };
 
   const handleOneStopFilter = () => {
@@ -59,7 +67,6 @@ const SortByStops = () => {
     } else {
       delete filterItems["stops"];
     }
-    handleFlightResultFilter();
   };
 
   const handleTwoStopFilter = () => {
@@ -70,7 +77,6 @@ const SortByStops = () => {
     } else {
       delete filterItems["stops"];
     }
-    handleFlightResultFilter();
   };
 
   return (

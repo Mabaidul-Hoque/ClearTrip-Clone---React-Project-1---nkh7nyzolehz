@@ -7,8 +7,11 @@ import { useFlightResult } from "../../../../../UseContext/FlightResultProvider"
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const SortByAirLines = () => {
-  const { planeSortDetails } = useFlightResult();
-  const { handlePlanebtn, isPlane } = planeSortDetails;
+  const [isPlane, setIsPlane] = useState(false);
+
+  const handlePlanebtn = () => {
+    setIsPlane((prev) => !prev);
+  };
 
   return (
     <div>

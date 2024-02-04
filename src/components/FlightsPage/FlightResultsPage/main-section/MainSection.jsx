@@ -4,7 +4,7 @@ import MainContent from "./main-content/MainContent";
 import { Stack } from "@mui/material";
 import FlightResultProvider from "../../../../UseContext/FlightResultProvider";
 
-const MainSection = () => {
+const MainSection = ({ fetchFlightData }) => {
   return (
     // <FlightResultProvider>
     <Stack
@@ -14,7 +14,7 @@ const MainSection = () => {
       gap={2}
       id="main-section-container"
     >
-      <LeftSideSortingBar />
+      <LeftSideSortingBar fetchFlightData={fetchFlightData} />
       <MainContent />
     </Stack>
     // </FlightResultProvider>

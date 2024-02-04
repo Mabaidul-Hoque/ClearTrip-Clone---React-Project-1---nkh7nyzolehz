@@ -46,6 +46,24 @@ export const FlightsSearchProvider = ({ children }) => {
   const sourceRef = useRef(null);
   const destinationRef = useRef(null);
 
+  useEffect(() => {
+    fetchAirportNames().then((res) => {
+      setAirportNames(res.data.airports);
+    });
+    setDepartDay(
+      `${days[departDate.getDay()]}  ${months[departDate.getMonth()].substring(
+        0,
+        3
+      )} ${departDate.getDate()}`
+    );
+    setReturnDay(
+      `${days[returnDate.getDay()]}  ${months[returnDate.getMonth()].substring(
+        0,
+        3
+      )} ${returnDate.getDate()}`
+    );
+  }, [departDate, returnDate]);
+
   const handleDepartDateChange = (date) => {
     seDepartDate(date);
   };
@@ -107,25 +125,6 @@ export const FlightsSearchProvider = ({ children }) => {
       }
     }
   };
-
-  useEffect(() => {
-    fetchAirportNames().then((res) => {
-      setAirportNames(res.data.airports);
-    });
-
-    setDepartDay(
-      `${days[departDate.getDay()]}  ${months[departDate.getMonth()].substring(
-        0,
-        3
-      )} ${departDate.getDate()}`
-    );
-    setReturnDay(
-      `${days[returnDate.getDay()]}  ${months[returnDate.getMonth()].substring(
-        0,
-        3
-      )} ${returnDate.getDate()}`
-    );
-  }, [departDate, returnDate]);
 
   const flightSearch = {
     departvalue: {

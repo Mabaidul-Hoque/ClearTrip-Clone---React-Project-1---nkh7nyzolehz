@@ -1,9 +1,10 @@
 import { Box, Stack, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import "./FlightPage.css";
 import FlightSearch from "./FlightSearchCard/FlightSearch";
 import RightSideBar from "./RightSideBarSection/RightSideBar";
 import FlightResultProvider from "../../UseContext/FlightResultProvider";
+import { useFlightSearch } from "../../UseContext/FlightsSearchProvider";
 
 const Flights = () => {
   return (

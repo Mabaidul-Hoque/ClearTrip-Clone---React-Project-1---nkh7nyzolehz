@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../MainSection.css";
 import { Button, Stack, styled } from "@mui/material";
 import CurrencyRupeeOutlinedIcon from "@mui/icons-material/CurrencyRupeeOutlined";
@@ -6,10 +6,21 @@ import TrendingFlatIcon from "@mui/icons-material/TrendingFlat";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
 
-const MainContentCard = ({ airplane }) => {
-  const { flightViewDetails } = useFlightResult();
-  const { airplaneId, handleId, handleFlightDetails, isOpen } =
-    flightViewDetails;
+import { planes } from "../../../../../static-data/StaticData";
+
+const MainContentCard = ({ airplane, planeLogoName, index }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [airplaneId, setAirplaneId] = useState(-1);
+
+  // console.log("planeLogoName", planeLogoName);
+
+  const handleId = (value) => {
+    setAirplaneId(value);
+  };
+
+  const handleFlightDetails = () => {
+    setIsOpen((prev) => !prev);
+  };
 
   return (
     <div id="main-content-card">
@@ -27,18 +38,50 @@ const MainContentCard = ({ airplane }) => {
             gap={1}
             mb={1}
           >
-            <img
-              className="aiplane-logo"
-              src="../Assets/vistara-logo2.jpeg"
-              alt="vistara-logo"
-            />
+            {index % 2 === 0 ? (
+              <img
+                className="aiplane-logo"
+                src="../assets/plane_logo/vistara-logo2.jpeg"
+                alt="vistara-logo2"
+              />
+            ) : index % 3 === 0 ? (
+              <img
+                className="aiplane-logo"
+                src="../assets/plane_logo/indigo-logo.png"
+                alt="indigo-logo"
+              />
+            ) : index % 5 === 0 ? (
+              <img
+                className="aiplane-logo"
+                src="../assets/plane_logo/air-india-logo.png"
+                alt="air-india-logo"
+              />
+            ) : (
+              <img
+                className="aiplane-logo"
+                src="../assets/plane_logo/spice-jet-logo.png"
+                alt="spice-jet-logo"
+              />
+            )}
             <Stack
               flexDirection={"column"}
               justifyContent={"flex-start"}
               alignItems={"flex-start"}
               gap={0.3}
             >
-              <span className="airplane-name">Vistara</span>
+              {index % 2 === 0 ? (
+                <span className="airplane-name">Vistara</span>
+              ) : index % 3 === 0 ? (
+                <span className="airplane-name">IndiGo</span>
+              ) : index % 5 === 0 ? (
+                <span className="airplane-name">Air India</span>
+              ) : (
+                <span className="airplane-name">Spice jet</span>
+              )}
+
+              {/* <span className="airplane-name">
+                {planeLogoName && planeLogoName.name}
+              </span> */}
               <span style={{ fontSize: "11px" }}>UK- 807</span>
             </Stack>
           </Stack>
@@ -135,17 +178,78 @@ const MainContentCard = ({ airplane }) => {
           </Stack>
           <div className="view-detals-card-content">
             <div className="airplane-logo">
-              <img
+              {/* <img
                 id="view-details-logo"
-                src="../Assets/vistara-logo2.jpeg"
+                src="../Assets/plane_logo/vistara-logo2.jpeg"
                 alt="vistara-logo"
-              />
+              /> */}
+
+              {index % 2 === 0 ? (
+                <img
+                  className="aiplane-logo"
+                  src="../assets/plane_logo/vistara-logo2.jpeg"
+                  alt="vistara-logo2"
+                />
+              ) : index % 3 === 0 ? (
+                <img
+                  className="aiplane-logo"
+                  src="../assets/plane_logo/indigo-logo.png"
+                  alt="indigo-logo"
+                />
+              ) : index % 5 === 0 ? (
+                <img
+                  className="aiplane-logo"
+                  src="../assets/plane_logo/air-india-logo.png"
+                  alt="air-india-logo"
+                />
+              ) : (
+                <img
+                  className="aiplane-logo"
+                  src="../assets/plane_logo/spice-jet-logo.png"
+                  alt="spice-jet-logo"
+                />
+              )}
+
               <Stack flexDirection={"column"}>
-                <span style={{ paddingBottom: "10px" }}>Vistara</span>
-                <span style={{ fontSize: "12px" }}>UK-807</span>
+                {index % 2 === 0 ? (
+                  <>
+                    <span style={{ paddingBottom: "10px" }}>Vistara</span>
+                    <span style={{ fontSize: "12px" }}>UK-807</span>
+                    <span style={{ fontSize: "12px", marginBottom: "5px" }}>
+                      Economy
+                    </span>
+                  </>
+                ) : index % 3 === 0 ? (
+                  <>
+                    <span style={{ paddingBottom: "10px" }}>IndiGo</span>
+                    <span style={{ fontSize: "12px" }}>6E-301</span>
+                    <span style={{ fontSize: "12px", marginBottom: "5px" }}>
+                      Economy
+                    </span>
+                  </>
+                ) : index % 5 === 0 ? (
+                  <>
+                    <span style={{ paddingBottom: "10px" }}>Air India</span>
+                    <span style={{ fontSize: "12px" }}>AI-859</span>
+                    <span style={{ fontSize: "12px", marginBottom: "5px" }}>
+                      Economy
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span style={{ paddingBottom: "10px" }}>Spice jet</span>
+                    <span style={{ fontSize: "12px" }}>SG-8112</span>
+                    <span style={{ fontSize: "12px", marginBottom: "5px" }}>
+                      Economy
+                    </span>
+                  </>
+                )}
+
+                {/* <span style={{ paddingBottom: "10px" }}>Vistara</span> */}
+                {/* <span style={{ fontSize: "12px" }}>UK-807</span>
                 <span style={{ fontSize: "12px", marginBottom: "5px" }}>
                   Economy
-                </span>
+                </span> */}
               </Stack>
             </div>
             <div className="deparature-details">

@@ -1,61 +1,86 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import "../MainSection.css";
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { fetchFlights } from "../../../../../Apis/FlightSearchApi";
 import MainContentCard from "./MainContentCard";
 import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
 import { fetchFlightsByStopsAndDepartTime } from "../../../../../Apis/FlightSearchApi";
 import Pagination from "@mui/material/Pagination";
 
+import { planes } from "../../../../../static-data/StaticData";
+import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
+
 const MainContent = () => {
+  const { searchPlane } = useFlightSearch();
+  const { handleSearchClick } = searchPlane;
   const { airplaneDetails, stopsSortDetails, departSortDetails } =
     useFlightResult();
+
   const {
-    sourceVal,
-    destinationVal,
-    dayVal,
     airplanes,
     setAirplanes,
     filteredAirplanes,
-    setFilteredAirplanes,
+    // setFilteredAirplanes,
     handleFlightResultFilter,
     page,
     setPage,
   } = airplaneDetails;
 
-  // console.log("filterAirplane", filteredAirplanes);
-  // console.log("Airplane", airplanes);
+  console.log("filterAirplane", filteredAirplanes);
+  console.log("Airplane", airplanes);
+  // const memoizedFilteredAirplanes = useMemo(
+  //   () => filteredAirplanes,
+  //   [filteredAirplanes]
+  // );
 
-  useEffect(() => {
-    console.log("main content useeffect");
-    // setFilteredAirplanes(handleFlightResultFilter);
-    handleFlightResultFilter();
-  }, []);
+  // useEffect(() => {
+  //   console.log("main content useeffect");
+  //   // fetchFlightData();
+  //   // setFilteredAirplanes(handleFlightResultFilter);
+  //   // handleFlightResultFilter();
+  // }, [page]);
 
   const handleChange = (event, value) => {
     setPage(value);
-    handleFlightResultFilter();
+    // handleFlightResultFilter();
   };
 
   return (
-    <div
-      id="main-content-container"
-      // style={{ position: "relative", marginBottom: "100px" }}
-    >
+    <div id="main-content-container">
+      <Stack
+        className="card-header"
+        flexDirection={"row"}
+        justifyContent={"flex-start"}
+        gap={15}
+        mb={1}
+      >
+        <Typography ml={-10} sx={{}}>
+          Airlines
+        </Typography>
+        <Stack flexDirection={"row"} gap={6} mr={10}>
+          <Typography>Departure</Typography>
+          <Typography>Duration</Typography>
+        </Stack>
+        <Typography sx={{ textAlign: "right" }}>Price</Typography>
+      </Stack>
       <Stack flexDirection={"column"} gap={2}>
-        {filteredAirplanes &&
-          filteredAirplanes.map((airplane, index) => (
+        {airplanes ? (
+          airplanes.map((airplane, index) => (
             <MainContentCard
               index={index}
               key={airplane._id + index}
               airplane={airplane}
+              planeLogoName={planes[index]}
             />
-          ))}
+          ))
+        ) : (
+          <h1>NO Flights Are Available!!</h1>
+        )}
       </Stack>
       <Stack mt={4} mb={4} flexDirection={"row"} justifyContent={"center"}>
         <div>
           <Pagination
-            count={5}
+            // count={Math.ceil(airplanes.length / 5)}
             color="primary"
             page={page}
             onChange={handleChange}
