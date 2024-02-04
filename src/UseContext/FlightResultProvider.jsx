@@ -20,9 +20,9 @@ const FlightResultContext = createContext();
 
 export const useFlightResult = () => {
   const context = useContext(FlightResultContext);
-  // if (!context) {
-  //   throw new Error("context is undefined");
-  // }
+  if (!context) {
+    throw new Error("context is undefined");
+  }
   return context;
 };
 
@@ -30,10 +30,6 @@ export const FlightResultProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isPlane, setIsPlane] = useState(false);
   const [airplaneId, setAirplaneId] = useState(-1);
-  const [stop, setStop] = useState(true);
-  const [nonStop, setNonStop] = useState(false);
-  const [oneStop, setOneStop] = useState(false);
-  const [twoStop, setTwoStop] = useState(false);
   const [isDeparature, setIsDeparature] = useState(true);
   const [isEarlyMorning, setIsEarlyMorning] = useState(false);
   const [isMorning, setIsMorning] = useState(false);
@@ -43,10 +39,7 @@ export const FlightResultProvider = ({ children }) => {
   const [isPrice, setIsPrice] = useState(true);
   const [filteredAirplanes, setFilteredAirplanes] = useState([]);
   const [filterItems, setFilterItems] = useState({});
-  const [limit, setLimit] = useState(5);
   const [page, setPage] = useState(0);
-
-  const [demoStop, setDemoStop] = useState(false);
 
   const sourceVal = useRef(localStorage.getItem("source").substring(0, 3));
   const destinationVal = useRef(
@@ -59,16 +52,7 @@ export const FlightResultProvider = ({ children }) => {
 
   useEffect(() => {
     handleFlightResultFilter();
-  }, [
-    nonStop,
-    oneStop,
-    twoStop,
-    isEarlyMorning,
-    isMorning,
-    isAfterNoon,
-    isEvening,
-    isNight,
-  ]);
+  }, [isEarlyMorning, isMorning, isAfterNoon, isEvening, isNight]);
 
   const handleFlightResultFilter = () => {
     const JSONFilter = JSON.stringify(filterItems);
@@ -77,7 +61,7 @@ export const FlightResultProvider = ({ children }) => {
       sourceVal.current,
       destinationVal.current,
       dayVal.current,
-      limit,
+      5,
       page,
       JSONFilter
     ).then((response) => {
@@ -85,16 +69,16 @@ export const FlightResultProvider = ({ children }) => {
       setFilteredAirplanes(response.data.flights);
     });
   };
-  const handlePriceFilter = (flightPrice) => {
-    setPage(1);
-    if (flightPrice >= 1000 && flightPrice <= 10000) {
-      filterItems.ticketPrice = {
-        $lte: flightPrice,
-        $gte: 1000,
-      };
-    }
-    handleFlightResultFilter();
-  };
+  // const handlePriceFilter = (flightPrice) => {
+  //   setPage(1);
+  //   if (flightPrice >= 1000 && flightPrice <= 10000) {
+  //     filterItems.ticketPrice = {
+  //       $lte: flightPrice,
+  //       $gte: 1000,
+  //     };
+  //   }
+  //   handleFlightResultFilter();
+  // };
   const handleNightFilter = () => {
     setPage(1);
     if (!isNight) {
@@ -161,39 +145,6 @@ export const FlightResultProvider = ({ children }) => {
     handleFlightResultFilter();
   };
 
-  const handleNonStopFilter = () => {
-    setPage(1);
-    if (!nonStop) {
-      setFilterItems((prev) => ({ ...prev, stops: "0" }));
-      // handleFlightResultFilter();
-    } else {
-      delete filterItems["stops"];
-    }
-    handleFlightResultFilter();
-  };
-
-  const handleOneStopFilter = () => {
-    setPage(1);
-    if (!oneStop) {
-      setFilterItems((prev) => ({ ...prev, stops: "1" }));
-      // handleFlightResultFilter();
-    } else {
-      delete filterItems["stops"];
-    }
-    handleFlightResultFilter();
-  };
-
-  const handleTwoStopFilter = () => {
-    setPage(1);
-    if (!twoStop) {
-      setFilterItems((prev) => ({ ...prev, stops: "2" }));
-      // handleFlightResultFilter();
-    } else {
-      delete filterItems["stops"];
-    }
-    handleFlightResultFilter();
-  };
-
   const handleId = (value) => {
     setAirplaneId(value);
   };
@@ -206,9 +157,6 @@ export const FlightResultProvider = ({ children }) => {
   };
   const handleFlightDetails = () => {
     setIsOpen((prev) => !prev);
-  };
-  const handleStopBnt = () => {
-    setStop((prev) => !prev);
   };
   const handleDeparaturebtn = () => {
     setIsDeparature((prev) => !prev);
@@ -224,6 +172,7 @@ export const FlightResultProvider = ({ children }) => {
       filteredAirplanes,
       setFilteredAirplanes,
       handleFlightResultFilter,
+      filterItems,
       setFilterItems,
       page,
       setPage,
@@ -233,23 +182,6 @@ export const FlightResultProvider = ({ children }) => {
       handleId,
       handleFlightDetails,
       isOpen,
-    },
-
-    stopsSortDetails: {
-      stop,
-      handleStopBnt,
-      nonStop,
-      oneStop,
-      twoStop,
-      setNonStop,
-      setOneStop,
-      setTwoStop,
-      handleNonStopFilter,
-      handleTwoStopFilter,
-      handleOneStopFilter,
-
-      demoStop,
-      setDemoStop,
     },
     departSortDetails: {
       isDeparature,
@@ -273,11 +205,6 @@ export const FlightResultProvider = ({ children }) => {
     priceSortDetails: {
       handlePricebtn,
       isPrice,
-      // handlePriceChnage,
-      // rupee,
-      handlePriceFilter,
-      // maxTicketPrice,
-      // minTicketPrice,
     },
     planeSortDetails: {
       handlePlanebtn,

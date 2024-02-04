@@ -22,9 +22,6 @@ const MainContent = () => {
     page,
     setPage,
   } = airplaneDetails;
-  const { nonStop, oneStop, twoStop } = stopsSortDetails;
-  const { isEarlyMorning, isMorning, isAfterNoon, isEvening, isNight } =
-    departSortDetails;
 
   // console.log("filterAirplane", filteredAirplanes);
   // console.log("Airplane", airplanes);

@@ -223,7 +223,7 @@ const HotelNavbar = () => {
               borderRadius: "15px",
             }}
           >
-            Sort by price
+            Sort by price range
           </Typography>
           <PrettoSlider
             value={hotelPrice}

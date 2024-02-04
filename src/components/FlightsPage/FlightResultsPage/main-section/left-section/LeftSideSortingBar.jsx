@@ -8,6 +8,7 @@ import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
 import SortByAirLines from "./SortByAirLines";
 import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
+import SortByStops from "./SortByStops";
 
 const PrettoSlider = styled(Slider)({
   color: "black",
@@ -34,6 +35,7 @@ const LeftSideSortingBar = () => {
   // const [maxTicketPrice, setMaxTicketPrice] = useState(0);
   // const [minTicketPrice, setMinTicketPrice] = useState(10000000);
   const [checkedBox, setCheckedBox] = useState(null);
+  const [flightPrice, setHotelprice] = useState();
 
   const {
     airplaneDetails,
@@ -43,22 +45,7 @@ const LeftSideSortingBar = () => {
   } = useFlightResult();
 
   const { setFilterItems, handleFlightResultFilter } = airplaneDetails;
-  const {
-    stop,
-    handleStopBnt,
-    nonStop,
-    oneStop,
-    twoStop,
-    setNonStop,
-    setOneStop,
-    setTwoStop,
-    handleNonStopFilter,
-    handleTwoStopFilter,
-    handleOneStopFilter,
 
-    demoStop,
-    setDemoStop,
-  } = stopsSortDetails;
   const {
     handleDeparaturebtn,
     isDeparature,
@@ -78,127 +65,34 @@ const LeftSideSortingBar = () => {
     setIsNight,
     handleNightFilter,
   } = departSortDetails;
-  const {
-    handlePricebtn,
-    isPrice,
-    handlePriceChnage,
-    rupee,
-    handlePriceFilter,
-    // maxTicketPrice,
-    // minTicketPrice,
-  } = priceSortDetails;
+  const { handlePricebtn, isPrice } = priceSortDetails;
 
-  // useEffect(() => {
-  //   handleFlightResultFilter();
-  // }, [
-  //   nonStop,
-  //   oneStop,
-  //   twoStop,
-  //   isEarlyMorning,
-  //   isMorning,
-  //   isAfterNoon,
-  //   isEvening,
-  //   isNight,
-  // ]);
+  useEffect(() => {
+    handleFlightResultFilter();
+  }, [flightPrice]);
 
-  // useEffect(() => {
-  //   console.log("left side sorting bar use effect");
-  //   if (checkedBox === "non-stop") {
-  //     // delete setFilterItems("stops");
-  //     setFilterItems((prev) => ({ ...prev, stops: "0" }));
-  //     handleFlightResultFilter();
-  //   } else if (checkedBox === "one-stop") {
-  //     // delete setFilterItems("stops");
-  //     setFilterItems((prev) => ({ ...prev, stops: "1" }));
-  //     handleFlightResultFilter();
-  //   } else if (checkedBox === "two-stop") {
-  //     // delete setFilterItems("stops");
-  //     setFilterItems((prev) => ({ ...prev, stops: "2" }));
-  //     handleFlightResultFilter();
-  //   }
-  // }, [checkedBox]);
+  const handlePriceFilter = () => {
+    // setPage(1);
+    if (flightPrice >= 1000 && flightPrice <= 10000) {
+      // filterItems.ticketPrice = {
+      //   $lte: flightPrice,
+      //   $gte: 1000,
+      // };
+      const ticketPrice = {
+        $lte: flightPrice,
+        $gte: 1000,
+      };
+      setFilterItems(() => ({ ticketPrice: ticketPrice }));
+    }
+    handleFlightResultFilter();
+  };
 
   return (
     <div id="left-side-sorting-container">
       <Stack flexDirection={"column"} gap={4}>
         {/* <SortingByStops /> */}
-        <Box>
-          <Stack
-            flexDirection={"row"}
-            justifyContent={"space-between"}
-            alignItems={"center"}
-            className="sort-by-stops"
-            onClick={handleStopBnt}
-          >
-            <span>Stops</span>
-            <span>
-              {stop ? (
-                <KeyboardArrowUpOutlinedIcon />
-              ) : (
-                <KeyboardArrowDownIcon />
-              )}
-            </span>
-          </Stack>
-          {stop ? (
-            <Stack justifyContent={"center"} alignItems={"flex-start"} gap={1}>
-              <div
-                onClick={() => {
-                  setNonStop((prev) => !prev);
-                  // setFilterItems((prev) => ({ ...prev, stops: "0" }));
-                  // setCheckedBox("non-stop");
-                  handleNonStopFilter();
-                }}
-                className="stop-options"
-              >
-                <input
-                  className="stop-input"
-                  type="checkbox"
-                  id="non-stop"
-                  checked={nonStop}
-                  // checked={checkedBox === "non-stop"}
-                  onChange={(e) => console.log(e)}
-                />
-                <span>Non-stop</span>
-              </div>
-              <div
-                onClick={() => {
-                  setOneStop((prev) => !prev);
-                  setCheckedBox("one-stop");
 
-                  handleOneStopFilter();
-                }}
-                className="stop-options"
-              >
-                <input
-                  type="checkbox"
-                  id="one-stop"
-                  checked={oneStop}
-                  // checked={checkedBox === "one-stop"}
-                  onChange={(e) => console.log(e)}
-                />
-                <span>1 stop</span>
-              </div>
-              <div
-                onClick={() => {
-                  setTwoStop((prev) => !prev);
-
-                  // setCheckedBox("two-stop");
-                  handleTwoStopFilter();
-                }}
-                className="stop-options"
-              >
-                <input
-                  type="checkbox"
-                  id="two-stop"
-                  checked={twoStop}
-                  // checked={checkedBox === "two-stop"}
-                  onChange={(e) => console.log(e)}
-                />
-                <span>2 stop</span>
-              </div>
-            </Stack>
-          ) : null}
-        </Box>
+        <SortByStops />
 
         {/* <SortByDepartTime /> */}
         <div>
@@ -360,19 +254,19 @@ const LeftSideSortingBar = () => {
                     <span>
                       <CurrencyRupeeIcon fontSize="sm" />
                     </span>
-                    <span>{rupee}</span>
+                    <span>{flightPrice}</span>
                   </div>
                 </Stack>
                 <PrettoSlider
-                  value={rupee}
+                  value={flightPrice}
                   min={2000}
                   max={3000}
                   defaultValue={3000}
                   valueLabelDisplay="auto"
                   aria-label="pretto slider"
                   onChange={(e) => {
-                    // handlePriceChnage(e.target.value);
-                    handlePriceFilter(e.target.value);
+                    setHotelprice(e.target.value);
+                    handlePriceFilter();
                   }}
                 />
               </Box>

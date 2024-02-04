@@ -12,7 +12,7 @@ import ImageCarousel from "./image-carousel/ImageCarousel";
 import { Pagination, Stack } from "@mui/material";
 
 const HotelResultPage = () => {
-  const [demoCount, setDemoCount] = useState(0);
+  // const [demoCount, setDemoCount] = useState(0);
   const { hotelSearchHandler, recommededFilterInfo, hotelDetails, inputInfo } =
     useHotelContext();
   const {
@@ -39,13 +39,14 @@ const HotelResultPage = () => {
   // );
 
   useEffect(() => {
-    setDemoCount((prev) => prev + 1);
-    handleHotelSearchBtn();
+    // setDemoCount((prev) => prev + 1);
+    // handleHotelSearchBtn();
+    handleHotelFilter();
   }, [hotelPage]);
 
   const handleSingleHotelClick = (hotelID) => {
     fetchSingleHotel(hotelID).then((response) => {
-      console.log("response", response);
+      // console.log("response", response);
       setSingleHotel(response.data);
     });
   };
@@ -66,11 +67,8 @@ const HotelResultPage = () => {
       ></div>
 
       <main id="hotel-result-page-main">
-        {
-          (memoizedFilteredHotels.length > 0
-            ? memoizedFilteredHotels
-            : hotels
-          ).map((hotel) => (
+        {memoizedFilteredHotels.length > 0 ? (
+          memoizedFilteredHotels.map((hotel) => (
             <div key={hotel._id} className="hotel-card">
               <ImageCarousel
                 handleSingleHotelClick={handleSingleHotelClick}
@@ -96,17 +94,17 @@ const HotelResultPage = () => {
               </div>
             </div>
           ))
-          // : (
-          //   <div
-          //     style={{
-          //       display: "flex",
-          //       justifyContent: "center",
-          //       alignItems: "center",
-          //     }}
-          //   >
-          //     <h1 style={{ textAlign: "center" }}>NO Hotels are Available!</h1>
-          //   </div>
-        }
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <h1 style={{ textAlign: "center" }}>NO Hotels are Available!</h1>
+          </div>
+        )}
       </main>
 
       <Stack mt={4} mb={4} flexDirection={"row"} justifyContent={"center"}>

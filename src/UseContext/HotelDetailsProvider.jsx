@@ -68,7 +68,7 @@ export const HotelDetailsProvider = ({ children }) => {
       // console.log("hotels by price high to low  ", resp);
       setFilteredHotels(resp.data.hotels);
     });
-  }, [inputPlace, price]);
+  }, [inputPlace, price, hotelPage]);
 
   const handleHotelFilter = useCallback(() => {
     const JSONFilter = JSON.stringify(filterItems);
@@ -82,7 +82,7 @@ export const HotelDetailsProvider = ({ children }) => {
 
       setFilteredHotels(response.data.hotels);
     });
-  }, [inputPlace, filterItems]);
+  }, [inputPlace, hotelPage, filterItems]);
 
   const handleHotelPrice = () => {
     if (hotelPrice >= 1000 && hotelPrice <= 10000) {
