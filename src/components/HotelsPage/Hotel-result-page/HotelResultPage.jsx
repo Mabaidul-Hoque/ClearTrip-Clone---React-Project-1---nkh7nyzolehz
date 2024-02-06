@@ -13,25 +13,21 @@ import { Pagination, Stack } from "@mui/material";
 
 const HotelResultPage = () => {
   // const [demoCount, setDemoCount] = useState(0);
-  const { hotelSearchHandler, recommededFilterInfo, hotelDetails, inputInfo } =
+  const { hotelSearchHandler, filtersData, hotelDetails, inputInfo } =
     useHotelContext();
   const {
     setSingleHotel,
     setHotels,
     hotels,
-    filteredHotels,
-    setFilteredHotels,
     hotelPage,
     setHotelPage,
+    totalHotels,
   } = hotelDetails;
-  const { handleHotelFilter } = recommededFilterInfo;
+  const { handleHotelFilter } = filtersData;
   const { handleInputPlaceChange } = inputInfo;
   const { handleHotelSearchBtn } = hotelSearchHandler;
 
-  const memoizedFilteredHotels = useMemo(
-    () => filteredHotels,
-    [filteredHotels]
-  );
+  const memoizedhotels = useMemo(() => hotels, [hotels]);
 
   // const memoizedHotels = useMemo(
   //   () => filteredHotels,
@@ -42,14 +38,7 @@ const HotelResultPage = () => {
     // setDemoCount((prev) => prev + 1);
     // handleHotelSearchBtn();
     handleHotelFilter();
-  }, [hotelPage]);
-
-  const handleSingleHotelClick = (hotelID) => {
-    fetchSingleHotel(hotelID).then((response) => {
-      // console.log("response", response);
-      setSingleHotel(response.data);
-    });
-  };
+  }, []);
 
   // console.log("filteredHotels", filteredHotels);
   // console.log("demoCount", demoCount);
@@ -57,6 +46,13 @@ const HotelResultPage = () => {
 
   const handleChange = (event, value) => {
     setHotelPage(value);
+  };
+
+  const handleSingleHotelClick = (hotelID) => {
+    fetchSingleHotel(hotelID).then((response) => {
+      // console.log("response", response);
+      setSingleHotel(response.data);
+    });
   };
 
   return (
@@ -67,8 +63,8 @@ const HotelResultPage = () => {
       ></div>
 
       <main id="hotel-result-page-main">
-        {memoizedFilteredHotels.length > 0 ? (
-          memoizedFilteredHotels.map((hotel) => (
+        {memoizedhotels.length > 0 ? (
+          memoizedhotels.map((hotel) => (
             <div key={hotel._id} className="hotel-card">
               <ImageCarousel
                 handleSingleHotelClick={handleSingleHotelClick}
@@ -110,7 +106,7 @@ const HotelResultPage = () => {
       <Stack mt={4} mb={4} flexDirection={"row"} justifyContent={"center"}>
         <div>
           <Pagination
-            count={5}
+            count={Math.ceil(totalHotels / 10)}
             color="primary"
             page={hotelPage}
             onChange={handleChange}

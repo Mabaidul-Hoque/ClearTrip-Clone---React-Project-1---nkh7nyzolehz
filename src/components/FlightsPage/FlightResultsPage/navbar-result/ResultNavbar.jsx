@@ -33,7 +33,7 @@ const RightButton = styled(Button)({
   },
 });
 
-const ResultNavbar = ({ fetchFlightData }) => {
+const ResultNavbar = () => {
   // const [resDepartDate, seResDepartDate] = useState(new Date());
   // const [resReturnDate, seResReturnDate] = useState(new Date());
   // const [resDepartDay, setResDepartDay] = useState("");
@@ -61,9 +61,9 @@ const ResultNavbar = ({ fetchFlightData }) => {
     });
   }, []);
 
-  const handleResultFlightSearch = () => {
-    setAirplanes(fetchFlightData);
-  };
+  // const handleResultFlightSearch = () => {
+  //   setAirplanes(fetchFlightData);
+  // };
 
   return (
     <Stack id="result-navbar">
@@ -183,7 +183,7 @@ const ResultNavbar = ({ fetchFlightData }) => {
               bgcolor: "#000000",
             },
           }}
-          onClick={handleResultFlightSearch}
+          // onClick={handleResultFlightSearch}
         >
           Search
         </Button>

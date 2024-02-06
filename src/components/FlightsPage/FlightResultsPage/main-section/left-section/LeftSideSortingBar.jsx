@@ -6,25 +6,25 @@ import SortByStops from "./SortByStops";
 import SortByDeparatureTime from "./SortByDeparatureTime";
 import SortByPriceRange from "./SortByPriceRange";
 
-const LeftSideSortingBar = ({ fetchFlightData }) => {
+const LeftSideSortingBar = () => {
   return (
     <div id="left-side-sorting-container">
       <Stack flexDirection={"column"} gap={4}>
         {/* <SortingByStops /> */}
 
-        <SortByStops fetchFlightData={fetchFlightData} />
+        <SortByStops />
 
         {/* <SortByDepartTime /> */}
 
-        <SortByDeparatureTime fetchFlightData={fetchFlightData} />
+        <SortByDeparatureTime />
 
         {/* Sort By Price */}
 
-        <SortByPriceRange fetchFlightData={fetchFlightData} />
+        <SortByPriceRange />
 
         {/* Sort By Airlines */}
 
-        <SortByAirLines fetchFlightData={fetchFlightData} />
+        <SortByAirLines />
       </Stack>
     </div>
   );

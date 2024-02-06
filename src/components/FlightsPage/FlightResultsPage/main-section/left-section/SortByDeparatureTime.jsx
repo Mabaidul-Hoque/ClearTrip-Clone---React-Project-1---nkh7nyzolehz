@@ -4,7 +4,7 @@ import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutl
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
 
-const SortByDeparatureTime = ({ fetchFlightData }) => {
+const SortByDeparatureTime = () => {
   const [isDeparature, setIsDeparature] = useState(true);
   const [isEarlyMorning, setIsEarlyMorning] = useState(false);
   const [isMorning, setIsMorning] = useState(false);
@@ -20,8 +20,8 @@ const SortByDeparatureTime = ({ fetchFlightData }) => {
     if (isEarlyMorning || isMorning || isAfterNoon || isEvening || isNight) {
       handleFlightResultFilter();
     } else {
-      // handleFlightResultFilter();
-      fetchFlightData();
+      delete filterItems["departureTime"];
+      handleFlightResultFilter();
     }
   }, [isEarlyMorning, isMorning, isAfterNoon, isEvening, isNight]);
 
@@ -30,64 +30,67 @@ const SortByDeparatureTime = ({ fetchFlightData }) => {
   };
 
   const handleNightFilter = () => {
-    setPage(1);
-    if (!isNight) {
-      const newObj = {
-        $lte: "23:59",
-        $gte: "20:00",
-      };
-      setFilterItems((prev) => ({ ...prev, departureTime: newObj }));
-    } else {
-      delete filterItems["departureTime"];
-    }
+    setIsEarlyMorning(false);
+    setIsMorning(false);
+    setIsAfterNoon(false);
+    setIsEvening(false);
+
+    const newObj = {
+      $lte: "23:59",
+      $gte: "20:00",
+    };
+    setFilterItems((prev) => ({ ...prev, departureTime: newObj }));
   };
   const handleEveningFilter = () => {
-    setPage(1);
-    if (!isEvening) {
-      const newObj = {
-        $lte: "19:59",
-        $gte: "16:00",
-      };
-      setFilterItems((prev) => ({ ...prev, departureTime: newObj }));
-    } else {
-      delete filterItems["departureTime"];
-    }
+    setIsEarlyMorning(false);
+    setIsMorning(false);
+    setIsAfterNoon(false);
+
+    setIsNight(false);
+
+    const newObj = {
+      $lte: "19:59",
+      $gte: "16:00",
+    };
+    setFilterItems((prev) => ({ ...prev, departureTime: newObj }));
   };
   const handleAfterNoonFilter = () => {
-    setPage(1);
-    if (!isAfterNoon) {
-      const newObj = {
-        $lte: "15:59",
-        $gte: "12:00",
-      };
-      setFilterItems((prev) => ({ ...prev, departureTime: newObj }));
-    } else {
-      delete filterItems["departureTime"];
-    }
+    setIsEarlyMorning(false);
+    setIsMorning(false);
+
+    setIsEvening(false);
+    setIsNight(false);
+
+    const newObj = {
+      $lte: "15:59",
+      $gte: "12:00",
+    };
+    setFilterItems((prev) => ({ ...prev, departureTime: newObj }));
   };
   const handleMorningFilter = () => {
-    setPage(1);
-    if (!isMorning) {
-      const newObj = {
-        $lte: "11:59",
-        $gte: "08:00",
-      };
-      setFilterItems((prev) => ({ ...prev, departureTime: newObj }));
-    } else {
-      delete filterItems["departureTime"];
-    }
+    setIsEarlyMorning(false);
+
+    setIsAfterNoon(false);
+    setIsEvening(false);
+    setIsNight(false);
+
+    const newObj = {
+      $lte: "11:59",
+      $gte: "08:00",
+    };
+    setFilterItems((prev) => ({ ...prev, departureTime: newObj }));
   };
   const handleEarlyMorningFilter = () => {
-    setPage(1);
-    if (!isEarlyMorning) {
-      const newObj = {
-        $lte: "07:59",
-        $gte: "00:00",
-      };
-      setFilterItems((prev) => ({ ...prev, departureTime: newObj }));
-    } else {
-      delete filterItems["departureTime"];
-    }
+    setIsMorning(false);
+    setIsAfterNoon(false);
+    setIsEvening(false);
+    setIsNight(false);
+
+    const newObj = {
+      $lte: "07:59",
+      $gte: "00:00",
+    };
+    setFilterItems((prev) => ({ ...prev, departureTime: newObj }));
   };
 
   return (

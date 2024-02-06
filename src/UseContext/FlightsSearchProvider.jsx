@@ -42,6 +42,8 @@ export const FlightsSearchProvider = ({ children }) => {
   const [destination, setDestination] = useState("");
   const [airplanes, setAirplanes] = useState([]);
   const [airportNames, setAirportNames] = useState([]);
+  const [flightPage, setFlightPage] = useState(1);
+  const [totalResult, setTotalResult] = useState(0);
 
   const sourceRef = useRef(null);
   const destinationRef = useRef(null);
@@ -92,16 +94,24 @@ export const FlightsSearchProvider = ({ children }) => {
         .getItem("destination")
         .substring(0, 3);
       const day = localStorage.getItem("day").substring(0, 3);
+
       if (sourceVal !== null && destinationVal !== null && day !== null) {
-        fetchFlights(sourceVal, destinationVal, day).then((response) => {
-          console.log("flight result page search btn ", response.data.flights);
-          setAirplanes(response.data.flights);
-        });
+        fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
+          (response) => {
+            console.log(
+              "flight result page search btn ",
+              response.data.flights
+            );
+            setAirplanes(response.data.flights);
+          }
+        );
       } else {
-        fetchFlights(sourceVal, destinationVal, day).then((response) => {
-          console.log(response.data.flights);
-          setAirplanes(response.data.flights);
-        });
+        fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
+          (response) => {
+            console.log(response.data.flights);
+            setAirplanes(response.data.flights);
+          }
+        );
       }
     } else {
       if (source === "" && destination === "") sourceRef.current.focus();
@@ -150,6 +160,9 @@ export const FlightsSearchProvider = ({ children }) => {
       airplanes,
       setAirplanes,
     },
+    totalFlightsVal: { totalResult, setTotalResult },
+    flightPage,
+    setFlightPage,
   };
   return (
     <FlightsSearchContext.Provider value={flightSearch}>

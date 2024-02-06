@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import StarsOutlinedIcon from "@mui/icons-material/StarsOutlined";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
@@ -9,28 +9,41 @@ import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
 import { MenuItem } from "@mui/material";
 
 const StarCategory = () => {
+  const [fiveStar, setFiveStar] = useState(false);
+  const [fourStar, setFourStar] = useState(false);
+  const [threeStar, setThreeStar] = useState(false);
+  const [applyBtn, setApplyBtn] = useState(false);
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  const { starFilterInfo, recommededFilterInfo } = useHotelContext();
-  const {
-    fiveStar,
-    setFiveStar,
-    fourStar,
-    setFourStar,
-    threeStar,
-    setThreeStar,
-    handleFiveStar,
-    handleFourStar,
-    handleThreeStar,
-  } = starFilterInfo;
-  const { handleHotelFilter } = recommededFilterInfo;
+  const { filtersData, hotelDetails } = useHotelContext();
+  const { hotelPage, setHotelPage } = hotelDetails;
+  const { setFilterItems, handleHotelFilter } = filtersData;
+
+  useEffect(() => {
+    if (applyBtn) {
+      handleHotelFilter();
+    }
+  }, [applyBtn, hotelPage]);
+
+  const handleFiveStar = () => {
+    setFilterItems((prev) => ({ ...prev, rating: 5 }));
+  };
+  const handleFourStar = () => {
+    setFilterItems((prev) => ({ ...prev, rating: 4 }));
+  };
+
+  const handleThreeStar = () => {
+    setFilterItems((prev) => ({ ...prev, rating: 3 }));
+  };
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
     setFiveStar(false);
     setFourStar(false);
     setThreeStar(false);
+    setApplyBtn(false);
   };
   const handleClose = () => {
     setAnchorEl(null);
@@ -121,8 +134,9 @@ const StarCategory = () => {
           <button
             className="aply-btn"
             onClick={() => {
+              setHotelPage(1);
+              setApplyBtn(true);
               handleClose();
-              handleHotelFilter();
             }}
           >
             Apply

@@ -5,7 +5,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 
-const SortByStops = ({ fetchFlightData }) => {
+const SortByStops = () => {
   const [stop, setStop] = useState(true);
   const [nonStop, setNonStop] = useState(false);
   const [oneStop, setOneStop] = useState(false);
@@ -22,8 +22,8 @@ const SortByStops = ({ fetchFlightData }) => {
     if (nonStop || oneStop || twoStop) {
       handleFlightResultFilter();
     } else {
-      // handleFlightResultFilter();
-      fetchFlightData();
+      delete filterItems["stops"];
+      handleFlightResultFilter();
     }
   }, [nonStop, oneStop, twoStop]);
 
@@ -50,33 +50,34 @@ const SortByStops = ({ fetchFlightData }) => {
   };
 
   const handleNonStopFilter = () => {
-    setPage(1);
-    if (!nonStop) {
-      setFilterItems((prev) => ({ ...prev, stops: "0" }));
-      // handleFlightResultFilter();
-    } else {
-      delete filterItems["stops"];
-    }
+    setOneStop(false);
+    setTwoStop(false);
+    // if (!nonStop) {
+    setFilterItems((prev) => ({ ...prev, stops: "0" }));
+    // } else {
+    // delete filterItems["stops"];
+    // }
   };
 
   const handleOneStopFilter = () => {
-    setPage(1);
-    if (!oneStop) {
-      setFilterItems((prev) => ({ ...prev, stops: "1" }));
-      // handleFlightResultFilter();
-    } else {
-      delete filterItems["stops"];
-    }
+    setNonStop(false);
+    setTwoStop(false);
+    // if (!oneStop) {
+    setFilterItems((prev) => ({ ...prev, stops: "1" }));
+    // } else {
+    // delete filterItems["stops"];
+    // }
   };
 
   const handleTwoStopFilter = () => {
-    setPage(1);
-    if (!twoStop) {
-      setFilterItems((prev) => ({ ...prev, stops: "2" }));
-      // handleFlightResultFilter();
-    } else {
-      delete filterItems["stops"];
-    }
+    setNonStop(false);
+    setOneStop(false);
+
+    // if (!twoStop) {
+    setFilterItems((prev) => ({ ...prev, stops: "2" }));
+    // } else {
+    // delete filterItems["stops"];
+    // }
   };
 
   return (

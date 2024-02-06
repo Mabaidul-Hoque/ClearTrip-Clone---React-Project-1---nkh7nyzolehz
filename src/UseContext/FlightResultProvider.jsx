@@ -40,19 +40,22 @@ export const FlightResultProvider = ({ children }) => {
 
   const contextValues = useFlightSearch();
   const { airplanes, setAirplanes } = contextValues.fecthValues;
+  const { setTotalResult } = contextValues.totalFlightsVal;
+  const { flightPage } = useFlightSearch();
 
-  const handleFlightResultFilter = () => {
+  const handleFlightResultFilter = (value) => {
     const JSONFilter = JSON.stringify(filterItems);
     fetchFilteredFlights(
       sourceVal.current,
       destinationVal.current,
       dayVal.current,
       5,
-      page,
+      flightPage,
       JSONFilter
     ).then((response) => {
-      // console.log("fetch filtered flights", response.data.flights);
+      console.log("fetch filtered flights", response);
       // setFilteredAirplanes(response.data.flights);
+      setTotalResult(response.totalResults);
       setAirplanes(response.data.flights);
     });
   };
@@ -66,8 +69,6 @@ export const FlightResultProvider = ({ children }) => {
       handleFlightResultFilter,
       filterItems,
       setFilterItems,
-      page,
-      setPage,
     },
     singleFlightValue: {
       singleFlight,

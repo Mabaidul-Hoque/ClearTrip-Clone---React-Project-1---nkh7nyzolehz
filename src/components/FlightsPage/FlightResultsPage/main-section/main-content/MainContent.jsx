@@ -10,8 +10,9 @@ import Pagination from "@mui/material/Pagination";
 import { planes } from "../../../../../static-data/StaticData";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 
-const MainContent = () => {
-  const { searchPlane } = useFlightSearch();
+const MainContent = ({ totalResult }) => {
+  // const [totalFlights, setTotalFlights] = useState(totalResult);
+  const { searchPlane, flightPage, setFlightPage } = useFlightSearch();
   const { handleSearchClick } = searchPlane;
   const { airplaneDetails, stopsSortDetails, departSortDetails } =
     useFlightResult();
@@ -22,8 +23,8 @@ const MainContent = () => {
     filteredAirplanes,
     // setFilteredAirplanes,
     handleFlightResultFilter,
-    page,
-    setPage,
+    // page,
+    // setPage,
   } = airplaneDetails;
 
   console.log("filterAirplane", filteredAirplanes);
@@ -33,17 +34,21 @@ const MainContent = () => {
   //   [filteredAirplanes]
   // );
 
-  // useEffect(() => {
-  //   console.log("main content useeffect");
-  //   // fetchFlightData();
-  //   // setFilteredAirplanes(handleFlightResultFilter);
-  //   // handleFlightResultFilter();
-  // }, [page]);
+  useEffect(() => {
+    // setTotalFlights(totalResult);
+
+    // fetchFlightData();
+    // setFilteredAirplanes(handleFlightResultFilter);
+    handleFlightResultFilter();
+  }, [flightPage]);
 
   const handleChange = (event, value) => {
-    setPage(value);
+    setFlightPage(value);
     // handleFlightResultFilter();
+    // fetchFlightData();
   };
+
+  console.log({ totalResult });
 
   return (
     <div id="main-content-container">
@@ -80,9 +85,9 @@ const MainContent = () => {
       <Stack mt={4} mb={4} flexDirection={"row"} justifyContent={"center"}>
         <div>
           <Pagination
-            // count={Math.ceil(airplanes.length / 5)}
+            count={Math.ceil(totalResult / 5)}
             color="primary"
-            page={page}
+            page={flightPage}
             onChange={handleChange}
           />
         </div>

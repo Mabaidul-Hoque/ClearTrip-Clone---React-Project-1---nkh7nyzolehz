@@ -29,7 +29,7 @@ const PrettoSlider = styled(Slider)({
   },
 });
 
-const SortByPriceRange = ({ fetchFlightData }) => {
+const SortByPriceRange = () => {
   const [isPrice, setIsPrice] = useState(true);
   const [flightPrice, setFlightPrice] = useState();
 
@@ -40,27 +40,32 @@ const SortByPriceRange = ({ fetchFlightData }) => {
   const flightPriceDebounce = useDebounce(flightPrice, 500);
 
   useEffect(() => {
-    if (flightPriceDebounce) {
-      handleFlightResultFilter();
-    } else {
-      // handleFlightResultFilter();
-      fetchFlightData();
-    }
+    // const ticketPrice = {
+    //   $lte: flightPriceDebounce,
+    //   $gte: 1000,
+    // };
+    // setFilterItems(() => ({ ticketPrice: ticketPrice }));
+
+    // if (flightPriceDebounce) {
+    handleFlightResultFilter();
+    // }
   }, [flightPriceDebounce]);
 
   const handlePricebtn = () => {
     setIsPrice((prev) => !prev);
   };
 
-  const handlePriceFilter = useCallback(() => {
-    if (flightPrice >= 1000 && flightPrice <= 10000) {
-      const ticketPrice = {
-        $lte: flightPrice,
-        $gte: 1000,
-      };
-      setFilterItems(() => ({ ticketPrice: ticketPrice }));
-    }
-  }, [flightPriceDebounce]);
+  const handlePriceFilter = () => {
+    // if (flightPrice >= 1000 && flightPrice <= 10000) {
+    const ticketPrice = {
+      $lte: flightPrice,
+      $gte: 1000,
+    };
+    setFilterItems((prev) => ({ ...prev, ticketPrice: ticketPrice }));
+    // }
+
+    // handleFlightResultFilter();
+  };
 
   return (
     <>
@@ -94,7 +99,7 @@ const SortByPriceRange = ({ fetchFlightData }) => {
                 </div>
               </Stack>
               <PrettoSlider
-                value={flightPrice}
+                value={flightPrice ?? 3000}
                 min={1600}
                 max={3000}
                 defaultValue={3000}
@@ -102,8 +107,9 @@ const SortByPriceRange = ({ fetchFlightData }) => {
                 aria-label="pretto slider"
                 onChange={(e) => {
                   setFlightPrice(e.target.value);
-                  handlePriceFilter();
+                  // handlePriceFilter();
                 }}
+                onChangeCommitted={handlePriceFilter}
               />
             </Box>
 

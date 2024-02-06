@@ -14,10 +14,10 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import Button from "@mui/material/Button";
 import styled from "@emotion/styled";
 
-const TravellerPaper = styled(Button)({
-  border: "1px solid #D3D3D3",
-  height: "42px",
-});
+// const TravellerPaper = styled(Button)({
+//   border: "1px solid #D3D3D3",
+//   height: "42px",
+// });
 
 const Traveller = () => {
   const [open, setOpen] = React.useState(false);
@@ -43,20 +43,20 @@ const Traveller = () => {
 
   return (
     <Stack direction="column" spacing={2}>
-      <TravellerPaper>
-        <Button
-          ref={anchorRef}
-          variant="outlined"
-          id="composition-button"
-          aria-controls={open ? "composition-menu" : undefined}
-          aria-expanded={open ? "true" : undefined}
-          aria-haspopup="true"
-          onClick={handleToggle}
-        >
-          <span>1 tarveller</span>
-          <ExpandMoreOutlinedIcon htmlColor="#999999" />
-        </Button>
-      </TravellerPaper>
+      {/* <TravellerPaper> */}
+      <Button
+        ref={anchorRef}
+        variant="outlined"
+        id="composition-button"
+        aria-controls={open ? "composition-menu" : undefined}
+        aria-expanded={open ? "true" : undefined}
+        aria-haspopup="true"
+        onClick={handleToggle}
+      >
+        <span>1 tarveller</span>
+        <ExpandMoreOutlinedIcon htmlColor="#999999" />
+      </Button>
+      {/* </TravellerPaper> */}
 
       <Popper
         open={open}
