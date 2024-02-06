@@ -9,20 +9,23 @@ import { useFlightResult } from "../../../../../UseContext/FlightResultProvider"
 import { planes } from "../../../../../static-data/StaticData";
 import { useNavigate } from "react-router-dom";
 import { fetchFlightBookingInfo } from "../../../../../Apis/BookingApi";
+import { fetchSingleFlightDetails } from "../../../../../Apis/FlightSearchApi";
 
 const MainContentCard = ({ airplane, planeLogoName, index }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [airplaneId, setAirplaneId] = useState(-1);
 
   const navigate = useNavigate();
+  const { singleFlightValue } = useFlightResult();
+  const { setSingleFlight } = singleFlightValue;
 
   // console.log("planeLogoName", planeLogoName);
 
   const handleBookBtn = () => {
-    fetchFlightBookingInfo(airplane.flightID).then((resp) => {
-      console.log("Booking successful:", resp);
+    fetchSingleFlightDetails(airplane._id).then((resp) => {
+      // console.log("Single flight details:", resp);
+      setSingleFlight(resp.data);
     });
-    navigate(`/flights/itinerary/${airplane.flightID}`);
   };
 
   const handleId = (value) => {
@@ -164,7 +167,10 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
           <button
             style={{ fontSize: "16px" }}
             className="book-btn"
-            onClick={handleBookBtn}
+            onClick={() => {
+              handleBookBtn();
+              navigate(`/flights/itinerary/${airplane._id}`);
+            }}
           >
             Book
           </button>

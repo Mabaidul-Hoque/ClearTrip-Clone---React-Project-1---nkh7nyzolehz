@@ -1,15 +1,15 @@
 export async function fetchFlightBookingInfo(flightID) {
   const apiUrl =
     "https://academics.newtonschool.co/api/v1/bookingportals/booking";
-  const token = localStorage.getItem("token"); // Replace with your actual access token
-  const projectID = "afznkxyf8vti"; // Replace with your actual project ID
+  const token = localStorage.getItem("token");
+  const projectID = "afznkxyf8vti";
 
   const requestBody = {
     bookingType: "flight",
     bookingDetails: {
-      flighId: flightID, // Replace with the actual flight ID
-      startDate: "2023-10-09T10:03:53.554+00:00",
-      endDate: "2023-10-09T10:03:53.554+00:00",
+      flightId: flightID,
+      startDate: "2023-10-09T01:03:53.554+00:00",
+      endDate: "2023-10-09T12:03:53.554+00:00",
     },
   };
 
@@ -27,13 +27,9 @@ export async function fetchFlightBookingInfo(flightID) {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-
     const responseData = await response.json();
-
-    // Handle the response data as needed in your application
     return responseData;
   } catch (error) {
     console.error("Error while booking flight:", error);
-    // Handle errors in your application
   }
 }

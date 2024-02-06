@@ -36,3 +36,18 @@ export async function fetchFilteredFlights(
     console.log("clouldn't fetch sort by depart time", error);
   }
 }
+
+export async function fetchSingleFlightDetails(flightID) {
+  const fetchUrl = `https://academics.newtonschool.co/api/v1/bookingportals/flight/${flightID}`;
+  try {
+    const res = await fetch(fetchUrl, {
+      method: "GET",
+      headers: {
+        projectID: "afznkxyf8vti",
+      },
+    });
+    return await res.json();
+  } catch (error) {
+    console.error("Error while getting single flight details:", error);
+  }
+}

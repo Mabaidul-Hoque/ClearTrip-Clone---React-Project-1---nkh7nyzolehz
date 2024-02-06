@@ -50,18 +50,12 @@ export const FlightsSearchProvider = ({ children }) => {
     fetchAirportNames().then((res) => {
       setAirportNames(res.data.airports);
     });
-    setDepartDay(
-      `${days[departDate.getDay()]}  ${months[departDate.getMonth()].substring(
-        0,
-        3
-      )} ${departDate.getDate()}`
-    );
-    setReturnDay(
-      `${days[returnDate.getDay()]}  ${months[returnDate.getMonth()].substring(
-        0,
-        3
-      )} ${returnDate.getDate()}`
-    );
+
+    const options = { weekday: "short", month: "short", day: "numeric" };
+    const formattedDate = departDate.toLocaleDateString("en-US", options);
+    setDepartDay(formattedDate);
+    const formattedRDate = returnDate.toLocaleDateString("en-US", options);
+    setReturnDay(formattedRDate);
   }, [departDate, returnDate]);
 
   const handleDepartDateChange = (date) => {
@@ -165,3 +159,81 @@ export const FlightsSearchProvider = ({ children }) => {
 };
 
 export default FlightsSearchProvider;
+
+// const encodedPath = btoa(`${source_location}-${destination_location}--${date_of_journey}--${adult}-${child}-${infant}`)
+
+// if (pathname.includes("flight")) {
+
+// navigate(
+
+// `air-${encodedPath}`
+
+// );
+
+// } else {
+
+// navigate(
+
+// `flight/air-${encodedPath}`
+
+// );
+
+// }
+
+// }
+
+// am i audible
+
+// ??
+
+// Sahil Chopra
+// 16m ago
+// no
+
+// Adarsh Rangare
+// 16m ago
+// yess
+
+// air-SFlELUFNRC0tMjAyNC0wMi0wNS0tMS0wLTA=
+
+// Sahil Chopra
+// 14m ago
+// const extractedEncodedPath = encodedString.replace('air-', '');
+
+// Adarsh Rangare
+// 10m ago
+// AMD-HYD--2024-02-05--1-0-0
+
+// Sahil Chopra
+// 9m ago
+// 'AMD-HYD--2024-02-05--1-0-0'
+
+// Harshit Verma
+// 2m ago
+// state
+
+// Adarsh Rangare
+// just now
+// const { searchQuery } = useParams();
+
+// console.log({searchQuery});
+
+// const encodedString = searchQuery ?? '' ;
+
+// const extractedEncodedPath = encodedString.replace('air-', '');
+
+// console.log(extractedEncodedPath);
+
+// // console.log(encoded);
+
+// const decodedPath = atob(extractedEncodedPath);
+
+// console.log(decodedPath);
+
+// const [location, date, counts] = decodedPath?.split("--");
+
+// console.log(location,date,counts);
+
+// const [source, dest] = location?.split("-");
+
+// const [adult, child, infant] = counts?.split("-");

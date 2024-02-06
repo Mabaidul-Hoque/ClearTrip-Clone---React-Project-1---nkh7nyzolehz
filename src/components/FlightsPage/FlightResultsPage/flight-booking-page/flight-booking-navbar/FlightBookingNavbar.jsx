@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "../FlightBookingPage.css";
 import AccountCircleSharpIcon from "@mui/icons-material/AccountCircleSharp";
 import { Box, Button, Stack } from "@mui/material";
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
 
 const CustomButton = styled(Button)({
   variant: "text",
@@ -10,6 +11,7 @@ const CustomButton = styled(Button)({
   fontsize: "16px",
 });
 const FlightBookingNavbar = () => {
+  const navigate = useNavigate();
   return (
     <Stack
       className="flight-booking-navabr"
@@ -21,6 +23,7 @@ const FlightBookingNavbar = () => {
         className="cleartrip-logo"
         src="https://careers.cleartrip.com/images/cleartrip/footer-logo.svg"
         alt="cleartrip-logo"
+        onClick={() => navigate("/")}
       />
 
       <CustomButton>

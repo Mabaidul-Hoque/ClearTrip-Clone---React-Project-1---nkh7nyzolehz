@@ -2,8 +2,22 @@ import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import FareDetails from "./FareDetails";
+import ContactDetails from "./ContactDetails";
+import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
+import { fetchFlightBookingInfo } from "../../../../../Apis/BookingApi";
 
-const BookingDetails = () => {
+const BookingDetails = ({ flightId }) => {
+  const { singleFlight } = useFlightResult().singleFlightValue;
+
+  const handleContinue = () => {
+    fetchFlightBookingInfo(flightId).then((resp) => {
+      // console.log(resp);
+
+      alert("Booking Successfull");
+    });
+  };
+
   return (
     <div>
       {/* details 1 */}
@@ -32,7 +46,9 @@ const BookingDetails = () => {
               <ArrowForwardIcon fontSize="small" />
               Mumbai
             </Stack>
-            <Typography fontSize={"14px"}>Thu, 10 Aug 2023</Typography>
+            <Typography fontSize={"14px"}>
+              {localStorage.getItem("day")} 2024
+            </Typography>
           </Stack>
 
           <Stack flexDirection={"row"} gap={2}>
@@ -51,8 +67,14 @@ const BookingDetails = () => {
 
             <Stack gap={4}>
               <Typography>
-                <span style={{ fontSize: "18px", fontWeight: "500" }}>
-                  23:15 DEL{" "}
+                <span
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: "500",
+                    marginRight: "4px",
+                  }}
+                >
+                  {singleFlight.departureTime} {singleFlight.source}
                 </span>
                 <span style={{ fontSize: "12px", fontWeight: "500" }}>
                   Indira Gandhi Airport New Delhi, Terminal 2
@@ -63,8 +85,14 @@ const BookingDetails = () => {
                 <span>2h 5m</span>
               </Stack>
               <Typography>
-                <span style={{ fontSize: "18px", fontWeight: "500" }}>
-                  01:20 BOM{" "}
+                <span
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: "500",
+                    marginRight: "4px",
+                  }}
+                >
+                  {singleFlight.arrivalTime} {singleFlight.destination}
                 </span>
                 <span style={{ fontSize: "12px", fontWeight: "500" }}>
                   Chatrapati Shivaji Airport Mumbai, Terminal 2
@@ -82,9 +110,9 @@ const BookingDetails = () => {
                 alignItems={"center"}
                 sx={{ fontWeight: "600", fontSize: "18px" }}
               >
-                New Delhi
-                <ArrowForwardIcon fontSize="small" />
                 Mumbai
+                <ArrowForwardIcon fontSize="small" />
+                New Delhi
               </Stack>
               <Typography fontSize={"14px"}>Thu, 10 Aug 2023</Typography>
             </Stack>
@@ -126,6 +154,20 @@ const BookingDetails = () => {
               </Stack>
             </Stack>
           </div>
+        </Stack>
+
+        {/* fare details */}
+        <FareDetails />
+
+        {/* contact details */}
+        <ContactDetails handleContinue={handleContinue} />
+        <Stack mt={4}>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque
+          consequatur aut assumenda a nostrum animi explicabo fuga voluptates
+          sunt non error velit voluptatibus quis, sapiente est maxime aperiam
+          dolorem reiciendis at numquam. Dolore officiis molestiae, libero,
+          voluptates excepturi ipsam aut qui neque cum deserunt quo totam
+          pariatur nam, dolorum consequatur!
         </Stack>
       </div>
     </div>

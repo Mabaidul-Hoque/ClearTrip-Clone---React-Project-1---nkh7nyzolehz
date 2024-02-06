@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import { Rating } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -27,15 +27,12 @@ const GeneralDetails = ({ singleHotel }) => {
         <StyledRating
           name="customized-color"
           readOnly
-          value={singleHotel.rating}
+          value={singleHotel?.rating ?? " "}
           getLabelText={(value) => `${value} Heart${value !== 1 ? "s" : ""}`}
           precision={0.5}
           icon={<FavoriteIcon fontSize="inherit" />}
           emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
         />
-        {/* <span>
-          <Rating name="read-only" value={singleHotel.rating} readOnly />
-        </span> */}
       </div>
       <div className="breakfast-plan">
         <div>Free breakfast on select plans</div>

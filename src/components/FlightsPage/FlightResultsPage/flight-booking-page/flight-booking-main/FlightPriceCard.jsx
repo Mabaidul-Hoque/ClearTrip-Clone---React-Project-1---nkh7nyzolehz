@@ -3,6 +3,7 @@ import { Button, Paper, Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import React from "react";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
+import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
 
 const CustomPaper = styled(Paper)({
   width: "20vw",
@@ -14,6 +15,8 @@ const CustomPaper = styled(Paper)({
   borderRadius: "10px",
 });
 const FlightPriceCard = () => {
+  const { singleFlight } = useFlightResult().singleFlightValue;
+
   return (
     <div id="price-cards">
       {/* main price card */}
@@ -40,7 +43,7 @@ const FlightPriceCard = () => {
               fontWeight={"500"}
             >
               <CurrencyRupeeIcon fontSize="sm" />
-              <span>12,284</span>
+              <span>{singleFlight.ticketPrice}</span>
             </Stack>
           </Stack>
 
@@ -56,7 +59,7 @@ const FlightPriceCard = () => {
                 //   fontWeight={"500"}
               >
                 <CurrencyRupeeIcon fontSize="sm" />
-                <span>12,284</span>
+                <span>{Math.ceil(singleFlight.ticketPrice * 0.8)}</span>
               </Stack>
             </div>
             <div className="fare">
@@ -68,7 +71,7 @@ const FlightPriceCard = () => {
                 // fontWeight={"500"}
               >
                 <CurrencyRupeeIcon fontSize="sm" />
-                <span>12,284</span>
+                <span>{Math.ceil(singleFlight.ticketPrice * 0.15)}</span>
               </Stack>
             </div>
             <div className="fare">
@@ -80,7 +83,7 @@ const FlightPriceCard = () => {
                 // fontWeight={"500"}
               >
                 <CurrencyRupeeIcon fontSize="sm" />
-                <span>12,284</span>
+                <span>{Math.ceil(singleFlight.ticketPrice * 0.05)}</span>
               </Stack>
             </div>
           </Stack>

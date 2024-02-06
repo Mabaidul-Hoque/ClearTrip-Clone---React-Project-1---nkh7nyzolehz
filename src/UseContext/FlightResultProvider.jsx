@@ -30,6 +30,7 @@ export const FlightResultProvider = ({ children }) => {
   const [filteredAirplanes, setFilteredAirplanes] = useState([]);
   const [filterItems, setFilterItems] = useState({});
   const [page, setPage] = useState(1);
+  const [singleFlight, setSingleFlight] = useState({});
 
   const sourceVal = useRef(localStorage.getItem("source").substring(0, 3));
   const destinationVal = useRef(
@@ -67,6 +68,10 @@ export const FlightResultProvider = ({ children }) => {
       setFilterItems,
       page,
       setPage,
+    },
+    singleFlightValue: {
+      singleFlight,
+      setSingleFlight,
     },
   };
   return (

@@ -8,22 +8,22 @@ import { useFlightSearch } from "../../UseContext/FlightsSearchProvider";
 
 const Flights = () => {
   return (
-    <FlightResultProvider>
-      <Stack
-        flexDirection={"row"}
-        justifyContent={"space-between"}
-        alignItems={"flex-start"}
-        component="div"
-        pt={4}
-        sx={{
-          display: "flex",
-          width: "100%",
-        }}
-      >
-        <FlightSearch />
-        <RightSideBar />
-      </Stack>
-    </FlightResultProvider>
+    // <FlightResultProvider>
+    <Stack
+      flexDirection={"row"}
+      justifyContent={"space-between"}
+      alignItems={"flex-start"}
+      component="div"
+      pt={4}
+      sx={{
+        display: "flex",
+        width: "100%",
+      }}
+    >
+      <FlightSearch />
+      <RightSideBar />
+    </Stack>
+    // </FlightResultProvider>
   );
 };
 

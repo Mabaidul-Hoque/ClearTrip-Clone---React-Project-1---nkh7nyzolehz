@@ -17,6 +17,7 @@ import AuthorizationProvider from "./UseContext/AuthorizationProvider";
 import SignupPage from "./components/Login-signup/SignupPage";
 import LoginPage from "./components/Login-signup/LoginPage";
 import FlightBookingPage from "./components/FlightsPage/FlightResultsPage/flight-booking-page/FlightBookingPage";
+import FlightResultProvider from "./UseContext/FlightResultProvider";
 
 const router = createBrowserRouter([
   {
@@ -74,9 +75,11 @@ root.render(
     <OfferDetailsProvider>
       <HotelDetailsProvider>
         <FlightsSearchProvider>
-          <RouterProvider router={router}>
-            <App />
-          </RouterProvider>
+          <FlightResultProvider>
+            <RouterProvider router={router}>
+              <App />
+            </RouterProvider>
+          </FlightResultProvider>
         </FlightsSearchProvider>
       </HotelDetailsProvider>
     </OfferDetailsProvider>
