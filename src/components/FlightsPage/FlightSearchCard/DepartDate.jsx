@@ -13,6 +13,12 @@ const DepartDate = () => {
   const ExampleCustomInput = forwardRef(({ departDay, onClick }, ref) => (
     <Button
       sx={{
+        width: {
+          xs: "40vw",
+          sm: "20vw",
+          md: "15vw",
+          lg: "14vw",
+        },
         background: "#FFFFFF",
         color: "#1A1A1A",
         border: "1px solid lightgray",
@@ -23,7 +29,7 @@ const DepartDate = () => {
           borderColor: "#3366CC",
         },
       }}
-      className="depart-day-btn"
+      className="flight-depart-day-btn"
       onClick={onClick}
       ref={ref}
     >
@@ -32,7 +38,7 @@ const DepartDate = () => {
   ));
   return (
     <DatePicker
-      className="date-picker-btn"
+      className="f-date-picker-btn"
       onClick={handleClick}
       required
       selected={departDate}

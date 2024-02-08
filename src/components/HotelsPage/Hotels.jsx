@@ -1,13 +1,12 @@
 import React, { forwardRef, useRef, useState } from "react";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import "./Hotels.css";
-import { Stack } from "@mui/material";
+import "./HotelMediaQuery.css";
+import { Paper, Stack } from "@mui/material";
 import RightSideBar from "../FlightsPage/RightSideBarSection/RightSideBar";
 import DepartDate from "../FlightsPage/FlightSearchCard/DepartDate";
 import ReturnDate from "../FlightsPage/FlightSearchCard/ReturnDate";
 import AddRooms from "./AddRooms";
-// import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
-// import PlaceIcon from "@mui/icons-material/Place";
 import HotelInputSection from "./Hotel-search-card/HotelInputSection";
 import { useHotelContext } from "../../UseContext/HotelDetailsProvider";
 import { useNavigate } from "react-router-dom";
@@ -54,7 +53,7 @@ const Hotels = () => {
     <div id="hotel-page">
       {/* main content */}
 
-      <Stack id="hotel-search-container">
+      <Stack id="h-search-container">
         <Stack
           flexDirection={"column"}
           justifyContent={"flex-start"}
@@ -66,8 +65,8 @@ const Hotels = () => {
           <h4>Enjoy hassle free bookings with Cleartrip</h4>
         </Stack>
 
-        <form id="hotel-search-card" action="#">
-          <div className="hotel-search-location-date-room">
+        <Paper id="h-search-card">
+          <div className="h-inputs">
             <div className="location-data">
               <div id="hotel-input-section">
                 <HotelInputSection
@@ -96,18 +95,18 @@ const Hotels = () => {
               <AddRooms width="16.5vw" height="59px" />
             </div>
           </div>
-          <div className="search-hotels-btn-container">
+          <div className="h-search-btn-container">
             <button
               onClick={() => {
                 handleHotelSearchBtn();
                 token ? navigate("/hotels/results") : navigate("/login");
               }}
-              className="search-hotels-btn"
+              className="h-search-btn"
             >
               Search hotels
             </button>
           </div>
-        </form>
+        </Paper>
       </Stack>
       {/* right side bar similar to flight page but offers are diffferent */}
       <div id="hotel-right-side-bar">

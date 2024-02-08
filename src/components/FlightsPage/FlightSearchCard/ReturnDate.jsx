@@ -13,6 +13,12 @@ const ReturnDate = () => {
   const ExampleCustomInput = forwardRef(({ returnDay, onClick }, ref) => (
     <Button
       sx={{
+        width: {
+          xs: "40vw",
+          sm: "20vw",
+          md: "15vw",
+          lg: "14vw",
+        },
         background: "#FFFFFF",
         color: "#1A1A1A",
         border: "1px solid lightgray",
@@ -23,7 +29,7 @@ const ReturnDate = () => {
           borderColor: "#3366CC",
         },
       }}
-      className="return-day-btn"
+      className="flight-return-day-btn"
       onClick={onClick}
       ref={ref}
     >

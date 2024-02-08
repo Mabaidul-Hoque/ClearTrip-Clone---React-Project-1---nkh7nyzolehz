@@ -30,3 +30,14 @@
     background-color: #D6E8FC;
     color: #3366CC;
 }
+
+
+@media screen and (min-width: 300px) {
+    .leftSection{
+        line-height: 0.7;
+    }
+    .my-trip{
+        display: none;
+    }
+    
+}

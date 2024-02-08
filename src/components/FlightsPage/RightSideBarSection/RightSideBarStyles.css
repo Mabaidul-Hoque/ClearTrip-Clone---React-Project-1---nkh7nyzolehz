@@ -73,6 +73,8 @@
     padding: 2px;
     z-index: 1;
     cursor: pointer;
+    background-color: transparent;
+    color: #FFFFFF;
 }
 .up-prev-btn,
 .down-prev-btn{
@@ -82,10 +84,7 @@
 .down-next-btn{
     margin-left: -2.2rem;
 }
-.down-prev-btn,
-.down-next-btn{
-    background-color: rgb(179, 176, 176);
-}
+
 .inActive{
     display: none;
 }
@@ -105,6 +104,19 @@
     border: none;
     font-weight: 500;
     background-color: inherit;
+}
+
+
+
+@media screen and (min-width: 1024px) and (max-width: 1250px) {
+    .offer-details,.offer-details-down{
+        top: 0.5rem;
+        font-size: 14px;
+    }
+    
+    .carousel-container-down,.carousel-container-up{
+        width: 18vw;
+    }
 }
 
 

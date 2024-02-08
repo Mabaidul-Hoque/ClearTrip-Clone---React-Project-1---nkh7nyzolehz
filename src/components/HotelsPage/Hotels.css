@@ -2,6 +2,7 @@
 #hotel-page{
     padding-top: 32px;
     display: flex;
+    gap: 30px;
 }
 
 .hotel-search-header h1{
@@ -12,22 +13,12 @@
     font-weight: 500;
 }
 
-#hotel-search-card{
-    width: 51vw;
+#h-search-card{
+    width: 43rem;
     height: 47vh;
     border: 1px solid #E6E6E6;
     border-radius: 10px;
     padding: 20px;
-    
-}
-.hotel-search-location-date-room{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 30px;
-}
-#hotel-search-card{
     margin-top: 40px;
     display: flex;
     flex-direction: column;
@@ -35,9 +26,13 @@
     gap: 30px;
     padding-left: 30px;
 }
-/* .location-icon:hover{
-    background-color: blue;
-} */
+.h-inputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 30px;
+}
 .location-data{
     padding-top: 20px;
     position: relative;
@@ -71,17 +66,13 @@ input[placeholder="Search your favourite hotels"]{
     display: flex;
 }
 
-/* .room-dropdown-btn{
-   
-} */
-
-.search-hotels-btn-container{
+.h-search-btn-container{
     display: flex;
     justify-content: flex-end;
     align-items: center;
     margin-right: 20px;
 }
-.search-hotels-btn{
+.h-search-btn{
     width: 12rem;
     height: 49px;
     border: none;
@@ -95,6 +86,7 @@ input[placeholder="Search your favourite hotels"]{
 .search-hotels-btn:hover{
     background-color: #D4581D;
 }
+
 
 
 

@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../FlightPage.css";
 import "./FlightSearchCard.css";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Paper, Stack } from "@mui/material";
 import SwapHorizontalCircleOutlinedIcon from "@mui/icons-material/SwapHorizontalCircleOutlined";
-import useFlightSectionStyles from "./FlightSearchCardStyles";
+
 import DepartDate from "./DepartDate";
 import ReturnDate from "./ReturnDate";
 import FlightTakeoffOutlinedIcon from "@mui/icons-material/FlightTakeoffOutlined";
@@ -40,8 +40,6 @@ export default function FlightSearchCard() {
   const { departDay } = departvalue;
   const { returnDay } = returnValue;
 
-  const { pathname } = useLocation();
-
   const handleNavigation = () => {
     const encodedPath = btoa(
       `${source}-${destination}--${departDay}-&{returnDay}`
@@ -58,19 +56,51 @@ export default function FlightSearchCard() {
   };
 
   return (
-    <>
-      <div className="flight-search-form-card">
-        {/* passenger addtion popper */}
-        <PassengerAdd />
-        {/* fare btns section */}
-        <Box pl={1} mb={2} className="fare-btns-container" component="div">
+    <Paper
+      className="flight-search-form-card"
+      sx={{
+        width: {
+          xs: "92vw",
+          sm: "62vw",
+          md: "48vw",
+        },
+        maxHeight: {
+          xs: "61vh",
+          sm: "51vh",
+        },
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "1rem",
+        justifyContent: "flex-start",
+        position: "relative",
+      }}
+    >
+      {/* passenger addtion popper */}
+      <PassengerAdd />
+      {/* fare btns section */}
+      <Box component="div">
+        <Stack
+          sx={{
+            flexDirection: "row",
+            gap: {
+              xs: 0,
+              sm: 1,
+              md: 2,
+              lg: 3,
+            },
+          }}
+        >
           {fareBtnTexts.map((fareBtnText, index) => (
             <Box
               component="button"
               sx={{
                 border: "1px solid lightgray",
-                "&:hover": {
-                  cursor: "pointer",
+                cursor: "pointer",
+                fontSize: {
+                  xs: "8px",
+                  sm: "9px",
+                  md: "13px",
                 },
               }}
               key={fareBtnText}
@@ -86,95 +116,101 @@ export default function FlightSearchCard() {
               {fareBtnText}
             </Box>
           ))}
-        </Box>
-
-        {/* where from to section */}
-        <Box mb={3} component="div" className="source-dest-container">
-          <div id="source-container">
-            <FlightTakeoffOutlinedIcon
-              htmlColor="#808080"
-              sx={{
-                position: "absolute",
-                left: "3.5%",
-                top: "0.7rem",
-                zIndex: "1",
-              }}
-            />
-            <DepartCityInput
-              options={airportNames}
-              noOptionText={"No Match Found"}
-              optionCount={5}
-            />
+        </Stack>
+      </Box>
+      {/* where from to section */}
+      <Stack
+        sx={{
+          flexDirection: {
+            xs: "column",
+            sm: "row",
+          },
+          gap: {
+            xs: 2,
+            sm: 0,
+          },
+          position: "relative",
+        }}
+      >
+        <div id="source-container">
+          <div className="f-takeoff-icon">
+            <FlightTakeoffOutlinedIcon htmlColor="#808080" />
           </div>
+          <DepartCityInput
+            options={airportNames}
+            noOptionText={"No Match Found"}
+            optionCount={5}
+          />
+        </div>
 
+        <div className="f-switch-btn" onClick={() => setIsSwitch(!isSwitch)}>
           <SwapHorizontalCircleOutlinedIcon
             htmlColor="#5D86D7"
             fontSize="large"
-            sx={{
-              position: "absolute",
-              left: "18rem",
-              top: "0.5rem",
-              zIndex: "1",
-              "&:hover": {
-                cursor: "pointer",
-              },
-            }}
-            onClick={() => setIsSwitch(!isSwitch)}
           />
-          <div id="destination-container">
-            <FlightLandOutlinedIcon
-              htmlColor="#808080"
-              sx={{
-                position: "absolute",
-                right: "16rem",
-                top: "0.8rem",
-                zIndex: "1",
-              }}
-            />
-            <DestinationCityInput
-              options={airportNames}
-              noOptionText={"No Match Found"}
-              optionCount={5}
-            />
+        </div>
+
+        <div id="destination-container">
+          <div className="f-landing-icon">
+            <FlightLandOutlinedIcon htmlColor="#808080" />
           </div>
-        </Box>
-        {/*  date picker and ssearch flight section  */}
-        <Box className="search-btn-conatiner" component="div">
-          <div className="flight-date-picker">
-            <DepartDate />
-            <ReturnDate />
-          </div>
-          <Button
-            variant="text"
-            sx={{
-              width: "15rem",
-              bgcolor: "#F77728",
-              color: "#FFFFFF",
-              borderRadius: "7px",
-              fontSize: "16px",
-              textTransform: "none",
-              "&:hover": {
-                bgcolor: "#D4581D",
-              },
-            }}
-            onClick={() => {
-              handleSearchClick();
-              handleNavigation();
-            }}
-          >
-            Search flights
-          </Button>
-          <Box
-            sx={{
-              position: "absolute",
-              left: "1rem",
-              bottom: "0.8rem",
-            }}
-          >
+          <DestinationCityInput
+            options={airportNames}
+            noOptionText={"No Match Found"}
+            optionCount={5}
+          />
+        </div>
+      </Stack>
+      {/* date picker and search btn */}
+      <Stack
+        sx={{
+          flexDirection: {
+            xs: "column",
+            sm: "row",
+          },
+          gap: {
+            xs: "1rem",
+            lg: "2rem",
+          },
+        }}
+      >
+        <Stack sx={{ flexDirection: "row", position: "relative" }}>
+          <div className="f-calender-icon">
             <CalendarMonthOutlinedIcon htmlColor="#808080" />
-          </Box>
-        </Box>
-      </div>
-    </>
+          </div>
+          <DepartDate />
+          <ReturnDate />
+        </Stack>
+        <Button
+          variant="text"
+          sx={{
+            width: {
+              xs: "80vw",
+              sm: "10vw",
+              md: "12vw",
+              lg: "13vw",
+            },
+            height: {
+              xs: "50px",
+              sm: "56px",
+            },
+            bgcolor: "#F77728",
+            color: "#FFFFFF",
+            borderRadius: "7px",
+            fontSize: "16px",
+            textTransform: "none",
+            "&:hover": {
+              bgcolor: "#D4581D",
+            },
+          }}
+          onClick={() => {
+            handleSearchClick();
+            handleNavigation();
+          }}
+        >
+          Search flights
+        </Button>
+      </Stack>
+    </Paper>
   );
 }

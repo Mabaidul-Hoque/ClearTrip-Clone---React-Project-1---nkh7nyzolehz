@@ -1,36 +1,8 @@
 
 
-.flight-search-form-card{
-    width: 51vw;
-    height: 51vh;
-    border: 1px solid #E6E6E6;
-    border-radius: 10px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 10px;
-}
 
-.list-group-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 2rem;
-    padding: .5rem 1rem;
-    font-size: 14px;
-    font-weight: 540;
-    color: #1A1A1A;
-    background-color: inherit;
-    border-radius: 2rem;
-}
 
-.booking-type-btn-active, .fare-btn-active{
-    background-color: #D6E8FC;
-    color: #3366CC;
-    border-color: #3366CC;
-}
+
 
 .card-header{
     margin-left: 100px;

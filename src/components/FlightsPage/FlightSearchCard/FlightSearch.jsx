@@ -8,7 +8,16 @@ import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
 const FlightSearch = () => {
   return (
     <Box component="div">
-      <Box mb={4} sx={{ textAlign: "left" }} component="div">
+      <Box
+        sx={{
+          textAlign: "left",
+          mb: {
+            xs: 2,
+            sm: 4,
+          },
+        }}
+        component="div"
+      >
         <Typography
           mb={1}
           sx={{ fontWeight: "500", color: "#1A1A1A" }}

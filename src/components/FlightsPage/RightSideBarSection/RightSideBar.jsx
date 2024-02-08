@@ -51,18 +51,14 @@ const RightSideBar = () => {
   return (
     <Stack
       sx={{
-        pl: "1.6rem",
         display: {
-          xxs: "none",
           xs: "none",
-          sm: "block",
+          sm: "none",
+          md: "flex",
         },
       }}
-      direction={"column"}
-      justifyContent={"flex-start"}
-      textAlign={"left"}
-      gap={"1rem"}
-      component="div"
+      justifyContent={"center"}
+      gap={1}
     >
       <div className="carousel-container-up">
         <button className="up-prev-btn" onClick={handlePrevUp}>
@@ -106,7 +102,7 @@ const RightSideBar = () => {
                 index === downCurrentIndex ? "active-down" : "inActive"
               }`}
             >
-              <div>
+              <div className="offer-details-down">
                 <h3>{offer.pTl}</h3>
                 <p>{offer.pTx}</p>
                 <button className="know-more-btn">Know more</button>

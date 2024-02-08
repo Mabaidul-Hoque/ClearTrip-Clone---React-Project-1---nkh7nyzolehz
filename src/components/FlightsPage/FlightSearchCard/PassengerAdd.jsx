@@ -44,7 +44,7 @@ const PassengerAdd = () => {
   }
 
   return (
-    <Stack direction="column" spacing={2}>
+    <Stack sx={{ zIndex: 10 }} spacing={2}>
       <div className="card-header">
         <button
           ref={anchorRef}
@@ -54,7 +54,11 @@ const PassengerAdd = () => {
           aria-haspopup="true"
           onClick={handleToggle}
         >
-          {open ? <PersonIcon /> : <PersonOutlineOutlinedIcon />}
+          {open ? (
+            <PersonIcon htmlColor="#999999" />
+          ) : (
+            <PersonOutlineOutlinedIcon htmlColor="#999999" />
+          )}
           <span style={{ fontSize: "16px", fontWeight: "500  " }}>
             1 Adult, Economy
           </span>
@@ -83,7 +87,7 @@ const PassengerAdd = () => {
                 placement === "bottom-start" ? "left top" : "left bottom",
             }}
           >
-            <Paper className="add-passenger">
+            <Paper className="passenger-add-container">
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList
                   sx={{
@@ -105,7 +109,11 @@ const PassengerAdd = () => {
                     }}
                   >
                     <Box>
-                      <Typography fontSize={"16px"} variant="h6">
+                      <Typography
+                        textAlign={"left"}
+                        fontSize={"16px"}
+                        variant="h6"
+                      >
                         Adults
                       </Typography>
                       <Typography fontSize={"14px"}>(12+ Years)</Typography>
@@ -136,7 +144,11 @@ const PassengerAdd = () => {
                     }}
                   >
                     <Box>
-                      <Typography fontSize={"16px"} variant="h6">
+                      <Typography
+                        textAlign={"left"}
+                        fontSize={"16px"}
+                        variant="h6"
+                      >
                         Children
                       </Typography>
                       <Typography fontSize={"14px"}>(2 - 12 yrs)</Typography>
@@ -167,7 +179,11 @@ const PassengerAdd = () => {
                     }}
                   >
                     <Box>
-                      <Typography fontSize={"16px"} variant="h6">
+                      <Typography
+                        textAlign={"left"}
+                        fontSize={"16px"}
+                        variant="h6"
+                      >
                         Infants
                       </Typography>
                       <Typography fontSize={"14px"}>(Below 2 yrs)</Typography>
@@ -189,36 +205,35 @@ const PassengerAdd = () => {
                       />
                     </Stack>
                   </Box>
-                  <Box>
-                    <Box
-                      mb={2}
-                      mt={2.5}
-                      className="add-passenger-container"
-                      component="div"
-                      color="text.secondary"
-                    >
-                      {passengerAddbBtnTexts.map(
-                        (passengerAddbBtnText, index) => (
-                          <Box
-                            component="button"
-                            className={
-                              bookingTypeIndex === index
-                                ? "list-group-item booking-type-btn-active"
-                                : "list-group-item"
-                            }
-                            sx={{
-                              border: "1px solid lightgray",
-                              "&:hover": {
-                                cursor: "pointer",
-                              },
-                            }}
-                            onClick={() => setTookingTypeIndex(index)}
-                          >
-                            {passengerAddbBtnText}
-                          </Box>
-                        )
-                      )}
-                    </Box>
+
+                  <Box
+                    mb={2}
+                    mt={2.5}
+                    className="f-category-btns"
+                    component="div"
+                    color="text.secondary"
+                  >
+                    {passengerAddbBtnTexts.map(
+                      (passengerAddbBtnText, index) => (
+                        <Box
+                          component="button"
+                          className={
+                            bookingTypeIndex === index
+                              ? "list-group-item booking-type-btn-active"
+                              : "list-group-item"
+                          }
+                          sx={{
+                            border: "1px solid lightgray",
+                            "&:hover": {
+                              cursor: "pointer",
+                            },
+                          }}
+                          onClick={() => setTookingTypeIndex(index)}
+                        >
+                          {passengerAddbBtnText}
+                        </Box>
+                      )
+                    )}
                   </Box>
                 </MenuList>
               </ClickAwayListener>

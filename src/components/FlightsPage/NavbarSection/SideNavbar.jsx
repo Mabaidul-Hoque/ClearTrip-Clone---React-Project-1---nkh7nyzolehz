@@ -6,7 +6,7 @@ import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlin
 import LuggageOutlinedIcon from "@mui/icons-material/LuggageOutlined";
 import { Link, useLocation } from "react-router-dom";
 import { OffersContext } from "../../../UseContext/OfferDetailsProvider";
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 
 const SideNavbar = () => {
   const { setOffersUrlFilter } = useContext(OffersContext);
@@ -14,7 +14,6 @@ const SideNavbar = () => {
 
   return (
     <Stack
-      pt={4}
       pr={5}
       sx={{
         flexDirection: {
@@ -23,9 +22,12 @@ const SideNavbar = () => {
           sm: "column",
         },
         gap: {
-          // xxs: 1,
-          // xs: 1,
+          xs: 0,
           sm: 3,
+        },
+        pt: {
+          xs: 2,
+          sm: 4,
         },
       }}
     >
@@ -65,15 +67,26 @@ const SideNavbar = () => {
         <MonetizationOnOutlinedIcon />
         <span>Offers</span>
       </Link>
-      <Link
-        className={
-          pathname === "/mytrip" ? "leftSection active-left-btn" : "leftSection"
-        }
-        to="/mytrip"
+      <Box
+        sx={{
+          display: {
+            xs: "none",
+            sm: "block",
+          },
+        }}
       >
-        <LuggageOutlinedIcon />
-        <span>My trips</span>
-      </Link>
+        <Link
+          className={
+            pathname === "/mytrip"
+              ? "my-trip leftSection active-left-btn"
+              : "leftSection"
+          }
+          to="/mytrip"
+        >
+          <LuggageOutlinedIcon />
+          <span>My trips</span>
+        </Link>
+      </Box>
     </Stack>
   );
 };

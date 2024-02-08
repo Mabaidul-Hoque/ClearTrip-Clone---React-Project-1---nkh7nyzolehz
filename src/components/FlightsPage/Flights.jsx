@@ -8,13 +8,17 @@ const Flights = () => {
   return (
     <Stack
       flexDirection={"row"}
-      justifyContent={"space-between"}
       alignItems={"flex-start"}
-      component="div"
-      pt={4}
       sx={{
-        display: "flex",
         width: "100%",
+        justifyContent: {
+          xs: "center",
+          sm: "flex-start",
+        },
+        pt: {
+          xs: 2,
+          sm: 4,
+        },
       }}
     >
       <FlightSearch />
