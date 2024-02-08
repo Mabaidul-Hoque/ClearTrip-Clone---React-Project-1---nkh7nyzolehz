@@ -4,17 +4,13 @@ import { Box, Stack } from "@mui/material";
 import BookingDetails from "./flight-booking-main/BookingDetails";
 import FlightPriceCard from "./flight-booking-main/FlightPriceCard";
 import { fetchSingleFlightDetails } from "../../../../Apis/FlightSearchApi";
-import { useFlightResult } from "../../../../UseContext/FlightResultProvider";
 import { useParams } from "react-router-dom";
 import { useFlightSearch } from "../../../../UseContext/FlightsSearchProvider";
 
 import { airports } from "../../../../util/util";
 const FlightBookingPage = () => {
   const [modifiedFlight, setModifiedFlight] = useState({});
-
-  const { setSingleFlight } = useFlightResult().singleFlightValue;
-  // const { airportNames } = useFlightSearch().fecthValues;
-
+  const { setSingleFlight } = useFlightSearch().singleFlightValue;
   const { flightId } = useParams();
 
   useEffect(() => {

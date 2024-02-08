@@ -6,9 +6,9 @@ import { Button } from "@mui/material";
 import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
 
 const DepartDate = () => {
-  const contextValues = useFlightSearch();
+  const { departvalue } = useFlightSearch();
   const { handleDepartDateChange, departDay, departDate, handleClick } =
-    contextValues.departvalue;
+    departvalue;
 
   const ExampleCustomInput = forwardRef(({ departDay, onClick }, ref) => (
     <Button

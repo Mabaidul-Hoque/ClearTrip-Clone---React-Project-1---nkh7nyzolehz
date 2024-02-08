@@ -6,10 +6,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../ResultNavbar.css";
 
-const DepartDateResult = () => {
-  const contextValues = useFlightSearch();
-  const { handleDepartDateChange, departDay, departDate } =
-    contextValues.departvalue;
+const DepartDateResult = ({ departDay }) => {
+  const { departvalue } = useFlightSearch();
+  const { handleDepartDateChange, departDate } = departvalue;
 
   const ExampleCustomInput = forwardRef(({ departDay, onClick }, ref) => (
     <Button
@@ -28,7 +27,7 @@ const DepartDateResult = () => {
       onClick={onClick}
       ref={ref}
     >
-      {localStorage.getItem("day")}
+      {departDay}
     </Button>
   ));
 

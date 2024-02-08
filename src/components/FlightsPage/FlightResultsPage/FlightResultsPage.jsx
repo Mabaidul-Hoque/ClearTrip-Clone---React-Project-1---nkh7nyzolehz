@@ -1,81 +1,90 @@
 import React, { useEffect, useState } from "react";
 import ResultNavbar from "./navbar-result/ResultNavbar";
 import "./FlightResultPage.css";
-// import MainSection from "./main-section/MainSection";
-import FlightResultProvider, {
-  useFlightResult,
-} from "../../../UseContext/FlightResultProvider";
+import FlightResultProvider from "../../../UseContext/FlightResultProvider";
 import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
-import { fetchFlights } from "../../../Apis/FlightSearchApi";
 import { Stack } from "@mui/material";
 import LeftSideSortingBar from "./main-section/left-section/LeftSideSortingBar";
 import MainContent from "./main-section/main-content/MainContent";
+import {
+  fetchFilteredFlights,
+  fetchFlights,
+} from "../../../Apis/FlightSearchApi";
+import { useParams } from "react-router-dom";
 
 const FlightResultsPage = () => {
-  const { fecthValues, flightPage, totalFlightsVal, setFlightPage } =
+  const { airplaneDetails, flightPage, setFlightPage, totalFlightsVal } =
     useFlightSearch();
-  const { setAirplanes } = fecthValues;
-  const { setTotalResult, totalResult } = totalFlightsVal;
+  const { setAirplanes } = airplaneDetails;
+  const { setTotalResult } = totalFlightsVal;
 
-  const { airplaneDetails } = useFlightResult();
-  const { handleFlightResultFilter } = airplaneDetails;
+  const { searchQuery } = useParams();
+  const encodedString = searchQuery ?? "";
+  console.log("encodedString", encodedString);
+  const extractedEncodedPath = encodedString.replace("results-", "");
+  const decodedPath = atob(extractedEncodedPath);
+  const [location, date] = decodedPath?.split("--");
+  const [source, dest] = location?.split("-");
+  const [departDay, returnDay] = date?.split("-");
 
-  useEffect(() => {
-    handleFlightResultFilter();
-  }, []);
+  console.log({ source, dest, departDay });
 
-  // const fetchFlightData = () => {
-  //   const JSONFilter = JSON.stringify(filterItems);
+  const handleFlightResultFilter = (filterItems) => {
+    const sourceVal = source.substring(0, 3);
+    const destinationVal = dest.substring(0, 3);
+    const day = departDay.substring(0, 3);
 
-  //   const sourceVal = localStorage.getItem("source").substring(0, 3);
-  //   const destinationVal = localStorage.getItem("destination").substring(0, 3);
-  //   const day = localStorage.getItem("day").substring(0, 3);
-
-  //   fetchFlights(
-  //     sourceVal,
-  //     destinationVal,
-  //     day,
-  //     5,
-  //     flightPage,
-  //     JSONFilter
-  //   ).then((response) => {
-  //     console.log("respone from flight result page", response.totalResults);
-  //     setTotalResult(response.totalResults);
-  //     setAirplanes(response.data.flights);
-  //   });
-  // };
-
-  // const handleChange = (event, value) => {
-  //   setFlightPage(value);
-  //   // handleFlightResultFilter();
-  //   // fetchFlightData();
-  // };
-
-  console.log("totalResult", totalResult);
+    const JSONFilter = JSON.stringify(filterItems);
+    if (filterItems !== undefined) {
+      fetchFilteredFlights(
+        sourceVal,
+        destinationVal,
+        day,
+        5,
+        flightPage,
+        JSONFilter
+      ).then((response) => {
+        console.log("fetch filtered flights", response);
+        setTotalResult(response.totalResults);
+        setAirplanes(response.data.flights);
+      });
+    }
+    // if (
+    //   filterItems?.stops.length === 0 &&
+    //   filterItems?.departureTime.length === 0
+    // ) {
+    //   fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
+    //     (response) => {
+    //       setTotalResult(response.totalResults);
+    //       setAirplanes(response.data.flights);
+    //     }
+    //   );
+    // }
+  };
 
   return (
-    <FlightResultProvider>
-      <div id="flight-result-page">
-        <ResultNavbar />
-        <main id="flight-result-main">
-          {/* <MainSection fetchFlightData={fetchFlightData} /> */}
-
-          <Stack
-            flexDirection={"row"}
-            justifyContent={"flex-start"}
-            alignItems={"flex-start"}
-            gap={2}
-            id="main-section-container"
-          >
-            <LeftSideSortingBar />
-            <MainContent
-              totalResult={totalResult}
-              // handleChange={handleChange}
-            />
-          </Stack>
-        </main>
-      </div>
-    </FlightResultProvider>
+    // <FlightResultProvider>
+    <div id="flight-result-page">
+      <ResultNavbar source={source} dest={dest} departDay={departDay} />
+      <main id="flight-result-main">
+        <Stack
+          flexDirection={"row"}
+          justifyContent={"flex-start"}
+          alignItems={"flex-start"}
+          gap={2}
+          id="main-section-container"
+        >
+          <LeftSideSortingBar getFilterFlights={handleFlightResultFilter} />
+          <MainContent
+            source={source}
+            dest={dest}
+            departDay={departDay}
+            getFilterFlights={handleFlightResultFilter}
+          />
+        </Stack>
+      </main>
+    </div>
+    // </FlightResultProvider>
   );
 };
 

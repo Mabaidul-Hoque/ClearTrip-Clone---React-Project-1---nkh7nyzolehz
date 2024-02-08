@@ -2,21 +2,13 @@ import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./NavbarStyles.css";
 import { OffersContext } from "../../../UseContext/OfferDetailsProvider";
-import { Box, Typography, Button, Stack } from "@mui/material";
-
-import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
-import Modal from "@mui/material/Modal";
-import CloseIcon from "@mui/icons-material/Close";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import SignupPage from "../../Login-signup/SignupPage";
+import { Box, Button, Stack, ThemeProvider } from "@mui/material";
 import LoginPage from "../../Login-signup/LoginPage";
 import { useAuth } from "../../../UseContext/AuthorizationProvider";
 import styled from "@emotion/styled";
-// import { useAuth } from "../../UseContext/AuthorizationProvider";
+import { theme } from "../../../util/muiTheme";
 
-// const leftLogoUrl = "../../../public/assets/Cleartrip_Original.svg.png";
-
-const LoginButton = styled("button")({
+const LoginButton = styled(Button)({
   color: "#FFFFFF",
   textTransform: "none",
   backgroundColor: "#3366CC",
@@ -37,7 +29,7 @@ const Navbar = ({ handleLoginOpen }) => {
   const { setOffersUrlFilter } = useContext(OffersContext);
 
   const { tokenDetails, handleLogout, logSignDetails } = useAuth();
-  const { token, setToken } = tokenDetails;
+  const { token } = tokenDetails;
   const { setLogInPagePath } = logSignDetails;
 
   const { pathname } = useLocation();
@@ -45,13 +37,7 @@ const Navbar = ({ handleLoginOpen }) => {
   const navigate = useNavigate();
 
   return (
-    <Box
-      sx={{ width: "93%", margin: "auto" }}
-      pt={2}
-      pb={2}
-      pr={4}
-      component="div"
-    >
+    <Box className="home-navbar" pt={2} pb={2} component="div">
       <Stack
         flexDirection={"row"}
         justifyContent={"space-between"}

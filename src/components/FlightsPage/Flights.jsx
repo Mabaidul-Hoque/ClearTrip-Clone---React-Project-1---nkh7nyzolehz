@@ -1,14 +1,11 @@
-import { Box, Stack, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import { Stack } from "@mui/material";
+import React from "react";
 import "./FlightPage.css";
 import FlightSearch from "./FlightSearchCard/FlightSearch";
 import RightSideBar from "./RightSideBarSection/RightSideBar";
-import FlightResultProvider from "../../UseContext/FlightResultProvider";
-import { useFlightSearch } from "../../UseContext/FlightsSearchProvider";
 
 const Flights = () => {
   return (
-    // <FlightResultProvider>
     <Stack
       flexDirection={"row"}
       justifyContent={"space-between"}
@@ -23,7 +20,6 @@ const Flights = () => {
       <FlightSearch />
       <RightSideBar />
     </Stack>
-    // </FlightResultProvider>
   );
 };
 

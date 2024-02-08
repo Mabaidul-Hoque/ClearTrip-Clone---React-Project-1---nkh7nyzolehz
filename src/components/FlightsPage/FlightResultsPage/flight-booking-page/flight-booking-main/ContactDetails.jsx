@@ -12,7 +12,7 @@ const ContactDetails = ({ handleContinue }) => {
         alignItems={"center"}
         gap={2}
       >
-        <div class="number-circle">
+        <div className="number-circle">
           <span>2</span>
         </div>
         <Stack>

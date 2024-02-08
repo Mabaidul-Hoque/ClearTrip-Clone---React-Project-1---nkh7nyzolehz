@@ -5,44 +5,65 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 
-const SortByStops = () => {
+const SortByStops = ({ getFilterFlights }) => {
   const [stop, setStop] = useState(true);
   const [nonStop, setNonStop] = useState(false);
   const [oneStop, setOneStop] = useState(false);
   const [twoStop, setTwoStop] = useState(false);
-  //   const [checkedBox, setCheckedBox] = useState(null);
 
-  const { searchPlane } = useFlightSearch();
+  const { searchPlane, filterData, setFlightPage } = useFlightSearch();
   const { handleSearchClick } = searchPlane;
-  const { airplaneDetails } = useFlightResult();
-  const { handleFlightResultFilter, filterItems, setFilterItems, setPage } =
-    airplaneDetails;
+  const { filterItems, setFilterItems } = filterData;
 
   useEffect(() => {
     if (nonStop || oneStop || twoStop) {
-      handleFlightResultFilter();
+      setFlightPage(1);
+      getFilterFlights(filterItems);
     } else {
       delete filterItems["stops"];
-      handleFlightResultFilter();
+      getFilterFlights(filterItems);
     }
   }, [nonStop, oneStop, twoStop]);
 
   //   will check later
-  // useEffect(() => {
-  //   console.log("left side sorting bar use effect");
-  //   if (checkedBox === "non-stop") {
-  //     // delete setFilterItems("stops");
-  //     setFilterItems((prev) => ({ ...prev, stops: "0" }));
-  //     handleFlightResultFilter();
-  //   } else if (checkedBox === "one-stop") {
-  //     // delete setFilterItems("stops");
-  //     setFilterItems((prev) => ({ ...prev, stops: "1" }));
-  //     handleFlightResultFilter();
-  //   } else if (checkedBox === "two-stop") {
-  //     // delete setFilterItems("stops");
-  //     setFilterItems((prev) => ({ ...prev, stops: "2" }));
-  //     handleFlightResultFilter();
-  //   }
+  // const handleFilterOptions = useCallback(
+  //   (value, type) => {
+  //     console.log("filterItems", filterItems);
+  //     console.log("type", type);
+  //     let newFilterItems = { ...filterItems };
+  //     if (type === "non-stop") {
+  //       if (value) {
+  //         newFilterItems?.stops ? newFilterItems.stops.push("0") : ["0"];
+  //       } else {
+  //         deleteElement(newFilterItems?.stops, "0");
+  //       }
+
+  //       handleFlightResultFilter(newFilterItems);
+  //       setFilterItems(newFilterItems);
+  //     } else if (type === "one-stop") {
+  //       if (value) {
+  //         newFilterItems?.stops ? newFilterItems.stops.push("1") : ["1"];
+  //       } else {
+  //         deleteElement(newFilterItems?.stops, "1");
+  //       }
+
+  //       handleFlightResultFilter(newFilterItems);
+  //       setFilterItems(newFilterItems);
+  //     } else if (type === "two-stop") {
+  //       if (value) {
+  //         newFilterItems?.stops ? newFilterItems.stops.push("2") : ["2"];
+  //       } else {
+  //         deleteElement(newFilterItems?.stops, "2");
+  //       }
+
+  //       handleFlightResultFilter(newFilterItems);
+  //       setFilterItems(newFilterItems);
+  //     }
+
+  //     handleSearchClick();
+  //   },
+  //   [filterItems]
+  // );
   // }, [checkedBox]);
 
   const handleStopBnt = () => {
@@ -53,7 +74,9 @@ const SortByStops = () => {
     setOneStop(false);
     setTwoStop(false);
     // if (!nonStop) {
+
     setFilterItems((prev) => ({ ...prev, stops: "0" }));
+
     // } else {
     // delete filterItems["stops"];
     // }

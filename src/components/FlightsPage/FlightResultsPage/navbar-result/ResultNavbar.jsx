@@ -33,26 +33,15 @@ const RightButton = styled(Button)({
   },
 });
 
-const ResultNavbar = () => {
-  // const [resDepartDate, seResDepartDate] = useState(new Date());
-  // const [resReturnDate, seResReturnDate] = useState(new Date());
-  // const [resDepartDay, setResDepartDay] = useState("");
-  // const [resReturnDay, setResReturnDay] = useState("");
-  // const [resSource, setResSource] = useState("");
-  // const [resDestination, setResDestination] = useState("");
-
+const ResultNavbar = ({ source, dest, departDay }) => {
   const [airportNames, setAirportNames] = useState([]);
   const navigate = useNavigate();
   const { tokenDetails, logSignDetails, handleLogout } = useAuth();
   const { token } = tokenDetails;
   const { handleLoginOpen, setLogInPagePath } = logSignDetails;
 
-  const { fecthValues } = useFlightSearch();
-  const { setAirplanes } = fecthValues;
-
-  const { airplaneDetails } = useFlightResult();
-  const { setFilteredAirplanes, sourceVal, destinationVal, dayVal } =
-    airplaneDetails;
+  const { airplaneDetails } = useFlightSearch();
+  const { setAirplanes } = airplaneDetails;
 
   // check after remove
   useEffect(() => {
@@ -153,16 +142,18 @@ const ResultNavbar = () => {
             options={airportNames}
             noOptionText={"No Match Found"}
             optionCount={5}
+            source={source}
           />
           <SyncAltOutlinedIcon htmlColor="#ED6521" />
           <ResultDestinationCity
             options={airportNames}
             noOptionText={"No Match Found"}
             optionCount={5}
+            dest={dest}
           />
         </Stack>
         <Box>
-          <DepartDateResult />
+          <DepartDateResult departDay={departDay} />
         </Box>
         <Box>
           <ReturnDateResult />

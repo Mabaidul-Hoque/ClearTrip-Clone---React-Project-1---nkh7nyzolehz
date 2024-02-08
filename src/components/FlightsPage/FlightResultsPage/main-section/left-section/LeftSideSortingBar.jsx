@@ -6,21 +6,21 @@ import SortByStops from "./SortByStops";
 import SortByDeparatureTime from "./SortByDeparatureTime";
 import SortByPriceRange from "./SortByPriceRange";
 
-const LeftSideSortingBar = () => {
+const LeftSideSortingBar = ({ getFilterFlights }) => {
   return (
     <div id="left-side-sorting-container">
       <Stack flexDirection={"column"} gap={4}>
         {/* <SortingByStops /> */}
 
-        <SortByStops />
+        <SortByStops getFilterFlights={getFilterFlights} />
 
         {/* <SortByDepartTime /> */}
 
-        <SortByDeparatureTime />
+        <SortByDeparatureTime getFilterFlights={getFilterFlights} />
 
         {/* Sort By Price */}
 
-        <SortByPriceRange />
+        <SortByPriceRange getFilterFlights={getFilterFlights} />
 
         {/* Sort By Airlines */}
 

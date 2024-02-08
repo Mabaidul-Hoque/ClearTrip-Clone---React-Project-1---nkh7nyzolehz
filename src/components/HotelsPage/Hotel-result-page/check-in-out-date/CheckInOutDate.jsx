@@ -21,11 +21,10 @@ const CustomButton = styled(Button)({
 });
 
 export const CheckInOutDate = () => {
-  const contextValues = useFlightSearch();
+  const { departvalue, returnValue } = useFlightSearch();
   const { handleDepartDateChange, departDay, departDate, handleClick } =
-    contextValues.departvalue;
-  const { handleReturnDateChange, returnDay, returnDate } =
-    contextValues.returnValue;
+    departvalue;
+  const { handleReturnDateChange, returnDay, returnDate } = returnValue;
 
   const CustomInput1 = forwardRef(({ departDay, onClick }, ref) => (
     <CustomButton onClick={onClick} ref={ref}>

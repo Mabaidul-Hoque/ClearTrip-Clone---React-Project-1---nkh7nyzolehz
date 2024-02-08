@@ -7,6 +7,7 @@ import { styled } from "@mui/material/styles";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
 import { useDebounce } from "../../../../../CustomHooks/useDebouce";
+import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 
 const PrettoSlider = styled(Slider)({
   color: "black",
@@ -29,26 +30,18 @@ const PrettoSlider = styled(Slider)({
   },
 });
 
-const SortByPriceRange = () => {
+const SortByPriceRange = ({ getFilterFlights }) => {
   const [isPrice, setIsPrice] = useState(true);
   const [flightPrice, setFlightPrice] = useState();
 
-  const { airplaneDetails } = useFlightResult();
-
-  const { setFilterItems, handleFlightResultFilter } = airplaneDetails;
+  const { filterData, setFlightPage } = useFlightSearch();
+  const { setFilterItems, filterItems } = filterData;
 
   const flightPriceDebounce = useDebounce(flightPrice, 500);
 
   useEffect(() => {
-    // const ticketPrice = {
-    //   $lte: flightPriceDebounce,
-    //   $gte: 1000,
-    // };
-    // setFilterItems(() => ({ ticketPrice: ticketPrice }));
-
-    // if (flightPriceDebounce) {
-    handleFlightResultFilter();
-    // }
+    setFlightPage(1);
+    getFilterFlights(filterItems);
   }, [flightPriceDebounce]);
 
   const handlePricebtn = () => {
@@ -56,15 +49,11 @@ const SortByPriceRange = () => {
   };
 
   const handlePriceFilter = () => {
-    // if (flightPrice >= 1000 && flightPrice <= 10000) {
     const ticketPrice = {
       $lte: flightPrice,
       $gte: 1000,
     };
     setFilterItems((prev) => ({ ...prev, ticketPrice: ticketPrice }));
-    // }
-
-    // handleFlightResultFilter();
   };
 
   return (

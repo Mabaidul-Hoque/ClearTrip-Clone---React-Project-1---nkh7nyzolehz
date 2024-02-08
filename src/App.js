@@ -2,11 +2,11 @@ import "./styles/App.css";
 import SideNavbar from "./components/FlightsPage/NavbarSection/SideNavbar";
 import Navbar from "./components/FlightsPage/NavbarSection/Navbar";
 import Flights from "./components/FlightsPage/Flights";
-import { Box } from "@mui/material";
+import { Box, Stack, ThemeProvider, createTheme } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useLocation } from "react-router-dom";
-import { FontProvider } from "./UseContext/ThemeProvider";
+import { FontProvider } from "./UseContext/FontProvider";
 import { Outlet } from "react-router-dom";
 import { useAuth } from "./UseContext/AuthorizationProvider";
 
@@ -20,14 +20,15 @@ function App() {
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <div className="App">
           <Navbar handleLoginOpen={handleLoginOpen} />
-          <Box
-            component="div"
-            className="main-section"
+          <Stack
             sx={{
-              display: "flex",
-              width: "93%",
-              margin: "auto",
+              flexDirection: {
+                xxs: "column",
+                xs: "column",
+                sm: "row",
+              },
             }}
+            className="home-main"
           >
             <SideNavbar />
             {pathname === "/" ? (
@@ -43,7 +44,7 @@ function App() {
                 <Outlet />
               </div>
             )}
-          </Box>
+          </Stack>
         </div>
       </LocalizationProvider>
     </FontProvider>

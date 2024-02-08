@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../FlightPage.css";
 import "./FlightSearchCard.css";
 import { Box, Button } from "@mui/material";
@@ -26,22 +26,34 @@ const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 export default function FlightSearchCard() {
   const [fareBtnIndex, setFareBtnIndex] = useState(0);
   const [isSwitch, setIsSwitch] = useState(false);
-
   const navigate = useNavigate();
-  const contextValues = useFlightSearch();
-  const { source, destination, cityNameCodes } = contextValues.sourceDestValue;
-  const { airportNames } = contextValues.fecthValues;
-  const { handleSearchClick } = contextValues.searchPlane;
-  const { departDay } = contextValues.departvalue;
+  const {
+    airplaneDetails,
+    searchPlane,
+    departvalue,
+    sourceDestValue,
+    returnValue,
+  } = useFlightSearch();
+  const { source, destination, cityNameCodes } = sourceDestValue;
+  const { airportNames } = airplaneDetails;
+  const { handleSearchClick } = searchPlane;
+  const { departDay } = departvalue;
+  const { returnDay } = returnValue;
+
+  const { pathname } = useLocation();
 
   const handleNavigation = () => {
+    const encodedPath = btoa(
+      `${source}-${destination}--${departDay}-&{returnDay}`
+    );
+
     if (
       source.substring(0, 3) !== destination.substring(0, 3) &&
       cityNameCodes.includes(source.substring(0, 3)) &&
       cityNameCodes.includes(destination.substring(0, 3)) &&
       days.includes(departDay.substring(0, 3))
     ) {
-      navigate("/flights/results");
+      navigate(`/flights/results-${encodedPath}`);
     }
   };
 

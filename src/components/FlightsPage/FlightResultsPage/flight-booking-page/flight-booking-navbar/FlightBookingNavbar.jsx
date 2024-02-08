@@ -27,7 +27,7 @@ const FlightBookingNavbar = () => {
       />
 
       <CustomButton>
-        <AccountCircleSharpIcon fontsize="sm" />
+        <AccountCircleSharpIcon fontSize="sm" />
         <span style={{ marginLeft: "3px" }}>My account</span>
       </CustomButton>
     </Stack>

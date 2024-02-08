@@ -14,8 +14,8 @@ const DepartCityInput = ({
   const [allOption, setAllOption] = useState(options || []);
   const [focus, setFocus] = useState(false);
 
-  const contextValues = useFlightSearch();
-  const { handleSourceChange, sourceRef } = contextValues.sourceDestValue;
+  const { sourceDestValue } = useFlightSearch();
+  const { handleSourceChange, sourceRef } = sourceDestValue;
 
   useEffect(() => {
     setAllOption(options);

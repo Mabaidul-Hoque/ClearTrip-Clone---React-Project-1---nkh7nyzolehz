@@ -3,52 +3,48 @@ import "../MainSection.css";
 import { Stack, Typography } from "@mui/material";
 import { fetchFlights } from "../../../../../Apis/FlightSearchApi";
 import MainContentCard from "./MainContentCard";
-import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
 import { fetchFlightsByStopsAndDepartTime } from "../../../../../Apis/FlightSearchApi";
 import Pagination from "@mui/material/Pagination";
 
 import { planes } from "../../../../../static-data/StaticData";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 
-const MainContent = ({ totalResult }) => {
-  // const [totalFlights, setTotalFlights] = useState(totalResult);
-  const { searchPlane, flightPage, setFlightPage } = useFlightSearch();
-  const { handleSearchClick } = searchPlane;
-  const { airplaneDetails, stopsSortDetails, departSortDetails } =
-    useFlightResult();
-
+const MainContent = ({ getFilterFlights, source, dest, departDay }) => {
   const {
-    airplanes,
-    setAirplanes,
-    filteredAirplanes,
-    // setFilteredAirplanes,
-    handleFlightResultFilter,
-    // page,
-    // setPage,
-  } = airplaneDetails;
+    flightPage,
+    setFlightPage,
+    airplaneDetails,
+    totalFlightsVal,
+    filterData,
+    searchPlane,
+  } = useFlightSearch();
+  const { airplanes, setAirplanes } = airplaneDetails;
+  const { totalResult, setTotalResult } = totalFlightsVal;
+  const { filterItems } = filterData;
 
-  console.log("filterAirplane", filteredAirplanes);
-  console.log("Airplane", airplanes);
-  // const memoizedFilteredAirplanes = useMemo(
-  //   () => filteredAirplanes,
-  //   [filteredAirplanes]
-  // );
+  console.log("totalResult", totalResult);
 
   useEffect(() => {
-    // setTotalFlights(totalResult);
+    if (filterItems?.stops?.length > 0) {
+      getFilterFlights(filterItems);
+    } else {
+      const sourceVal = source?.substring(0, 3);
+      const destinationVal = dest?.substring(0, 3);
+      const day = departDay?.substring(0, 3);
 
-    // fetchFlightData();
-    // setFilteredAirplanes(handleFlightResultFilter);
-    handleFlightResultFilter();
+      fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
+        (response) => {
+          console.log("flight result page search btn ", response.data.flights);
+          setTotalResult(response.totalResults);
+          setAirplanes(response.data.flights);
+        }
+      );
+    }
   }, [flightPage]);
 
   const handleChange = (event, value) => {
     setFlightPage(value);
-    // handleFlightResultFilter();
-    // fetchFlightData();
   };
-
-  console.log({ totalResult });
 
   return (
     <div id="main-content-container">
@@ -92,19 +88,6 @@ const MainContent = ({ totalResult }) => {
           />
         </div>
       </Stack>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
-        cumque optio est officiis adipisci expedita quam explicabo eaque
-        praesentium! Delectus porro repellendus quia, sed harum nisi excepturi
-        officiis dolore praesentium, veniam aut fugiat deserunt enim officia
-        perspiciatis nihil velit aperiam voluptatem, iste et? Minima hic
-        architecto iure error voluptatibus quod, ad in sed, consequuntur unde,
-        veniam officiis tenetur. Nam modi iusto, hic nesciunt porro quae
-        nostrum, eos harum blanditiis expedita deleniti magnam nulla laudantium
-        animi eaque maxime asperiores maiores amet dicta sed delectus cupiditate
-        nobis aliquam facere. Nemo quo dolorem magni, porro dolore eius quasi
-        omnis, harum incidunt, saepe at.
-      </div>
     </div>
   );
 };

@@ -6,25 +6,13 @@ import React, {
   useRef,
 } from "react";
 
-import { fetchFlights } from "../Apis/FlightSearchApi";
+import { fetchFilteredFlights, fetchFlights } from "../Apis/FlightSearchApi";
 import { fetchAirportNames } from "../Apis/AirportNamesApi";
 
 const FlightsSearchContext = createContext();
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
 export const useFlightSearch = () => {
   const context = useContext(FlightsSearchContext);
   if (!context) {
@@ -44,6 +32,8 @@ export const FlightsSearchProvider = ({ children }) => {
   const [airportNames, setAirportNames] = useState([]);
   const [flightPage, setFlightPage] = useState(1);
   const [totalResult, setTotalResult] = useState(0);
+  const [filterItems, setFilterItems] = useState({});
+  const [singleFlight, setSingleFlight] = useState({});
 
   const sourceRef = useRef(null);
   const destinationRef = useRef(null);
@@ -79,21 +69,15 @@ export const FlightsSearchProvider = ({ children }) => {
   );
 
   const handleSearchClick = () => {
-    localStorage.setItem("source", source);
-    localStorage.setItem("destination", destination);
-    localStorage.setItem("day", departDay);
-
     if (
       source.substring(0, 3) !== destination.substring(0, 3) &&
       cityNameCodes.includes(source.substring(0, 3)) &&
       cityNameCodes.includes(destination.substring(0, 3)) &&
       days.includes(departDay.substring(0, 3))
     ) {
-      const sourceVal = localStorage.getItem("source").substring(0, 3);
-      const destinationVal = localStorage
-        .getItem("destination")
-        .substring(0, 3);
-      const day = localStorage.getItem("day").substring(0, 3);
+      const sourceVal = source.substring(0, 3);
+      const destinationVal = destination.substring(0, 3);
+      const day = departDay.substring(0, 3);
 
       if (sourceVal !== null && destinationVal !== null && day !== null) {
         fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
@@ -146,7 +130,6 @@ export const FlightsSearchProvider = ({ children }) => {
       handleDestinationChange,
       source,
       destination,
-
       cityNameCodes,
       setSource,
       sourceRef,
@@ -155,10 +138,18 @@ export const FlightsSearchProvider = ({ children }) => {
     searchPlane: {
       handleSearchClick,
     },
-    fecthValues: {
+    airplaneDetails: {
       airportNames,
       airplanes,
       setAirplanes,
+    },
+    filterData: {
+      filterItems,
+      setFilterItems,
+    },
+    singleFlightValue: {
+      singleFlight,
+      setSingleFlight,
     },
     totalFlightsVal: { totalResult, setTotalResult },
     flightPage,

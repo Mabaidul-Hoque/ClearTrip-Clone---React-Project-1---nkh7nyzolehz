@@ -8,14 +8,15 @@ const ResultDepartCity = ({
   onSelect,
   optionKey = "iata_code",
   noOptionText = "No Items",
+  source,
 }) => {
   const [searchText, setSearchText] = useState("");
   const [selected, setSelected] = useState("");
   const [allOption, setAllOption] = useState(options || []);
   const [focus, setFocus] = useState(false);
 
-  const contextValues = useFlightSearch();
-  const { handleSourceChange, sourceRef } = contextValues.sourceDestValue;
+  const { sourceDestValue } = useFlightSearch();
+  const { handleSourceChange, sourceRef } = sourceDestValue;
 
   useEffect(() => {
     setAllOption(options);
@@ -59,8 +60,8 @@ const ResultDepartCity = ({
       <input
         ref={sourceRef}
         className="result-input-source"
-        placeholder={localStorage.getItem("source")}
-        value={selected || searchText}
+        placeholder={source}
+        value={selected || source}
         onChange={handleChange}
         onFocus={() => {
           setSelected("");

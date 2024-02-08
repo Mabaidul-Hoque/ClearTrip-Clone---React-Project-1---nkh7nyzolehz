@@ -6,14 +6,15 @@ import FareDetails from "./FareDetails";
 import ContactDetails from "./ContactDetails";
 import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
 import { fetchFlightBookingInfo } from "../../../../../Apis/BookingApi";
+import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 
+const imgurl = "../../../../../../public/assests/plane_logo/air-india-logo.png";
 const BookingDetails = ({ flightId }) => {
-  const { singleFlight } = useFlightResult().singleFlightValue;
+  const { singleFlight } = useFlightSearch().singleFlightValue;
 
   const handleContinue = () => {
     fetchFlightBookingInfo(flightId).then((resp) => {
       // console.log(resp);
-
       alert("Booking Successfull");
     });
   };
@@ -29,7 +30,7 @@ const BookingDetails = ({ flightId }) => {
           alignItems={"flex-end"}
           gap={2}
         >
-          <div class="number-circle">
+          <div className="number-circle">
             <span>1</span>
           </div>
           <h1 style={{ fontWeight: "500" }}>Review your itinerary</h1>
@@ -42,9 +43,9 @@ const BookingDetails = ({ flightId }) => {
               alignItems={"center"}
               sx={{ fontWeight: "600", fontSize: "18px" }}
             >
-              New Delhi
+              {singleFlight.source}
               <ArrowForwardIcon fontSize="small" />
-              Mumbai
+              {singleFlight.destination}
             </Stack>
             <Typography fontSize={"14px"}>
               {localStorage.getItem("day")} 2024
@@ -53,8 +54,14 @@ const BookingDetails = ({ flightId }) => {
 
           <Stack flexDirection={"row"} gap={2}>
             <Stack>
-              <img src="" alt="Indigo-logo" />
-              <Typography fontSize={"12px"}>IndiGo</Typography>
+              <img
+                width={"60px"}
+                src="https://seeklogo.com/images/V/vistara-logo-C07710BC2B-seeklogo.com.png"
+                alt="vistara-logo"
+              />
+              <Typography mt={1} fontSize={"12px"}>
+                IndiGo
+              </Typography>
               <Typography fontSize={"12px"}>6E-2519</Typography>
               <Typography fontSize={"12px"}>Economy</Typography>
             </Stack>
@@ -110,16 +117,22 @@ const BookingDetails = ({ flightId }) => {
                 alignItems={"center"}
                 sx={{ fontWeight: "600", fontSize: "18px" }}
               >
-                Mumbai
+                {singleFlight.destination}
                 <ArrowForwardIcon fontSize="small" />
-                New Delhi
+                {singleFlight.source}
               </Stack>
               <Typography fontSize={"14px"}>Thu, 10 Aug 2023</Typography>
             </Stack>
             <Stack flexDirection={"row"} gap={2}>
               <Stack>
-                <img src="" alt="Indigo-logo" />
-                <Typography fontSize={"12px"}>IndiGo</Typography>
+                <img
+                  width={"60px"}
+                  src="https://seeklogo.com/images/V/vistara-logo-C07710BC2B-seeklogo.com.png"
+                  alt="vistara-logo"
+                />
+                <Typography mt={1} fontSize={"12px"}>
+                  IndiGo
+                </Typography>
                 <Typography fontSize={"12px"}>6E-2519</Typography>
                 <Typography fontSize={"12px"}>Economy</Typography>
               </Stack>
@@ -133,7 +146,7 @@ const BookingDetails = ({ flightId }) => {
               <Stack gap={4}>
                 <Typography>
                   <span style={{ fontSize: "18px", fontWeight: "500" }}>
-                    23:15 DEL{" "}
+                    {singleFlight.arrivalTime} {singleFlight.destination}{" "}
                   </span>
                   <span style={{ fontSize: "12px", fontWeight: "500" }}>
                     Indira Gandhi Airport New Delhi, Terminal 2
@@ -145,7 +158,7 @@ const BookingDetails = ({ flightId }) => {
                 </Stack>
                 <Typography>
                   <span style={{ fontSize: "18px", fontWeight: "500" }}>
-                    01:20 BOM{" "}
+                    {singleFlight.departureTime} {singleFlight.source}{" "}
                   </span>
                   <span style={{ fontSize: "12px", fontWeight: "500" }}>
                     Chatrapati Shivaji Airport Mumbai, Terminal 2
@@ -161,14 +174,7 @@ const BookingDetails = ({ flightId }) => {
 
         {/* contact details */}
         <ContactDetails handleContinue={handleContinue} />
-        <Stack mt={4}>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque
-          consequatur aut assumenda a nostrum animi explicabo fuga voluptates
-          sunt non error velit voluptatibus quis, sapiente est maxime aperiam
-          dolorem reiciendis at numquam. Dolore officiis molestiae, libero,
-          voluptates excepturi ipsam aut qui neque cum deserunt quo totam
-          pariatur nam, dolorum consequatur!
-        </Stack>
+        <Stack mt={10}></Stack>
       </div>
     </div>
   );

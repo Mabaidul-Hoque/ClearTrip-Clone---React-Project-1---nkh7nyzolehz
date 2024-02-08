@@ -4,6 +4,7 @@ import { Box, Stack } from "@mui/system";
 import React from "react";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
+import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 
 const CustomPaper = styled(Paper)({
   width: "20vw",
@@ -15,7 +16,7 @@ const CustomPaper = styled(Paper)({
   borderRadius: "10px",
 });
 const FlightPriceCard = () => {
-  const { singleFlight } = useFlightResult().singleFlightValue;
+  const { singleFlight } = useFlightSearch().singleFlightValue;
 
   return (
     <div id="price-cards">

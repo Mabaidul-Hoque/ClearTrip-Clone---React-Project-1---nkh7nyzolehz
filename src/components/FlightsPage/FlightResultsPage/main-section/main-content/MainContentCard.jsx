@@ -4,19 +4,18 @@ import { Button, Stack, styled } from "@mui/material";
 import CurrencyRupeeOutlinedIcon from "@mui/icons-material/CurrencyRupeeOutlined";
 import TrendingFlatIcon from "@mui/icons-material/TrendingFlat";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
-
 import { planes } from "../../../../../static-data/StaticData";
 import { useNavigate } from "react-router-dom";
 import { fetchFlightBookingInfo } from "../../../../../Apis/BookingApi";
 import { fetchSingleFlightDetails } from "../../../../../Apis/FlightSearchApi";
+import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 
 const MainContentCard = ({ airplane, planeLogoName, index }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [airplaneId, setAirplaneId] = useState(-1);
 
   const navigate = useNavigate();
-  const { singleFlightValue } = useFlightResult();
+  const { singleFlightValue } = useFlightSearch();
   const { setSingleFlight } = singleFlightValue;
 
   // console.log("planeLogoName", planeLogoName);
