@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
-import "./HotelSearchCard.css";
+import "../Hotels.css";
 import { Paper } from "@mui/material";
 import { useHotelContext } from "../../../UseContext/HotelDetailsProvider";
-import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 import { useLocation } from "react-router-dom";
 import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 
@@ -17,10 +15,8 @@ const HotelInputSection = ({
   const [searchText, setSearchText] = useState("");
   const [selected, setSelected] = useState("");
   const [allOption, setAllOption] = useState(options || []);
-
   const hotelSearchRef = useRef();
   const { pathname } = useLocation();
-
   const { inputInfo } = useHotelContext();
   const { handleInputPlaceChange, focus, setFocus } = inputInfo;
 
@@ -43,7 +39,6 @@ const HotelInputSection = ({
       setFocus(false);
     }
   };
-
   const selectHandle = (val) => {
     setSearchText("");
 
@@ -53,15 +48,7 @@ const HotelInputSection = ({
     }
     setSelected(val[optionKey]);
   };
-
   const handleChange = ({ target }) => {
-    // setSearchText(target.value);
-    // if (onSearch) {
-    //   onSearch(target.value, (data) => setAllOption(data));
-    //   setSearchText(target.value);
-    //   return;
-    // }
-
     let tempOptions = [...options];
     tempOptions = tempOptions.filter((obj) =>
       obj[optionKey]?.toLowerCase().includes(target.value?.toLowerCase())

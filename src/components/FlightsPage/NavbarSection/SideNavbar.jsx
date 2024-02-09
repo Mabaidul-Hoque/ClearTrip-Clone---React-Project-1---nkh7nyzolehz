@@ -58,15 +58,26 @@ const SideNavbar = () => {
         <ApartmentRoundedIcon />
         <span>Hotels</span>
       </Link>
-      <Link
-        className={
-          pathname === "/offers" ? "leftSection active-left-btn" : "leftSection"
-        }
-        to="/offers"
+      <Box
+        sx={{
+          display: {
+            xs: "none",
+            sm: "block",
+          },
+        }}
       >
-        <MonetizationOnOutlinedIcon />
-        <span>Offers</span>
-      </Link>
+        <Link
+          className={
+            pathname === "/offers"
+              ? "leftSection active-left-btn"
+              : "leftSection"
+          }
+          to="/offers"
+        >
+          <MonetizationOnOutlinedIcon />
+          <span>Offers</span>
+        </Link>
+      </Box>
       <Box
         sx={{
           display: {

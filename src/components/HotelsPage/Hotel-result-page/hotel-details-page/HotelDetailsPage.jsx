@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./HotelDetailsPage.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import DepartDate from "../../../FlightsPage/FlightSearchCard/DepartDate";
-import ReturnDate from "../../../FlightsPage/FlightSearchCard/ReturnDate";
 import AddRooms from "../../AddRooms";
 import { useAuth } from "../../../../UseContext/AuthorizationProvider";
 import HotelInputSection from "../../Hotel-search-card/HotelInputSection";
-import { CheckInOutDate } from "../check-in-out-date/CheckInOutDate";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import { OPTION } from "../../Hotels";
@@ -85,7 +82,8 @@ const HotelDetailsPage = () => {
                 optionKey={"name"}
                 noOptionText={"No Match Found"}
               />
-              <CheckInOutDate />
+              {/* need to change this component */}
+              {/* <CheckInOutDate /> */}
               <AddRooms width="13vw" height="46px" />
             </div>
             <button

@@ -9,6 +9,7 @@ import React, {
 import { fetchHotels, fetchFilteredHotels } from "../Apis/HotelDetailsApi";
 import { fetchSortByPrice } from "../Apis/HotelResulFilterApi";
 import { useDebounce } from "../CustomHooks/useDebouce";
+const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const HotelContext = createContext();
 
@@ -23,11 +24,23 @@ export const useHotelContext = () => {
 export const HotelDetailsProvider = ({ children }) => {
   const [focus, setFocus] = useState(false);
   const [inputPlace, setInputPlace] = useState("");
+  const [checkInDate, setCheckInDate] = useState(new Date());
+  const [checkOutDate, setCheckOutDate] = useState(new Date());
+  const [checkInDay, setCheckInDay] = useState("");
+  const [checkOutDay, setCheckOutDay] = useState("");
   const [hotels, setHotels] = useState([]);
   const [singleHotel, setSingleHotel] = useState({});
   const [filterItems, setFilterItems] = useState({});
   const [hotelPage, setHotelPage] = useState(1);
   const [totalHotels, setTotalHotels] = useState(0);
+
+  useEffect(() => {
+    const options = { weekday: "short", month: "short", day: "numeric" };
+    const formattedDate = checkInDate.toLocaleDateString("en-US", options);
+    setCheckInDay(formattedDate);
+    const formattedRDate = checkOutDate.toLocaleDateString("en-US", options);
+    setCheckOutDay(formattedRDate);
+  }, [checkInDate, checkOutDate]);
 
   const handleInputChange = (val) => {
     setInputPlace(val);
@@ -59,6 +72,13 @@ export const HotelDetailsProvider = ({ children }) => {
     });
   }, [inputPlace, hotelPage, filterItems]);
 
+  const handleCheckInDateChange = (date) => {
+    setCheckInDate(date);
+  };
+  const handleCheckOutDateChange = (date) => {
+    setCheckOutDate(date);
+  };
+
   const hotelDetails = {
     hotelDetails: {
       hotels,
@@ -84,6 +104,14 @@ export const HotelDetailsProvider = ({ children }) => {
       handleInputChange,
       focus,
       setFocus,
+    },
+    checkInOutDetails: {
+      checkInDate,
+      checkInDay,
+      handleCheckInDateChange,
+      checkOutDate,
+      checkOutDay,
+      handleCheckOutDateChange,
     },
   };
 

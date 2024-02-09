@@ -11,6 +11,10 @@ const Flights = () => {
       alignItems={"flex-start"}
       sx={{
         width: "100%",
+        gap: {
+          md: 4,
+          lg: 6,
+        },
         justifyContent: {
           xs: "center",
           sm: "flex-start",

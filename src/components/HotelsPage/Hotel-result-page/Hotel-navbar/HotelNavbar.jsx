@@ -1,12 +1,12 @@
 import React, { memo, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../HotelResultPage.css";
-import { CheckInOutDate } from "../check-in-out-date/CheckInOutDate";
 import { useAuth } from "../../../../UseContext/AuthorizationProvider";
 import HotelInputSection from "../../Hotel-search-card/HotelInputSection";
 import AddRooms from "../../AddRooms";
 import { OPTION } from "../../Hotels";
 import HotelFilter from "./HotelFilter";
+import { ResultCheckInOutDate } from "../check-in-out-date/ResultCheckInOutDate";
 
 const HotelNavbar = () => {
   const { tokenDetails, logSignDetails, handleLogout } = useAuth();
@@ -35,7 +35,7 @@ const HotelNavbar = () => {
             optionKey={"name"}
             optionCount={5}
           />
-          <CheckInOutDate />
+          <ResultCheckInOutDate />
           <AddRooms width="13vw" height="46px" />
         </div>
         <button

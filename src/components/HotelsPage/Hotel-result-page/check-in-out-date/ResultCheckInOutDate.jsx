@@ -20,7 +20,7 @@ const CustomButton = styled(Button)({
   },
 });
 
-export const CheckInOutDate = () => {
+export const ResultCheckInOutDate = () => {
   const { departvalue, returnValue } = useFlightSearch();
   const { handleDepartDateChange, departDay, departDate, handleClick } =
     departvalue;

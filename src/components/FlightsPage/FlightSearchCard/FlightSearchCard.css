@@ -21,7 +21,8 @@
   color: #1A1A1A;
   background-color: inherit;
   border-radius: 2rem;
-  
+  border: 1px solid lightgray;
+  cursor: pointer;
 }
 
 .booking-type-btn-active, .fare-btn-active{
@@ -31,7 +32,7 @@
 } 
 
 .inputBox {
-  width: 17.8rem;  
+  width: 19rem;  
   height: 56px;
   border-radius: 6px;
   border: 1px solid #D3D3D3;
@@ -154,6 +155,7 @@
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 0.5rem;
+
 }
 .f-category-btns{
   display: flex;
@@ -170,7 +172,7 @@
   position: absolute;
   left: 1rem;
   bottom: 1rem;
-  z-index: 10;
+  z-index: 2;
   padding-right: 1rem;
 }
 
@@ -181,6 +183,10 @@
   .inputBox{
     width: 17.5rem;
   }
+  .list-group-item { 
+    padding: 8px;
+  }
+
 }
 @media  screen and (max-width: 1225px){
   .inputBox{
@@ -195,6 +201,10 @@
   .f-landing-icon{
     right: 39%;
   }
+  .list-group-item {
+    padding: 10px;
+    font-size: 12px;
+  }
 }
 @media  screen and (max-width: 912px){
   .inputBox{
@@ -205,9 +215,8 @@
     height: 45vh;
   }
   .list-group-item {
-    height: 1.5rem;
-    padding: .5rem 0.5rem;
-    font-size: 12px;
+    padding: 20px 14px;
+    font-size: 11px;
   }
   
 }
@@ -219,7 +228,8 @@
 @media  screen and (max-width: 600px) {
   .passenger-add-container{
     width: 60vw;
-    height: 50vh;
+    height: 35vh;
+    margin-left: -3rem;
   }
   .inputBox{
     width: 30rem;
@@ -234,7 +244,7 @@
     top: 5.4rem;
     right: 91%;
   }
-  
+ 
 }
 
 @media  screen and (max-width: 550px){
@@ -246,10 +256,6 @@
 @media  screen and (max-width: 450px){
   .inputBox{
     width: 21.5rem;
-  }
-  .passenger-add-container{
-    width: 70vw;
-    height: 50vh;
   }
   .f-landing-icon{
     top: 5.4rem;
@@ -263,32 +269,21 @@
     width: 20.5rem;
   }
   .passenger-add-container{
-    width: 80vw;
-    height: 50vh;
+    width: 70vw;
+    height: 36vh;
   }
 }
 @media  screen and (max-width: 390px){
   .inputBox{
     width: 20rem;
-  }
-  .passenger-add-container{
-    width: 80vw;
-    height: 50vh;
-  }
-  
-  
+  } 
 }
 
 
 @media  screen and (max-width: 370px){
   .inputBox{
     width: 20rem;
-  }
-  .passenger-add-container{
-    width: 80vw;
-    height: 50vh;
-  }
-  
+  } 
 }
 
 

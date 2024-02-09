@@ -4,7 +4,6 @@
     display: flex;
     gap: 30px;
 }
-
 .hotel-search-header h1{
     color: #292929;
 }
@@ -12,7 +11,6 @@
     color: #444444;
     font-weight: 500;
 }
-
 #h-search-card{
     width: 43rem;
     height: 47vh;
@@ -26,21 +24,14 @@
     gap: 30px;
     padding-left: 30px;
 }
-.h-inputs{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 30px;
-}
-.location-data{
+.location-input{
     padding-top: 20px;
     position: relative;
 }
 .place-icon{
     position: absolute;
-    left: 1.7rem;
-    bottom: 0.9rem;
+    left: 18px;
+    bottom: 15px;
 }
 .location{
     width: 39rem;
@@ -56,21 +47,56 @@ input[placeholder="Search your favourite hotels"]{
 .date-room-input{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    gap: 30px;
     position: relative;
 }
-.date-picker{
-    /* position: static; */
+.date-input{
     display: flex;
 }
+
+.h-date-icon{
+    position: absolute;
+    top: 15px;
+    left: 18px;
+    z-index: 5;
+}
+/* add rooms */
+.add-room-btn{
+    width: 12rem;
+    height: 56px;
+    border: 1px solid #D3D3D3;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: inherit;
+}
+.menu{
+    margin-top: 0;
+    width: 14rem;
+}
+.menu-item-header{
+    margin-left: -2px;
+    column-count: #A3A3A3;
+    font-size: 16px;
+    font-weight: 500;
+}
+.menu-item-header:hover{
+    cursor: default;
+    background-color: #FFFFFF;
+}
+.menu-item{
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
 
 .h-search-btn-container{
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-right: 20px;
 }
 .h-search-btn{
     width: 12rem;
@@ -82,13 +108,168 @@ input[placeholder="Search your favourite hotels"]{
     cursor: pointer;
     font-size: 16px;
     font-weight: 400;
+    margin-right: 2rem;
 }
 .search-hotels-btn:hover{
     background-color: #D4581D;
 }
 
+/* hotel search card */
 
+.autoComplete {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .hotel-input-box {
+    width: 46vw;
+    height: 56px;
+    border-radius: 6px;
+    border: 1px solid #D3D3D3;
+    font-size: 16px;
+    padding-left: 60px;
+  }
+  .dropdown {
+    width: 46vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 7px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    overflow: hidden;
+    box-shadow: 1px 1px 10px 1px gray;
+    margin-top: 60px;
+    position: absolute;
+    z-index: 100;
+    padding: 2px 20px;
+  }  
+  .dropdown > div {
+    text-align: left;
+    height: 40px;
+    padding: 12px 10px;
+    color: rgb(43, 43, 43);
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 5px;
+    position: relative;
+  }
+  .dropdown > div:first-child {
+    border-top: 0;
+  }
+  .top-text{
+    text-align: left;
+    color: #B8BFC7;
+  }
+  .location-icon{
+    position: absolute;
+    margin-right: 30px;
+  }
+  .place-option:hover{
+    cursor: pointer;
+    background-color: #EFF5FC;
+  }
+  .place-option:hover .location-icon:hover{
+    color: blue;
+  }
 
+/* media quries */
 
+@media screen and (max-width: 1440px) {
+    .hotel-input-box {
+        width: 42vw;
+    }
+ } 
 
+ @media screen and (max-width: 1280px) {
+    #h-search-card{
+        width: 40rem;
+        height: 50vh;
+    }
+    .hotel-input-box {
+        width: 44vw;
+    }
+    .add-room-btn{
+        width: 10rem;
+    }
+    .h-search-btn{
+        margin-right: 10px;
+    }
+ } 
+ @media screen and (max-width: 1024px) {
+    #h-search-card{
+        width: 32rem;
+    }
+    .hotel-input-box {
+        width: 43vw;
+    }
+ } 
+ @media screen and (max-width: 912px) {
+    #h-search-card{
+        width: 36rem;
+    }
+    .hotel-input-box {
+        width: 56vw;
+    }
+ }
+ @media screen and (max-width:768px) {
+    #h-search-card{
+        width: 30rem;
+    }
+    .hotel-input-box {
+        width: 56vw;
+    }
+    .add-room-btn{
+        width: 10rem;
+    }
+    .add-room-btn>span{
+        font-size: 14px;
+    }
+    #h-search-card{
+        padding-left: 10px;
+    }
+    .date-room-input{
+        gap: 20px;
+    }
+ }
+ @media screen and (max-width:430px) {
+    #h-search-card{
+        width: 25rem;
+        height: 60vh;
+    }
+   .hotel-input-box {
+        width: 82vw;
+    } 
+    .add-room-btn{
+        width: 22rem;
+    }
+   .menu{
+    width: 22rem;
+   }
+    #h-search-card{
+        padding-left: 20px;
+    }
+    
+    .date-room-input{
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 20px;
+    }  
+    .hotel-search-header{
+        margin-top: -1rem;
+        margin-bottom: -1rem;
+    }
+    .h-date-icon{
+        top: 90px;
+        left: 5px;
+    }
+    .h-search-btn{
+        width: 23rem;
+        margin-right: 5px;
+    }
+    
+ }
 

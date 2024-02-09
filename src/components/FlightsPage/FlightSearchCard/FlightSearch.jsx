@@ -46,107 +46,37 @@ const FlightSearch = () => {
           Recent searches
         </Typography>
 
-        <Stack
-          direction={"row"}
-          justifyContent={"flex-start"}
-          alignItems={"center"}
-          gap={2}
-        >
-          <PaperCardRecentSearch width="16vw" height="10vh" borderRadius="7px">
-            <Stack
-              flexDirection={"row"}
-              justifyContent={"space-between"}
-              alignItems={"center"}
-              className="recent-search-card"
-            >
-              <Box>
-                <Stack
-                  flexDirection={"row"}
-                  alignItems={"center"}
-                  gap={1}
-                  sx={{ fontWeight: 500 }}
-                >
-                  <Typography sx={{ fontWeight: 500, fontSize: "14.5px" }}>
-                    Bangalor
-                  </Typography>
-                  <SyncAltIcon fontSize="sm" />
-                  <Typography sx={{ fontWeight: 500, fontSize: "14.5px" }}>
-                    Mumbai
-                  </Typography>
-                </Stack>
-                <Typography sx={{ fontSize: "11px", color: "#969799" }}>
-                  Tue, 23 Jan - Fri, 2 Feb
+        <PaperCardRecentSearch>
+          <Stack
+            flexDirection={"row"}
+            justifyContent={"space-between"}
+            alignItems={"center"}
+            className="recent-search-card"
+          >
+            <Box>
+              <Stack
+                flexDirection={"row"}
+                alignItems={"center"}
+                gap={1}
+                sx={{ fontWeight: 500 }}
+              >
+                <Typography sx={{ fontWeight: 500, fontSize: "14.5px" }}>
+                  Bangalor
                 </Typography>
-              </Box>
-              <Box>
-                <NavigateNextOutlinedIcon htmlColor="#969799" />
-              </Box>
-            </Stack>
-          </PaperCardRecentSearch>
-          <PaperCardRecentSearch width="16vw" height="10vh" borderRadius="7px">
-            <Stack
-              flexDirection={"row"}
-              justifyContent={"space-between"}
-              alignItems={"center"}
-              className="recent-search-card"
-            >
-              <Box>
-                <Stack
-                  flexDirection={"row"}
-                  alignItems={"center"}
-                  gap={1}
-                  sx={{ fontWeight: 500 }}
-                >
-                  <Typography sx={{ fontWeight: 500, fontSize: "14.5px" }}>
-                    Bangalor
-                  </Typography>
-                  <SyncAltIcon fontSize="sm" />
-                  <Typography sx={{ fontWeight: 500, fontSize: "14.5px" }}>
-                    Mumbai
-                  </Typography>
-                </Stack>
-                <Typography sx={{ fontSize: "11px", color: "#969799" }}>
-                  Tue, 23 Jan - Fri, 2 Feb
+                <SyncAltIcon fontSize="sm" />
+                <Typography sx={{ fontWeight: 500, fontSize: "14.5px" }}>
+                  Mumbai
                 </Typography>
-              </Box>
-              <Box>
-                <NavigateNextOutlinedIcon htmlColor="#969799" />
-              </Box>
-            </Stack>
-          </PaperCardRecentSearch>
-
-          <PaperCardRecentSearch width="16vw" height="10vh" borderRadius="7px">
-            <Stack
-              flexDirection={"row"}
-              justifyContent={"space-between"}
-              alignItems={"center"}
-              className="recent-search-card"
-            >
-              <Box>
-                <Stack
-                  flexDirection={"row"}
-                  alignItems={"center"}
-                  gap={1}
-                  sx={{ fontWeight: 500 }}
-                >
-                  <Typography sx={{ fontWeight: 500, fontSize: "14.5px" }}>
-                    Bangalor
-                  </Typography>
-                  <SyncAltIcon fontSize="sm" />
-                  <Typography sx={{ fontWeight: 500, fontSize: "14.5px" }}>
-                    Mumbai
-                  </Typography>
-                </Stack>
-                <Typography sx={{ fontSize: "11px", color: "#969799" }}>
-                  Tue, 23 Jan - Fri, 2 Feb
-                </Typography>
-              </Box>
-              <Box>
-                <NavigateNextOutlinedIcon htmlColor="#969799" />
-              </Box>
-            </Stack>
-          </PaperCardRecentSearch>
-        </Stack>
+              </Stack>
+              <Typography sx={{ fontSize: "11px", color: "#969799" }}>
+                Tue, 23 Jan - Fri, 2 Feb
+              </Typography>
+            </Box>
+            <Box>
+              <NavigateNextOutlinedIcon htmlColor="#969799" />
+            </Box>
+          </Stack>
+        </PaperCardRecentSearch>
       </Box>
     </Box>
   );

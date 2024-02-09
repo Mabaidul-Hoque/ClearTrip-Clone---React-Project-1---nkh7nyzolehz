@@ -106,15 +106,5 @@
     background-color: inherit;
 }
 
-@media screen and (min-width: 1024px) and (max-width: 1250px) {
-    .offer-details,.offer-details-down{
-        top: 0.5rem;
-        font-size: 14px;
-    }
-    
-    .carousel-container-down,.carousel-container-up{
-        width: 18vw;
-    }
-}
 
 
