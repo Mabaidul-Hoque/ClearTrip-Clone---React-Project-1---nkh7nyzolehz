@@ -1,7 +1,6 @@
 import React, { forwardRef, useRef, useState } from "react";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import "./Hotels.css";
-import "./HotelMediaQuery.css";
 import { Paper, Stack } from "@mui/material";
 import RightSideBar from "../FlightsPage/RightSideBarSection/RightSideBar";
 import DepartDate from "../FlightsPage/FlightSearchCard/DepartDate";

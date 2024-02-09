@@ -32,7 +32,7 @@
 
 .inputBox {
   width: 18.5rem;  
-  height: 54px;
+  height: 56px;
   border-radius: 6px;
   border: 1px solid #D3D3D3;
   font-size: 16px;
@@ -47,8 +47,8 @@
 
 .f-switch-btn{
   position: absolute;
-  left: 17.5rem;
-  top: 0.5rem;
+  left: 47%;
+  top: 0.7rem;
   z-index: 1;
   cursor: pointer;
 }
@@ -58,7 +58,7 @@
   z-index: 1;
 } 
 .f-landing-icon{
-  right: 15.5rem;
+  right: 42%;
 }
 .f-takeoff-icon{
   left: 1rem;
@@ -186,14 +186,21 @@
 
 @media  screen and (max-width: 1280px){
   .inputBox{
-    width: 13rem;
+    width: 17.5rem;
   }
+  
 }
-@media  screen and (max-width: 1024px){  
+@media  screen and (max-width: 1024px){ 
+  .inputBox{
+    width: 14rem;
+  }
+  .f-landing-icon{
+    right: 39%;
+  }
 }
 @media  screen and (max-width: 912px){
   .inputBox{
-    width: 13rem;
+    width: 12.5rem;
   }
   .passenger-add-container{
     width: 33vw;
@@ -204,89 +211,88 @@
     padding: .5rem 0.5rem;
     font-size: 12px;
   }
+  
 }
 @media  screen and (max-width: 600px) {
   .passenger-add-container{
     width: 60vw;
     height: 50vh;
   }
- 
+  .inputBox{
+    width: 30rem;
+  }
   .f-calender-icon{
     left: 0.5rem;
   }
   .f-switch-btn{
-    left: 8rem;
     top: 3rem;
   }
   .f-landing-icon{
     top: 5.4rem;
-    right: 16.5rem;
+    right: 91%;
+  }
+  
+}
+
+@media  screen and (max-width: 550px){
+  .inputBox{
+    width: 27rem;
   }
 }
+
 @media  screen and (max-width: 450px){
   .inputBox{
-    width: 18rem;
+    width: 21.5rem;
   }
   .passenger-add-container{
     width: 70vw;
     height: 50vh;
   }
+  .f-landing-icon{
+    top: 5.4rem;
+    right: 88%;
+  }
+ 
 }
 
-@media  screen and (max-width: 300px){
+@media  screen and (max-width: 412px){
   .inputBox{
-    width: 18rem;
+    width: 20.5rem;
   }
   .passenger-add-container{
     width: 80vw;
     height: 50vh;
   }
 }
-
-
-
-@media  screen and (min-width: 300px)  and (max-width: 375px)  {
+@media  screen and (max-width: 390px){
   .inputBox{
-    width: 19rem;
-  } 
+    width: 19.5rem;
+  }
+  .passenger-add-container{
+    width: 80vw;
+    height: 50vh;
+  }
   
 }
 
-@media  screen and (min-width: 380px) and (max-width: 420px) {
+
+@media  screen and (max-width: 375px){
   .inputBox{
-    width: 20rem;
+    width: 18.5rem;
   }
-  .f-landing-icon{
-    right: 17.5rem;
+  .passenger-add-container{
+    width: 80vw;
+    height: 50vh;
   }
-}
-@media  screen and (min-width: 430px) and (max-width: 500px) {
-  .inputBox{
-    width: 22rem;
-  }
-  .f-landing-icon{
-    right: 19.5rem;
-  }
-}
-@media  screen and (min-width: 500px) and (max-width: 600px) {
-  .inputBox{
-    width: 27rem;
-  }
-}
-@media  screen and (min-width: 786px) and (max-width: 1024px) {
-  .inputBox{
-    width: 14rem;
-  }
-  .list-group-item {
-    height: 40px;
-    padding: .5rem 0.5rem;
-    font-size: 10px;
-  }
-}
-@media  screen and (min-width: 1050px) and (max-width: 1280px) {
-  
   
 }
+
+
+
+
+
+
+
 
 
 

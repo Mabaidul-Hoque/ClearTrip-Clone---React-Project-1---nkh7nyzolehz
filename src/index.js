@@ -17,8 +17,6 @@ import AuthorizationProvider from "./UseContext/AuthorizationProvider";
 import SignupPage from "./components/Login-signup/SignupPage";
 import LoginPage from "./components/Login-signup/LoginPage";
 import FlightBookingPage from "./components/FlightsPage/FlightResultsPage/flight-booking-page/FlightBookingPage";
-import { theme } from "./util/muiTheme";
-import { ThemeProvider } from "@mui/material";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -71,18 +69,16 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
-  <ThemeProvider theme={theme}>
-    <AuthorizationProvider>
-      <OfferDetailsProvider>
-        <HotelDetailsProvider>
-          <FlightsSearchProvider>
-            <RouterProvider router={router}>
-              <App />
-            </RouterProvider>
-          </FlightsSearchProvider>
-        </HotelDetailsProvider>
-      </OfferDetailsProvider>
-    </AuthorizationProvider>
-  </ThemeProvider>
+  <AuthorizationProvider>
+    <OfferDetailsProvider>
+      <HotelDetailsProvider>
+        <FlightsSearchProvider>
+          <RouterProvider router={router}>
+            <App />
+          </RouterProvider>
+        </FlightsSearchProvider>
+      </HotelDetailsProvider>
+    </OfferDetailsProvider>
+  </AuthorizationProvider>
   // </React.StrictMode>
 );

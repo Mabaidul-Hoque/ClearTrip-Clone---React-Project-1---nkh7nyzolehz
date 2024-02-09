@@ -50,6 +50,7 @@ const RightSideBar = () => {
 
   return (
     <Stack
+      className="right-side-bar"
       sx={{
         display: {
           xs: "none",
