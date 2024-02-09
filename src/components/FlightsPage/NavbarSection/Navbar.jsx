@@ -12,7 +12,10 @@ const LoginButton = styled(Button)({
   color: "#FFFFFF",
   textTransform: "none",
   backgroundColor: "#3366CC",
-  width: "9.5vw",
+  width: {
+    xs: "12vw",
+    sm: "9.5vw",
+  },
   lineHeight: 2.5,
   padding: "3px",
   border: "none",
