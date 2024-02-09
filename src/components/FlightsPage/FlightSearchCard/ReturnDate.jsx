@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { forwardRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Button } from "@mui/material";
+import { Button, ThemeProvider, createTheme } from "@mui/material";
 import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
+import { CustomTheme } from "../../../util/muiTheme";
 
 const ReturnDate = () => {
   const contextValues = useFlightSearch();
@@ -14,11 +15,15 @@ const ReturnDate = () => {
     <Button
       sx={{
         width: {
-          xs: "40vw",
-          sm: "20vw",
-          md: "15vw",
-          lg: "14vw",
+          xxs: "9rem",
+          xs: "10rem",
+          smm: "12.5rem",
+          sm: "8rem",
+          md: "9.5rem",
+          lg: "11.3rem",
+          xl: "12.3rem",
         },
+        height: "56px",
         background: "#FFFFFF",
         color: "#1A1A1A",
         border: "1px solid lightgray",
@@ -29,7 +34,6 @@ const ReturnDate = () => {
           borderColor: "#3366CC",
         },
       }}
-      className="flight-return-day-btn"
       onClick={onClick}
       ref={ref}
     >
@@ -37,13 +41,15 @@ const ReturnDate = () => {
     </Button>
   ));
   return (
-    <DatePicker
-      className="date-picker-btn"
-      required
-      selected={returnDate}
-      onChange={handleReturnDateChange}
-      customInput={<ExampleCustomInput returnDay={returnDay} />}
-    />
+    <ThemeProvider theme={CustomTheme}>
+      <DatePicker
+        className="date-picker-btn"
+        required
+        selected={returnDate}
+        onChange={handleReturnDateChange}
+        customInput={<ExampleCustomInput returnDay={returnDay} />}
+      />
+    </ThemeProvider>
   );
 };
 

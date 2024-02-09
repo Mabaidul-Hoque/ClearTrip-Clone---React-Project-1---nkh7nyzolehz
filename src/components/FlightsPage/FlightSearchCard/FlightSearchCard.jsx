@@ -186,7 +186,7 @@ export default function FlightSearchCard() {
           sx={{
             width: {
               xs: "80vw",
-              sm: "10vw",
+              sm: "16vw",
               md: "12vw",
               lg: "13vw",
             },

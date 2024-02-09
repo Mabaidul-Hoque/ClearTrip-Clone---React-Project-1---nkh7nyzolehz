@@ -2,8 +2,9 @@ import React, { useRef, useState } from "react";
 import { forwardRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Button } from "@mui/material";
+import { Button, ThemeProvider } from "@mui/material";
 import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
+import { CustomTheme } from "../../../util/muiTheme";
 
 const DepartDate = () => {
   const { departvalue } = useFlightSearch();
@@ -14,11 +15,15 @@ const DepartDate = () => {
     <Button
       sx={{
         width: {
-          xs: "40vw",
-          sm: "20vw",
-          md: "15vw",
-          lg: "14vw",
+          xxs: "11rem",
+          xs: "10rem",
+          smm: "13rem",
+          sm: "8rem",
+          md: "9.5rem",
+          lg: "11.3rem",
+          xl: "12.3rem",
         },
+        height: "56px",
         background: "#FFFFFF",
         color: "#1A1A1A",
         border: "1px solid lightgray",
@@ -29,7 +34,6 @@ const DepartDate = () => {
           borderColor: "#3366CC",
         },
       }}
-      className="flight-depart-day-btn"
       onClick={onClick}
       ref={ref}
     >
@@ -37,14 +41,15 @@ const DepartDate = () => {
     </Button>
   ));
   return (
-    <DatePicker
-      className="f-date-picker-btn"
-      onClick={handleClick}
-      required
-      selected={departDate}
-      onChange={handleDepartDateChange}
-      customInput={<ExampleCustomInput departDay={departDay} />}
-    />
+    <ThemeProvider theme={CustomTheme}>
+      <DatePicker
+        onClick={handleClick}
+        required
+        selected={departDate}
+        onChange={handleDepartDateChange}
+        customInput={<ExampleCustomInput departDay={departDay} />}
+      />
+    </ThemeProvider>
   );
 };
 

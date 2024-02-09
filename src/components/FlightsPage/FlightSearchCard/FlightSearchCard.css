@@ -31,7 +31,7 @@
 } 
 
 .inputBox {
-  width: 18.5rem;  
+  width: 17.8rem;  
   height: 56px;
   border-radius: 6px;
   border: 1px solid #D3D3D3;
@@ -162,14 +162,7 @@
   flex-wrap: wrap;
 }
 
-.flight-depart-day-btn,
-.flight-return-day-btn{
-  width: 14vw;
-  height: 3.5rem;
-  background-color: #FFFFFF;
-  border: 1px solid lightgray;
-  border-radius: 5px;
-}
+
 
 /* date picker and search btn */
 
@@ -188,11 +181,16 @@
   .inputBox{
     width: 17.5rem;
   }
-  
 }
+@media  screen and (max-width: 1225px){
+  .inputBox{
+    width: 15rem;
+  }
+}
+
 @media  screen and (max-width: 1024px){ 
   .inputBox{
-    width: 14rem;
+    width: 13rem;
   }
   .f-landing-icon{
     right: 39%;
@@ -212,6 +210,11 @@
     font-size: 12px;
   }
   
+}
+@media  screen and (max-width: 710px){
+  .inputBox{
+    width: 11rem;
+  } 
 }
 @media  screen and (max-width: 600px) {
   .passenger-add-container{
@@ -236,7 +239,7 @@
 
 @media  screen and (max-width: 550px){
   .inputBox{
-    width: 27rem;
+    width: 25rem;
   }
 }
 
@@ -266,19 +269,20 @@
 }
 @media  screen and (max-width: 390px){
   .inputBox{
-    width: 19.5rem;
+    width: 20rem;
   }
   .passenger-add-container{
     width: 80vw;
     height: 50vh;
   }
   
+  
 }
 
 
-@media  screen and (max-width: 375px){
+@media  screen and (max-width: 370px){
   .inputBox{
-    width: 18.5rem;
+    width: 20rem;
   }
   .passenger-add-container{
     width: 80vw;

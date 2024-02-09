@@ -1,13 +1,16 @@
-// import { createTheme } from "@mui/material";
+import { createTheme } from "@mui/material";
 
-// export const theme = createTheme({
-//   breakpoints: {
-//     values: {
-//       xs: 0,
-//       sm: 600,
-//       md: 900,
-//       lg: 1200,
-//       xl: 1536,
-//     },
-//   },
-// });
+export const CustomTheme = createTheme({
+  breakpoints: {
+    values: {
+      xxs: 0,
+      xs: 380,
+      smm: 450,
+      sm: 600,
+      md: 768,
+      mdl: 912,
+      lg: 1024,
+      xl: 1280,
+    },
+  },
+});
