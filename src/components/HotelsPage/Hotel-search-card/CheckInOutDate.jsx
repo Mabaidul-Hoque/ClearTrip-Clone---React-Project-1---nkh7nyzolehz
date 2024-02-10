@@ -35,11 +35,14 @@ export const CheckInOutDate = () => {
       onClick={onClick}
       sx={{
         width: {
-          xs: "11rem",
-          md: "9rem",
-          mdl: "9rem",
-          lg: "9rem",
-          xl: "12rem",
+          xs: "45vw",
+          sm: "24vw",
+          md: "15vw",
+        },
+        paddingLeft: {
+          md: "20px",
+          lg: "25px",
+          xl: "0px",
         },
       }}
     >
@@ -53,11 +56,9 @@ export const CheckInOutDate = () => {
       onClick={onClick}
       sx={{
         width: {
-          xs: "11rem",
-          md: "7rem",
-          mdl: "7rem",
-          lg: "7rem",
-          xl: "12rem",
+          xs: "40vw",
+          sm: "24vw",
+          md: "14vw",
         },
       }}
     >
@@ -66,20 +67,19 @@ export const CheckInOutDate = () => {
   ));
 
   return (
-    <ThemeProvider theme={CustomTheme}>
+    <>
       <DatePicker
         required
         selected={checkInDate}
         onChange={handleCheckInDateChange}
         customInput={<CheckInDateInput checkInDay={checkInDay} />}
       />
-
       <DatePicker
         required
         selected={checkOutDate}
         onChange={handleCheckOutDateChange}
         customInput={<CheckOutDateInput checkOutDay={checkOutDay} />}
       />
-    </ThemeProvider>
+    </>
   );
 };
