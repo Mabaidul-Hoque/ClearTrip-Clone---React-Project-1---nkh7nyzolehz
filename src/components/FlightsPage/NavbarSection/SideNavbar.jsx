@@ -14,7 +14,6 @@ const SideNavbar = () => {
 
   return (
     <Stack
-      pr={5}
       sx={{
         flexDirection: {
           xxs: "row",
@@ -22,12 +21,17 @@ const SideNavbar = () => {
           sm: "column",
         },
         gap: {
-          xs: 0,
+          xs: 1,
           sm: 3,
         },
         pt: {
           xs: 2,
           sm: 4,
+        },
+        pr: {
+          xs: 0,
+          sm: 2,
+          md: 4,
         },
       }}
     >
@@ -58,26 +62,15 @@ const SideNavbar = () => {
         <ApartmentRoundedIcon />
         <span>Hotels</span>
       </Link>
-      <Box
-        sx={{
-          display: {
-            xs: "none",
-            sm: "block",
-          },
-        }}
+      <Link
+        className={
+          pathname === "/offers" ? "leftSection active-left-btn" : "leftSection"
+        }
+        to="/offers"
       >
-        <Link
-          className={
-            pathname === "/offers"
-              ? "leftSection active-left-btn"
-              : "leftSection"
-          }
-          to="/offers"
-        >
-          <MonetizationOnOutlinedIcon />
-          <span>Offers</span>
-        </Link>
-      </Box>
+        <MonetizationOnOutlinedIcon />
+        <span>Offers</span>
+      </Link>
       <Box
         sx={{
           display: {

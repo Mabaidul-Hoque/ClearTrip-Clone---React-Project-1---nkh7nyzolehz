@@ -206,10 +206,20 @@ const PassengerAdd = () => {
                     </Stack>
                   </Box>
 
-                  <Box
-                    mb={2}
-                    mt={2.5}
-                    className="f-category-btns"
+                  <Stack
+                    sx={{
+                      flexDirection: "row",
+                      gap: "10px",
+                      flexWrap: "wrap",
+                    }}
+                    mb={{
+                      xs: 1,
+                      sm: 2,
+                    }}
+                    mt={{
+                      xs: 0.5,
+                      sm: 2.5,
+                    }}
                     component="div"
                     color="text.secondary"
                   >
@@ -223,6 +233,7 @@ const PassengerAdd = () => {
                               : "list-group-item"
                           }
                           sx={{
+                            fontSize: "12px",
                             border: "1px solid lightgray",
                             "&:hover": {
                               cursor: "pointer",
@@ -234,7 +245,7 @@ const PassengerAdd = () => {
                         </Box>
                       )
                     )}
-                  </Box>
+                  </Stack>
                 </MenuList>
               </ClickAwayListener>
             </Paper>

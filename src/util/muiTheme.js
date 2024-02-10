@@ -4,11 +4,10 @@ export const CustomTheme = createTheme({
   breakpoints: {
     values: {
       xxs: 0,
-      xs: 395,
+      xs: 300, //mobile
       smm: 450,
       sm: 600,
-      md: 768,
-      mdl: 912,
+      md: 900,
       lg: 1024,
       xl: 1280,
     },

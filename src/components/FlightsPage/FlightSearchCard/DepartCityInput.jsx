@@ -1,14 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
-import "./FlightSearchCard.css";
+
+import "../FlightPage.css";
 import { Paper, Stack } from "@mui/material";
 
-const DepartCityInput = ({
-  options,
-  onSelect,
-  optionKey = "iata_code",
-  noOptionText = "No Items",
-}) => {
+const DepartCityInput = ({ options, onSelect, noOptionText = "No Items" }) => {
   const [searchText, setSearchText] = useState("");
   const [selected, setSelected] = useState("");
   const [allOption, setAllOption] = useState(options || []);
@@ -41,14 +37,17 @@ const DepartCityInput = ({
       onSelect(val);
       return;
     }
-    setSelected(val[optionKey]);
+
     setSelected(`${val.iata_code} ${val.city}, IN`);
   };
 
   const handleChange = ({ target }) => {
     let tempOptions = [...options];
-    tempOptions = tempOptions.filter((obj) =>
-      obj[optionKey]?.toLowerCase().includes(target.value?.toLowerCase())
+    tempOptions = tempOptions.filter(
+      (obj) =>
+        obj.city?.toLowerCase().includes(target.value?.toLowerCase()) ||
+        obj.iata_code?.toLowerCase().includes(target.value?.toLowerCase()) ||
+        obj.name?.toLowerCase().includes(target.value?.toLowerCase())
     );
     setSearchText(target.value);
     setAllOption(tempOptions);

@@ -35,9 +35,22 @@
 @media screen and (min-width: 300px) {
     .leftSection{
         line-height: 0.7;
+        width: 8rem;
+        padding: 5px 10px;
     }
     .my-trip{
         display: none;
+    }  
+}
+@media screen and (min-width: 600px) {
+    .leftSection{
+        width: 10rem;
     }
-    
+}
+@media screen and (min-width: 900px) {
+    .leftSection{
+        line-height: 1.7;
+        width: 13rem;
+        padding: 7px 15px;
+    }
 }

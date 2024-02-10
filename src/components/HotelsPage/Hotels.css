@@ -182,7 +182,7 @@ input[placeholder="Search your favourite hotels"]{
 @media screen and (min-width:260px){
     #h-search-card{
         width: 93vw;
-        height: 60vh;
+        height: 53vh;
         padding-left: 10px;
     }
    .hotel-input-box {
@@ -225,7 +225,7 @@ input[placeholder="Search your favourite hotels"]{
 @media screen and (min-width:320px) {
     #h-search-card{
         width: 93vw;
-        height: 60vh;
+        height: 53vh;
         padding-left: 10px;
     }
    .hotel-input-box {

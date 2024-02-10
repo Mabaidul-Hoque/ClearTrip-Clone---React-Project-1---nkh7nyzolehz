@@ -1,5 +1,6 @@
 import { Typography, Box, Stack } from "@mui/material";
-import React, { useState } from "react";
+import "../FlightPage.css";
+import React from "react";
 import FlightSearchCard from "./FlightSearchCard";
 import PaperCardRecentSearch from "../RecentSearch/PaperCardRecentSearch";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
@@ -11,6 +12,9 @@ const FlightSearch = () => {
       <Box
         sx={{
           textAlign: "left",
+          mt: {
+            xs: -1,
+          },
           mb: {
             xs: 2,
             sm: 4,
@@ -29,6 +33,7 @@ const FlightSearch = () => {
           Enjoy hassle free bookings with Cleartrip
         </Typography>
       </Box>
+
       <FlightSearchCard />
       {/* Recent Search Section */}
       <Box mb={4}>

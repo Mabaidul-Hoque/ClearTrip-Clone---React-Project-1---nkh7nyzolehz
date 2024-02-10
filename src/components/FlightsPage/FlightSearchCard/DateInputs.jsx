@@ -14,13 +14,10 @@ const DateInputs = () => {
     <Button
       sx={{
         width: {
-          xxs: "11rem",
-          xs: "10rem",
-          smm: "13rem",
-          sm: "8rem",
-          md: "9.5rem",
-          lg: "10rem",
-          xl: "12.3rem",
+          xxs: "40vw",
+          xs: "45vw",
+          sm: "19vw",
+          lg: "14vw",
         },
         height: "56px",
         background: "#FFFFFF",
@@ -28,7 +25,14 @@ const DateInputs = () => {
         border: "1px solid lightgray",
         borderRadius: "5px",
         textTransform: "none",
-        fontSize: "16px",
+        paddingLeft: {
+          xs: 4,
+          sm: 3,
+        },
+        fontSize: {
+          xs: "14px",
+          md: "16px",
+        },
         "&:focus": {
           borderColor: "#3366CC",
         },
@@ -43,13 +47,10 @@ const DateInputs = () => {
     <Button
       sx={{
         width: {
-          xxs: "9rem",
-          xs: "10rem",
-          smm: "12.5rem",
-          sm: "8rem",
-          md: "9.5rem",
-          lg: "10rem",
-          xl: "12.3rem",
+          xxs: "45vw",
+          xs: "39.2vw",
+          sm: "16vw",
+          lg: "12vw",
         },
         height: "56px",
         background: "#FFFFFF",
@@ -57,7 +58,10 @@ const DateInputs = () => {
         border: "1px solid lightgray",
         borderRadius: "5px",
         textTransform: "none",
-        fontSize: "16px",
+        fontSize: {
+          xs: "14px",
+          md: "16px",
+        },
         "&:focus": {
           borderColor: "#3366CC",
         },
