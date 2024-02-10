@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import "../MainSection.css";
+// import "../../FlightResultsPage.css";
 import { Stack, Typography } from "@mui/material";
 import { fetchFlights } from "../../../../../Apis/FlightSearchApi";
 import MainContentCard from "./MainContentCard";
@@ -48,22 +48,36 @@ const MainContent = ({ getFilterFlights, source, dest, departDay }) => {
 
   return (
     <div id="main-content-container">
+      {/* card content heading */}
       <Stack
         className="card-header"
         flexDirection={"row"}
         justifyContent={"flex-start"}
         gap={15}
         mb={1}
+        display={{
+          xs: "none",
+          sm: "flex",
+        }}
       >
-        <Typography ml={-10} sx={{}}>
-          Airlines
-        </Typography>
-        <Stack flexDirection={"row"} gap={6} mr={10}>
+        <Typography ml={-10}>Airlines</Typography>
+        <Stack
+          flexDirection={"row"}
+          gap={{
+            xs: "2vw",
+            sm: 6,
+          }}
+          mr={{
+            xs: "2vw",
+            sm: 10,
+          }}
+        >
           <Typography>Departure</Typography>
           <Typography>Duration</Typography>
         </Stack>
-        <Typography sx={{ textAlign: "right" }}>Price</Typography>
+        <Typography>Price</Typography>
       </Stack>
+      {/* flight cards */}
       <Stack flexDirection={"column"} gap={2}>
         {airplanes ? (
           airplanes.map((airplane, index) => (
@@ -78,6 +92,7 @@ const MainContent = ({ getFilterFlights, source, dest, departDay }) => {
           <h1>NO Flights Are Available!!</h1>
         )}
       </Stack>
+      {/* pagination */}
       <Stack mt={4} mb={4} flexDirection={"row"} justifyContent={"center"}>
         <div>
           <Pagination

@@ -1,4 +1,5 @@
 import React from "react";
+// import "../FlightResultsPage.css";
 import MenuList from "@mui/material/MenuList";
 import { Box, Stack, Typography } from "@mui/material";
 import ControlPointOutlinedIcon from "@mui/icons-material/ControlPointOutlined";
@@ -42,7 +43,7 @@ const Traveller = () => {
   }
 
   return (
-    <Stack direction="column" spacing={2}>
+    <Stack border={"1px solid lightgray"} direction="column" spacing={2}>
       {/* <TravellerPaper> */}
       <Button
         ref={anchorRef}

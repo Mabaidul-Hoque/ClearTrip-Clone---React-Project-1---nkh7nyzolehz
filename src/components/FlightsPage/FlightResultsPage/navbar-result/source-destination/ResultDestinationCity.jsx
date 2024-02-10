@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
-import "../ResultNavbar.css";
+// import "../../FlightResultsPage.css";
 import { Box, Paper, Stack } from "@mui/material";
 import { fetchFlights } from "../../../../../Apis/FlightSearchApi";
 const ResultDestinationCity = ({
@@ -50,8 +50,11 @@ const ResultDestinationCity = ({
 
   const handleChange = ({ target }) => {
     let tempOptions = [...options];
-    tempOptions = tempOptions.filter((obj) =>
-      obj[optionKey]?.toLowerCase().includes(target.value?.toLowerCase())
+    tempOptions = tempOptions.filter(
+      (obj) =>
+        obj.city?.toLowerCase().includes(target.value?.toLowerCase()) ||
+        obj.iata_code?.toLowerCase().includes(target.value?.toLowerCase()) ||
+        obj.name?.toLowerCase().includes(target.value?.toLowerCase())
     );
     setSearchText(target.value);
     setAllOption(tempOptions);
@@ -70,9 +73,6 @@ const ResultDestinationCity = ({
         }}
         onChange={handleChange}
         style={{
-          width: "14vw",
-          height: "40px",
-
           borderBottomLeftRadius: searchText ? 0 : "",
           borderBottomRightRadius: searchText ? 0 : "",
         }}

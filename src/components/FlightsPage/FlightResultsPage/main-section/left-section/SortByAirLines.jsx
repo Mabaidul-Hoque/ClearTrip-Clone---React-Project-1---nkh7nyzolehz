@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./LeftSection.css";
+// import "../../FlightResultsPage.css";
 import { Stack, Typography, Box } from "@mui/material";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";

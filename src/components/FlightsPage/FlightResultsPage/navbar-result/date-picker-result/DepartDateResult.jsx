@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 import { forwardRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "../ResultNavbar.css";
+// import "../../FlightResultsPage.css";
 
 const DepartDateResult = ({ departDay }) => {
   const { departvalue } = useFlightSearch();

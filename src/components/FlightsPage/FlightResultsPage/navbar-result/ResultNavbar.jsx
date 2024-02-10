@@ -1,6 +1,6 @@
-import { Box, Stack, Typography, Button } from "@mui/material";
+import { Box, Stack, Typography, Button, ThemeProvider } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import "./ResultNavbar.css";
+// import "../FlightResultPage.css";
 import LocalAirportOutlinedIcon from "@mui/icons-material/LocalAirportOutlined";
 import HotelIcon from "@mui/icons-material/Hotel";
 import CurrencyRupeeOutlinedIcon from "@mui/icons-material/CurrencyRupeeOutlined";
@@ -20,6 +20,8 @@ import { fetchFlights } from "../../../../Apis/FlightSearchApi";
 import { useFlightSearch } from "../../../../UseContext/FlightsSearchProvider";
 import { useFlightResult } from "../../../../UseContext/FlightResultProvider";
 const leftLogoUrl = "../../../../public/assets/Cleartrip_Original.svg.png";
+
+import { CustomTheme } from "../../../../util/muiTheme";
 
 const RightButton = styled(Button)({
   color: "gray",
@@ -50,136 +52,184 @@ const ResultNavbar = ({ source, dest, departDay }) => {
     });
   }, []);
 
-  // const handleResultFlightSearch = () => {
-  //   setAirplanes(fetchFlightData);
-  // };
-
   return (
-    <Stack id="result-navbar">
+    <ThemeProvider theme={CustomTheme}>
       <Stack
-        flexDirection={"row"}
-        justifyContent={"space-between"}
-        alignItems={"center"}
+        sx={{
+          width: {
+            xxs: "95%",
+            sm: "82%",
+          },
+          height: {
+            xxs: "37vh",
+            sm: "19vh",
+          },
+          margin: "0 auto",
+          borderBottom: "1px solid lightgray",
+        }}
       >
-        <div className="logo-section">
-          <Link to="/">
-            <img
-              className="cleartrip-logo"
-              src="https://careers.cleartrip.com/images/cleartrip/footer-logo.svg"
-              alt="cleartrip-logo"
-            />
-          </Link>
-          <RightButton onClick={() => navigate("/flights")}>
-            <LocalAirportOutlinedIcon htmlColor="#3366CC" />
-          </RightButton>
-          <RightButton onClick={() => navigate("/hotels")}>
-            <HotelIcon htmlColor="#999999" fontSize="large" />
-          </RightButton>
-        </div>
+        {/* logo login section */}
         <Stack
           flexDirection={"row"}
-          justifyContent={"center"}
+          justifyContent={"space-between"}
           alignItems={"center"}
-          className="login-section"
         >
-          <RightButton>
-            <span>INR</span>
-            <CurrencyRupeeOutlinedIcon
-              sx={{ marginLeft: "2px" }}
-              fontSize="sm"
-            />
-          </RightButton>
-          <RightButton>
-            <HeadsetMicOutlinedIcon
-              sx={{ marginRight: "2px" }}
-              htmlColor="gray"
-              fontSize="sm"
-            />
-            <span>Support</span>
-          </RightButton>
-          <RightButton
-            onClick={() => {
-              setLogInPagePath("/flights/results");
-              token ? handleLogout() : handleLoginOpen();
-              token ? navigate("/") : navigate("/login");
+          <div className="logo-section">
+            <Link to="/">
+              <img
+                className="cleartrip-logo"
+                src="https://careers.cleartrip.com/images/cleartrip/footer-logo.svg"
+                alt="cleartrip-logo"
+              />
+            </Link>
+
+            <RightButton onClick={() => navigate("/flights")}>
+              <LocalAirportOutlinedIcon htmlColor="#3366CC" />
+            </RightButton>
+
+            <RightButton onClick={() => navigate("/hotels")}>
+              <HotelIcon htmlColor="#999999" fontSize="large" />
+            </RightButton>
+          </div>
+          <Stack
+            flexDirection={"row"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            className="login-section"
+          >
+            <RightButton
+              sx={{
+                display: {
+                  xxs: "none",
+                  sm: "inline-block",
+                },
+              }}
+            >
+              <span>INR</span>
+              <CurrencyRupeeOutlinedIcon
+                sx={{ marginLeft: "2px" }}
+                fontSize="sm"
+              />
+            </RightButton>
+            <RightButton
+              sx={{
+                display: {
+                  xxs: "none",
+                  sm: "inline-block",
+                },
+              }}
+            >
+              <HeadsetMicOutlinedIcon
+                sx={{ marginRight: "2px" }}
+                htmlColor="gray"
+                fontSize="sm"
+              />
+              <span>Support</span>
+            </RightButton>
+            <RightButton
+              onClick={() => {
+                setLogInPagePath("/flights/results");
+                token ? handleLogout() : handleLoginOpen();
+                token ? navigate("/") : navigate("/login");
+              }}
+            >
+              {token ? (
+                <>
+                  <AccountCircleOutlinedIcon
+                    sx={{ marginRight: "2px" }}
+                    fontSize="medium"
+                  />
+                  <span>Log out</span>
+                </>
+              ) : (
+                <>
+                  <AccountCircleOutlinedIcon
+                    sx={{ marginRight: "2px" }}
+                    fontSize="medium"
+                  />
+                  <span>Log in</span>
+                </>
+              )}
+            </RightButton>
+          </Stack>
+        </Stack>
+        {/* search section */}
+        <Stack
+          mt={1}
+          mr={"-30px"}
+          flexDirection={"row"}
+          justifyContent={{
+            xxs: "flex-start",
+            sm: "center",
+          }}
+          alignItems={"center"}
+          gap={{
+            xxs: 1,
+            sm: 2.5,
+          }}
+          flexWrap={"wrap"}
+        >
+          {/* source destination input */}
+          <Stack
+            flexDirection={"row"}
+            justifyContent={"flex-start"}
+            alignItems={"center"}
+            gap={{
+              xxs: 0,
+              sm: 1,
             }}
           >
-            {token ? (
-              <>
-                <AccountCircleOutlinedIcon
-                  sx={{ marginRight: "2px" }}
-                  fontSize="medium"
-                />
-                <span>Log out</span>
-              </>
-            ) : (
-              <>
-                <AccountCircleOutlinedIcon
-                  sx={{ marginRight: "2px" }}
-                  fontSize="medium"
-                />
-                <span>Log in</span>
-              </>
-            )}
-          </RightButton>
-        </Stack>
-      </Stack>
-      <Stack
-        mt={1}
-        mr={"-30px"}
-        flexDirection={"row"}
-        justifyContent={"center"}
-        alignItems={"center"}
-        gap={2.5}
-      >
-        <Stack
-          flexDirection={"row"}
-          justifyContent={"flex-start"}
-          alignItems={"center"}
-          gap={1}
-        >
-          <ResultDepartCity
-            options={airportNames}
-            noOptionText={"No Match Found"}
-            optionCount={5}
-            source={source}
-          />
-          <SyncAltOutlinedIcon htmlColor="#ED6521" />
-          <ResultDestinationCity
-            options={airportNames}
-            noOptionText={"No Match Found"}
-            optionCount={5}
-            dest={dest}
-          />
-        </Stack>
-        <Box>
-          <DepartDateResult departDay={departDay} />
-        </Box>
-        <Box>
-          <ReturnDateResult />
-        </Box>
-        <Box>
-          <Traveller />
-        </Box>
-        <Button
-          variant="text"
-          className="search-btn"
-          sx={{
-            bgcolor: "#000000",
-            color: "#FFFFFF",
-            borderRadius: "7px",
-            fontSize: "16px",
-            textTransform: "none",
-            "&:hover": {
+            <ResultDepartCity
+              options={airportNames}
+              noOptionText={"No Match Found"}
+              source={source}
+            />
+            <SyncAltOutlinedIcon htmlColor="#ED6521" />
+            <ResultDestinationCity
+              options={airportNames}
+              noOptionText={"No Match Found"}
+              dest={dest}
+            />
+          </Stack>
+          {/* depart return date */}
+          <Box>
+            <DepartDateResult departDay={departDay} />
+          </Box>
+          <Box
+            sx={{
+              display: {
+                xxs: "none",
+                sm: "inline-block",
+              },
+            }}
+          >
+            <ReturnDateResult />
+          </Box>
+          {/* traveller options */}
+          <Box>
+            <Traveller />
+          </Box>
+          {/* search btn */}
+          <Button
+            variant="text"
+            sx={{
+              width: "92vw",
               bgcolor: "#000000",
-            },
-          }}
-          // onClick={handleResultFlightSearch}
-        >
-          Search
-        </Button>
+              color: "#FFFFFF",
+              borderRadius: "7px",
+              fontSize: "16px",
+              textTransform: "none",
+              "&:hover": {
+                bgcolor: "#000000",
+              },
+            }}
+            // onClick={handleResultFlightSearch}
+          >
+            Search
+          </Button>
+        </Stack>
       </Stack>
-    </Stack>
+    </ThemeProvider>
   );
 };
 

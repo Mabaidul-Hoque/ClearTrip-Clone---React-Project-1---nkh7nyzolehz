@@ -3,7 +3,6 @@ import { Button, Paper, Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import React from "react";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
-import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 
 const CustomPaper = styled(Paper)({
