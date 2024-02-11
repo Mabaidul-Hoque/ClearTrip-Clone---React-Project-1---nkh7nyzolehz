@@ -18,19 +18,14 @@
     flex-direction: column;
     justify-content: flex-start;
 }
-.logo-section{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;   
-}
 .cleartrip-logo{
     margin-bottom: -10px;
     width: 120px;
     cursor: pointer;
 }
-.depart-date-result{
+/* .depart-date-result{
     width: 150px;  
-}
+} */
 .return-date-result {
     width: 150px;
 }
@@ -79,26 +74,39 @@
 .sort-by-price,
 .sort-by-airlines
 {
-    font-size: medium;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 18px;
     margin-bottom: 10px;
     cursor: pointer;
 }
 .stop-options,
 .depart-time-options
-{
-    width: 100%;
+.airlines-options
+{ 
     display: flex;
     justify-content: flex-start;
     align-items: center;
     gap: 13px;
     cursor: pointer;
 }
+.stop-options{
+    width: 50vw;
+}
+.depart-time-options{
+    width: 70vw;
+}
+.sort-by-airlines{
+    width: 80vw;
+}
+.airlines-options{
+    width: 70vw;
+}
 .stop-options:hover,
 .depart-time-options:hover
+.airlines-options:hover
 {
     background-color: #F7F7F7;
+    cursor: pointer;
 }
 
 .stop-input{
@@ -123,7 +131,7 @@ input[type=checkbox] {
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
-    
+    cursor: pointer;
 }
 .price-tag,
 .price-tag-container {
@@ -278,9 +286,9 @@ input[type=checkbox] {
     }
     .result-input-source,
     .result-input-destination{
-        width: 41vw;
-        height: 50px;
-        font-size: 12px;
+        width: 43vw;
+        height: 40px;
+        font-size: 14px;
         padding-left: 10px;
     }
     .main-content-card{
@@ -298,5 +306,64 @@ input[type=checkbox] {
         font-weight: 500;
     }
 }
+
+@media screen and (min-width: 600px){
+    #flight-result-main{
+        width: 92%;
+        margin: 0 auto;
+    } 
+    .result-input-source,
+    .result-input-destination{
+        width: 42vw;
+        height: 40px;
+        font-size: 16px;
+        padding-left: 20px;
+    }
+}
+
+@media screen and (min-width: 900px){
+    #flight-result-main{
+        width: 95%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 1024px){
+    #flight-result-main{
+        width: 95%;
+        margin: 0 auto;
+    }
+    .cleartrip-logo{
+        width: 8rem;
+    }
+    .result-input-source,
+    .result-input-destination{
+        width: 19vw;
+        height: 40px;
+        font-size: 16px;
+        padding-left: 20px;
+    }
+    .main-content-card{
+        width: 65.5vw;
+        padding: 15px;
+    }
+    .stop-options{
+        width: 20vw;
+    }
+    .depart-time-options
+    .airlines-options
+    .sort-by-airlines{
+        width: 20vw;
+    }
+    .details-aiplane-logo{
+        width: 40px;
+        height: 40px;
+    }
+    
+    .plane-name{
+        font-size: 15px;
+    }
+}
+
 
 

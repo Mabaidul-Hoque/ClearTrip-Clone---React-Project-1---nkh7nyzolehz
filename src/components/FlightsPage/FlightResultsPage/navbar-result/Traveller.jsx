@@ -43,25 +43,49 @@ const Traveller = () => {
   }
 
   return (
-    <Stack border={"1px solid lightgray"} direction="column" spacing={2}>
-      {/* <TravellerPaper> */}
-      <Button
-        ref={anchorRef}
-        variant="outlined"
-        id="composition-button"
-        aria-controls={open ? "composition-menu" : undefined}
-        aria-expanded={open ? "true" : undefined}
-        aria-haspopup="true"
-        onClick={handleToggle}
+    <Stack direction="column" spacing={2}>
+      {/* traveller option btn */}
+      <Box
+        sx={{
+          border: "1px solid #D3D3D3",
+          borderRadius: "6px",
+        }}
       >
-        <span>1 tarveller</span>
-        <ExpandMoreOutlinedIcon htmlColor="#999999" />
-      </Button>
-      {/* </TravellerPaper> */}
-
+        <Button
+          sx={{
+            width: {
+              xs: "48vw",
+              sm: "25vw",
+              lg: "12vw",
+            },
+            height: "40px",
+            textTransform: "none",
+          }}
+          ref={anchorRef}
+          variant="outlined"
+          id="composition-button"
+          aria-controls={open ? "composition-menu" : undefined}
+          aria-expanded={open ? "true" : undefined}
+          aria-haspopup="true"
+          onClick={handleToggle}
+        >
+          <span>1 Traveller</span>
+          <ExpandMoreOutlinedIcon htmlColor="#999999" />
+        </Button>
+      </Box>
+      {/* traveller popup */}
       <Popper
         open={open}
-        sx={{ zIndex: "1", width: "23vw", padding: "10px" }}
+        sx={{
+          zIndex: "1",
+          width: {
+            xs: "50vw",
+            sm: "23vw",
+            lg: "27vw",
+          },
+
+          padding: "10px",
+        }}
         anchorEl={anchorRef.current}
         role={undefined}
         placement="bottom-start"
@@ -79,7 +103,10 @@ const Traveller = () => {
             <Paper
               sx={{
                 padding: "10px 20px",
-                marginLeft: "-16px",
+                marginLeft: {
+                  xs: "-30vw",
+                  lg: "-1vw",
+                },
               }}
             >
               <ClickAwayListener onClickAway={handleClose}>

@@ -70,7 +70,18 @@ export default function FareDetails() {
   };
 
   return (
-    <Box mt={4} mb={4} sx={{ width: "58vw", borderRadius: "10px" }}>
+    <Box
+      mt={4}
+      mb={4}
+      sx={{
+        width: {
+          xs: "90vw",
+          md: "60vw",
+          xl: "40vw",
+        },
+        borderRadius: "10px",
+      }}
+    >
       <Box
         sx={{
           borderBottom: 1,
@@ -83,16 +94,57 @@ export default function FareDetails() {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="DEL - BOM: Standard fare" {...a11yProps(0)} />
+          <Tab
+            sx={{
+              width: {
+                xs: "40vw",
+                md: "26vw",
+              },
+              fontSize: {
+                xs: "14px",
+                md: "16px",
+              },
+              textTransform: "none",
+            }}
+            label="DEL - BOM: Standard fare"
+            {...a11yProps(0)}
+          />
 
-          <Tab label="BOM - DEL: Standard fare" {...a11yProps(1)} />
+          <Tab
+            sx={{
+              width: {
+                xs: "40vw",
+                md: "26vw",
+              },
+              fontSize: {
+                xs: "14px",
+                md: "16px",
+              },
+              textTransform: "none",
+            }}
+            label="BOM - DEL: Standard fare"
+            {...a11yProps(1)}
+          />
         </Tabs>
       </Box>
       {/* <Paper sx={{ border: "1px solid lightgray" }}> */}
       <CustomTabPanel value={value} index={0}>
-        <Stack>
+        <Stack
+          width={{
+            xs: "90vw",
+            md: "60vw",
+            xl: "40vw",
+          }}
+        >
           <Box mb={3} pl={2}>
-            <Stack mb={2} flexDirection={"row"} gap={8}>
+            <Stack
+              mb={2}
+              flexDirection={"row"}
+              gap={{
+                xs: 2,
+              }}
+              flexWrap={"wrap"}
+            >
               <Stack flexDirection={"row"} gap={1}>
                 <CalendarTodayOutlinedIcon fontSize="small" />
                 <Typography fontSize={"14px"}>
@@ -110,7 +162,13 @@ export default function FareDetails() {
                 </Typography>
               </Stack>
             </Stack>
-            <Stack flexDirection={"row"} gap={7}>
+            <Stack
+              flexDirection={"row"}
+              gap={{
+                xs: 2,
+              }}
+              flexWrap={"wrap"}
+            >
               <Stack flexDirection={"row"} gap={1}>
                 <EditCalendarOutlinedIcon fontSize="small" />
                 <Typography fontSize={"14px"}>
@@ -127,8 +185,9 @@ export default function FareDetails() {
               </Stack>
             </Stack>
           </Box>
-
+          {/* Cancellation refund policy */}
           <Stack>
+            {/* header */}
             <Box
               mb={3}
               pt={2}
@@ -146,73 +205,81 @@ export default function FareDetails() {
                 Cancellation refund policy
               </Typography>
             </Box>
+            {/* after click main content */}
+            <Box
+              sx={{
+                display: {
+                  xs: "none",
+                },
+              }}
+            >
+              {isRefund ? (
+                <Stack
+                  ml={4}
+                  mb={2}
+                  mr={4}
+                  flexDirection={"row"}
+                  justifyContent={"space-between"}
+                  alignItems={"center"}
+                  gap={4}
+                >
+                  <Stack gap={4}>
+                    <Typography fontSize={"12px"}>Cancel between</Typography>
+                    <Typography fontSize={"12px"}>Amount refundable</Typography>
+                  </Stack>
 
-            {isRefund ? (
-              <Stack
-                ml={4}
-                mb={2}
-                mr={4}
-                flexDirection={"row"}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-                gap={4}
-              >
-                <Stack gap={4}>
-                  <Typography fontSize={"12px"}>Cancel between</Typography>
-                  <Typography fontSize={"12px"}>Amount refundable</Typography>
-                </Stack>
-
-                <Stack flexDirection={"row"}>
-                  <Box
-                    sx={{ display: "flex", flexDirection: "column", gap: 1 }}
-                  >
-                    <Stack
-                      flexDirection={"row"}
-                      justifyContent={"space-between"}
-                      mr={1}
-                    >
-                      <Typography fontSize={"12px"}>Now</Typography>
-                      <Typography fontSize={"12px"}>27 Feb,</Typography>
-                    </Stack>
+                  <Stack flexDirection={"row"}>
                     <Box
-                      width={350}
-                      borderTop={"7px solid #F2BF42"}
-                      borderRadius={2}
-                      mr={1}
-                    ></Box>
-                    <Typography fontSize={"12px"} textAlign={"center"}>
-                      ₹871
-                    </Typography>
-                  </Box>
-
-                  <Box
-                    sx={{ display: "flex", flexDirection: "column", gap: 1 }}
-                  >
-                    <Stack
-                      flexDirection={"row"}
-                      justifyContent={"space-between"}
-                      mr={1}
+                      sx={{ display: "flex", flexDirection: "column", gap: 1 }}
                     >
-                      <Typography fontSize={"12px"}>13:00</Typography>
-                      <Typography fontSize={"12px"}>27 Feb 15:00</Typography>
-                    </Stack>
+                      <Stack
+                        flexDirection={"row"}
+                        justifyContent={"space-between"}
+                        mr={1}
+                      >
+                        <Typography fontSize={"12px"}>Now</Typography>
+                        <Typography fontSize={"12px"}>27 Feb,</Typography>
+                      </Stack>
+                      <Box
+                        width={350}
+                        borderTop={"7px solid #F2BF42"}
+                        borderRadius={2}
+                        mr={1}
+                      ></Box>
+                      <Typography fontSize={"12px"} textAlign={"center"}>
+                        ₹871
+                      </Typography>
+                    </Box>
+
                     <Box
-                      width={200}
-                      borderTop={"7px solid #D85040"}
-                      borderRadius={2}
-                      mr={1}
-                    ></Box>
-                    <Typography fontSize={"12px"} textAlign={"center"}>
-                      ₹0
-                    </Typography>
-                  </Box>
+                      sx={{ display: "flex", flexDirection: "column", gap: 1 }}
+                    >
+                      <Stack
+                        flexDirection={"row"}
+                        justifyContent={"space-between"}
+                        mr={1}
+                      >
+                        <Typography fontSize={"12px"}>13:00</Typography>
+                        <Typography fontSize={"12px"}>27 Feb 15:00</Typography>
+                      </Stack>
+                      <Box
+                        width={200}
+                        borderTop={"7px solid #D85040"}
+                        borderRadius={2}
+                        mr={1}
+                      ></Box>
+                      <Typography fontSize={"12px"} textAlign={"center"}>
+                        ₹0
+                      </Typography>
+                    </Box>
+                  </Stack>
                 </Stack>
-              </Stack>
-            ) : (
-              ""
-            )}
+              ) : (
+                ""
+              )}
+            </Box>
           </Stack>
-
+          {/* Date change policy */}
           <Stack>
             <Box
               pt={2}
@@ -228,80 +295,102 @@ export default function FareDetails() {
               <KeyboardArrowRightIcon />
               <Typography fontWeight={500}>Date change policy</Typography>
             </Box>
-
-            {isDateChange ? (
-              <Stack
-                ml={4}
-                mb={2}
-                mt={2}
-                mr={4}
-                flexDirection={"row"}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-                gap={4}
-              >
-                <Stack gap={4}>
-                  <Typography fontSize={"12px"}>Change between</Typography>
-                  <Typography fontSize={"12px"}>Date change charges</Typography>
-                </Stack>
-
-                <Stack flexDirection={"row"}>
-                  <Box
-                    sx={{ display: "flex", flexDirection: "column", gap: 1 }}
-                  >
-                    <Stack
-                      flexDirection={"row"}
-                      justifyContent={"space-between"}
-                      mr={1}
-                    >
-                      <Typography fontSize={"12px"}>Now</Typography>
-                      <Typography fontSize={"12px"}>27 Feb,</Typography>
-                    </Stack>
-                    <Box
-                      width={350}
-                      borderTop={"7px solid #F2BF42"}
-                      borderRadius={2}
-                      mr={1}
-                    ></Box>
-                    <Typography fontSize={"14px"} textAlign={"center"}>
-                      ₹3,400 + Fare Difference
+            <Box
+              sx={{
+                display: {
+                  xs: "none",
+                },
+              }}
+            >
+              {isDateChange ? (
+                <Stack
+                  ml={4}
+                  mb={2}
+                  mt={2}
+                  mr={4}
+                  flexDirection={"row"}
+                  justifyContent={"space-between"}
+                  alignItems={"center"}
+                  gap={4}
+                >
+                  <Stack gap={4}>
+                    <Typography fontSize={"12px"}>Change between</Typography>
+                    <Typography fontSize={"12px"}>
+                      Date change charges
                     </Typography>
-                  </Box>
+                  </Stack>
 
-                  <Box
-                    sx={{ display: "flex", flexDirection: "column", gap: 1 }}
-                  >
-                    <Stack
-                      flexDirection={"row"}
-                      justifyContent={"space-between"}
-                      mr={1}
-                    >
-                      <Typography fontSize={"12px"}>13:00</Typography>
-                      <Typography fontSize={"12px"}>27 Feb 15:00</Typography>
-                    </Stack>
+                  <Stack flexDirection={"row"}>
                     <Box
-                      width={200}
-                      borderTop={"7px solid #D85040"}
-                      borderRadius={2}
-                      mr={1}
-                    ></Box>
-                    <Typography fontSize={"12px"} textAlign={"center"}>
-                      Non changeable
-                    </Typography>
-                  </Box>
+                      sx={{ display: "flex", flexDirection: "column", gap: 1 }}
+                    >
+                      <Stack
+                        flexDirection={"row"}
+                        justifyContent={"space-between"}
+                        mr={1}
+                      >
+                        <Typography fontSize={"12px"}>Now</Typography>
+                        <Typography fontSize={"12px"}>27 Feb,</Typography>
+                      </Stack>
+                      <Box
+                        width={350}
+                        borderTop={"7px solid #F2BF42"}
+                        borderRadius={2}
+                        mr={1}
+                      ></Box>
+                      <Typography fontSize={"14px"} textAlign={"center"}>
+                        ₹3,400 + Fare Difference
+                      </Typography>
+                    </Box>
+
+                    <Box
+                      sx={{ display: "flex", flexDirection: "column", gap: 1 }}
+                    >
+                      <Stack
+                        flexDirection={"row"}
+                        justifyContent={"space-between"}
+                        mr={1}
+                      >
+                        <Typography fontSize={"12px"}>13:00</Typography>
+                        <Typography fontSize={"12px"}>27 Feb 15:00</Typography>
+                      </Stack>
+                      <Box
+                        width={200}
+                        borderTop={"7px solid #D85040"}
+                        borderRadius={2}
+                        mr={1}
+                      ></Box>
+                      <Typography fontSize={"12px"} textAlign={"center"}>
+                        Non changeable
+                      </Typography>
+                    </Box>
+                  </Stack>
                 </Stack>
-              </Stack>
-            ) : (
-              ""
-            )}
+              ) : (
+                ""
+              )}
+            </Box>
           </Stack>
         </Stack>
       </CustomTabPanel>
       {/* </Paper> */}
       <CustomTabPanel value={value} index={1}>
-        <Stack>
+        <Stack
+          width={{
+            xs: "90vw",
+            md: "60vw",
+            xl: "40vw",
+          }}
+        >
           <Box mb={3} pl={2}>
-            <Stack mb={2} flexDirection={"row"} gap={8}>
+            <Stack
+              mb={2}
+              flexDirection={"row"}
+              gap={{
+                xs: 2,
+              }}
+              flexWrap={"wrap"}
+            >
               <Stack flexDirection={"row"} gap={1}>
                 <CalendarTodayOutlinedIcon fontSize="small" />
                 <Typography fontSize={"14px"}>
@@ -319,7 +408,13 @@ export default function FareDetails() {
                 </Typography>
               </Stack>
             </Stack>
-            <Stack flexDirection={"row"} gap={7}>
+            <Stack
+              flexDirection={"row"}
+              gap={{
+                xs: 2,
+              }}
+              flexWrap={"wrap"}
+            >
               <Stack flexDirection={"row"} gap={1}>
                 <EditCalendarOutlinedIcon fontSize="small" />
                 <Typography fontSize={"14px"}>
@@ -336,7 +431,7 @@ export default function FareDetails() {
               </Stack>
             </Stack>
           </Box>
-
+          {/* Cancellation refund policy */}
           <Stack>
             <Box
               mb={3}
@@ -355,73 +450,80 @@ export default function FareDetails() {
                 Cancellation refund policy
               </Typography>
             </Box>
+            <Box
+              sx={{
+                display: {
+                  xs: "none",
+                },
+              }}
+            >
+              {isRefund ? (
+                <Stack
+                  ml={4}
+                  mb={2}
+                  mr={4}
+                  flexDirection={"row"}
+                  justifyContent={"space-between"}
+                  alignItems={"center"}
+                  gap={4}
+                >
+                  <Stack gap={4}>
+                    <Typography fontSize={"12px"}>Cancel between</Typography>
+                    <Typography fontSize={"12px"}>Amount refundable</Typography>
+                  </Stack>
 
-            {isRefund ? (
-              <Stack
-                ml={4}
-                mb={2}
-                mr={4}
-                flexDirection={"row"}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-                gap={4}
-              >
-                <Stack gap={4}>
-                  <Typography fontSize={"12px"}>Cancel between</Typography>
-                  <Typography fontSize={"12px"}>Amount refundable</Typography>
-                </Stack>
-
-                <Stack flexDirection={"row"}>
-                  <Box
-                    sx={{ display: "flex", flexDirection: "column", gap: 1 }}
-                  >
-                    <Stack
-                      flexDirection={"row"}
-                      justifyContent={"space-between"}
-                      mr={1}
-                    >
-                      <Typography fontSize={"12px"}>Now</Typography>
-                      <Typography fontSize={"12px"}>27 Feb,</Typography>
-                    </Stack>
+                  <Stack flexDirection={"row"}>
                     <Box
-                      width={350}
-                      borderTop={"7px solid #F2BF42"}
-                      borderRadius={2}
-                      mr={1}
-                    ></Box>
-                    <Typography fontSize={"12px"} textAlign={"center"}>
-                      ₹871
-                    </Typography>
-                  </Box>
-
-                  <Box
-                    sx={{ display: "flex", flexDirection: "column", gap: 1 }}
-                  >
-                    <Stack
-                      flexDirection={"row"}
-                      justifyContent={"space-between"}
-                      mr={1}
+                      sx={{ display: "flex", flexDirection: "column", gap: 1 }}
                     >
-                      <Typography fontSize={"12px"}>13:00</Typography>
-                      <Typography fontSize={"12px"}>27 Feb 15:00</Typography>
-                    </Stack>
+                      <Stack
+                        flexDirection={"row"}
+                        justifyContent={"space-between"}
+                        mr={1}
+                      >
+                        <Typography fontSize={"12px"}>Now</Typography>
+                        <Typography fontSize={"12px"}>27 Feb,</Typography>
+                      </Stack>
+                      <Box
+                        width={350}
+                        borderTop={"7px solid #F2BF42"}
+                        borderRadius={2}
+                        mr={1}
+                      ></Box>
+                      <Typography fontSize={"12px"} textAlign={"center"}>
+                        ₹871
+                      </Typography>
+                    </Box>
+
                     <Box
-                      width={200}
-                      borderTop={"7px solid #D85040"}
-                      borderRadius={2}
-                      mr={1}
-                    ></Box>
-                    <Typography fontSize={"12px"} textAlign={"center"}>
-                      ₹0
-                    </Typography>
-                  </Box>
+                      sx={{ display: "flex", flexDirection: "column", gap: 1 }}
+                    >
+                      <Stack
+                        flexDirection={"row"}
+                        justifyContent={"space-between"}
+                        mr={1}
+                      >
+                        <Typography fontSize={"12px"}>13:00</Typography>
+                        <Typography fontSize={"12px"}>27 Feb 15:00</Typography>
+                      </Stack>
+                      <Box
+                        width={200}
+                        borderTop={"7px solid #D85040"}
+                        borderRadius={2}
+                        mr={1}
+                      ></Box>
+                      <Typography fontSize={"12px"} textAlign={"center"}>
+                        ₹0
+                      </Typography>
+                    </Box>
+                  </Stack>
                 </Stack>
-              </Stack>
-            ) : (
-              ""
-            )}
+              ) : (
+                ""
+              )}
+            </Box>
           </Stack>
-
+          {/* Date change policy */}
           <Stack>
             <Box
               pt={2}
@@ -437,72 +539,81 @@ export default function FareDetails() {
               <KeyboardArrowRightIcon />
               <Typography fontWeight={500}>Date change policy</Typography>
             </Box>
-
-            {isDateChange ? (
-              <Stack
-                ml={4}
-                mb={2}
-                mt={2}
-                mr={4}
-                flexDirection={"row"}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-                gap={4}
-              >
-                <Stack gap={4}>
-                  <Typography fontSize={"12px"}>Change between</Typography>
-                  <Typography fontSize={"12px"}>Date change charges</Typography>
-                </Stack>
-
-                <Stack flexDirection={"row"}>
-                  <Box
-                    sx={{ display: "flex", flexDirection: "column", gap: 1 }}
-                  >
-                    <Stack
-                      flexDirection={"row"}
-                      justifyContent={"space-between"}
-                      mr={1}
-                    >
-                      <Typography fontSize={"12px"}>Now</Typography>
-                      <Typography fontSize={"12px"}>27 Feb,</Typography>
-                    </Stack>
-                    <Box
-                      width={350}
-                      borderTop={"7px solid #F2BF42"}
-                      borderRadius={2}
-                      mr={1}
-                    ></Box>
-                    <Typography fontSize={"14px"} textAlign={"center"}>
-                      ₹3,400 + Fare Difference
+            <Box
+              sx={{
+                display: {
+                  xs: "none",
+                },
+              }}
+            >
+              {isDateChange ? (
+                <Stack
+                  ml={4}
+                  mb={2}
+                  mt={2}
+                  mr={4}
+                  flexDirection={"row"}
+                  justifyContent={"space-between"}
+                  alignItems={"center"}
+                  gap={4}
+                >
+                  <Stack gap={4}>
+                    <Typography fontSize={"12px"}>Change between</Typography>
+                    <Typography fontSize={"12px"}>
+                      Date change charges
                     </Typography>
-                  </Box>
+                  </Stack>
 
-                  <Box
-                    sx={{ display: "flex", flexDirection: "column", gap: 1 }}
-                  >
-                    <Stack
-                      flexDirection={"row"}
-                      justifyContent={"space-between"}
-                      mr={1}
-                    >
-                      <Typography fontSize={"12px"}>13:00</Typography>
-                      <Typography fontSize={"12px"}>27 Feb 15:00</Typography>
-                    </Stack>
+                  <Stack flexDirection={"row"}>
                     <Box
-                      width={200}
-                      borderTop={"7px solid #D85040"}
-                      borderRadius={2}
-                      mr={1}
-                    ></Box>
-                    <Typography fontSize={"12px"} textAlign={"center"}>
-                      Non changeable
-                    </Typography>
-                  </Box>
+                      sx={{ display: "flex", flexDirection: "column", gap: 1 }}
+                    >
+                      <Stack
+                        flexDirection={"row"}
+                        justifyContent={"space-between"}
+                        mr={1}
+                      >
+                        <Typography fontSize={"12px"}>Now</Typography>
+                        <Typography fontSize={"12px"}>27 Feb,</Typography>
+                      </Stack>
+                      <Box
+                        width={350}
+                        borderTop={"7px solid #F2BF42"}
+                        borderRadius={2}
+                        mr={1}
+                      ></Box>
+                      <Typography fontSize={"14px"} textAlign={"center"}>
+                        ₹3,400 + Fare Difference
+                      </Typography>
+                    </Box>
+
+                    <Box
+                      sx={{ display: "flex", flexDirection: "column", gap: 1 }}
+                    >
+                      <Stack
+                        flexDirection={"row"}
+                        justifyContent={"space-between"}
+                        mr={1}
+                      >
+                        <Typography fontSize={"12px"}>13:00</Typography>
+                        <Typography fontSize={"12px"}>27 Feb 15:00</Typography>
+                      </Stack>
+                      <Box
+                        width={200}
+                        borderTop={"7px solid #D85040"}
+                        borderRadius={2}
+                        mr={1}
+                      ></Box>
+                      <Typography fontSize={"12px"} textAlign={"center"}>
+                        Non changeable
+                      </Typography>
+                    </Box>
+                  </Stack>
                 </Stack>
-              </Stack>
-            ) : (
-              ""
-            )}
+              ) : (
+                ""
+              )}
+            </Box>
           </Stack>
         </Stack>
       </CustomTabPanel>

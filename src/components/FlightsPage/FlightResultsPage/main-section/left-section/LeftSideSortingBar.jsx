@@ -21,67 +21,115 @@ const LeftSideSortingBar = ({ getFilterFlights }) => {
   };
 
   return (
-    <div>
-      <Button
-        sx={{
-          width: "60vw",
-          display: {
-            md: "none",
-          },
-        }}
-        variant="outlined"
-        id="basic-button"
-        aria-controls={open ? "basic-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}
-      >
-        <FilterAltOutlinedIcon />
-        Filter Options
-      </Button>
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          "aria-labelledby": "basic-button",
-        }}
-      >
-        <Paper
+    <>
+      <div>
+        <Button
           sx={{
+            width: "60vw",
             display: {
-              xs: "",
+              lg: "none",
             },
-            border: "1px solid gary",
-            p: 4,
-            width: "88vw",
-            height: "60vh",
-            overflowY: "auto",
+          }}
+          variant="outlined"
+          id="basic-button"
+          aria-controls={open ? "basic-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          onClick={handleClick}
+        >
+          <FilterAltOutlinedIcon />
+          Filter Options
+        </Button>
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            "aria-labelledby": "basic-button",
           }}
         >
-          <Stack flexDirection={"column"} gap={4} sx={{ width: "22%" }}>
-            {/* <SortingByStops /> */}
+          <Paper
+            sx={{
+              border: "1px solid gary",
+              p: {
+                xs: 3,
+              },
+              width: "88vw",
+              height: "60vh",
+              overflowY: "auto",
+            }}
+          >
+            <Stack flexDirection={"column"} gap={4} sx={{ width: "22%" }}>
+              <SortByStops getFilterFlights={getFilterFlights} />
 
-            <SortByStops getFilterFlights={getFilterFlights} />
+              <SortByDeparatureTime getFilterFlights={getFilterFlights} />
 
-            {/* <SortByDepartTime /> */}
+              <SortByPriceRange getFilterFlights={getFilterFlights} />
 
-            <SortByDeparatureTime getFilterFlights={getFilterFlights} />
+              <SortByAirLines />
+            </Stack>
+          </Paper>
 
-            {/* Sort By Price */}
+          <MenuItem
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              mb: 2,
+              mt: 1,
+            }}
+            onClick={handleClose}
+          >
+            <Button
+              variant="contained"
+              sx={{
+                width: "50vw",
+                textTransform: "none",
+              }}
+            >
+              Apply
+            </Button>
+          </MenuItem>
+        </Menu>
+      </div>
+      {/* for laptop screen */}
+      <Paper
+        sx={{
+          display: {
+            xs: "none",
+            lg: "block",
+          },
+          borderRight: "1px solid lightgray",
+          p: {
+            xs: 3,
+            lg: 1,
+            xl: 3,
+          },
+          width: "25vw",
+          height: "84vh",
+          elevation: 4,
+        }}
+      >
+        <Stack
+          flexDirection={"column"}
+          gap={4}
+          sx={{
+            width: {
+              xs: "22%",
+              lg: "10%",
+            },
+          }}
+        >
+          <SortByStops getFilterFlights={getFilterFlights} />
 
-            <SortByPriceRange getFilterFlights={getFilterFlights} />
+          <SortByDeparatureTime getFilterFlights={getFilterFlights} />
 
-            {/* Sort By Airlines */}
+          <SortByPriceRange getFilterFlights={getFilterFlights} />
 
-            <SortByAirLines />
-          </Stack>
-        </Paper>
-
-        <MenuItem onClick={handleClose}>Apply</MenuItem>
-      </Menu>
-    </div>
+          {/* <SortByAirLines /> */}
+        </Stack>
+      </Paper>
+    </>
   );
 };
 

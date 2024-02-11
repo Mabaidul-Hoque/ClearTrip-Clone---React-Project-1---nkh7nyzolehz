@@ -55,7 +55,7 @@ const FlightResultsPage = () => {
           <Stack
             flexDirection={{
               xxs: "column",
-              md: "row",
+              lg: "row",
             }}
             justifyContent={"flex-start"}
             alignItems={"flex-start"}

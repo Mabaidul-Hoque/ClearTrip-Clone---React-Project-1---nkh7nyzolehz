@@ -14,6 +14,10 @@ const ReturnDateResult = () => {
   const ExampleCustomInput = forwardRef(({ returnDay, onClick }, ref) => (
     <Button
       sx={{
+        width: {
+          sm: "30vw",
+          lg: "12vw",
+        },
         background: "#FFFFFF",
         color: "#1A1A1A",
         border: "1px solid lightgray",

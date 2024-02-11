@@ -58,11 +58,11 @@ const ResultNavbar = ({ source, dest, departDay }) => {
         sx={{
           width: {
             xxs: "95%",
-            sm: "82%",
+            sm: "92%",
           },
           height: {
             xxs: "37vh",
-            sm: "19vh",
+            lg: "20vh",
           },
           margin: "0 auto",
           borderBottom: "1px solid lightgray",
@@ -73,8 +73,14 @@ const ResultNavbar = ({ source, dest, departDay }) => {
           flexDirection={"row"}
           justifyContent={"space-between"}
           alignItems={"center"}
+          mt={2}
         >
-          <div className="logo-section">
+          {/* logo-section */}
+          <Stack
+            flexDirection={"row"}
+            justifyContent={"flex-start"}
+            alignItems={"center"}
+          >
             <Link to="/">
               <img
                 className="cleartrip-logo"
@@ -83,14 +89,29 @@ const ResultNavbar = ({ source, dest, departDay }) => {
               />
             </Link>
 
-            <RightButton onClick={() => navigate("/flights")}>
+            <RightButton
+              sx={{
+                p: {
+                  xs: 0,
+                },
+              }}
+              onClick={() => navigate("/flights")}
+            >
               <LocalAirportOutlinedIcon htmlColor="#3366CC" />
             </RightButton>
 
-            <RightButton onClick={() => navigate("/hotels")}>
+            <RightButton
+              sx={{
+                p: {
+                  xs: 0,
+                },
+              }}
+              onClick={() => navigate("/hotels")}
+            >
               <HotelIcon htmlColor="#999999" fontSize="large" />
             </RightButton>
-          </div>
+          </Stack>
+          {/* login btn */}
           <Stack
             flexDirection={"row"}
             justifyContent={"center"}
@@ -156,16 +177,15 @@ const ResultNavbar = ({ source, dest, departDay }) => {
         {/* search section */}
         <Stack
           mt={1}
-          mr={"-30px"}
           flexDirection={"row"}
           justifyContent={{
             xxs: "flex-start",
-            sm: "center",
           }}
           alignItems={"center"}
           gap={{
             xxs: 1,
-            sm: 2.5,
+            xs: 2,
+            lg: 1,
           }}
           flexWrap={"wrap"}
         >
@@ -176,7 +196,7 @@ const ResultNavbar = ({ source, dest, departDay }) => {
             alignItems={"center"}
             gap={{
               xxs: 0,
-              sm: 1,
+              // sm: 1,
             }}
           >
             <ResultDepartCity
@@ -213,7 +233,11 @@ const ResultNavbar = ({ source, dest, departDay }) => {
           <Button
             variant="text"
             sx={{
-              width: "92vw",
+              width: {
+                xs: "93vw",
+                md: "89vw",
+                lg: "12vw",
+              },
               bgcolor: "#000000",
               color: "#FFFFFF",
               borderRadius: "7px",

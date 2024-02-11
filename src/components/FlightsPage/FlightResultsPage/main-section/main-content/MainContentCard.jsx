@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 // import "../../FlightResultsPage.css";
-import { Button, Stack, ThemeProvider, styled } from "@mui/material";
+import { Button, Paper, Stack, ThemeProvider, styled } from "@mui/material";
 import CurrencyRupeeOutlinedIcon from "@mui/icons-material/CurrencyRupeeOutlined";
 import TrendingFlatIcon from "@mui/icons-material/TrendingFlat";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -10,15 +10,15 @@ import { fetchFlightBookingInfo } from "../../../../../Apis/BookingApi";
 import { fetchSingleFlightDetails } from "../../../../../Apis/FlightSearchApi";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 import { CustomTheme } from "../../../../../util/muiTheme";
+import { useAuth } from "../../../../../UseContext/AuthorizationProvider";
+
 const MainContentCard = ({ airplane, planeLogoName, index }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [airplaneId, setAirplaneId] = useState(-1);
-
   const navigate = useNavigate();
   const { singleFlightValue } = useFlightSearch();
   const { setSingleFlight } = singleFlightValue;
-
-  // console.log("planeLogoName", planeLogoName);
+  const { token } = useAuth().tokenDetails;
 
   const handleBookBtn = () => {
     fetchSingleFlightDetails(airplane._id).then((resp) => {
@@ -37,7 +37,7 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
 
   return (
     <ThemeProvider theme={CustomTheme}>
-      <div className="main-content-card">
+      <Paper elevation={8} className="main-content-card">
         <Stack
           className="initial-card-data"
           flexDirection={{
@@ -121,12 +121,14 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
                 <span style={{ fontSize: "11px" }}>UK- 807</span>
               </Stack>
             </Stack>
-            {/* duration depart time arrival time */}
+            {/*  depart time and duration and arrival time */}
             <div className="depart-time">{airplane.departureTime}</div>
             <Stack
               flexDirection={"column"}
-              justifyContent={"space-around"}
               alignItems={"center"}
+              gap={{
+                xs: 0,
+              }}
             >
               <span className="duration">{airplane.duration} hrs</span>
 
@@ -139,6 +141,7 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
             flexDirection={"row"}
             justifyContent={{
               xs: "space-between",
+              sm: "space-around",
             }}
             width={{
               xs: "80vw",
@@ -182,7 +185,9 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
                 className="book-btn"
                 onClick={() => {
                   handleBookBtn();
-                  navigate(`/flights/itinerary/${airplane._id}`);
+                  token
+                    ? navigate(`/flights/itinerary/${airplane._id}`)
+                    : alert("To book a flight please login first");
                 }}
               >
                 Book
@@ -217,6 +222,7 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
         {/* single flight details popup */}
         {airplane.flightID === airplaneId && isOpen ? (
           <div className="view-details-card-data">
+            {/* view-details-header */}
             <Stack
               className="view-details-header"
               flexDirection={"row"}
@@ -236,11 +242,18 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
               </Stack>
               <div>{localStorage.getItem("day")}</div>
             </Stack>
-
+            {/* view-details-content */}
             <Stack
               flexDirection={{
                 xs: "column",
                 sm: "row",
+              }}
+              justifyContent={{
+                sm: "space-between",
+              }}
+              width={{
+                sm: "88vw",
+                lg: "66vw",
               }}
               p={{
                 xs: "0 10px",
@@ -328,7 +341,7 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
                 </span> */}
                 </Stack>
               </div>
-
+              {/* deparature and duration and arrival section */}
               <Stack
                 flexDirection={{
                   xs: "row",
@@ -338,8 +351,11 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
                 }}
                 width={{
                   xs: "75vw",
+                  sm: "40vw",
+                  lg: "30vw",
                 }}
               >
+                {/* deparature-details */}
                 <div className="deparature-details">
                   <div className="departure-rource-time">
                     <span>{airplane.source}</span>
@@ -349,12 +365,12 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
                     {localStorage.getItem("day")} 2023
                   </div>
                 </div>
+                {/* duration */}
                 <Stack
                   justifyContent={"center"}
                   alignItems={"center"}
                   gap={{
                     xs: 0,
-                    sm: 2,
                   }}
                   mt={{
                     xs: -1,
@@ -363,6 +379,7 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
                   <AccessTimeIcon htmlColor="gray" />
                   <span>{airplane.duration}h</span>
                 </Stack>
+                {/* arrival-details */}
                 <div className="arrival-details">
                   <div className="arriavl-dest-time">
                     <span>{airplane.destination}</span>
@@ -373,19 +390,27 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
                   </div>
                 </div>
               </Stack>
+              {/* baggage know and more btn */}
               <Stack
                 flexDirection={{
                   xs: "row",
                 }}
+                justifyContent={{
+                  lg: "space-evenly",
+                }}
               >
+                {/* baggage */}
                 <Stack
                   justifyContent={"flex-start"}
                   alignItems={"flex-start"}
                   gap={{
                     xs: 0.5,
+                    lg: 1,
                   }}
                   width={{
                     xs: "85vw",
+                    sm: "20vw",
+                    lg: "13vw",
                   }}
                   mb={{
                     xs: 2,
@@ -394,17 +419,23 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
                   <span>Check-in baggage</span>
                   <span>Cabin baggage</span>
                 </Stack>
+                {/* know more btn */}
                 <Button
                   variant="text"
                   sx={{
                     width: {
                       xs: "70vw",
+                      sm: "10vw",
                     },
                     height: {
                       xs: "2.5rem",
                     },
                     padding: {
                       xs: 0,
+                    },
+                    fontSize: {
+                      sm: "12px",
+                      lg: "14px",
                     },
                     textTransform: "none",
                   }}
@@ -415,7 +446,7 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
             </Stack>
           </div>
         ) : null}
-      </div>
+      </Paper>
     </ThemeProvider>
   );
 };

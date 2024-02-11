@@ -1,43 +1,83 @@
 import { Box, Stack, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import FareDetails from "./FareDetails";
 import ContactDetails from "./ContactDetails";
-import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
 import { fetchFlightBookingInfo } from "../../../../../Apis/BookingApi";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
+import FareSelection from "./FareSelection";
+import "../FlightBookingPage.css";
+import FlightPriceCard from "./FlightPriceCard";
 
-const imgurl = "../../../../../../public/assests/plane_logo/air-india-logo.png";
 const BookingDetails = ({ flightId }) => {
+  // const [modifiedFlight, setModifiedFlight] = useState({});
   const { singleFlight } = useFlightSearch().singleFlightValue;
+
+  // still not working because we need source and destination
+  // useEffect(() => {
+  //   if (airports.length > 0 && Object.keys(singleFlight).length !== 0) {
+  //     console.log("filter if cond");
+  //     const filteredAirport = airports?.filter((airport) => {
+  //       return airport.iata_code === singleFlight.source;
+  //     });
+  //     setModifiedFlight(filteredAirport[0]);
+  //   }
+  // }, [singleFlight]);
 
   const handleContinue = () => {
     fetchFlightBookingInfo(flightId).then((resp) => {
-      // console.log(resp);
       alert("Booking Successfull");
     });
   };
 
   return (
-    <div>
-      {/* details 1 */}
-      <div className="details-one">
-        <Stack
-          className="details-two"
-          mb={4}
-          flexDirection={"row"}
-          alignItems={"flex-end"}
-          gap={2}
+    <div className="booking-details">
+      {/* header */}
+      <Stack
+        mb={4}
+        mt={{
+          xs: -3,
+        }}
+        flexDirection={"row"}
+        alignItems={"center"}
+        gap={2}
+        width={{
+          xs: "90vw",
+          md: "60vw",
+        }}
+      >
+        <div className="number-circle">
+          <span>1</span>
+        </div>
+        <Typography
+          fontSize={{
+            xs: "24px",
+          }}
+          fontWeight={500}
         >
-          <div className="number-circle">
-            <span>1</span>
-          </div>
-          <h1 style={{ fontWeight: "500" }}>Review your itinerary</h1>
-        </Stack>
-
-        <Stack>
-          <Stack mb={2} flexDirection={"row"} alignItems={"flex-end"} gap={2}>
+          Review your itinerary
+        </Typography>
+      </Stack>
+      {/* flight details */}
+      <Stack
+        sx={{
+          width: "60vw",
+        }}
+      >
+        {/* flight 1 details */}
+        <div className="details-one">
+          {/* header */}
+          <Stack
+            mb={2}
+            flexDirection={"row"}
+            alignItems={"flex-end"}
+            gap={2}
+            width={{
+              xs: "90vw",
+              md: "60vw",
+            }}
+          >
             <Stack
               flexDirection={"row"}
               alignItems={"center"}
@@ -51,15 +91,22 @@ const BookingDetails = ({ flightId }) => {
               {localStorage.getItem("day")} 2024
             </Typography>
           </Stack>
-
-          <Stack flexDirection={"row"} gap={2}>
+          {/* main content */}
+          <Stack
+            flexDirection={"row"}
+            gap={2}
+            width={{
+              xs: "90vw",
+            }}
+          >
+            {/* left part */}
             <Stack>
               <img
-                width={"60px"}
+                className="booking-image"
                 src="https://seeklogo.com/images/V/vistara-logo-C07710BC2B-seeklogo.com.png"
                 alt="vistara-logo"
               />
-              <Typography mt={1} fontSize={"12px"}>
+              <Typography mt={1} fontSize={"14px"} fontWeight={600}>
                 IndiGo
               </Typography>
               <Typography fontSize={"12px"}>6E-2519</Typography>
@@ -71,7 +118,7 @@ const BookingDetails = ({ flightId }) => {
               <div className="dashed-line"></div>
               <div className="end-circle"></div>
             </div>
-
+            {/* right part depart destinatin */}
             <Stack gap={4}>
               <Typography>
                 <span
@@ -107,75 +154,93 @@ const BookingDetails = ({ flightId }) => {
               </Typography>
             </Stack>
           </Stack>
-
-          <Box mt={3} mb={3} sx={{ borderBottom: "1px dotted #E6E6E6" }}></Box>
-
-          <div className="details-two">
-            <Stack mb={2} flexDirection={"row"} alignItems={"flex-end"} gap={2}>
-              <Stack
-                flexDirection={"row"}
-                alignItems={"center"}
-                sx={{ fontWeight: "600", fontSize: "18px" }}
-              >
-                {singleFlight.destination}
-                <ArrowForwardIcon fontSize="small" />
-                {singleFlight.source}
-              </Stack>
-              <Typography fontSize={"14px"}>Thu, 10 Aug 2023</Typography>
+        </div>
+        <Box mt={3} mb={3} sx={{ borderBottom: "1px dotted #E6E6E6" }}></Box>
+        {/* flight 2 details */}
+        <div className="details-two">
+          {/* header */}
+          <Stack
+            mb={2}
+            flexDirection={"row"}
+            alignItems={"flex-end"}
+            gap={2}
+            width={{
+              xs: "90vw",
+            }}
+          >
+            <Stack
+              flexDirection={"row"}
+              alignItems={"center"}
+              sx={{ fontWeight: "600", fontSize: "18px" }}
+            >
+              {singleFlight.destination}
+              <ArrowForwardIcon fontSize="small" />
+              {singleFlight.source}
             </Stack>
-            <Stack flexDirection={"row"} gap={2}>
-              <Stack>
-                <img
-                  width={"60px"}
-                  src="https://seeklogo.com/images/V/vistara-logo-C07710BC2B-seeklogo.com.png"
-                  alt="vistara-logo"
-                />
-                <Typography mt={1} fontSize={"12px"}>
-                  IndiGo
-                </Typography>
-                <Typography fontSize={"12px"}>6E-2519</Typography>
-                <Typography fontSize={"12px"}>Economy</Typography>
-              </Stack>
-
-              <div className="dashed-line-container">
-                <div className="start-circle"></div>
-                <div className="dashed-line"></div>
-                <div className="end-circle"></div>
-              </div>
-
-              <Stack gap={4}>
-                <Typography>
-                  <span style={{ fontSize: "18px", fontWeight: "500" }}>
-                    {singleFlight.arrivalTime} {singleFlight.destination}{" "}
-                  </span>
-                  <span style={{ fontSize: "12px", fontWeight: "500" }}>
-                    Indira Gandhi Airport New Delhi, Terminal 2
-                  </span>
-                </Typography>
-                <Stack flexDirection={"row"} alignItems={"flex-start"} gap={1}>
-                  <AccessTimeIcon htmlColor="gray" />
-                  <span>2h 5m</span>
-                </Stack>
-                <Typography>
-                  <span style={{ fontSize: "18px", fontWeight: "500" }}>
-                    {singleFlight.departureTime} {singleFlight.source}{" "}
-                  </span>
-                  <span style={{ fontSize: "12px", fontWeight: "500" }}>
-                    Chatrapati Shivaji Airport Mumbai, Terminal 2
-                  </span>
-                </Typography>
-              </Stack>
+            <Typography fontSize={"14px"}>Thu, 10 Aug 2023</Typography>
+          </Stack>
+          {/* main content */}
+          <Stack
+            flexDirection={"row"}
+            gap={2}
+            width={{
+              xs: "90vw",
+            }}
+          >
+            {/* left part */}
+            <Stack>
+              <img
+                width={"60px"}
+                src="https://seeklogo.com/images/V/vistara-logo-C07710BC2B-seeklogo.com.png"
+                alt="vistara-logo"
+              />
+              <Typography mt={1} fontSize={"14px"} fontWeight={600}>
+                IndiGo
+              </Typography>
+              <Typography fontSize={"12px"}>6E-2519</Typography>
+              <Typography fontSize={"12px"}>Economy</Typography>
             </Stack>
-          </div>
-        </Stack>
 
-        {/* fare details */}
-        <FareDetails />
+            <div className="dashed-line-container">
+              <div className="start-circle"></div>
+              <div className="dashed-line"></div>
+              <div className="end-circle"></div>
+            </div>
+            {/* right part */}
+            <Stack gap={4}>
+              <Typography>
+                <span style={{ fontSize: "18px", fontWeight: "500" }}>
+                  {singleFlight.arrivalTime} {singleFlight.destination}{" "}
+                </span>
+                <span style={{ fontSize: "12px", fontWeight: "500" }}>
+                  Indira Gandhi Airport New Delhi, Terminal 2
+                </span>
+              </Typography>
+              <Stack flexDirection={"row"} alignItems={"flex-start"} gap={1}>
+                <AccessTimeIcon htmlColor="gray" />
+                <span>2h 5m</span>
+              </Stack>
+              <Typography>
+                <span style={{ fontSize: "18px", fontWeight: "500" }}>
+                  {singleFlight.departureTime} {singleFlight.source}{" "}
+                </span>
+                <span style={{ fontSize: "12px", fontWeight: "500" }}>
+                  Chatrapati Shivaji Airport Mumbai, Terminal 2
+                </span>
+              </Typography>
+            </Stack>
+          </Stack>
+        </div>
+      </Stack>
+      <Box mt={3} mb={3} sx={{ borderBottom: "1px dotted #E6E6E6" }}></Box>
 
-        {/* contact details */}
-        <ContactDetails handleContinue={handleContinue} />
-        <Stack mt={10}></Stack>
-      </div>
+      {/* fare selection */}
+      <FareSelection singleFlight={singleFlight} />
+      {/* fare details */}
+      <FareDetails />
+      {/* contact details */}
+      <ContactDetails handleContinue={handleContinue} />
+      <Stack mt={10}></Stack>
     </div>
   );
 };

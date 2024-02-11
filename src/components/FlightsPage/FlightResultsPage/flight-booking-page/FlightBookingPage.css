@@ -5,17 +5,14 @@
     margin: 0 auto;
 }
 
-#booking-details{
-    max-width: 40vw;
+.booking-details{
+    width: 60vw;
 }
 #price-cards{
-    max-width: 30vw;
     position: -webkit-sticky;
     position: sticky;
     top: 40px;
 }
-
-
 .number-circle{
     border-radius: 50%;
     width: 36px;
@@ -29,15 +26,12 @@
     justify-content: center;
     align-items: center;
 }
-
-
 .dashed-line-container {
     display: flex;
     align-items: center;
     position: relative;
     margin-top: 5px;
   }
-  
   .start-circle,
   .end-circle {
     position: absolute;
@@ -59,11 +53,14 @@
     border-left: 2px dashed #999999; /* Replace with your desired color */
     margin-left: 5px; /* Adjust the margin based on your design */
   }
-
+/* fare selection */
  .fare{
     display: flex;
     justify-content: space-between;
  } 
+ .fare-selected{
+  background-color: rgb(47, 47, 233);
+ }
 .mobile-label,
 .email-label{
   margin-bottom: 10px;
@@ -116,6 +113,77 @@
  }
 
 
+ @media screen and (min-width: 320px) {
+  #price-cards{
+    display: none;
+  }
+  .flight-booking-navabr,
+  #flight-booking-main{
+    width: 92%;
+  }
+  .booking-image{
+    width: 3rem;
+  }
+  .mobile-input{
+    width: 58vw;
+    padding-left: 10px;
+  }
+  .email-input{
+    width: 80vw;
+  }
+  .continue-btn{
+    width: 80vw;
+  }
+ }
+ @media screen and (min-width: 450px) {
+  .mobile-input{
+    width: 60vw;
+  }
+ }
+ @media screen and (min-width: 550px) {
+  .mobile-input{
+    width: 64vw;
+  }
+ }
+
+ @media screen and (min-width: 900px) {
+   #price-cards{
+    display: block;
+  }
+  /*
+  .flight-booking-navabr,
+  #flight-booking-main{
+    width: 92%;
+  }
+  .booking-image{
+    width: 3rem;
+  }*/
+  
+  .email-input{
+    width: 54.5vw;
+  }
+  .continue-btn{
+    width: 20vw;
+  } 
+ }
+ @media screen and (min-width: 1280px) {
  
+ .flight-booking-navabr,
+ #flight-booking-main{
+   width: 88%;
+ }
+ .booking-image{
+   width: 3rem;
+ }
+ .mobile-input{
+  width: 40vw;
+ }
+ .email-input{
+   width: 47vw;
+ }
+ .continue-btn{
+   width: 10rem;
+ } 
+}
 
   

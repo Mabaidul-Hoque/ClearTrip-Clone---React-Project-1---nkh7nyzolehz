@@ -1,10 +1,9 @@
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, ThemeProvider, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
-
+import { CustomTheme } from "../../../../../util/muiTheme";
 const SortByStops = ({ getFilterFlights }) => {
   const [stop, setStop] = useState(true);
   const [nonStop, setNonStop] = useState(false);
@@ -104,22 +103,34 @@ const SortByStops = ({ getFilterFlights }) => {
   };
 
   return (
-    <>
+    <ThemeProvider theme={CustomTheme}>
       <Box>
         <Stack
-          flexDirection={"row"}
-          justifyContent={"space-between"}
-          alignItems={"center"}
           className="sort-by-stops"
+          flexDirection={"row"}
+          alignItems={"center"}
           onClick={handleStopBnt}
         >
-          <span>Stops</span>
-          <span>
-            {stop ? <KeyboardArrowUpOutlinedIcon /> : <KeyboardArrowDownIcon />}
-          </span>
+          <Typography
+            fontWeight={600}
+            sx={{
+              letterSpacing: 2,
+            }}
+          >
+            Stops
+          </Typography>
+
+          {stop ? <KeyboardArrowUpOutlinedIcon /> : <KeyboardArrowDownIcon />}
         </Stack>
         {stop ? (
-          <Stack justifyContent={"center"} alignItems={"flex-start"} gap={1}>
+          <Stack
+            justifyContent={"center"}
+            alignItems={"flex-start"}
+            gap={1}
+            width={{
+              lg: "20vw",
+            }}
+          >
             <div
               onClick={() => {
                 setNonStop((prev) => !prev);
@@ -178,7 +189,7 @@ const SortByStops = ({ getFilterFlights }) => {
           </Stack>
         ) : null}
       </Box>
-    </>
+    </ThemeProvider>
   );
 };
 

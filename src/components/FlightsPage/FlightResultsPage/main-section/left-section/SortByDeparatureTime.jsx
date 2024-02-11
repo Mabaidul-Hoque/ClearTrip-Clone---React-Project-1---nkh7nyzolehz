@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -98,13 +98,24 @@ const SortByDeparatureTime = ({ getFilterFlights }) => {
     <>
       <div>
         <Stack
-          flexDirection={"row"}
-          justifyContent={"space-between"}
-          alignItems={"center"}
           className="sort-by-depart-time"
+          flexDirection={"row"}
+          alignItems={"center"}
+          sx={{
+            width: {
+              xs: "12rem",
+            },
+          }}
           onClick={handleDeparaturebtn}
         >
-          <div>Departure time</div>
+          <Typography
+            fontWeight={600}
+            sx={{
+              letterSpacing: 2,
+            }}
+          >
+            Departure time
+          </Typography>
           <span>
             {isDeparature ? (
               <KeyboardArrowUpOutlinedIcon />
@@ -116,10 +127,16 @@ const SortByDeparatureTime = ({ getFilterFlights }) => {
         {isDeparature ? (
           <Stack gap={1}>
             <Stack
-              flexDirection={"row"}
-              justifyContent={"space-between"}
-              alignItems={"center"}
               className="depart-time-options"
+              flexDirection={"row"}
+              justifyContent={{
+                xs: "space-between",
+                lg: "flex-start",
+              }}
+              gap={{
+                lg: 1,
+              }}
+              alignItems={"center"}
               onClick={() => {
                 setIsEarlyMorning((prev) => !prev);
                 handleEarlyMorningFilter();
@@ -134,11 +151,17 @@ const SortByDeparatureTime = ({ getFilterFlights }) => {
                 />
                 <span>Early morning</span>
               </div>
-              <span className="flight-time-range">Midnight - 8 am</span>
+              <span className="flight-time-range">( Midnight - 8 am )</span>
             </Stack>
             <Stack
               flexDirection={"row"}
-              justifyContent={"space-between"}
+              justifyContent={{
+                xs: "space-between",
+                lg: "flex-start",
+              }}
+              gap={{
+                lg: 1,
+              }}
               alignItems={"center"}
               className="depart-time-options"
               onClick={() => {
@@ -156,11 +179,17 @@ const SortByDeparatureTime = ({ getFilterFlights }) => {
                 <span>Morning</span>
               </div>
 
-              <span className="flight-time-range">8 am - Noon</span>
+              <span className="flight-time-range">( 8 am - Noon )</span>
             </Stack>
             <Stack
               flexDirection={"row"}
-              justifyContent={"space-between"}
+              justifyContent={{
+                xs: "space-between",
+                lg: "flex-start",
+              }}
+              gap={{
+                lg: 1,
+              }}
               alignItems={"center"}
               className="depart-time-options"
               onClick={() => {
@@ -178,11 +207,17 @@ const SortByDeparatureTime = ({ getFilterFlights }) => {
                 <span>Afternoon</span>
               </div>
 
-              <span className="flight-time-range">Noon - 4 pm</span>
+              <span className="flight-time-range">( Noon - 4 pm )</span>
             </Stack>
             <Stack
               flexDirection={"row"}
-              justifyContent={"space-between"}
+              justifyContent={{
+                xs: "space-between",
+                lg: "flex-start",
+              }}
+              gap={{
+                lg: 1,
+              }}
               alignItems={"center"}
               className="depart-time-options"
               onClick={() => {
@@ -200,11 +235,17 @@ const SortByDeparatureTime = ({ getFilterFlights }) => {
                 <span>Evening</span>
               </div>
 
-              <span className="flight-time-range">4 pm - 8 pm</span>
+              <span className="flight-time-range">( 4 pm - 8 pm )</span>
             </Stack>
             <Stack
               flexDirection={"row"}
-              justifyContent={"space-between"}
+              justifyContent={{
+                xs: "space-between",
+                lg: "flex-start",
+              }}
+              gap={{
+                lg: 1,
+              }}
               alignItems={"center"}
               className="depart-time-options"
               onClick={() => {
@@ -222,7 +263,7 @@ const SortByDeparatureTime = ({ getFilterFlights }) => {
                 <span>Night</span>
               </div>
 
-              <span className="flight-time-range">4 pm - Midnight</span>
+              <span className="flight-time-range">( 4 pm - Midnight )</span>
             </Stack>
           </Stack>
         ) : null}

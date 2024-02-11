@@ -6,9 +6,10 @@ import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 
 const CustomPaper = styled(Paper)({
-  width: "20vw",
+  width: "18rem",
   height: "55vh",
-
+  position: "sticky",
+  top: "40px",
   borderTop: "1px solid lightgray",
   borderLeft: "1px solid lightgray",
   borderRight: "1px solid lightgray",

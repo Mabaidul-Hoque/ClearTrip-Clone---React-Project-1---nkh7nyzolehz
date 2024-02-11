@@ -16,13 +16,19 @@ const SortByAirLines = () => {
   return (
     <div>
       <Stack
-        flexDirection={"row"}
-        justifyContent={"space-between"}
-        alignItems={"center"}
         className="sort-by-airlines"
+        flexDirection={"row"}
+        alignItems={"center"}
         onClick={handlePlanebtn}
       >
-        <div>Airlines</div>
+        <Typography
+          fontWeight={600}
+          sx={{
+            letterSpacing: 2,
+          }}
+        >
+          Airlines
+        </Typography>
         <span>
           {isPlane ? (
             <KeyboardArrowUpOutlinedIcon />
@@ -31,11 +37,19 @@ const SortByAirLines = () => {
           )}
         </span>
       </Stack>
+      {/* airline options */}
       {isPlane ? (
         <Stack gap={1}>
           <Stack
+            className="airlines-options"
             flexDirection={"row"}
-            justifyContent={"space-between"}
+            justifyContent={{
+              xs: "space-between",
+              lg: "flex-start",
+            }}
+            gap={{
+              lg: 1,
+            }}
             alignItems={"center"}
             sx={{
               cursor: "pointer",
@@ -50,8 +64,15 @@ const SortByAirLines = () => {
             </div>
           </Stack>
           <Stack
+            className="airlines-options"
             flexDirection={"row"}
-            justifyContent={"space-between"}
+            justifyContent={{
+              xs: "space-between",
+              lg: "flex-start",
+            }}
+            gap={{
+              lg: 1,
+            }}
             alignItems={"center"}
             sx={{
               cursor: "pointer",
@@ -72,8 +93,15 @@ const SortByAirLines = () => {
             </div>
           </Stack>
           <Stack
+            className="airlines-options"
             flexDirection={"row"}
-            justifyContent={"space-between"}
+            justifyContent={{
+              xs: "space-between",
+              lg: "flex-start",
+            }}
+            gap={{
+              lg: 1,
+            }}
             alignItems={"center"}
             sx={{
               cursor: "pointer",
@@ -94,8 +122,15 @@ const SortByAirLines = () => {
             </div>
           </Stack>
           <Stack
+            className="airlines-options"
             flexDirection={"row"}
-            justifyContent={"space-between"}
+            justifyContent={{
+              xs: "space-between",
+              lg: "flex-start",
+            }}
+            gap={{
+              lg: 1,
+            }}
             alignItems={"center"}
             sx={{
               cursor: "pointer",
@@ -116,8 +151,15 @@ const SortByAirLines = () => {
             </div>
           </Stack>
           <Stack
+            className="airlines-options"
             flexDirection={"row"}
-            justifyContent={"space-between"}
+            justifyContent={{
+              xs: "space-between",
+              lg: "flex-start",
+            }}
+            gap={{
+              lg: 1,
+            }}
             alignItems={"center"}
             sx={{
               cursor: "pointer",
@@ -138,8 +180,15 @@ const SortByAirLines = () => {
             </div>
           </Stack>
           <Stack
+            className="airlines-options"
             flexDirection={"row"}
-            justifyContent={"space-between"}
+            justifyContent={{
+              xs: "space-between",
+              lg: "flex-start",
+            }}
+            gap={{
+              lg: 1,
+            }}
             alignItems={"center"}
             sx={{
               cursor: "pointer",
@@ -160,8 +209,15 @@ const SortByAirLines = () => {
             </div>
           </Stack>
           <Stack
+            className="airlines-options"
             flexDirection={"row"}
-            justifyContent={"space-between"}
+            justifyContent={{
+              xs: "space-between",
+              lg: "flex-start",
+            }}
+            gap={{
+              lg: 1,
+            }}
             alignItems={"center"}
             sx={{
               cursor: "pointer",

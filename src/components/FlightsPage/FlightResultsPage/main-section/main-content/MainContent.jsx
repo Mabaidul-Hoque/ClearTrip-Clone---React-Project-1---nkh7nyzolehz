@@ -52,9 +52,19 @@ const MainContent = ({ getFilterFlights, source, dest, departDay }) => {
       <Stack
         className="card-header"
         flexDirection={"row"}
-        justifyContent={"flex-start"}
-        gap={15}
-        mb={1}
+        justifyContent={"space-between"}
+        width={{
+          sm: "45vw",
+          lg: "33vw",
+          xl: "35vw",
+        }}
+        mt={{
+          lg: 3,
+        }}
+        mb={{
+          md: 1,
+          lg: 3,
+        }}
         display={{
           xs: "none",
           sm: "flex",
@@ -63,13 +73,12 @@ const MainContent = ({ getFilterFlights, source, dest, departDay }) => {
         <Typography ml={-10}>Airlines</Typography>
         <Stack
           flexDirection={"row"}
-          gap={{
-            xs: "2vw",
-            sm: 6,
+          justifyContent={{
+            sm: "space-between",
           }}
-          mr={{
-            xs: "2vw",
-            sm: 10,
+          width={{
+            sm: "28vw",
+            lg: "20vw",
           }}
         >
           <Typography>Departure</Typography>
