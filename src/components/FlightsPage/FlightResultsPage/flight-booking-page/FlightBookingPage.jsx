@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import FlightBookingNavbar from "./flight-booking-navbar/FlightBookingNavbar";
 import { Box, Stack } from "@mui/material";
 import BookingDetails from "./flight-booking-main/BookingDetails";
@@ -13,11 +13,9 @@ const FlightBookingPage = () => {
 
   useEffect(() => {
     fetchSingleFlightDetails(flightId).then((resp) => {
-      console.log("Single flight details:", resp);
       setSingleFlight(resp.data);
     });
   }, []);
-  console.log("singleFlight", singleFlight);
 
   return (
     <div className="flight-booking-page">

@@ -17,6 +17,7 @@ import AuthorizationProvider from "./UseContext/AuthorizationProvider";
 import SignupPage from "./components/Login-signup/SignupPage";
 import LoginPage from "./components/Login-signup/LoginPage";
 import FlightBookingPage from "./components/FlightsPage/FlightResultsPage/flight-booking-page/FlightBookingPage";
+import FBConfirmation from "./components/FlightsPage/FlightResultsPage/flight-booking-page/flight-booking-confirmation/FBConfirmation";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
   {
     path: "/flights/itinerary/:flightId",
     element: <FlightBookingPage />,
+  },
+  {
+    path: "/flights/flight_booking_confirmation/:flightId",
+    element: <FBConfirmation />,
   },
   {
     path: "/hotels/results",

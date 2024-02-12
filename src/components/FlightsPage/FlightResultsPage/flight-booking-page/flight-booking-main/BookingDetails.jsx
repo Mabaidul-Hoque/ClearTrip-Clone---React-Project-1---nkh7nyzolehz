@@ -1,34 +1,20 @@
 import { Box, Stack, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import FareDetails from "./FareDetails";
 import ContactDetails from "./ContactDetails";
-import { fetchFlightBookingInfo } from "../../../../../Apis/BookingApi";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 import FareSelection from "./FareSelection";
 import "../FlightBookingPage.css";
-import FlightPriceCard from "./FlightPriceCard";
+import { useNavigate } from "react-router-dom";
 
 const BookingDetails = ({ flightId }) => {
-  // const [modifiedFlight, setModifiedFlight] = useState({});
   const { singleFlight } = useFlightSearch().singleFlightValue;
-
-  // still not working because we need source and destination
-  // useEffect(() => {
-  //   if (airports.length > 0 && Object.keys(singleFlight).length !== 0) {
-  //     console.log("filter if cond");
-  //     const filteredAirport = airports?.filter((airport) => {
-  //       return airport.iata_code === singleFlight.source;
-  //     });
-  //     setModifiedFlight(filteredAirport[0]);
-  //   }
-  // }, [singleFlight]);
+  const navigate = useNavigate();
 
   const handleContinue = () => {
-    fetchFlightBookingInfo(flightId).then((resp) => {
-      alert("Booking Successfull");
-    });
+    navigate(`/flights/flight_booking_confirmation/${flightId}`);
   };
 
   return (
