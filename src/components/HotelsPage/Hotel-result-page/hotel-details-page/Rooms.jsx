@@ -18,7 +18,7 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
 
 const Rooms = ({ singleHotel }) => {
   return (
-    <div className="rooms">
+    <div id="rooms">
       <h2>Rooms available</h2>
       <div className="room-cards">
         {singleHotel.rooms &&

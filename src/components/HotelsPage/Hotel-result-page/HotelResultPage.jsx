@@ -102,7 +102,7 @@ const HotelResultPage = () => {
           </div>
         )}
       </main>
-
+      {/* pagination */}
       <Stack mt={4} mb={4} flexDirection={"row"} justifyContent={"center"}>
         <div>
           <Pagination

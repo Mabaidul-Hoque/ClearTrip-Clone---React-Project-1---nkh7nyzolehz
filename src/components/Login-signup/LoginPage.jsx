@@ -8,23 +8,6 @@ import { useAuth } from "../../UseContext/AuthorizationProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import SignupPage from "./SignupPage";
 
-const modalStyle = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "60vw",
-  height: "66vh",
-  bgcolor: "background.paper",
-  borderRadius: "15px",
-  // boxShadow: 24,
-  border: "none",
-  p: 4,
-  display: "flex",
-  flexDirection: "row",
-  gap: "20px",
-};
-
 const closeBtn = {
   "&:hover": {
     cursor: "pointer",
@@ -82,11 +65,14 @@ const LoginPage = () => {
           handleLoginClose();
           navigate("/");
         }}
-        sx={{ borderColor: "none", outline: "none" }}
+        sx={{
+          borderColor: "none",
+          outline: "none",
+        }}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={modalStyle}>
+        <div className="login-modal">
           <div className="modal-left">
             <img
               src="https://fastui.cltpstatic.com/image/upload/f_auto,q_auto,w_410,h_337,dpr_2/offermgmt/images/slider2.png"
@@ -144,7 +130,7 @@ const LoginPage = () => {
               </div>
             </div>
           </div>
-        </Box>
+        </div>
       </Modal>
     </div>
   );

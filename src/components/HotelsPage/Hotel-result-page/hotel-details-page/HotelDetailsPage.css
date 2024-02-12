@@ -8,9 +8,11 @@
 }
 .topic{
     padding-bottom: 5px;
+    text-decoration: none;
+    color: black;
 }
 .active-topic {
-    color: black;
+    color: blue;
     border-bottom: 2px solid;
 }
 
@@ -80,7 +82,7 @@
     background-color: #CE4501;
 }
 
-.rooms>h2{
+#rooms>h2{
     margin-bottom: 20px;
 }
 .room-cards{
@@ -134,7 +136,7 @@
     font-size: 18px;
     font-weight: 500;
 }
-.amentities{
+#amentities{
     margin-top: 40px;
 }
 .amenty{

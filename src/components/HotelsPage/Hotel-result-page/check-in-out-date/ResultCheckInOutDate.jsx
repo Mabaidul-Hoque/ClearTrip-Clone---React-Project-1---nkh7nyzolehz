@@ -7,7 +7,6 @@ import { styled } from "@mui/material/styles";
 import { useFlightSearch } from "../../../../UseContext/FlightsSearchProvider";
 
 const CustomButton = styled(Button)({
-  width: "8rem",
   lineHeight: 2,
   background: "#FFFFFF",
   color: "#1A1A1A",
@@ -27,19 +26,35 @@ export const ResultCheckInOutDate = () => {
   const { handleReturnDateChange, returnDay, returnDate } = returnValue;
 
   const CustomInput1 = forwardRef(({ departDay, onClick }, ref) => (
-    <CustomButton onClick={onClick} ref={ref}>
+    <CustomButton
+      sx={{
+        width: {
+          xs: "9rem",
+        },
+      }}
+      onClick={onClick}
+      ref={ref}
+    >
       {departDay}
     </CustomButton>
   ));
 
   const CustomInput2 = forwardRef(({ returnDay, onClick }, ref) => (
-    <CustomButton onClick={onClick} ref={ref}>
+    <CustomButton
+      sx={{
+        width: {
+          xs: "9rem",
+        },
+      }}
+      onClick={onClick}
+      ref={ref}
+    >
       {returnDay}
     </CustomButton>
   ));
 
   return (
-    <>
+    <div className="hres-check-in-out-container">
       <DatePicker
         className="date-picker-btn"
         required
@@ -56,6 +71,6 @@ export const ResultCheckInOutDate = () => {
         onChange={handleReturnDateChange}
         customInput={<CustomInput2 returnDay={returnDay} />}
       />
-    </>
+    </div>
   );
 };

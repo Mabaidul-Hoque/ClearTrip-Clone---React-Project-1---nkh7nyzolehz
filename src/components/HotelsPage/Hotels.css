@@ -153,8 +153,6 @@ input[placeholder="Search your favourite hotels"]{
     font-size: 16px;
     font-weight: 500;
 }
-
-
 .h-search-btn-container{
     display: flex;
     justify-content: flex-end;

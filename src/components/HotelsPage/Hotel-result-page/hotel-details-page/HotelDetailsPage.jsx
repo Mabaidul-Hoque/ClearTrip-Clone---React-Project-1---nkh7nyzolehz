@@ -28,7 +28,24 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
   textAlign: "center",
 }));
 
-const detailTopics = ["General", "Amentities", "Rules", "Rooms"];
+const detailTopics = [
+  {
+    id: "general",
+    name: "General",
+  },
+  {
+    id: "amentities",
+    name: "Amentities",
+  },
+  {
+    id: "house-rules",
+    name: "Rules",
+  },
+  {
+    id: "rooms",
+    name: "Rooms",
+  },
+];
 const HotelDetailsPage = () => {
   const [topicIndx, setTopicIndx] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -84,7 +101,7 @@ const HotelDetailsPage = () => {
               />
               {/* need to change this component */}
               {/* <CheckInOutDate /> */}
-              <AddRooms width="13vw" height="46px" />
+              {/* <AddRooms width="13vw" height="46px" /> */}
             </div>
             <button
               onClick={() => {
@@ -97,6 +114,7 @@ const HotelDetailsPage = () => {
               {token ? "Log out" : "Log in / Sign up"}
             </button>
           </div>
+          {/* detail topics */}
           <Stack
             flexDirection={"row"}
             alignItems={"center"}
@@ -110,13 +128,14 @@ const HotelDetailsPage = () => {
             className="details-topic"
           >
             {detailTopics.map((topic, index) => (
-              <div
-                key={topic + index}
+              <a
+                key={topic.id + index}
                 className={topicIndx === index ? "topic active-topic" : "topic"}
                 onClick={() => setTopicIndx(index)}
+                href={`#${topic.id}`}
               >
-                {topic}
-              </div>
+                {topic.name}
+              </a>
             ))}
           </Stack>
         </Stack>
@@ -131,8 +150,10 @@ const HotelDetailsPage = () => {
           alignItems={"flex-start"}
         >
           <div className="left-details">
-            <GeneralDetails singleHotel={singleHotel} />
-            <div className="amentities">
+            <div id="general">
+              <GeneralDetails singleHotel={singleHotel} />
+            </div>
+            <div id="amentities">
               <h2>Amentities</h2>
               <ul className="amentities-list">
                 {singleHotel.amenities &&
@@ -143,14 +164,14 @@ const HotelDetailsPage = () => {
                   ))}
               </ul>
             </div>
-            {/* <div className="house-rules">
+            <div id="house-rules">
               <h2>Property rules</h2>
               <div className="guest-profile">
                 <h5>Guest profile</h5>
                 <li>
                   Unmarried couples are
-                  {singleHotel.houseRules.guestProfile &&
-                  singleHotel.houseRules.guestProfile.unmarriedCouplesAllowed
+                  {singleHotel?.houseRules?.guestProfile
+                    ?.unmarriedCouplesAllowed
                     ? "allowed"
                     : "NOT allowed"}
                 </li>
@@ -158,16 +179,16 @@ const HotelDetailsPage = () => {
               <div className="check-in-out-policy">
                 <h5>Check-in Check-out Policy</h5>
                 <li>
-                  {singleHotel.houseRules.idProofRelated &&
-                    singleHotel.houseRules.idProofRelated.idProofsAccepted.map(
-                      (id, indx) => <span key={id + indx}>{id}</span>
-                    )}
+                  {singleHotel?.houseRules?.idProofRelated?.idProofsAccepted?.map(
+                    (id, indx) => (
+                      <span key={id + indx}>{id}</span>
+                    )
+                  )}
                   <span>are acceptable ID Proofs</span>
                 </li>
                 <li>
                   Loacl ids are{" "}
-                  {singleHotel.houseRules.idProofRelated &&
-                  singleHotel.houseRules.idProofRelated.localIdsAllowed
+                  {singleHotel?.houseRules?.idProofRelated?.localIdsAllowed
                     ? "allowed"
                     : "NOT allowed"}
                 </li>
@@ -176,21 +197,20 @@ const HotelDetailsPage = () => {
                 <h5>Restricitons</h5>
                 <li>
                   Smoking{" "}
-                  {singleHotel.houseRules &&
-                  singleHotel.houseRules.smokingAllowed
+                  {singleHotel?.houseRules?.smokingAllowed
                     ? "allowed"
                     : "NOT allowed"}
                   within the premises
                 </li>
                 <li>
                   Pets are
-                  {singleHotel.houseRules && singleHotel.houseRules.petsAllowed
+                  {singleHotel?.houseRules?.petsAllowed
                     ? "allowed"
                     : "NOT allowed"}{" "}
                   at the property
                 </li>
               </div>
-            </div> */}
+            </div>
           </div>
           <div className="right-details">
             <div className="image-carosel">

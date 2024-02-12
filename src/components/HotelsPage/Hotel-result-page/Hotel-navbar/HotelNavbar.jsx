@@ -7,6 +7,7 @@ import AddRooms from "../../AddRooms";
 import { OPTION } from "../../Hotels";
 import HotelFilter from "./HotelFilter";
 import { ResultCheckInOutDate } from "../check-in-out-date/ResultCheckInOutDate";
+import HResAddRoom from "./HResAddRoom";
 
 const HotelNavbar = () => {
   const { tokenDetails, logSignDetails, handleLogout } = useAuth();
@@ -36,8 +37,10 @@ const HotelNavbar = () => {
             optionCount={5}
           />
           <ResultCheckInOutDate />
-          <AddRooms width="13vw" height="46px" />
+          <HResAddRoom />
+          <button className="update-btn">Update</button>
         </div>
+        {/* hotel-res-login */}
         <button
           className="hotel-res-login"
           onClick={() => {

@@ -6,8 +6,7 @@ import { useDebounce } from "../../../../CustomHooks/useDebouce";
 
 const PrettoSlider = styled(Slider)({
   color: "black",
-  width: "20vw",
-  height: 2,
+
   "& .MuiSlider-track": {
     border: "none",
   },
@@ -57,16 +56,26 @@ const FilterByPriceRange = () => {
       <Typography
         sx={{
           marginRight: "20px",
-          fontSize: "16px",
-          fontw: "700",
+          fontSize: {
+            xs: "14px",
+          },
+          fontWeight: "500",
           border: "1px solid #D3D3D3",
-          padding: "7px 9px",
+          padding: {
+            xs: "4px 6px",
+          },
           borderRadius: "15px",
         }}
       >
         Sort by price range
       </Typography>
       <PrettoSlider
+        sx={{
+          width: {
+            xs: "12rem",
+          },
+          height: 2,
+        }}
         value={hotelPrice}
         min={4000}
         max={10000}

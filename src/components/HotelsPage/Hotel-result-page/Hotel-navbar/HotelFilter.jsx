@@ -165,37 +165,6 @@ const HotelFilter = () => {
       <StarCategory />
 
       <FilterByPriceRange />
-
-      {/* <Stack
-        className="sort-by-price-range"
-        flexDirection={"row"}
-        justifyContent={"flex-start"}
-        alignItems={"center"}
-      >
-        <Typography
-          sx={{
-            marginRight: "20px",
-            fontSize: "16px",
-            fontw: "700",
-            border: "1px solid #D3D3D3",
-            padding: "7px 9px",
-            borderRadius: "15px",
-          }}
-        >
-          Sort by price range
-        </Typography>
-        <PrettoSlider
-          value={hotelPrice}
-          min={4000}
-          max={10000}
-          valueLabelDisplay="auto"
-          aria-label="pretto slider"
-          onChange={(e) => {
-            setHotelPrice(e.target.value);
-            handlePriceRangeFilter();
-          }}
-        />
-      </Stack> */}
     </div>
   );
 };
