@@ -27,7 +27,7 @@
 /* hotel search card */
 
 .autoComplete {
-    width: 100%;
+    width: 12rem;
     display: flex;
     flex-direction: column;
   }

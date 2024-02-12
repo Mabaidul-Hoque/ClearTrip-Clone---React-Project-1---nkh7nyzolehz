@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
+import "../HotelResultPage.css";
 import "./HotelDetailsPage.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import AddRooms from "../../AddRooms";
 import { useAuth } from "../../../../UseContext/AuthorizationProvider";
-import HotelInputSection from "../../Hotel-search-card/HotelInputSection";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import { OPTION } from "../../Hotels";
-import { Button, Stack } from "@mui/material";
 import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
 import { fetchSingleHotel } from "../../../../Apis/HotelDetailsApi";
 import GeneralDetails from "./GeneralDetails";
@@ -16,10 +14,11 @@ import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRig
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import Rooms from "./Rooms";
 import HotelDetailsInput from "./HotelDetailsInput";
+import { ResultCheckInOutDate } from "../check-in-out-date/ResultCheckInOutDate";
+import HResAddRoom from "../Hotel-navbar/HResAddRoom";
+import { Stack, Typography } from "@mui/material";
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
-  width: "45vw",
-  height: 100,
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
@@ -99,10 +98,11 @@ const HotelDetailsPage = () => {
                 optionKey={"name"}
                 noOptionText={"No Match Found"}
               />
-              {/* need to change this component */}
-              {/* <CheckInOutDate /> */}
-              {/* <AddRooms width="13vw" height="46px" /> */}
+              <ResultCheckInOutDate />
+              <HResAddRoom />
+              <button className="update-btn">Update</button>
             </div>
+
             <button
               onClick={() => {
                 setLogInPagePath("/hotels/results");
@@ -114,11 +114,14 @@ const HotelDetailsPage = () => {
               {token ? "Log out" : "Log in / Sign up"}
             </button>
           </div>
-          {/* detail topics */}
+
           <Stack
             flexDirection={"row"}
             alignItems={"center"}
-            gap={4}
+            gap={{
+              xs: 2,
+              sm: 4,
+            }}
             sx={{
               fontSize: "16px",
               fontWeight: "500",
@@ -140,14 +143,25 @@ const HotelDetailsPage = () => {
           </Stack>
         </Stack>
       </nav>
+
       <div style={{ borderBottom: "1px solid gray" }}></div>
       <main className="hotel-details-main">
         <Stack
-          className="details"
           mb={4}
-          flexDirection={"row"}
+          sx={{
+            width: {
+              xs: "90vw",
+            },
+          }}
+          flexDirection={{
+            xs: "column-reverse",
+            sm: "row",
+          }}
           justifyContent={"space-between"}
-          alignItems={"flex-start"}
+          alignItems={{
+            xs: "center",
+            sm: "flex-start",
+          }}
         >
           <div className="left-details">
             <div id="general">
@@ -168,7 +182,7 @@ const HotelDetailsPage = () => {
               <h2>Property rules</h2>
               <div className="guest-profile">
                 <h5>Guest profile</h5>
-                <li>
+                <li className="rules-list">
                   Unmarried couples are
                   {singleHotel?.houseRules?.guestProfile
                     ?.unmarriedCouplesAllowed
@@ -178,7 +192,7 @@ const HotelDetailsPage = () => {
               </div>
               <div className="check-in-out-policy">
                 <h5>Check-in Check-out Policy</h5>
-                <li>
+                <li className="rules-list">
                   {singleHotel?.houseRules?.idProofRelated?.idProofsAccepted?.map(
                     (id, indx) => (
                       <span key={id + indx}>{id}</span>
@@ -186,7 +200,7 @@ const HotelDetailsPage = () => {
                   )}
                   <span>are acceptable ID Proofs</span>
                 </li>
-                <li>
+                <li className="rules-list">
                   Loacl ids are{" "}
                   {singleHotel?.houseRules?.idProofRelated?.localIdsAllowed
                     ? "allowed"
@@ -195,14 +209,14 @@ const HotelDetailsPage = () => {
               </div>
               <div className="restrictions">
                 <h5>Restricitons</h5>
-                <li>
+                <li className="rules-list">
                   Smoking{" "}
                   {singleHotel?.houseRules?.smokingAllowed
                     ? "allowed"
                     : "NOT allowed"}
                   within the premises
                 </li>
-                <li>
+                <li className="rules-list">
                   Pets are
                   {singleHotel?.houseRules?.petsAllowed
                     ? "allowed"
@@ -234,27 +248,54 @@ const HotelDetailsPage = () => {
                 <KeyboardArrowRightOutlinedIcon />
               </button>
             </div>
-            <DemoPaper variant="outlined">
-              <Stack flexDirection={"row"} alignItems={"center"} gap={"5px"}>
-                <div
-                  style={{
-                    fontSize: "24px",
+            <DemoPaper
+              sx={{
+                width: {
+                  xs: "90vw",
+                  sm: "42vw",
+                },
+                height: 100,
+              }}
+              variant="outlined"
+            >
+              <Stack
+                flexDirection={"row"}
+                alignItems={"center"}
+                gap={{
+                  xs: 0,
+                  md: "5px",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontSize: {
+                      xs: "20px",
+                      md: "24px",
+                    },
+                    ml: {
+                      xs: "-1rem",
+                      md: 0,
+                    },
                     fontWeight: "600",
                   }}
                 >
                   <CurrencyRupeeIcon style={{ marginBottom: "-4px" }} />
                   <span>{Math.ceil(singleHotel.avgCostPerNight)}</span>
-                </div>
-                <div>
-                  <span>
-                    +{" "}
-                    <CurrencyRupeeIcon
-                      fontSize="sm"
-                      style={{ marginBottom: "-2px" }}
-                    />
-                    500 tax / night
-                  </span>
-                </div>
+                </Typography>
+                <Typography
+                  fontSize={{
+                    xs: "10px",
+                    sm: "11px",
+                    md: "14px",
+                  }}
+                >
+                  +{" "}
+                  <CurrencyRupeeIcon
+                    fontSize="sm"
+                    style={{ marginBottom: "-2px" }}
+                  />
+                  500 tax / night
+                </Typography>
               </Stack>
               <button className="select-room-btn">Select room</button>
             </DemoPaper>

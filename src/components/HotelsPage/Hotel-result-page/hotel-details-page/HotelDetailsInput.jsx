@@ -63,6 +63,7 @@ const HotelDetailsInput = ({
   return (
     <div className="autoComplete">
       <input
+        className="hotel-result-input-box"
         ref={hotelSearchRef}
         placeholder={singleHotel.name}
         onFocus={() => {

@@ -4,12 +4,10 @@ import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import styled from "@emotion/styled";
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
-  width: "26vw",
-  //   height: 100,
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
-  alignItems: "flex-start",
+  alignItems: "center",
   border: "1px solid lightgray",
   boxShadow: "none",
   borderRadius: "7px",
@@ -23,7 +21,16 @@ const Rooms = ({ singleHotel }) => {
       <div className="room-cards">
         {singleHotel.rooms &&
           singleHotel.rooms.map((room, indx) => (
-            <DemoPaper key={room._id}>
+            <DemoPaper
+              sx={{
+                width: {
+                  xs: "19rem",
+                  sm: "15rem",
+                  md: "19rem",
+                },
+              }}
+              key={room._id}
+            >
               <Stack
                 justifyContent={"center"}
                 alignItems={"flex-start"}

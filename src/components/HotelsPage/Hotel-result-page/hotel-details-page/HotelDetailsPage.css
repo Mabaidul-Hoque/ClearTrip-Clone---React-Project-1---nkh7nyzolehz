@@ -17,11 +17,9 @@
 }
 
 .left-details{
-    /* border: 1px solid; */
     width: 50%;
 }
 .right-details{
-    /* border: 1px solid; */
     width: 50%;
 }
 .hotel-details-main{
@@ -29,7 +27,20 @@
     margin: 0 auto;
     margin-top: 25px;
 }
-
+.amentities-list{
+    padding-left: 20px;
+}
+.guest-profile{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.check-in-out-policy{
+    margin-bottom: 10px;
+}
+.rules-list{
+    list-style-type: none;
+    padding-left: 20px;
+}
 .image-carosel{
     display: flex;
     justify-content: flex-end;
@@ -146,3 +157,59 @@
     list-style-type: none;
     margin-top: 20px;
 }
+
+@media screen and (min-width: 300px) {
+    .left-details,.right-details{
+        width: 90vw;
+    }
+    .image-carosel>img{
+        width: 90vw;
+        height: 50vh;
+    }
+    .image-carosel{
+        justify-content: center;
+    }
+    .select-room-btn{
+        width: 30vw;
+        height: 45px;
+        font-size: 14px;
+    } 
+    .room-cards{
+        justify-content: center;
+    }
+}  
+
+@media screen and (min-width: 600px) {
+    .left-details{
+        width: 40vw;
+    }
+    .right-details{
+        width: 42vw;
+    }
+    .image-carosel>img{
+        width: 40vw;
+        height: 50vh;
+    }
+    .image-carosel{
+        justify-content: center;
+    }
+    .select-room-btn{
+        width: 8rem;
+        height: 45px;
+        font-size: 14px;
+    } 
+}  
+@media screen and (min-width: 900px) {
+    .select-room-btn{
+        height: 50px;
+        font-size: 16px;
+    } 
+    .image-carosel>img{
+        height: 60vh;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .room-cards{
+        justify-content: flex-start;
+    }
+} 
