@@ -244,7 +244,7 @@ input[type="text"]{
 
  @media screen and (min-width: 450px) {
     .f-landing-icon{
-        right: 77vw;
+        right: 79vw;
     } 
  }
 
@@ -272,9 +272,14 @@ input[type="text"]{
         left: 1vw;
     }
  }
+ @media screen and (min-width: 730px) {
+  .f-landing-icon{
+    right: 24vw;
+  } 
+}
  @media screen and (min-width: 768px) {
     .f-landing-icon{
-        right: 23.5vw;
+        right: 24.5vw;
     } 
  }
  @media screen and (min-width: 900px) {
@@ -303,12 +308,12 @@ input[type="text"]{
 
  }
 
- @media screen and (min-width: 1024px) {
+ @media screen and (min-width: 1280px) {
     .list-group-item {
         padding: 10px;
     }
     .f-landing-icon{
-        right: 18.5vw;
+        right: 20vw;
     } 
 
  }

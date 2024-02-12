@@ -61,7 +61,7 @@ const HotelDetailsInput = ({
   };
 
   return (
-    <div className="autoComplete">
+    <div className="h-autoComplete">
       <input
         className="hotel-result-input-box"
         ref={hotelSearchRef}

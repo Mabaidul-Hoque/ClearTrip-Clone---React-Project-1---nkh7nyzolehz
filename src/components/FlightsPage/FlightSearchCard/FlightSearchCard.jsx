@@ -98,6 +98,7 @@ export default function FlightSearchCard() {
               sm: 0,
             },
             position: "relative",
+            width: "100%",
           }}
         >
           <div id="source-container">

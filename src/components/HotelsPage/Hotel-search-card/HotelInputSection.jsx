@@ -58,7 +58,7 @@ const HotelInputSection = ({
   };
 
   return (
-    <div className="autoComplete">
+    <div className="h-autoComplete">
       <input
         ref={hotelSearchRef}
         className={hotelInputClass}
