@@ -1,0 +1,14 @@
+
+.ft-cleartrip-logo{
+    width: 15rem;
+}
+.other-links{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+.other-links>a{
+    text-decoration: none;
+    color: inherit;
+}

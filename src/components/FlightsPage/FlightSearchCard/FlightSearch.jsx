@@ -36,7 +36,7 @@ const FlightSearch = () => {
 
       <FlightSearchCard />
       {/* Recent Search Section */}
-      <Box mb={4}>
+      {/* <Box mb={4}>
         <Typography
           mb={3}
           mt={5}
@@ -82,7 +82,7 @@ const FlightSearch = () => {
             </Box>
           </Stack>
         </PaperCardRecentSearch>
-      </Box>
+      </Box> */}
     </Box>
   );
 };

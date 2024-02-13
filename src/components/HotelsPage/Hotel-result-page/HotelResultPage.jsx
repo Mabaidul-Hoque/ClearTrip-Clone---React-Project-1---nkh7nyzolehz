@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useDebounce } from "../../../CustomHooks/useDebouce";
 import ImageCarousel from "./image-carousel/ImageCarousel";
 import { Pagination, Stack } from "@mui/material";
+import Footer from "../../FooterPage/Footer";
 
 const HotelResultPage = () => {
   // const [demoCount, setDemoCount] = useState(0);
@@ -113,6 +114,8 @@ const HotelResultPage = () => {
           />
         </div>
       </Stack>
+
+      <Footer />
     </div>
   );
 };

@@ -6,6 +6,7 @@ import FlightPriceCard from "./flight-booking-main/FlightPriceCard";
 import { fetchSingleFlightDetails } from "../../../../Apis/FlightSearchApi";
 import { useParams } from "react-router-dom";
 import { useFlightSearch } from "../../../../UseContext/FlightsSearchProvider";
+import Footer from "../../../FooterPage/Footer";
 
 const FlightBookingPage = () => {
   const { singleFlight, setSingleFlight } = useFlightSearch().singleFlightValue;
@@ -33,6 +34,8 @@ const FlightBookingPage = () => {
           <FlightPriceCard />
         </Stack>
       </main>
+
+      <Footer />
     </div>
   );
 };

@@ -7,9 +7,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  /* has to remove later */
-  border: 1px solid red;
 }
 
 code {

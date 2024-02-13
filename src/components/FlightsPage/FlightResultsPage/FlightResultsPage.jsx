@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ResultNavbar from "./navbar-result/ResultNavbar";
 import "./FlightResultPage.css";
 import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
@@ -8,12 +8,13 @@ import MainContent from "./main-section/main-content/MainContent";
 import { fetchFilteredFlights } from "../../../Apis/FlightSearchApi";
 import { useParams } from "react-router-dom";
 import { CustomTheme } from "../../../util/muiTheme";
+import Footer from "../../FooterPage/Footer";
 
 const FlightResultsPage = () => {
   const { airplaneDetails, flightPage, totalFlightsVal } = useFlightSearch();
   const { setAirplanes } = airplaneDetails;
   const { setTotalResult } = totalFlightsVal;
-
+  // data extract from url using useParams
   const { searchQuery } = useParams();
   const encodedString = searchQuery ?? "";
   console.log("encodedString", encodedString);
@@ -23,13 +24,10 @@ const FlightResultsPage = () => {
   const [source, dest] = location?.split("-");
   const [departDay, returnDay] = date?.split("-");
 
-  // console.log({ source, dest, departDay });
-
   const handleFlightResultFilter = (filterItems) => {
     const sourceVal = source.substring(0, 3);
     const destinationVal = dest.substring(0, 3);
     const day = departDay.substring(0, 3);
-
     const JSONFilter = JSON.stringify(filterItems);
     if (filterItems !== undefined) {
       fetchFilteredFlights(
@@ -71,6 +69,8 @@ const FlightResultsPage = () => {
             />
           </Stack>
         </main>
+
+        <Footer />
       </div>
     </ThemeProvider>
   );

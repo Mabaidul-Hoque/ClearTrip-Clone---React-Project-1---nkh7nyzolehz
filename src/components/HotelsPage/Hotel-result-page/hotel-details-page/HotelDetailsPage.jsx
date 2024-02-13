@@ -17,6 +17,7 @@ import HotelDetailsInput from "./HotelDetailsInput";
 import { ResultCheckInOutDate } from "../check-in-out-date/ResultCheckInOutDate";
 import HResAddRoom from "../Hotel-navbar/HResAddRoom";
 import { Stack, Typography } from "@mui/material";
+import Footer from "../../../FooterPage/Footer";
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   display: "flex",
@@ -304,6 +305,8 @@ const HotelDetailsPage = () => {
 
         <Rooms singleHotel={singleHotel} />
       </main>
+
+      <Footer />
     </div>
   );
 };
