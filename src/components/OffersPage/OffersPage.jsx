@@ -1,6 +1,7 @@
 import { Box, Stack } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Footer from "../FooterPage/Footer";
 
 const OffersPage = () => {
   const navigate = useNavigate();
@@ -22,9 +23,7 @@ const OffersPage = () => {
       <main style={{ textAlign: "center" }}>
         <h1>offer main content</h1>
       </main>
-      <footer style={{ textAlign: "center" }}>
-        <h1>offer footeroffer footer</h1>
-      </footer>
+      <Footer />
     </Stack>
   );
 };

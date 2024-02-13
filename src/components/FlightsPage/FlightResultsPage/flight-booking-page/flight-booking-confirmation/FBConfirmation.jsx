@@ -3,6 +3,7 @@ import "./FBConfirmation.css";
 import { fetchFlightBookingInfo } from "../../../../../Apis/BookingApi";
 import { useParams } from "react-router-dom";
 import { Box, Stack, Typography } from "@mui/material";
+import Footer from "../../../../FooterPage/Footer";
 
 const FBConfirmation = () => {
   const [user, setUser] = useState({});
@@ -15,9 +16,11 @@ const FBConfirmation = () => {
       setUser(resp.booking);
     });
 
-    setDepartTime(() => timeFormat(user?.start_date));
-    setArrivalTime(() => timeFormat(user?.end_date));
-  }, []);
+    if (user) {
+      setDepartTime(() => timeFormat(user?.start_date));
+      setArrivalTime(() => timeFormat(user?.end_date));
+    }
+  }, [departTime, arrivalTime]);
 
   const timeFormat = (timestamp) => {
     const date = new Date(timestamp);
@@ -32,16 +35,16 @@ const FBConfirmation = () => {
     return formattedDate;
   };
 
-  function generateRandomString() {
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let result = "";
-    for (let i = 0; i < 10; i++) {
-      const randomIndex = Math.floor(Math.random() * characters.length);
-      result += characters.charAt(randomIndex);
-    }
-    return result;
-  }
+  //   function generateRandomString() {
+  //     const characters =
+  //       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  //     let result = "";
+  //     for (let i = 0; i < 10; i++) {
+  //       const randomIndex = Math.floor(Math.random() * characters.length);
+  //       result += characters.charAt(randomIndex);
+  //     }
+  //     return result;
+  //   }
 
   return (
     <div id="booking-confirmation">
@@ -123,14 +126,20 @@ const FBConfirmation = () => {
           sx={{
             mt: 2,
             mb: 2,
+            fontSize: {
+              xs: "18px",
+              sm: "25px",
+              md: "30px",
+            },
+            fontWeight: 600,
           }}
         >
-          {user?.flight?.source} to {user?.flight?.destination} (
-          {`Trip Id: ${generateRandomString()}`})
+          {user?.flight?.source} to {user?.flight?.destination} (Trip Id:
+          02689bkl0333)
         </Typography>
         <Box borderBottom={"1px solid lightgray"} mb={2}></Box>
         {/* flight details */}
-        <div>
+        <div className="flight-details">
           <Typography variant="h5">Flight Details:</Typography>
           <Box borderBottom={"1px solid lightgray"} mb={2}></Box>
           <div className="b-flight-details">
@@ -227,11 +236,13 @@ const FBConfirmation = () => {
           </div>
         </div>
 
-        <div className="flight-booking-policy">
+        {/* <div className="flight-booking-policy">
           <Typography variant="h5">Flight booking policy:</Typography>
           <Box borderBottom={"1px solid lightgray"} mb={2}></Box>
-        </div>
+        </div> */}
       </main>
+
+      <Footer />
     </div>
   );
 };

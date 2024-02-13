@@ -1,4 +1,11 @@
-import { Box, Stack, Typography, Button, ThemeProvider } from "@mui/material";
+import {
+  Box,
+  Stack,
+  Typography,
+  Button,
+  ThemeProvider,
+  Tooltip,
+} from "@mui/material";
 import React, { useState, useEffect } from "react";
 // import "../FlightResultPage.css";
 import LocalAirportOutlinedIcon from "@mui/icons-material/LocalAirportOutlined";
@@ -97,7 +104,9 @@ const ResultNavbar = ({ source, dest, departDay }) => {
               }}
               onClick={() => navigate("/flights")}
             >
-              <LocalAirportOutlinedIcon htmlColor="#3366CC" />
+              <Tooltip title="Flight">
+                <LocalAirportOutlinedIcon htmlColor="#3366CC" />
+              </Tooltip>
             </RightButton>
 
             <RightButton
@@ -108,7 +117,9 @@ const ResultNavbar = ({ source, dest, departDay }) => {
               }}
               onClick={() => navigate("/hotels")}
             >
-              <HotelIcon htmlColor="#999999" fontSize="large" />
+              <Tooltip title="Hotel">
+                <HotelIcon htmlColor="#999999" fontSize="large" />
+              </Tooltip>
             </RightButton>
           </Stack>
           {/* login btn */}

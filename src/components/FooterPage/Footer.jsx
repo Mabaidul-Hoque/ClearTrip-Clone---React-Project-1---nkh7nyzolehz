@@ -21,13 +21,27 @@ const Footer = () => {
       id="home-footer"
       sx={{ width: "80%", m: "0 auto", mb: "4rem", mt: "2rem" }}
     >
-      <Stack flexDirection={"row"} gap={8}>
+      <Stack
+        flexDirection={{
+          xs: "column",
+          md: "row",
+        }}
+        gap={8}
+      >
         <img
           className="ft-cleartrip-logo"
           src="https://cxotoday.com/wp-content/uploads/2024/02/Cleartrip-logo.png"
           alt="footer-cleartrip-logo"
         />
-        <Stack sx={{ width: "75%" }} gap={2}>
+        <Stack
+          sx={{
+            width: {
+              xs: "90%",
+              md: "75%",
+            },
+          }}
+          gap={2}
+        >
           <ul className="other-links">
             {otherLinks.map((item, indx) => (
               <a key={item + indx}>
@@ -35,7 +49,13 @@ const Footer = () => {
               </a>
             ))}
           </ul>
-          <Stack flexDirection={"row"} justifyContent={"space-between"}>
+          <Stack
+            flexDirection={{
+              xs: "column",
+              md: "row",
+            }}
+            justifyContent={"space-between"}
+          >
             <Typography fontSize={"11px"}>
               © 2024 Cleartrip Pvt. Ltd. · Privacy · Security · Terms of Use ·
               Grievance Redressal

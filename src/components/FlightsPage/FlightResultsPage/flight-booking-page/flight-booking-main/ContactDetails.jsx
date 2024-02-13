@@ -1,8 +1,10 @@
 import { Container, Paper, Stack, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const ContactDetails = ({ handleContinue }) => {
+  const [phone, setPhone] = useState();
+  const [email, setEmail] = useState();
   return (
     <div>
       {/* header */}
@@ -73,6 +75,9 @@ const ContactDetails = ({ handleContinue }) => {
               type="number"
               id="mobile-number"
               placeholder="Enter your phone number"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
             />
           </Stack>
         </Stack>
@@ -86,10 +91,16 @@ const ContactDetails = ({ handleContinue }) => {
             type="email"
             id="email"
             placeholder="Enter your email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </Stack>
 
-        <button className="continue-btn" onClick={handleContinue}>
+        <button
+          className="continue-btn"
+          onClick={() => handleContinue(phone, email)}
+        >
           Continue
         </button>
       </Container>

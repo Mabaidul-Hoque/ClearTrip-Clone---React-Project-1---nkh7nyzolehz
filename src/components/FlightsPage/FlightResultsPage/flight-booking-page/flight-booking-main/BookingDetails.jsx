@@ -1,5 +1,5 @@
 import { Box, Stack, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import FareDetails from "./FareDetails";
@@ -13,8 +13,12 @@ const BookingDetails = ({ flightId }) => {
   const { singleFlight } = useFlightSearch().singleFlightValue;
   const navigate = useNavigate();
 
-  const handleContinue = () => {
-    navigate(`/flights/flight_booking_confirmation/${flightId}`);
+  const handleContinue = (phone, email) => {
+    if (phone && email) {
+      navigate(`/flights/flight_booking_confirmation/${flightId}`);
+    } else {
+      alert("Fill all the details");
+    }
   };
 
   return (

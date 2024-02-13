@@ -3,6 +3,9 @@
     width: 90%;
     margin: 0 auto;
 }
+.booking-con-main{
+    margin-bottom: 100px;
+}
 .b-flight-details,.b-price-details,
 .b-contact-details{
     display: flex;
@@ -17,13 +20,23 @@
     display: flex;
     justify-content: space-between;
     width: 30rem;
-
 }
+
 
 
 @media screen and (min-width: 300px) {
     .booking-con-navbar{
         width: 100%;
+    }
+    .b-flight-details,.b-price-details,
+    .b-contact-details,.b-contact-details-address{
+        width: 86vw;
+    }
+}
+@media screen and (min-width: 600px) {
+    .b-flight-details,.b-price-details,
+    .b-contact-details,.b-contact-details-address{
+        width: 30rem;
     }
 }
 

@@ -70,6 +70,7 @@ const SideNavbar = () => {
       >
         <MonetizationOnOutlinedIcon />
         <span>Offers</span>
+        <span className="offer-upcoming">Upcoming</span>
       </Link>
       <Box
         sx={{
@@ -89,6 +90,7 @@ const SideNavbar = () => {
         >
           <LuggageOutlinedIcon />
           <span>My trips</span>
+          <span className="trip-upcoming">Upcoming</span>
         </Link>
       </Box>
     </Stack>
