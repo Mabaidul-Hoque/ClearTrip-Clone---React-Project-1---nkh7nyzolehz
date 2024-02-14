@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { forwardRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,6 +10,7 @@ const DateInputs = () => {
   const { departvalue, returnValue } = useFlightSearch();
   const { handleDepartDateChange, departDay, departDate } = departvalue;
   const { handleReturnDateChange, returnDay, returnDate } = returnValue;
+
   const DepartDateInput = forwardRef(({ departDay, onClick }, ref) => (
     <Button
       sx={{

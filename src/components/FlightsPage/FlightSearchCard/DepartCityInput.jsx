@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
-
 import "../FlightPage.css";
 import { Paper, Stack } from "@mui/material";
 
-const DepartCityInput = ({ options, onSelect, noOptionText = "No Items" }) => {
+const DepartCityInput = ({ options, noOptionText = "No Items" }) => {
   const [searchText, setSearchText] = useState("");
   const [selected, setSelected] = useState("");
   const [allOption, setAllOption] = useState(options || []);
@@ -16,9 +15,7 @@ const DepartCityInput = ({ options, onSelect, noOptionText = "No Items" }) => {
   useEffect(() => {
     setAllOption(options);
     handleSourceChange(selected);
-
     document.addEventListener("click", handleOutsideClick);
-
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
@@ -29,15 +26,9 @@ const DepartCityInput = ({ options, onSelect, noOptionText = "No Items" }) => {
       setFocus(false);
     }
   };
-
   const selectHandle = (val) => {
     setFocus(false);
     setSearchText("");
-    if (onSelect) {
-      onSelect(val);
-      return;
-    }
-
     setSelected(`${val.iata_code} ${val.city}, IN`);
   };
 

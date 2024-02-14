@@ -273,6 +273,7 @@ input[type=checkbox] {
     color: #3366CC;
     background-color: inherit;
     font-size: 14px;
+    cursor: no-drop;
 }
 
 

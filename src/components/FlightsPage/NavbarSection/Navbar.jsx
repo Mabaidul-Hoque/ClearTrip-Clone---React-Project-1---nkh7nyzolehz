@@ -1,13 +1,11 @@
 import React, { useContext } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./NavbarStyles.css";
 import { OffersContext } from "../../../UseContext/OfferDetailsProvider";
-import { Box, Button, Stack, ThemeProvider } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import LoginPage from "../../Login-signup/LoginPage";
 import { useAuth } from "../../../UseContext/AuthorizationProvider";
 import styled from "@emotion/styled";
-import { theme } from "../../../util/muiTheme";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const LoginButton = styled(Button)({
@@ -19,10 +17,8 @@ const LoginButton = styled(Button)({
     sm: "9.5vw",
   },
   lineHeight: 2.5,
-  padding: "3px",
   border: "none",
   borderRadius: "5px",
-  fontSize: "14px",
   fontWeight: "500",
   cursor: "pointer",
   "&:hover": {
@@ -37,13 +33,14 @@ const Navbar = ({ handleLoginOpen }) => {
   const { setIsSignup } = signupDetails;
 
   return (
-    <div>
+    <>
       <Box className="home-navbar" pt={2} pb={2} component="div">
         <Stack
           flexDirection={"row"}
           justifyContent={"space-between"}
           alignItems={"center"}
         >
+          {/* cleartrip logo  */}
           <Link
             onClick={() => {
               setOffersUrlFilter("ALL");
@@ -56,21 +53,31 @@ const Navbar = ({ handleLoginOpen }) => {
               alt="cleartrip-logo"
             />
           </Link>
-          <Box>
-            <LoginButton
-              onClick={() => {
-                setIsSignup(false);
-                token ? handleLogout() : handleLoginOpen();
-              }}
-              variant="contained"
-            >
-              {token ? "Log out" : "Log in / Sign up"}
-            </LoginButton>
-          </Box>
+          {/* login btn */}
+          <LoginButton
+            sx={{
+              fontSize: {
+                xs: "11px",
+                sm: "14px",
+              },
+              padding: {
+                xs: "3px 7px",
+                sm: "5px 10px",
+                md: "5px 20px",
+              },
+            }}
+            onClick={() => {
+              setIsSignup(false);
+              token ? handleLogout() : handleLoginOpen();
+            }}
+            variant="contained"
+          >
+            {token ? "Log out" : "Log in / Sign up"}
+          </LoginButton>
         </Stack>
         <LoginPage />
       </Box>
-    </div>
+    </>
   );
 };
 

@@ -60,7 +60,7 @@
 .carousel-item-up>img{
     /* width: 21vw; */
     height: 35vh;
-    max-width: 100%;
+    width: 100%;
 }
 .up-prev-btn, 
 .up-next-btn,

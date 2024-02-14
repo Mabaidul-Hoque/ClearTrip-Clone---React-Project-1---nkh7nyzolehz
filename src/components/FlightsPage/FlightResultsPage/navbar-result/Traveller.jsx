@@ -1,28 +1,27 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 // import "../FlightResultsPage.css";
 import MenuList from "@mui/material/MenuList";
-import { Box, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Stack,
+  Typography,
+  Button,
+  Grow,
+  Paper,
+  Popper,
+  ClickAwayListener,
+} from "@mui/material";
 import ControlPointOutlinedIcon from "@mui/icons-material/ControlPointOutlined";
 import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
-import ClickAwayListener from "@mui/material/ClickAwayListener";
-import Grow from "@mui/material/Grow";
-import Paper from "@mui/material/Paper";
-import Popper from "@mui/material/Popper";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
-import ExpandLessOutlinedIcon from "@mui/icons-material/ExpandLessOutlined";
-import PersonIcon from "@mui/icons-material/Person";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import Button from "@mui/material/Button";
-import styled from "@emotion/styled";
-
-// const TravellerPaper = styled(Button)({
-//   border: "1px solid #D3D3D3",
-//   height: "42px",
-// });
 
 const Traveller = () => {
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef(null);
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+  const [infants, setInfants] = useState(0);
+  const [traveller, setTraveller] = useState(1);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -69,7 +68,7 @@ const Traveller = () => {
           aria-haspopup="true"
           onClick={handleToggle}
         >
-          <span>1 Traveller</span>
+          <span>{traveller} Traveller</span>
           <ExpandMoreOutlinedIcon htmlColor="#999999" />
         </Button>
       </Box>
@@ -148,11 +147,17 @@ const Traveller = () => {
                       <RemoveCircleOutlineOutlinedIcon
                         htmlColor="#3567CC"
                         fontSize="large"
+                        sx={{ cursor: "pointer" }}
+                        onClick={() =>
+                          setAdults((prev) => (prev - 1 < 1 ? 1 : prev - 1))
+                        }
                       />
-                      <span>0</span>
+                      <span>{adults}</span>
                       <ControlPointOutlinedIcon
                         htmlColor="#3567CC"
                         fontSize="large"
+                        sx={{ cursor: "pointer" }}
+                        onClick={() => setAdults((prev) => prev + 1)}
                       />
                     </Stack>
                   </Box>
@@ -183,11 +188,17 @@ const Traveller = () => {
                       <RemoveCircleOutlineOutlinedIcon
                         htmlColor="#3567CC"
                         fontSize="large"
+                        sx={{ cursor: "pointer" }}
+                        onClick={() =>
+                          setChildren((prev) => (prev - 1 < 0 ? 0 : prev - 1))
+                        }
                       />
-                      <span>0</span>
+                      <span>{children}</span>
                       <ControlPointOutlinedIcon
                         htmlColor="#3567CC"
                         fontSize="large"
+                        sx={{ cursor: "pointer" }}
+                        onClick={() => setChildren((prev) => prev + 1)}
                       />
                     </Stack>
                   </Box>
@@ -218,11 +229,17 @@ const Traveller = () => {
                       <RemoveCircleOutlineOutlinedIcon
                         htmlColor="#3567CC"
                         fontSize="large"
+                        sx={{ cursor: "pointer" }}
+                        onClick={() =>
+                          setInfants((prev) => (prev - 1 < 0 ? 0 : prev - 1))
+                        }
                       />
-                      <span>0</span>
+                      <span>{infants}</span>
                       <ControlPointOutlinedIcon
                         htmlColor="#3567CC"
                         fontSize="large"
+                        sx={{ cursor: "pointer" }}
+                        onClick={() => setInfants((prev) => prev + 1)}
                       />
                     </Stack>
                   </Box>
@@ -248,10 +265,11 @@ const Traveller = () => {
                           height: "40px",
                           bgcolor: "green",
                           color: "whitesmoke",
-                          "&:hover": {
-                            cursor: "pointer",
-                          },
+                          cursor: "pointer",
                         }}
+                        onClick={() =>
+                          setTraveller(adults + children + infants)
+                        }
                       >
                         Update
                       </Box>

@@ -38,7 +38,6 @@ const FlightResultsPage = () => {
         flightPage,
         JSONFilter
       ).then((response) => {
-        console.log("fetch filtered flights", response);
         setTotalResult(response.totalResults);
         setAirplanes(response.data.flights);
       });
@@ -61,12 +60,7 @@ const FlightResultsPage = () => {
             id="main-section-container"
           >
             <LeftSideSortingBar getFilterFlights={handleFlightResultFilter} />
-            <MainContent
-              source={source}
-              dest={dest}
-              departDay={departDay}
-              getFilterFlights={handleFlightResultFilter}
-            />
+            <MainContent getFilterFlights={handleFlightResultFilter} />
           </Stack>
         </main>
 

@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState, useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../FlightPage.css";
-import { Box, Button, Paper, Stack, ThemeProvider } from "@mui/material";
+import { Button, Paper, Stack, ThemeProvider } from "@mui/material";
 import SwapHorizontalCircleOutlinedIcon from "@mui/icons-material/SwapHorizontalCircleOutlined";
 import FlightTakeoffOutlinedIcon from "@mui/icons-material/FlightTakeoffOutlined";
 import FlightLandOutlinedIcon from "@mui/icons-material/FlightLandOutlined";
@@ -30,13 +30,11 @@ export default function FlightSearchCard() {
   const { airportNames } = airplaneDetails;
   const { handleSearchClick } = searchPlane;
   const { departDay } = departvalue;
-  const { returnDay } = returnValue;
 
   const handleNavigation = () => {
     const encodedPath = btoa(
       `${source}-${destination}--${departDay}-&{returnDay}`
     );
-
     if (
       source.substring(0, 3) !== destination.substring(0, 3) &&
       cityNameCodes.includes(source.substring(0, 3)) &&
@@ -86,7 +84,7 @@ export default function FlightSearchCard() {
         <PassengerAdd />
         {/* fare btns section */}
         <FareType />
-        {/* where from to section */}
+        {/*source dest inputs section */}
         <Stack
           sx={{
             flexDirection: {
@@ -108,7 +106,6 @@ export default function FlightSearchCard() {
             <DepartCityInput
               options={airportNames}
               noOptionText={"No Match Found"}
-              optionCount={5}
             />
           </div>
 

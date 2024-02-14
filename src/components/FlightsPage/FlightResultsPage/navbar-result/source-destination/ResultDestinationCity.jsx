@@ -8,7 +8,7 @@ const ResultDestinationCity = ({
   onSelect,
   optionKey = "iata_code",
   noOptionText = "No Items",
-  dest,
+  destination,
 }) => {
   const [searchText, setSearchText] = useState("");
   const [selected, setSelected] = useState("");
@@ -65,8 +65,8 @@ const ResultDestinationCity = ({
       <input
         ref={destinationRef}
         className="result-input-destination"
-        placeholder={dest}
-        value={selected || dest}
+        placeholder={"Where to?"}
+        value={selected || searchText}
         onFocus={() => {
           setSelected("");
           setFocus(true);

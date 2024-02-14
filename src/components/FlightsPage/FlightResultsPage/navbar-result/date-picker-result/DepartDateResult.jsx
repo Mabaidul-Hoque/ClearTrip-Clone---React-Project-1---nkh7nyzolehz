@@ -5,9 +5,9 @@ import { forwardRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const DepartDateResult = ({ departDay }) => {
+const DepartDateResult = () => {
   const { departvalue } = useFlightSearch();
-  const { handleDepartDateChange, departDate } = departvalue;
+  const { handleDepartDateChange, departDate, departDay } = departvalue;
 
   const ResultDepartDate = forwardRef(({ departDay, onClick }, ref) => (
     <Button

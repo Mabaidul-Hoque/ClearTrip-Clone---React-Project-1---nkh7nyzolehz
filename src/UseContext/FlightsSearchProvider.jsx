@@ -5,14 +5,13 @@ import React, {
   useEffect,
   useRef,
 } from "react";
-
-import { fetchFilteredFlights, fetchFlights } from "../Apis/FlightSearchApi";
+import { fetchFlights } from "../Apis/FlightSearchApi";
 import { fetchAirportNames } from "../Apis/AirportNamesApi";
-
-const FlightsSearchContext = createContext();
+import { toast } from "react-toastify";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
+const FlightsSearchContext = createContext();
 export const useFlightSearch = () => {
   const context = useContext(FlightsSearchContext);
   if (!context) {
@@ -56,14 +55,12 @@ export const FlightsSearchProvider = ({ children }) => {
   const handleReturnDateChange = (date) => {
     seReturnDate(date);
   };
-
   const handleSourceChange = (value) => {
     setSource(value);
   };
   const handleDestinationChange = (value) => {
     setDestination(value);
   };
-
   const cityNameCodes = airportNames.map(
     (airportName) => airportName.iata_code
   );
@@ -78,41 +75,34 @@ export const FlightsSearchProvider = ({ children }) => {
       const sourceVal = source.substring(0, 3);
       const destinationVal = destination.substring(0, 3);
       const day = departDay.substring(0, 3);
-
       if (sourceVal !== null && destinationVal !== null && day !== null) {
         fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
           (response) => {
-            console.log(
-              "flight result page search btn ",
-              response.data.flights
-            );
             setAirplanes(response.data.flights);
           }
         );
       } else {
         fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
           (response) => {
-            console.log(response.data.flights);
             setAirplanes(response.data.flights);
           }
         );
       }
     } else {
-      if (source === "" && destination === "") sourceRef.current.focus();
-      else if (source === "") sourceRef.current.focus();
-      else if (destination === "") destinationRef.current.focus();
-
+      if (source === "" || destination === "") {
+        notify("Fill the details before search!");
+      }
       if (
         source !== "" &&
         destination !== "" &&
         source.substring(0, 3) === destination.substring(0, 3)
       ) {
-        alert(
-          "Please provide correct INPUT values, either you have encountered SAME source and destination place or airport city name isn't correct"
-        );
+        notify("Inputs are either same or invalid!, provide correct inputs");
       }
     }
   };
+
+  const notify = (text) => toast(text);
 
   const flightSearch = {
     departvalue: {
@@ -140,6 +130,7 @@ export const FlightsSearchProvider = ({ children }) => {
     },
     airplaneDetails: {
       airportNames,
+      setAirportNames,
       airplanes,
       setAirplanes,
     },
@@ -163,81 +154,3 @@ export const FlightsSearchProvider = ({ children }) => {
 };
 
 export default FlightsSearchProvider;
-
-// const encodedPath = btoa(`${source_location}-${destination_location}--${date_of_journey}--${adult}-${child}-${infant}`)
-
-// if (pathname.includes("flight")) {
-
-// navigate(
-
-// `air-${encodedPath}`
-
-// );
-
-// } else {
-
-// navigate(
-
-// `flight/air-${encodedPath}`
-
-// );
-
-// }
-
-// }
-
-// am i audible
-
-// ??
-
-// Sahil Chopra
-// 16m ago
-// no
-
-// Adarsh Rangare
-// 16m ago
-// yess
-
-// air-SFlELUFNRC0tMjAyNC0wMi0wNS0tMS0wLTA=
-
-// Sahil Chopra
-// 14m ago
-// const extractedEncodedPath = encodedString.replace('air-', '');
-
-// Adarsh Rangare
-// 10m ago
-// AMD-HYD--2024-02-05--1-0-0
-
-// Sahil Chopra
-// 9m ago
-// 'AMD-HYD--2024-02-05--1-0-0'
-
-// Harshit Verma
-// 2m ago
-// state
-
-// Adarsh Rangare
-// just now
-// const { searchQuery } = useParams();
-
-// console.log({searchQuery});
-
-// const encodedString = searchQuery ?? '' ;
-
-// const extractedEncodedPath = encodedString.replace('air-', '');
-
-// console.log(extractedEncodedPath);
-
-// // console.log(encoded);
-
-// const decodedPath = atob(extractedEncodedPath);
-
-// console.log(decodedPath);
-
-// const [location, date, counts] = decodedPath?.split("--");
-
-// console.log(location,date,counts);
-
-// const [source, dest] = location?.split("-");
-
-// const [adult, child, infant] = counts?.split("-");

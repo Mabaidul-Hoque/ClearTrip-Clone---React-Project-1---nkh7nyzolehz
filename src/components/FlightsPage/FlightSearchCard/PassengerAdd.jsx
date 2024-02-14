@@ -1,13 +1,17 @@
 import * as React from "react";
 import "../FlightPage.css";
-import MenuList from "@mui/material/MenuList";
-import { Box, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Stack,
+  Typography,
+  MenuList,
+  Grow,
+  Paper,
+  Popper,
+  ClickAwayListener,
+} from "@mui/material";
 import ControlPointOutlinedIcon from "@mui/icons-material/ControlPointOutlined";
 import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
-import ClickAwayListener from "@mui/material/ClickAwayListener";
-import Grow from "@mui/material/Grow";
-import Paper from "@mui/material/Paper";
-import Popper from "@mui/material/Popper";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 import ExpandLessOutlinedIcon from "@mui/icons-material/ExpandLessOutlined";
 import PersonIcon from "@mui/icons-material/Person";
@@ -44,7 +48,7 @@ const PassengerAdd = () => {
   }
 
   return (
-    <Stack sx={{ zIndex: 10 }} spacing={2}>
+    <Stack sx={{ zIndex: 5 }} spacing={2}>
       <div className="card-header">
         <button
           ref={anchorRef}
@@ -72,7 +76,6 @@ const PassengerAdd = () => {
 
       <Popper
         open={open}
-        sx={{ zIndex: "1" }}
         anchorEl={anchorRef.current}
         role={undefined}
         placement="bottom-start"
@@ -125,11 +128,13 @@ const PassengerAdd = () => {
                       alignItems={"center"}
                     >
                       <RemoveCircleOutlineOutlinedIcon
+                        sx={{ cursor: "no-drop" }}
                         htmlColor="#3567CC"
                         fontSize="large"
                       />
                       <span>0</span>
                       <ControlPointOutlinedIcon
+                        sx={{ cursor: "no-drop" }}
                         htmlColor="#3567CC"
                         fontSize="large"
                       />
@@ -160,11 +165,13 @@ const PassengerAdd = () => {
                       alignItems={"center"}
                     >
                       <RemoveCircleOutlineOutlinedIcon
+                        sx={{ cursor: "no-drop" }}
                         htmlColor="#3567CC"
                         fontSize="large"
                       />
                       <span>0</span>
                       <ControlPointOutlinedIcon
+                        sx={{ cursor: "no-drop" }}
                         htmlColor="#3567CC"
                         fontSize="large"
                       />
@@ -195,17 +202,19 @@ const PassengerAdd = () => {
                       alignItems={"center"}
                     >
                       <RemoveCircleOutlineOutlinedIcon
+                        sx={{ cursor: "no-drop" }}
                         htmlColor="#3567CC"
                         fontSize="large"
                       />
                       <span>0</span>
                       <ControlPointOutlinedIcon
+                        sx={{ cursor: "no-drop" }}
                         htmlColor="#3567CC"
                         fontSize="large"
                       />
                     </Stack>
                   </Box>
-
+                  {/* fare type btns */}
                   <Stack
                     sx={{
                       flexDirection: "row",

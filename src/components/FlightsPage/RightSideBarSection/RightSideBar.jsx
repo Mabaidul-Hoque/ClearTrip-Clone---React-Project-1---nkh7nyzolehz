@@ -65,7 +65,6 @@ const RightSideBar = () => {
           <button className="up-prev-btn" onClick={handlePrevUp}>
             <KeyboardArrowLeftOutlinedIcon />
           </button>
-          {/* <div className="carousel-up"> */}
           {offers.map((offer, index) => (
             <Paper
               key={offer._id}
@@ -77,11 +76,10 @@ const RightSideBar = () => {
               <div className="offer-details">
                 <h4>{offer.pTl}</h4>
                 <p>{offer.pTx}</p>
-                <button>{offer.ctaText}</button>
+                <button style={{ cursor: "no-drop" }}>{offer.ctaText}</button>
               </div>
             </Paper>
           ))}
-          {/* </div> */}
           <button className="up-next-btn" onClick={handleNextUp}>
             <KeyboardArrowRightOutlinedIcon />
           </button>

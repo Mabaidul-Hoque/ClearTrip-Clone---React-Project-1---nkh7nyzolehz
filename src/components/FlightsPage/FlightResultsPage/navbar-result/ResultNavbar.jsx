@@ -1,12 +1,12 @@
-import { Box, Stack, Button, ThemeProvider, Tooltip } from "@mui/material";
 import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 // import "../FlightResultPage.css";
+import { Box, Stack, Button, ThemeProvider, Tooltip } from "@mui/material";
 import LocalAirportOutlinedIcon from "@mui/icons-material/LocalAirportOutlined";
 import HotelIcon from "@mui/icons-material/Hotel";
 import CurrencyRupeeOutlinedIcon from "@mui/icons-material/CurrencyRupeeOutlined";
 import HeadsetMicOutlinedIcon from "@mui/icons-material/HeadsetMicOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import { Link, useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import DepartDateResult from "./date-picker-result/DepartDateResult";
@@ -18,11 +18,11 @@ import ResultDepartCity from "./source-destination/ResultDepartCity";
 import ResultDestinationCity from "./source-destination/ResultDestinationCity";
 import { fetchFlights } from "../../../../Apis/FlightSearchApi";
 import { useFlightSearch } from "../../../../UseContext/FlightsSearchProvider";
-import { useFlightResult } from "../../../../UseContext/FlightResultProvider";
-const leftLogoUrl = "../../../../public/assets/Cleartrip_Original.svg.png";
 import { CustomTheme } from "../../../../util/muiTheme";
 import LoginPage from "../../../Login-signup/LoginPage";
+import { toast } from "react-toastify";
 
+const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const RightButton = styled(Button)({
   color: "gray",
   "&:active": {
@@ -35,24 +35,72 @@ const RightButton = styled(Button)({
   },
 });
 
-const ResultNavbar = ({ source, dest, departDay }) => {
-  const [airportNames, setAirportNames] = useState([]);
-  const navigate = useNavigate();
+const ResultNavbar = () => {
   const { tokenDetails, logSignDetails, handleLogout, signupDetails } =
     useAuth();
   const { token } = tokenDetails;
   const { handleLoginOpen } = logSignDetails;
   const { setIsSignup } = signupDetails;
+  const {
+    airplaneDetails,
+    sourceDestValue,
+    flightPage,
+    departvalue,
+    totalFlightsVal,
+  } = useFlightSearch();
+  const { setAirplanes, airportNames, setAirportNames } = airplaneDetails;
+  const { cityNameCodes, source, destination } = sourceDestValue;
+  const { departDay } = departvalue;
+  const { setTotalResult } = totalFlightsVal;
+  const navigate = useNavigate();
 
-  const { airplaneDetails } = useFlightSearch();
-  const { setAirplanes } = airplaneDetails;
-
-  // check after remove
   useEffect(() => {
     fetchAirportNames().then((res) => {
       setAirportNames(res.data.airports);
     });
   }, []);
+
+  const handleResultFlightSearch = () => {
+    console.log({ source, destination, departDay });
+    if (
+      source.substring(0, 3) !== destination.substring(0, 3) &&
+      cityNameCodes.includes(source.substring(0, 3)) &&
+      cityNameCodes.includes(destination.substring(0, 3)) &&
+      days.includes(departDay.substring(0, 3))
+    ) {
+      const sourceVal = source.substring(0, 3);
+      const destinationVal = destination.substring(0, 3);
+      const day = departDay.substring(0, 3);
+      if (sourceVal !== null && destinationVal !== null && day !== null) {
+        fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
+          (response) => {
+            setTotalResult(response.totalResults);
+            setAirplanes(response.data.flights);
+          }
+        );
+      } else {
+        fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
+          (response) => {
+            setTotalResult(response.totalResults);
+            setAirplanes(response.data.flights);
+          }
+        );
+      }
+    } else {
+      if (source === "" || destination === "") {
+        notify("Fill the details before search!");
+      }
+      if (
+        source !== "" &&
+        destination !== "" &&
+        source.substring(0, 3) === destination.substring(0, 3)
+      ) {
+        notify("Inputs are either same or invalid!, provide correct inputs");
+      }
+    }
+  };
+
+  const notify = (text) => toast(text);
 
   return (
     <ThemeProvider theme={CustomTheme}>
@@ -117,7 +165,7 @@ const ResultNavbar = ({ source, dest, departDay }) => {
               </Tooltip>
             </RightButton>
           </Stack>
-          {/* login btn */}
+          {/* support and login btn section */}
           <Stack
             flexDirection={"row"}
             justifyContent={"center"}
@@ -130,6 +178,7 @@ const ResultNavbar = ({ source, dest, departDay }) => {
                   xxs: "none",
                   sm: "inline-block",
                 },
+                cursor: "no-drop",
               }}
             >
               <span>INR</span>
@@ -144,6 +193,7 @@ const ResultNavbar = ({ source, dest, departDay }) => {
                   xxs: "none",
                   sm: "inline-block",
                 },
+                cursor: "no-drop",
               }}
             >
               <HeadsetMicOutlinedIcon
@@ -167,8 +217,8 @@ const ResultNavbar = ({ source, dest, departDay }) => {
             </RightButton>
           </Stack>
         </Stack>
-
         <LoginPage />
+
         {/* search section */}
         <Stack
           mt={1}
@@ -191,7 +241,6 @@ const ResultNavbar = ({ source, dest, departDay }) => {
             alignItems={"center"}
             gap={{
               xxs: 0,
-              // sm: 1,
             }}
           >
             <ResultDepartCity
@@ -203,12 +252,12 @@ const ResultNavbar = ({ source, dest, departDay }) => {
             <ResultDestinationCity
               options={airportNames}
               noOptionText={"No Match Found"}
-              dest={dest}
+              destination={destination}
             />
           </Stack>
           {/* depart return date */}
           <Box>
-            <DepartDateResult departDay={departDay} />
+            <DepartDateResult />
           </Box>
           <Box
             sx={{
@@ -242,7 +291,7 @@ const ResultNavbar = ({ source, dest, departDay }) => {
                 bgcolor: "#000000",
               },
             }}
-            // onClick={handleResultFlightSearch}
+            onClick={handleResultFlightSearch}
           >
             Search
           </Button>

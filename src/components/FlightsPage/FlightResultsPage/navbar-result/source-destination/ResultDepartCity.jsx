@@ -3,13 +3,7 @@ import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider
 // import "../../FlightResultsPage.css";
 import { Paper, Stack } from "@mui/material";
 
-const ResultDepartCity = ({
-  options,
-  onSelect,
-  optionKey = "iata_code",
-  noOptionText = "No Items",
-  source,
-}) => {
+const ResultDepartCity = ({ options, noOptionText = "No Items", source }) => {
   const [searchText, setSearchText] = useState("");
   const [selected, setSelected] = useState("");
   const [allOption, setAllOption] = useState(options || []);
@@ -21,9 +15,7 @@ const ResultDepartCity = ({
   useEffect(() => {
     setAllOption(options);
     handleSourceChange(selected);
-
     document.addEventListener("click", handleOutsideClick);
-
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
@@ -38,10 +30,6 @@ const ResultDepartCity = ({
   const selectHandle = (val) => {
     setFocus(false);
     setSearchText("");
-    if (onSelect) {
-      onSelect(val);
-      return;
-    }
     setSelected(`${val.iata_code} ${val.city}, IN`);
   };
 
@@ -62,8 +50,8 @@ const ResultDepartCity = ({
       <input
         ref={sourceRef}
         className="result-input-source"
-        placeholder={source}
-        value={selected || source}
+        placeholder={"Where from?"}
+        value={selected || searchText}
         onChange={handleChange}
         onFocus={() => {
           setSelected("");
