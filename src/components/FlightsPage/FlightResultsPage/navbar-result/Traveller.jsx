@@ -147,7 +147,9 @@ const Traveller = () => {
                       <RemoveCircleOutlineOutlinedIcon
                         htmlColor="#3567CC"
                         fontSize="large"
-                        sx={{ cursor: "pointer" }}
+                        className={
+                          adults === 1 ? "cursor-change" : "cursor-normal"
+                        }
                         onClick={() =>
                           setAdults((prev) => (prev - 1 < 1 ? 1 : prev - 1))
                         }
@@ -157,7 +159,12 @@ const Traveller = () => {
                         htmlColor="#3567CC"
                         fontSize="large"
                         sx={{ cursor: "pointer" }}
-                        onClick={() => setAdults((prev) => prev + 1)}
+                        className={
+                          adults === 7 ? "cursor-change" : "cursor-normal"
+                        }
+                        onClick={() =>
+                          setAdults((prev) => (prev + 1 >= 7 ? 7 : prev + 1))
+                        }
                       />
                     </Stack>
                   </Box>
@@ -188,7 +195,9 @@ const Traveller = () => {
                       <RemoveCircleOutlineOutlinedIcon
                         htmlColor="#3567CC"
                         fontSize="large"
-                        sx={{ cursor: "pointer" }}
+                        className={
+                          children === 0 ? "cursor-change" : "cursor-normal"
+                        }
                         onClick={() =>
                           setChildren((prev) => (prev - 1 < 0 ? 0 : prev - 1))
                         }
@@ -197,8 +206,12 @@ const Traveller = () => {
                       <ControlPointOutlinedIcon
                         htmlColor="#3567CC"
                         fontSize="large"
-                        sx={{ cursor: "pointer" }}
-                        onClick={() => setChildren((prev) => prev + 1)}
+                        className={
+                          children === 7 ? "cursor-change" : "cursor-normal"
+                        }
+                        onClick={() =>
+                          setChildren((prev) => (prev + 1 >= 7 ? 7 : prev + 1))
+                        }
                       />
                     </Stack>
                   </Box>
@@ -229,7 +242,9 @@ const Traveller = () => {
                       <RemoveCircleOutlineOutlinedIcon
                         htmlColor="#3567CC"
                         fontSize="large"
-                        sx={{ cursor: "pointer" }}
+                        className={
+                          infants === 0 ? "cursor-change" : "cursor-normal"
+                        }
                         onClick={() =>
                           setInfants((prev) => (prev - 1 < 0 ? 0 : prev - 1))
                         }
@@ -238,8 +253,12 @@ const Traveller = () => {
                       <ControlPointOutlinedIcon
                         htmlColor="#3567CC"
                         fontSize="large"
-                        sx={{ cursor: "pointer" }}
-                        onClick={() => setInfants((prev) => prev + 1)}
+                        className={
+                          infants === 7 ? "cursor-change" : "cursor-normal"
+                        }
+                        onClick={() =>
+                          setInfants((prev) => (prev + 1 >= 7 ? 7 : prev + 1))
+                        }
                       />
                     </Stack>
                   </Box>

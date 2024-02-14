@@ -85,7 +85,7 @@ const FareType = () => {
           ))}
         </Stack>
       </Box>
-
+      {/* for mobile */}
       <Stack
         sx={{
           zIndex: 20,
@@ -111,8 +111,7 @@ const FareType = () => {
               <PersonOutlineOutlinedIcon htmlColor="#999999" />
             )}
             <span style={{ fontSize: "16px", fontWeight: "500  " }}>
-              Fare Type , Regular fare
-              {/* {fareType} */}
+              Fare Type , {fareType}
             </span>
             {open ? (
               <ExpandLessOutlinedIcon htmlColor="#999999" />
@@ -165,7 +164,7 @@ const FareType = () => {
                         }
                         onClick={(e) => {
                           setFareBtnIndex(index);
-                          //   setFareType(e.target.value);
+                          setFareType(e.target.innerHTML);
                           handleClose(e);
                         }}
                       >

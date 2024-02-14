@@ -131,13 +131,15 @@ const ResultNavbar = () => {
             justifyContent={"flex-start"}
             alignItems={"center"}
           >
-            <Link to="/">
-              <img
-                className="cleartrip-logo"
-                src="https://careers.cleartrip.com/images/cleartrip/footer-logo.svg"
-                alt="cleartrip-logo"
-              />
-            </Link>
+            <Tooltip title="Home" sx={{ marginTop: -4 }}>
+              <Link to="/">
+                <img
+                  className="cleartrip-logo"
+                  src="https://careers.cleartrip.com/images/cleartrip/footer-logo.svg"
+                  alt="cleartrip-logo"
+                />
+              </Link>
+            </Tooltip>
 
             <RightButton
               sx={{

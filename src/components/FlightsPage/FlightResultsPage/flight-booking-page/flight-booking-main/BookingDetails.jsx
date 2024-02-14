@@ -88,7 +88,7 @@ const BookingDetails = ({ flightId }) => {
               {singleFlight.destination}
             </Stack>
             <Typography fontSize={"14px"}>
-              {localStorage.getItem("day")} 2024
+              {localStorage.getItem("departDay")} 2024
             </Typography>
           </Stack>
           {/* main content */}
@@ -156,6 +156,7 @@ const BookingDetails = ({ flightId }) => {
           </Stack>
         </div>
         <Box mt={3} mb={3} sx={{ borderBottom: "1px dotted #E6E6E6" }}></Box>
+
         {/* flight 2 details */}
         <div className="details-two">
           {/* header */}
@@ -177,7 +178,9 @@ const BookingDetails = ({ flightId }) => {
               <ArrowForwardIcon fontSize="small" />
               {singleFlight.source}
             </Stack>
-            <Typography fontSize={"14px"}>Thu, 10 Aug 2023</Typography>
+            <Typography fontSize={"14px"}>
+              {localStorage.getItem("departDay")} 2024
+            </Typography>
           </Stack>
           {/* main content */}
           <Stack

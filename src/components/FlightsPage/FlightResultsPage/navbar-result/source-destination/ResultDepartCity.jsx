@@ -50,7 +50,7 @@ const ResultDepartCity = ({ options, noOptionText = "No Items", source }) => {
       <input
         ref={sourceRef}
         className="result-input-source"
-        placeholder={"Where from?"}
+        placeholder={localStorage.getItem("source")}
         value={selected || searchText}
         onChange={handleChange}
         onFocus={() => {
@@ -64,7 +64,7 @@ const ResultDepartCity = ({ options, noOptionText = "No Items", source }) => {
       />
       <Paper
         className="flight-input-dropdown"
-        style={{
+        sx={{
           display: focus ? "flex" : "none",
         }}
       >

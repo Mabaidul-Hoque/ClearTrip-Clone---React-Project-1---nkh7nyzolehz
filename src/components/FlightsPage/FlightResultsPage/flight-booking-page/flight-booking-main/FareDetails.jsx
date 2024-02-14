@@ -196,7 +196,7 @@ export default function FareDetails() {
                 borderTop: "1px solid lightgray",
                 display: "flex",
                 alignItems: "center",
-                cursor: "pointer",
+                cursor: "no-drop",
               }}
               onClick={() => setIsRefund((prev) => !prev)}
             >
@@ -288,7 +288,7 @@ export default function FareDetails() {
                 borderTop: "1px solid lightgray",
                 display: "flex",
                 alignItems: "center",
-                cursor: "pointer",
+                cursor: "no-drop",
               }}
               onClick={() => setIsDateChange((prev) => !prev)}
             >
@@ -441,7 +441,7 @@ export default function FareDetails() {
                 borderTop: "1px solid lightgray",
                 display: "flex",
                 alignItems: "center",
-                cursor: "pointer",
+                cursor: "no-drop",
               }}
               onClick={() => setIsRefund((prev) => !prev)}
             >
@@ -532,7 +532,7 @@ export default function FareDetails() {
                 borderTop: "1px solid lightgray",
                 display: "flex",
                 alignItems: "center",
-                cursor: "pointer",
+                cursor: "no-drop",
               }}
               onClick={() => setIsDateChange((prev) => !prev)}
             >

@@ -25,10 +25,11 @@ const LeftSideSortingBar = ({ getFilterFlights }) => {
       <div>
         <Button
           sx={{
-            width: "60vw",
+            width: "10rem",
             display: {
               lg: "none",
             },
+            textTransform: "none",
           }}
           variant="outlined"
           id="basic-button"

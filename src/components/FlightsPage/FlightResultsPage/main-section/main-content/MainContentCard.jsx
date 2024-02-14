@@ -438,6 +438,7 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
                       sm: "12px",
                       lg: "14px",
                     },
+                    cursor: "no-drop",
                     textTransform: "none",
                   }}
                 >

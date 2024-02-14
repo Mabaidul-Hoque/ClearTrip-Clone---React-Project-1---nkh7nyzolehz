@@ -101,7 +101,9 @@ const FlightPriceCard = () => {
         >
           Pay om 3 interest free EMIs At <CurrencyRupeeIcon fontSize="sm" />
           4,095/mo
-          <Button variant="text">View plans</Button>
+          <Button variant="text" sx={{ cursor: "no-drop" }}>
+            View plans
+          </Button>
           with your credit card
         </Typography>
       </CustomPaper>

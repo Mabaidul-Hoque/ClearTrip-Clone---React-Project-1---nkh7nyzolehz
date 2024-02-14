@@ -1,13 +1,15 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useEffect } from "react";
 // import "../../FlightResultsPage.css";
 import { Stack, Typography } from "@mui/material";
 import { fetchFlights } from "../../../../../Apis/FlightSearchApi";
 import MainContentCard from "./MainContentCard";
-import { fetchFlightsByStopsAndDepartTime } from "../../../../../Apis/FlightSearchApi";
 import Pagination from "@mui/material/Pagination";
-
 import { planes } from "../../../../../static-data/StaticData";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
+
+// import Backdrop from "@mui/material/Backdrop";
+// import CircularProgress from "@mui/material/CircularProgress";
+// import Button from "@mui/material/Button";
 
 const MainContent = ({ getFilterFlights, source, dest, departDay }) => {
   const {
@@ -34,7 +36,6 @@ const MainContent = ({ getFilterFlights, source, dest, departDay }) => {
 
       fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
         (response) => {
-          console.log("flight result page search btn ", response.data.flights);
           setTotalResult(response.totalResults);
           setAirplanes(response.data.flights);
         }
@@ -88,7 +89,7 @@ const MainContent = ({ getFilterFlights, source, dest, departDay }) => {
       </Stack>
       {/* flight cards */}
       <Stack flexDirection={"column"} gap={2}>
-        {airplanes ? (
+        {airplanes.length > 0 ? (
           airplanes.map((airplane, index) => (
             <MainContentCard
               index={index}
@@ -98,7 +99,13 @@ const MainContent = ({ getFilterFlights, source, dest, departDay }) => {
             />
           ))
         ) : (
-          <h1>NO Flights Are Available!!</h1>
+          // <Backdrop
+          //   sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          //   open
+          // >
+          //   <CircularProgress color="inherit" />
+          // </Backdrop>
+          <h1 style={{ textAlign: "center" }}>NO Flights Are Available!!</h1>
         )}
       </Stack>
       {/* pagination */}

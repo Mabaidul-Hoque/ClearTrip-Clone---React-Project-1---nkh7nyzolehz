@@ -1,15 +1,8 @@
 import { useEffect, useState } from "react";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 // import "../../FlightResultsPage.css";
-import { Box, Paper, Stack } from "@mui/material";
-import { fetchFlights } from "../../../../../Apis/FlightSearchApi";
-const ResultDestinationCity = ({
-  options,
-  onSelect,
-  optionKey = "iata_code",
-  noOptionText = "No Items",
-  destination,
-}) => {
+import { Paper, Stack } from "@mui/material";
+const ResultDestinationCity = ({ options, noOptionText = "No Items" }) => {
   const [searchText, setSearchText] = useState("");
   const [selected, setSelected] = useState("");
   const [allOption, setAllOption] = useState(options || []);
@@ -21,9 +14,7 @@ const ResultDestinationCity = ({
   useEffect(() => {
     setAllOption(options);
     handleDestinationChange(selected);
-
     document.addEventListener("click", handleOutsideClick);
-
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
@@ -41,10 +32,6 @@ const ResultDestinationCity = ({
   const selectHandle = (val) => {
     setFocus(false);
     setSearchText("");
-    if (onSelect) {
-      onSelect(val);
-      return;
-    }
     setSelected(`${val.iata_code} ${val.city}, IN`);
   };
 
@@ -61,11 +48,11 @@ const ResultDestinationCity = ({
   };
 
   return (
-    <div className="autoComplete">
+    <div className="dest-autoComplete">
       <input
         ref={destinationRef}
         className="result-input-destination"
-        placeholder={"Where to?"}
+        placeholder={localStorage.getItem("destination")}
         value={selected || searchText}
         onFocus={() => {
           setSelected("");
@@ -78,7 +65,7 @@ const ResultDestinationCity = ({
         }}
       />
       <Paper
-        className="flight-input-dropdown"
+        className="flight-input-dropdown f-res-dest-dropdown"
         style={{
           display: focus ? "flex" : "none",
         }}

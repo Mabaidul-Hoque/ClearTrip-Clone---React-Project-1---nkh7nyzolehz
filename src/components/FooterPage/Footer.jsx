@@ -26,7 +26,10 @@ const Footer = () => {
           xs: "column",
           md: "row",
         }}
-        gap={8}
+        gap={{
+          xs: 2,
+          md: 8,
+        }}
       >
         <img
           className="ft-cleartrip-logo"

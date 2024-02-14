@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../FlightBookingPage.css";
 import AccountCircleSharpIcon from "@mui/icons-material/AccountCircleSharp";
-import { Box, Button, Stack } from "@mui/material";
+import { Box, Button, Stack, Tooltip } from "@mui/material";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../../../UseContext/AuthorizationProvider";
@@ -28,12 +28,14 @@ const FlightBookingNavbar = () => {
         justifyContent={"space-between"}
         mt={2}
       >
-        <img
-          className="cleartrip-logo"
-          src="https://careers.cleartrip.com/images/cleartrip/footer-logo.svg"
-          alt="cleartrip-logo"
-          onClick={() => navigate("/")}
-        />
+        <Tooltip title="Home">
+          <img
+            className="cleartrip-logo"
+            src="https://careers.cleartrip.com/images/cleartrip/footer-logo.svg"
+            alt="cleartrip-logo"
+            onClick={() => navigate("/")}
+          />
+        </Tooltip>
 
         <CustomButton
           onClick={() => {
