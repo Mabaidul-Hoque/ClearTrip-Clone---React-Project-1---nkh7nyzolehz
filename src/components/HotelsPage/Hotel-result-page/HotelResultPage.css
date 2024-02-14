@@ -45,8 +45,8 @@
 }
 .res-prev-btn,.res-next-btn{
     z-index: 1;
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     border-radius: 50%;
     border: none;
     cursor: pointer;
@@ -188,14 +188,6 @@
 .filter-btn:active{
     background-color: #F3F3F3;
 }
-/* .top-rated-icon:hover{
-    cursor: pointer;
-}
-.top-rated-icon:focus{
-    background-color: green;
-} */
-
-
 #hotel-result-page-main{
     width: 90%;
     margin: auto;
@@ -203,7 +195,6 @@
 }
 #basic-menu{
     margin-top: 20px;
-    /* border-radius: 20px; */
 }
 .filter-menu{
     border-radius: 20px;
@@ -221,9 +212,7 @@
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    
 }
-
 .menu-item>span{
     font-size: 16px;
     font-weight: 500;
@@ -239,11 +228,9 @@
     justify-content: flex-end;
     margin-right: 20px;
 }
-
 .aply-btn{
     width: 15vw;
     height: 40px;
-    /* padding: 10px 20px; */
     font-size: 16px;
     font-weight: bold;
     color: #FFFFFF;
@@ -298,85 +285,30 @@
         display: flex;
     }
 }
-
+@media screen and (min-width: 450px){
+    .hotel-result-input-box{
+        width: 12rem;
+        padding-left: 10px;
+    }
+}
 @media screen and (min-width: 900px){
-    /* .logo-login-section{
-        flex-wrap: wrap;
-    } */
     .logo-login-middle{
         justify-content: flex-start;
         flex-wrap: wrap;
         margin-top: 22px;
     }
-    .hotel-res-login{
-        /* position: absolute;
-        right: 5vw;
-        top: 10px;
-        width:8rem;
-        height: 30px; */
-        /* position: static; */
-    }
-    /* .hotel-result-input-box{
-        width: 90vw;
-    }
-    .h-res-add-room-btn{
-        width: 90vw;
-    }
-    .menu,.menu-item{
-        width: 90vw;
-    }
-    #filter-section{
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-    .sort-menu{
-        width: 90vw;
-    }
-    .aply-btn{
-        width: 10rem;
-    }
-    .hotel-card-title>span{
-        max-width:70vw;
-    } */
 }
 
 @media screen and (min-width: 1024px){
     .logo-login-section{
         gap: 30px;
     }
-    /* .logo-login-middle{
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        margin-top: 22px;
-    } */
     .hotel-res-login{
         right: 5vw;
         top: 15px;
         width:8rem;
         height: 45px; 
     } 
-    /* .hotel-result-input-box{
-        width: 90vw;
-    }
-    .h-res-add-room-btn{
-        width: 90vw;
-    }
-    .menu,.menu-item{
-        width: 90vw;
-    }
-    #filter-section{
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-    .sort-menu{
-        width: 90vw;
-    }
-    .aply-btn{
-        width: 10rem;
-    }
-    .hotel-card-title>span{
-        max-width:70vw;
-    } */
 }
 
 @media screen and (min-width: 1280px){
@@ -394,26 +326,4 @@
         width:8rem;
         height: 45px; 
     }
-    /* .hotel-result-input-box{
-        width: 90vw;
-    }
-    .h-res-add-room-btn{
-        width: 90vw;
-    }
-    .menu,.menu-item{
-        width: 90vw;
-    }
-    #filter-section{
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-    .sort-menu{
-        width: 90vw;
-    }
-    .aply-btn{
-        width: 10rem;
-    }
-    .hotel-card-title>span{
-        max-width:70vw;
-    } */
 }

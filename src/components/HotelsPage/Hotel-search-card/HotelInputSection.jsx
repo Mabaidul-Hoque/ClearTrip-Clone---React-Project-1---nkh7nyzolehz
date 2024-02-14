@@ -7,7 +7,6 @@ import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 
 const HotelInputSection = ({
   options,
-  onSelect,
   optionKey = "name",
   noOptionText = "No Items",
   hotelInputClass,
@@ -41,11 +40,6 @@ const HotelInputSection = ({
   };
   const selectHandle = (val) => {
     setSearchText("");
-
-    if (onSelect) {
-      onSelect(val);
-      return;
-    }
     setSelected(val[optionKey]);
   };
   const handleChange = ({ target }) => {

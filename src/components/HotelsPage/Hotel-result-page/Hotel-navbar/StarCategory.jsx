@@ -22,7 +22,7 @@ const StarCategory = () => {
   const { setFilterItems, handleHotelFilter } = filtersData;
 
   useEffect(() => {
-    if (applyBtn) {
+    if (applyBtn && (fiveStar || fourStar || threeStar)) {
       handleHotelFilter();
     }
   }, [applyBtn, hotelPage]);

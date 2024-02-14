@@ -1,4 +1,11 @@
-import { Menu, MenuItem, Slider, Stack, Typography } from "@mui/material";
+import {
+  Button,
+  Menu,
+  MenuItem,
+  Slider,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import "../HotelResultPage.css";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
@@ -9,6 +16,7 @@ import StarCategory from "./StarCategory";
 import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
 import { fetchSortByPrice } from "../../../../Apis/HotelResulFilterApi";
 import FilterByPriceRange from "./FilterByPriceRange";
+import { fetchHotels } from "../../../../Apis/HotelDetailsApi";
 
 const HotelFilter = () => {
   const [topRated, setTopRated] = useState(false);
@@ -25,7 +33,7 @@ const HotelFilter = () => {
   const { hotelPage, setHotels, setHotelPage, setTotalHotels } = hotelDetails;
 
   useEffect(() => {
-    if (applyBtn) {
+    if (applyBtn && (lowHigh || highLow)) {
       handleFilterbyPrice();
     }
   }, [applyBtn, hotelPage]);
@@ -37,10 +45,18 @@ const HotelFilter = () => {
       hotelPage,
       price
     ).then((resp) => {
-      // console.log("hotels by price high to low  ", resp);
       setTotalHotels(resp.totalResults);
       setHotels(resp.data.hotels);
     });
+  };
+
+  const handleResetFilter = () => {
+    fetchHotels(localStorage.getItem("inputPlace"), 10, hotelPage).then(
+      (resp) => {
+        setTotalHotels(resp.totalResults);
+        setHotels(resp.data.hotels);
+      }
+    );
   };
 
   const handleStateChange = () => {
@@ -53,7 +69,7 @@ const HotelFilter = () => {
   const handleHighLowBtn = () => {
     setPrice(-1);
   };
-  // usecallback
+
   const handleLowHighBtn = () => {
     setPrice(1);
   };
@@ -161,10 +177,19 @@ const HotelFilter = () => {
           </li>
         </Menu>
       </div>
-
+      {/* Sort by rating */}
       <StarCategory />
-
+      {/* Sort by price range */}
       <FilterByPriceRange />
+
+      {/* reset filter */}
+      <Button
+        variant="contained"
+        sx={{ textTransform: "none", ml: 4 }}
+        onClick={handleResetFilter}
+      >
+        Reset filter
+      </Button>
     </div>
   );
 };

@@ -40,7 +40,6 @@ const HotelResultPage = () => {
 
   const handleSingleHotelClick = (hotelID) => {
     fetchSingleHotel(hotelID).then((response) => {
-      // console.log("response", response);
       setSingleHotel(response.data);
     });
   };

@@ -7,7 +7,10 @@ import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import { OPTION } from "../../Hotels";
 import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
-import { fetchSingleHotel } from "../../../../Apis/HotelDetailsApi";
+import {
+  fetchHotels,
+  fetchSingleHotel,
+} from "../../../../Apis/HotelDetailsApi";
 import GeneralDetails from "./GeneralDetails";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
@@ -19,6 +22,7 @@ import HResAddRoom from "../Hotel-navbar/HResAddRoom";
 import { Stack, Typography } from "@mui/material";
 import Footer from "../../../FooterPage/Footer";
 import LoginPage from "../../../Login-signup/LoginPage";
+import { toast } from "react-toastify";
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   display: "flex",
@@ -56,9 +60,10 @@ const HotelDetailsPage = () => {
   const { handleLoginOpen } = logSignDetails;
   const { token } = tokenDetails;
   const { setIsSignup } = signupDetails;
-  const { hotelDetails } = useHotelContext();
-  const { singleHotel, setSingleHotel } = hotelDetails;
-
+  const { hotelDetails, inputInfo } = useHotelContext();
+  const { setHotels, setTotalHotels, hotelPage, singleHotel, setSingleHotel } =
+    hotelDetails;
+  const { inputPlace } = inputInfo;
   const navigate = useNavigate();
   const { userID } = useParams();
 
@@ -83,11 +88,26 @@ const HotelDetailsPage = () => {
     });
   }, [userID]);
 
+  const handleHotelUpdate = () => {
+    if (inputPlace !== "") {
+      fetchHotels(inputPlace, 10, hotelPage).then((resp) => {
+        setTotalHotels(resp.totalResults);
+        setHotels(resp.data.hotels);
+        navigate("/hotels/results");
+      });
+    } else {
+      notify("Fill the input details!");
+    }
+  };
+
+  const notify = (text) => toast(text);
+
   return (
     <div className="hotel-details-page">
       <nav className="hotel-details-navbar">
         <Stack flexDirection={"column"} gap={4}>
           <div className="logo-login-section">
+            {/* cleartrip logo */}
             <Link to="/">
               <img
                 className="cleartrip-logo"
@@ -95,6 +115,7 @@ const HotelDetailsPage = () => {
                 alt="cleartrip-logo"
               />
             </Link>
+            {/* search inputs */}
             <div className="logo-login-middle">
               <HotelDetailsInput
                 options={OPTION}
@@ -104,7 +125,9 @@ const HotelDetailsPage = () => {
               />
               <ResultCheckInOutDate />
               <HResAddRoom />
-              <button className="update-btn">Update</button>
+              <button className="update-btn" onClick={handleHotelUpdate}>
+                Update
+              </button>
             </div>
             {/* log in btn */}
             <button

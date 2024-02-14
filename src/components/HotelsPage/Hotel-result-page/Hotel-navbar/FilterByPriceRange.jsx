@@ -26,15 +26,16 @@ const PrettoSlider = styled(Slider)({
 
 const FilterByPriceRange = () => {
   const [hotelPrice, setHotelPrice] = useState(10000);
-
   const hotelPriceDebounce = useDebounce(hotelPrice, 500);
-
   const { filtersData, hotelDetails } = useHotelContext();
   const { setFilterItems, handleHotelFilter } = filtersData;
   const { hotelPage, setHotelPage } = hotelDetails;
 
   useEffect(() => {
-    handleHotelFilter();
+    if (hotelPriceDebounce || hotelPage) {
+      handleHotelFilter();
+      console.log("render in filter by price range");
+    }
   }, [hotelPriceDebounce, hotelPage]);
 
   const handlePriceRangeFilter = () => {
@@ -58,6 +59,7 @@ const FilterByPriceRange = () => {
           marginRight: "20px",
           fontSize: {
             xs: "14px",
+            md: "16px",
           },
           fontWeight: "500",
           border: "1px solid #D3D3D3",
@@ -83,7 +85,6 @@ const FilterByPriceRange = () => {
         aria-label="pretto slider"
         onChange={(e) => {
           setHotelPrice(e.target.value);
-          //   handlePriceRangeFilter();
         }}
         onChangeCommitted={handlePriceRangeFilter}
       />

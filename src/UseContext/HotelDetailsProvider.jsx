@@ -66,7 +66,6 @@ export const HotelDetailsProvider = ({ children }) => {
       hotelPage,
       JSONFilter
     ).then((response) => {
-      // console.log("response for fetchFilteredHotels", response);
       setTotalHotels(response.totalResults);
       setHotels(response.data.hotels);
     });

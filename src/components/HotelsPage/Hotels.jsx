@@ -57,9 +57,9 @@ const Hotels = () => {
   const notify = (text) => toast(text);
   return (
     <div id="hotel-page">
-      {/* main content */}
-
+      {/* hotel home page main content */}
       <Stack id="h-search-container">
+        {/* search header */}
         <Stack
           flexDirection={"column"}
           justifyContent={"flex-start"}
@@ -71,7 +71,9 @@ const Hotels = () => {
           <h4>Enjoy hassle free bookings with Cleartrip</h4>
         </Stack>
 
+        {/* hotel search container card */}
         <Paper id="h-search-card">
+          {/* hotel search input section */}
           <div className="location-input">
             <div>
               <HotelInputSection
@@ -79,7 +81,6 @@ const Hotels = () => {
                 options={OPTION}
                 noOptionText={"No Match Found"}
                 optionKey={"name"}
-                optionCount={5}
               />
             </div>
             {focus ? (
@@ -93,13 +94,18 @@ const Hotels = () => {
             )}
           </div>
 
+          {/* date room container */}
           <div className="date-room-input">
             <div className="h-date-icon">
               <CalendarMonthOutlinedIcon htmlColor="gray" />
             </div>
+
+            {/* date inputs */}
             <div className="date-input">
               <CheckInOutDate />
             </div>
+
+            {/* rooms add section */}
             <AddRooms />
           </div>
 
@@ -116,7 +122,8 @@ const Hotels = () => {
           </div>
         </Paper>
       </Stack>
-      {/* right side bar similar to flight page but offers are diffferent */}
+
+      {/* right side bar similar to flight page */}
       <div id="hotel-right-side-bar">
         <RightSideBar />
       </div>

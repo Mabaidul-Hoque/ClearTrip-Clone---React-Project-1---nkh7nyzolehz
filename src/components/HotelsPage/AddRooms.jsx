@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import "./Hotels.css";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -8,6 +8,7 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 const AddRooms = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const [roomType, setRoomType] = useState("1 Room, 2 Adult");
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -34,7 +35,7 @@ const AddRooms = () => {
         <span
           style={{ fontSize: "16px", fontWeight: "500 ", marginLeft: "10px" }}
         >
-          1 Room, 2 Adult
+          {roomType}
         </span>
       </button>
 
@@ -58,7 +59,14 @@ const AddRooms = () => {
           }}
           onClick={handleClose}
         >
-          1 Room, 1 Adult
+          <span
+            onClick={(e) => {
+              setRoomType(e.target.innerHTML);
+              handleClose();
+            }}
+          >
+            1 Room, 1 Adult
+          </span>
         </MenuItem>
         <MenuItem
           className="menu-item"
@@ -69,7 +77,14 @@ const AddRooms = () => {
           }}
           onClick={handleClose}
         >
-          1 Room, 2 Adult
+          <span
+            onClick={(e) => {
+              setRoomType(e.target.innerHTML);
+              handleClose();
+            }}
+          >
+            1 Room, 2 Adult
+          </span>
         </MenuItem>
         <MenuItem
           className="menu-item"
@@ -80,7 +95,14 @@ const AddRooms = () => {
           }}
           onClick={handleClose}
         >
-          2 Room, 4 Adult
+          <span
+            onClick={(e) => {
+              setRoomType(e.target.innerHTML);
+              handleClose();
+            }}
+          >
+            2 Room, 4 Adult
+          </span>
         </MenuItem>
       </Menu>
     </div>
