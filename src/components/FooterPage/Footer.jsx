@@ -62,16 +62,19 @@ const Footer = () => {
             </Typography>
             <Stack flexDirection={"row"} gap={2}>
               <Typography>Connect</Typography>
-              <a href="https://www.facebook.com/" target="_blank">
+              <a href="https://www.facebook.com/cleartrip" target="_blank">
                 <FacebookIcon />
               </a>
-              <a href="https://www.instagram.com/" target="_blank">
+              <a href="https://www.instagram.com/cleartrip/" target="_blank">
                 <InstagramIcon />
               </a>
-              <a href="https://twitter.com/?lang=en" target="_blank">
+              <a href="https://twitter.com/Cleartrip" target="_blank">
                 <XIcon />
               </a>
-              <a href="https://www.linkedin.com" target="_blank">
+              <a
+                href="https://www.linkedin.com/company/cleartrip/"
+                target="_blank"
+              >
                 <LinkedInIcon />
               </a>
             </Stack>

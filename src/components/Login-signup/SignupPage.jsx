@@ -5,7 +5,8 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import "./loginSignup.css";
 import { fetchSignup } from "../../Apis/LoginSignupApi";
 import { useAuth } from "../../UseContext/AuthorizationProvider";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const closeBtn = {
   "&:hover": {
@@ -17,15 +18,15 @@ const closeBtn = {
 const SignupPage = () => {
   const { signupDetails, logSignDetails, tokenDetails } = useAuth();
   const { handleLoginOpen, handleLoginClose, islogin } = logSignDetails;
-  const { name, setName, email, setEmail, password, setPassword } =
+  const { name, setName, email, setEmail, password, setPassword, setIsSignup } =
     signupDetails;
 
   const { token, setToken } = tokenDetails;
-
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  // const {pathname} = useLocation();
 
   const handleSignupSubmit = () => {
-    if (name && email && password) {
+    if (name && email.includes("@") && password) {
       fetchSignup({
         name,
         email,
@@ -33,19 +34,24 @@ const SignupPage = () => {
         appType: "bookingportals",
       }).then((response) => {
         if (response.status === "success") {
-          alert("User registered successfully");
+          notify("You have registered successfully");
           localStorage.setItem("token", response.token);
           setToken(response.token);
-          navigate("/login");
+          handleLoginClose();
+        } else {
+          notify("Already you have an accoount , login please");
         }
         setName("");
         setEmail("");
         setPassword("");
       });
+    } else if (email && !email.includes("@")) {
+      notify("Your email is invalid!");
     } else {
-      alert("Some field is missing or invalid");
+      notify("Some fields are missing or invalid!");
     }
   };
+  const notify = (text) => toast(text);
 
   return (
     <div>
@@ -70,7 +76,6 @@ const SignupPage = () => {
               alignItems={"flex-end"}
               sx={closeBtn}
               onClick={() => {
-                navigate("/");
                 handleLoginClose();
               }}
             >
@@ -84,18 +89,21 @@ const SignupPage = () => {
                   placeholder="Enter your name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  required
                 />
                 <input
                   type="text"
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
                 <input
                   type="password"
                   placeholder="Create a password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
                 <input
                   type="button"
@@ -107,12 +115,7 @@ const SignupPage = () => {
               <div className="signup">
                 <span className="signup">
                   Already have an account?
-                  <label
-                    htmlFor="check"
-                    onClick={() => {
-                      navigate("/login");
-                    }}
-                  >
+                  <label htmlFor="check" onClick={() => setIsSignup(false)}>
                     Login
                   </label>
                 </span>

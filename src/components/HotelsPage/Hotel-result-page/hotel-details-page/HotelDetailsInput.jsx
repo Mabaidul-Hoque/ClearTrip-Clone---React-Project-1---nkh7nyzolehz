@@ -43,11 +43,6 @@ const HotelDetailsInput = ({
 
   const selectHandle = (val) => {
     setSearchText("");
-
-    if (onSelect) {
-      onSelect(val);
-      return;
-    }
     setSelected(val[optionKey]);
   };
 

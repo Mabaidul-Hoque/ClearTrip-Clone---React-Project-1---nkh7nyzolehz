@@ -7,11 +7,13 @@ import LuggageOutlinedIcon from "@mui/icons-material/LuggageOutlined";
 import { Link, useLocation } from "react-router-dom";
 import { OffersContext } from "../../../UseContext/OfferDetailsProvider";
 import { Box, Stack } from "@mui/material";
+import { ToastContainer, toast } from "react-toastify";
 
 const SideNavbar = () => {
   const { setOffersUrlFilter } = useContext(OffersContext);
   const { pathname } = useLocation();
 
+  const notify = () => toast("Page is under construction");
   return (
     <Stack
       sx={{
@@ -66,11 +68,11 @@ const SideNavbar = () => {
         className={
           pathname === "/offers" ? "leftSection active-left-btn" : "leftSection"
         }
-        to="/offers"
+        // to="/offers"
+        onClick={notify}
       >
         <MonetizationOnOutlinedIcon />
         <span>Offers</span>
-        <span className="offer-upcoming">Upcoming</span>
       </Link>
       <Box
         sx={{
@@ -86,13 +88,14 @@ const SideNavbar = () => {
               ? "my-trip leftSection active-left-btn"
               : "leftSection"
           }
-          to="/mytrip"
+          // to="/mytrip"
+          onClick={notify}
         >
           <LuggageOutlinedIcon />
           <span>My trips</span>
-          <span className="trip-upcoming">Upcoming</span>
         </Link>
       </Box>
+      {/* <ToastContainer theme="dark" /> */}
     </Stack>
   );
 };

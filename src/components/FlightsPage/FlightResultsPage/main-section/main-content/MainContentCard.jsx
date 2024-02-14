@@ -11,6 +11,7 @@ import { fetchSingleFlightDetails } from "../../../../../Apis/FlightSearchApi";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 import { CustomTheme } from "../../../../../util/muiTheme";
 import { useAuth } from "../../../../../UseContext/AuthorizationProvider";
+import { toast } from "react-toastify";
 
 const MainContentCard = ({ airplane, planeLogoName, index }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +35,7 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
   const handleFlightDetails = () => {
     setIsOpen((prev) => !prev);
   };
-
+  const notify = (text) => toast(text);
   return (
     <ThemeProvider theme={CustomTheme}>
       <Paper elevation={8} className="main-content-card">
@@ -187,7 +188,7 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
                   handleBookBtn();
                   token
                     ? navigate(`/flights/itinerary/${airplane._id}`)
-                    : alert("To book a flight please login first");
+                    : notify("To book a flight please login first");
                 }}
               >
                 Book

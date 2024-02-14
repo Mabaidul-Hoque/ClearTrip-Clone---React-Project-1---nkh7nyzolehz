@@ -1,26 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "./FBConfirmation.css";
 import { fetchFlightBookingInfo } from "../../../../../Apis/BookingApi";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Box, Stack, Typography } from "@mui/material";
 import Footer from "../../../../FooterPage/Footer";
 
 const FBConfirmation = () => {
   const [user, setUser] = useState({});
-  const [departTime, setDepartTime] = useState();
-  const [arrivalTime, setArrivalTime] = useState();
   const { flightId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchFlightBookingInfo(flightId).then((resp) => {
       setUser(resp.booking);
     });
-
-    if (user) {
-      setDepartTime(() => timeFormat(user?.start_date));
-      setArrivalTime(() => timeFormat(user?.end_date));
-    }
-  }, [departTime, arrivalTime]);
+  }, []);
 
   const timeFormat = (timestamp) => {
     const date = new Date(timestamp);
@@ -34,17 +28,6 @@ const FBConfirmation = () => {
     const formattedDate = `${time} ${dayOfWeek}, ${dayOfMonth} ${month} ${year}`;
     return formattedDate;
   };
-
-  //   function generateRandomString() {
-  //     const characters =
-  //       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  //     let result = "";
-  //     for (let i = 0; i < 10; i++) {
-  //       const randomIndex = Math.floor(Math.random() * characters.length);
-  //       result += characters.charAt(randomIndex);
-  //     }
-  //     return result;
-  //   }
 
   return (
     <div id="booking-confirmation">
@@ -160,11 +143,13 @@ const FBConfirmation = () => {
           </div>
           <div className="b-flight-details">
             <Typography variant="h6">Departs</Typography>
-            <Typography>{departTime}</Typography>
+            {/* <Typography>{departTime}</Typography> */}
+            <Typography>{timeFormat(user?.start_date)}</Typography>
           </div>
           <div className="b-flight-details">
             <Typography variant="h6">Arrives</Typography>
-            <Typography>{arrivalTime}</Typography>
+            {/* <Typography>{arrivalTime}</Typography> */}
+            <Typography>{timeFormat(user?.end_date)}</Typography>
           </div>
           <div className="b-flight-details">
             <Typography variant="h6">Duration</Typography>

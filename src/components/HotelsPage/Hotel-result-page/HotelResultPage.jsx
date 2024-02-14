@@ -30,20 +30,9 @@ const HotelResultPage = () => {
 
   const memoizedhotels = useMemo(() => hotels, [hotels]);
 
-  // const memoizedHotels = useMemo(
-  //   () => filteredHotels,
-  //   [filteredHotels]
-  // );
-
   useEffect(() => {
-    // setDemoCount((prev) => prev + 1);
-    // handleHotelSearchBtn();
     handleHotelFilter();
   }, []);
-
-  // console.log("filteredHotels", filteredHotels);
-  // console.log("demoCount", demoCount);
-  // console.log("Hotels", hotels);
 
   const handleChange = (event, value) => {
     setHotelPage(value);

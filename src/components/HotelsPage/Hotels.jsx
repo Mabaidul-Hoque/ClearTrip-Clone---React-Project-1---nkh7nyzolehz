@@ -11,6 +11,7 @@ import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import { CheckInOutDate } from "./Hotel-search-card/CheckInOutDate";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
+import { toast } from "react-toastify";
 
 export const OPTION = [
   { name: "Kolkata, West Bengal" },
@@ -40,11 +41,20 @@ export const OPTION = [
 const Hotels = () => {
   const { hotelSearchHandler, inputInfo } = useHotelContext();
   const { handleHotelSearchBtn } = hotelSearchHandler;
-  const { focus } = inputInfo;
-  const { tokenDetails } = useAuth();
-  const { token } = tokenDetails;
+  const { focus, inputPlace } = inputInfo;
+  const { token } = useAuth().tokenDetails;
   const navigate = useNavigate();
 
+  const handleNavigation = () => {
+    if (token && inputPlace) {
+      navigate("/hotels/results");
+    } else if (!inputPlace) {
+      notify("Fill the details first!");
+    } else {
+      notify("You have to login first to continue further!");
+    }
+  };
+  const notify = (text) => toast(text);
   return (
     <div id="hotel-page">
       {/* main content */}
@@ -97,7 +107,7 @@ const Hotels = () => {
             <button
               onClick={() => {
                 handleHotelSearchBtn();
-                token ? navigate("/hotels/results") : navigate("/login");
+                handleNavigation();
               }}
               className="h-search-btn"
             >

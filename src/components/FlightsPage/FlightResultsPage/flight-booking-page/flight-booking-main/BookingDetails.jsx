@@ -8,18 +8,28 @@ import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider
 import FareSelection from "./FareSelection";
 import "../FlightBookingPage.css";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useAuth } from "../../../../../UseContext/AuthorizationProvider";
 
 const BookingDetails = ({ flightId }) => {
   const { singleFlight } = useFlightSearch().singleFlightValue;
+  const { token } = useAuth().tokenDetails;
   const navigate = useNavigate();
 
   const handleContinue = (phone, email) => {
-    if (phone && email) {
-      navigate(`/flights/flight_booking_confirmation/${flightId}`);
+    if (phone && email.includes("@")) {
+      if (token) {
+        navigate(`/flights/flight_booking_confirmation/${flightId}`);
+      } else {
+        notify("You have to login first, before payment");
+      }
+    } else if (email && !email.includes("@")) {
+      notify("Your email is invalid!");
     } else {
-      alert("Fill all the details");
+      notify("Some fields are missing or invalid!");
     }
   };
+  const notify = (text) => toast(text);
 
   return (
     <div className="booking-details">

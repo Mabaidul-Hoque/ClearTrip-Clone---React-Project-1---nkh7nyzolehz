@@ -8,11 +8,14 @@ import { OPTION } from "../../Hotels";
 import HotelFilter from "./HotelFilter";
 import { ResultCheckInOutDate } from "../check-in-out-date/ResultCheckInOutDate";
 import HResAddRoom from "./HResAddRoom";
+import LoginPage from "../../../Login-signup/LoginPage";
 
 const HotelNavbar = () => {
-  const { tokenDetails, logSignDetails, handleLogout } = useAuth();
+  const { tokenDetails, logSignDetails, handleLogout, signupDetails } =
+    useAuth();
   const { token } = tokenDetails;
-  const { handleLoginOpen, setLogInPagePath } = logSignDetails;
+  const { handleLoginOpen } = logSignDetails;
+  const { setIsSignup } = signupDetails;
 
   const navigate = useNavigate();
 
@@ -44,14 +47,15 @@ const HotelNavbar = () => {
         <button
           className="hotel-res-login"
           onClick={() => {
-            setLogInPagePath("/hotels/results");
+            setIsSignup(false);
             token ? handleLogout() : handleLoginOpen();
-            token ? navigate("/") : navigate("/login");
           }}
         >
           {token ? "Log out" : "Log in / Sign up"}
         </button>
       </div>
+
+      <LoginPage />
       {/* filter section */}
       <HotelFilter />
     </nav>

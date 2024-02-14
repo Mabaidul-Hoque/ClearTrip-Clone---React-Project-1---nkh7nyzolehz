@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import { fetchSignup } from "../Apis/LoginSignupApi";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const AuthContext = createContext();
 
@@ -13,6 +14,7 @@ export const useAuth = () => {
 };
 const AuthorizationProvider = ({ children }) => {
   const [islogin, setIsLogin] = useState(false);
+  const [isSignup, setIsSignup] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,8 +32,10 @@ const AuthorizationProvider = ({ children }) => {
     if (token) {
       localStorage.removeItem("token");
       setToken("");
+      notify("You have successfully logged out");
     }
   };
+  const notify = (text) => toast(text);
 
   const authValues = {
     signupDetails: {
@@ -41,6 +45,8 @@ const AuthorizationProvider = ({ children }) => {
       setEmail,
       password,
       setPassword,
+      isSignup,
+      setIsSignup,
     },
     logSignDetails: {
       handleLoginOpen,
@@ -49,6 +55,7 @@ const AuthorizationProvider = ({ children }) => {
       logInPagePath,
       setLogInPagePath,
     },
+
     tokenDetails: {
       token,
       setToken,

@@ -9,6 +9,7 @@ import React, {
 import { fetchHotels, fetchFilteredHotels } from "../Apis/HotelDetailsApi";
 import { fetchSortByPrice } from "../Apis/HotelResulFilterApi";
 import { useDebounce } from "../CustomHooks/useDebouce";
+import { toast } from "react-toastify";
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const HotelContext = createContext();
@@ -51,7 +52,6 @@ export const HotelDetailsProvider = ({ children }) => {
 
   const handleHotelSearchBtn = () => {
     localStorage.setItem("inputPlace", inputPlace);
-
     fetchHotels(inputPlace, 10, hotelPage).then((resp) => {
       setTotalHotels(resp.totalResults);
       setHotels(resp.data.hotels);

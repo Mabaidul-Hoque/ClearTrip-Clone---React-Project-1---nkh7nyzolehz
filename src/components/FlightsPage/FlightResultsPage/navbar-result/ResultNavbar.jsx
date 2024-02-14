@@ -1,11 +1,4 @@
-import {
-  Box,
-  Stack,
-  Typography,
-  Button,
-  ThemeProvider,
-  Tooltip,
-} from "@mui/material";
+import { Box, Stack, Button, ThemeProvider, Tooltip } from "@mui/material";
 import React, { useState, useEffect } from "react";
 // import "../FlightResultPage.css";
 import LocalAirportOutlinedIcon from "@mui/icons-material/LocalAirportOutlined";
@@ -27,8 +20,8 @@ import { fetchFlights } from "../../../../Apis/FlightSearchApi";
 import { useFlightSearch } from "../../../../UseContext/FlightsSearchProvider";
 import { useFlightResult } from "../../../../UseContext/FlightResultProvider";
 const leftLogoUrl = "../../../../public/assets/Cleartrip_Original.svg.png";
-
 import { CustomTheme } from "../../../../util/muiTheme";
+import LoginPage from "../../../Login-signup/LoginPage";
 
 const RightButton = styled(Button)({
   color: "gray",
@@ -45,9 +38,11 @@ const RightButton = styled(Button)({
 const ResultNavbar = ({ source, dest, departDay }) => {
   const [airportNames, setAirportNames] = useState([]);
   const navigate = useNavigate();
-  const { tokenDetails, logSignDetails, handleLogout } = useAuth();
+  const { tokenDetails, logSignDetails, handleLogout, signupDetails } =
+    useAuth();
   const { token } = tokenDetails;
-  const { handleLoginOpen, setLogInPagePath } = logSignDetails;
+  const { handleLoginOpen } = logSignDetails;
+  const { setIsSignup } = signupDetails;
 
   const { airplaneDetails } = useFlightSearch();
   const { setAirplanes } = airplaneDetails;
@@ -160,31 +155,20 @@ const ResultNavbar = ({ source, dest, departDay }) => {
             </RightButton>
             <RightButton
               onClick={() => {
-                setLogInPagePath("/flights/results");
+                setIsSignup(false);
                 token ? handleLogout() : handleLoginOpen();
-                token ? navigate("/") : navigate("/login");
               }}
             >
-              {token ? (
-                <>
-                  <AccountCircleOutlinedIcon
-                    sx={{ marginRight: "2px" }}
-                    fontSize="medium"
-                  />
-                  <span>Log out</span>
-                </>
-              ) : (
-                <>
-                  <AccountCircleOutlinedIcon
-                    sx={{ marginRight: "2px" }}
-                    fontSize="medium"
-                  />
-                  <span>Log in</span>
-                </>
-              )}
+              <AccountCircleOutlinedIcon
+                sx={{ marginRight: "2px" }}
+                fontSize="medium"
+              />
+              {token ? <span>Log out</span> : <span>Log in</span>}
             </RightButton>
           </Stack>
         </Stack>
+
+        <LoginPage />
         {/* search section */}
         <Stack
           mt={1}

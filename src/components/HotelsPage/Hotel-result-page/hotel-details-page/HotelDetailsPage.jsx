@@ -18,6 +18,7 @@ import { ResultCheckInOutDate } from "../check-in-out-date/ResultCheckInOutDate"
 import HResAddRoom from "../Hotel-navbar/HResAddRoom";
 import { Stack, Typography } from "@mui/material";
 import Footer from "../../../FooterPage/Footer";
+import LoginPage from "../../../Login-signup/LoginPage";
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   display: "flex",
@@ -50,9 +51,11 @@ const HotelDetailsPage = () => {
   const [topicIndx, setTopicIndx] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const { logSignDetails, tokenDetails, handleLogout } = useAuth();
-  const { handleLoginOpen, setLogInPagePath } = logSignDetails;
+  const { logSignDetails, tokenDetails, handleLogout, signupDetails } =
+    useAuth();
+  const { handleLoginOpen } = logSignDetails;
   const { token } = tokenDetails;
+  const { setIsSignup } = signupDetails;
   const { hotelDetails } = useHotelContext();
   const { singleHotel, setSingleHotel } = hotelDetails;
 
@@ -103,18 +106,19 @@ const HotelDetailsPage = () => {
               <HResAddRoom />
               <button className="update-btn">Update</button>
             </div>
-
+            {/* log in btn */}
             <button
               onClick={() => {
-                setLogInPagePath("/hotels/results");
+                setIsSignup(false);
                 token ? handleLogout() : handleLoginOpen();
-                token ? navigate("/") : navigate("/login");
               }}
               className="hotel-res-login"
             >
               {token ? "Log out" : "Log in / Sign up"}
             </button>
           </div>
+
+          <LoginPage />
 
           <Stack
             flexDirection={"row"}

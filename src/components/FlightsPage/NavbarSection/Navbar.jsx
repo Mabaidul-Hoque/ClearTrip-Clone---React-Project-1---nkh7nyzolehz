@@ -7,6 +7,8 @@ import LoginPage from "../../Login-signup/LoginPage";
 import { useAuth } from "../../../UseContext/AuthorizationProvider";
 import styled from "@emotion/styled";
 import { theme } from "../../../util/muiTheme";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginButton = styled(Button)({
   color: "#FFFFFF",
@@ -30,50 +32,45 @@ const LoginButton = styled(Button)({
 
 const Navbar = ({ handleLoginOpen }) => {
   const { setOffersUrlFilter } = useContext(OffersContext);
-
-  const { tokenDetails, handleLogout, logSignDetails } = useAuth();
+  const { tokenDetails, handleLogout, signupDetails } = useAuth();
   const { token } = tokenDetails;
-  const { setLogInPagePath } = logSignDetails;
-
-  const { pathname } = useLocation();
-
-  const navigate = useNavigate();
+  const { setIsSignup } = signupDetails;
 
   return (
-    <Box className="home-navbar" pt={2} pb={2} component="div">
-      <Stack
-        flexDirection={"row"}
-        justifyContent={"space-between"}
-        alignItems={"center"}
-      >
-        <Link
-          onClick={() => {
-            setOffersUrlFilter("ALL");
-          }}
-          to="/"
+    <div>
+      <Box className="home-navbar" pt={2} pb={2} component="div">
+        <Stack
+          flexDirection={"row"}
+          justifyContent={"space-between"}
+          alignItems={"center"}
         >
-          <img
-            className="cleartrip-logo"
-            src="https://careers.cleartrip.com/images/cleartrip/footer-logo.svg"
-            alt="cleartrip-logo"
-          />
-        </Link>
-
-        <LoginButton
-          onClick={() => {
-            pathname === "/" || pathname === "/flights"
-              ? setLogInPagePath("/flights")
-              : setLogInPagePath("/hotels");
-            token ? handleLogout() : handleLoginOpen();
-            token ? navigate("/") : navigate("/login");
-          }}
-          variant="contained"
-        >
-          {token ? "Log out" : "Log in / Sign up"}
-        </LoginButton>
-      </Stack>
-      <LoginPage />
-    </Box>
+          <Link
+            onClick={() => {
+              setOffersUrlFilter("ALL");
+            }}
+            to="/"
+          >
+            <img
+              className="cleartrip-logo"
+              src="https://careers.cleartrip.com/images/cleartrip/footer-logo.svg"
+              alt="cleartrip-logo"
+            />
+          </Link>
+          <Box>
+            <LoginButton
+              onClick={() => {
+                setIsSignup(false);
+                token ? handleLogout() : handleLoginOpen();
+              }}
+              variant="contained"
+            >
+              {token ? "Log out" : "Log in / Sign up"}
+            </LoginButton>
+          </Box>
+        </Stack>
+        <LoginPage />
+      </Box>
+    </div>
   );
 };
 
