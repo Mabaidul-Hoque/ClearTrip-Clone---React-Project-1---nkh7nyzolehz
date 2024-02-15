@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { useFlightSearch } from "../../../../UseContext/FlightsSearchProvider";
+import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
 
 const CustomButton = styled(Button)({
   lineHeight: 2,
@@ -20,12 +20,17 @@ const CustomButton = styled(Button)({
 });
 
 export const ResultCheckInOutDate = () => {
-  const { departvalue, returnValue } = useFlightSearch();
-  const { handleDepartDateChange, departDay, departDate, handleClick } =
-    departvalue;
-  const { handleReturnDateChange, returnDay, returnDate } = returnValue;
+  const { checkInOutDetails } = useHotelContext();
+  const {
+    checkInDate,
+    checkInDay,
+    handleCheckInDateChange,
+    checkOutDate,
+    checkOutDay,
+    handleCheckOutDateChange,
+  } = checkInOutDetails;
 
-  const CustomInput1 = forwardRef(({ departDay, onClick }, ref) => (
+  const CustomInput1 = forwardRef(({ checkInDay, onClick }, ref) => (
     <CustomButton
       sx={{
         width: {
@@ -35,11 +40,11 @@ export const ResultCheckInOutDate = () => {
       onClick={onClick}
       ref={ref}
     >
-      {departDay}
+      {checkInDay}
     </CustomButton>
   ));
 
-  const CustomInput2 = forwardRef(({ returnDay, onClick }, ref) => (
+  const CustomInput2 = forwardRef(({ checkOutDay, onClick }, ref) => (
     <CustomButton
       sx={{
         width: {
@@ -49,7 +54,7 @@ export const ResultCheckInOutDate = () => {
       onClick={onClick}
       ref={ref}
     >
-      {returnDay}
+      {checkOutDay}
     </CustomButton>
   ));
 
@@ -58,18 +63,17 @@ export const ResultCheckInOutDate = () => {
       <DatePicker
         className="date-picker-btn"
         required
-        selected={departDate}
-        onChange={handleDepartDateChange}
-        onClick={handleClick}
-        customInput={<CustomInput1 departDay={departDay} />}
+        selected={checkInDate}
+        onChange={handleCheckInDateChange}
+        customInput={<CustomInput1 checkInDay={checkInDay} />}
       />
 
       <DatePicker
         className="date-picker-btn"
         required
-        selected={returnDate}
-        onChange={handleReturnDateChange}
-        customInput={<CustomInput2 returnDay={returnDay} />}
+        selected={checkOutDate}
+        onChange={handleCheckOutDateChange}
+        customInput={<CustomInput2 checkOutDay={checkOutDay} />}
       />
     </div>
   );

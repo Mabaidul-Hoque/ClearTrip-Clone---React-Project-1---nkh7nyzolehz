@@ -18,29 +18,13 @@ const MainContent = ({ getFilterFlights, source, dest, departDay }) => {
     airplaneDetails,
     totalFlightsVal,
     filterData,
-    searchPlane,
   } = useFlightSearch();
-  const { airplanes, setAirplanes } = airplaneDetails;
-  const { totalResult, setTotalResult } = totalFlightsVal;
+  const { airplanes } = airplaneDetails;
+  const { totalResult } = totalFlightsVal;
   const { filterItems } = filterData;
 
-  console.log("totalResult", totalResult);
-
   useEffect(() => {
-    if (filterItems?.stops?.length > 0) {
-      getFilterFlights(filterItems);
-    } else {
-      const sourceVal = source?.substring(0, 3);
-      const destinationVal = dest?.substring(0, 3);
-      const day = departDay?.substring(0, 3);
-
-      fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
-        (response) => {
-          setTotalResult(response.totalResults);
-          setAirplanes(response.data.flights);
-        }
-      );
-    }
+    getFilterFlights(filterItems);
   }, [flightPage]);
 
   const handleChange = (event, value) => {

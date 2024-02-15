@@ -38,6 +38,7 @@ const BookingDetails = ({ flightId }) => {
         mb={4}
         mt={{
           xs: -3,
+          sm: 0,
         }}
         flexDirection={"row"}
         alignItems={"center"}

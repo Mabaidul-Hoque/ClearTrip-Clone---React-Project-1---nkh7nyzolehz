@@ -17,8 +17,8 @@ const SortByDeparatureTime = ({ getFilterFlights }) => {
   const { filterItems, setFilterItems } = filterData;
 
   useEffect(() => {
+    setFlightPage(1);
     if (isEarlyMorning || isMorning || isAfterNoon || isEvening || isNight) {
-      setFlightPage(1);
       getFilterFlights(filterItems);
     } else {
       delete filterItems["departureTime"];

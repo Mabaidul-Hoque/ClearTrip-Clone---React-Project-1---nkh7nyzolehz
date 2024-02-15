@@ -26,16 +26,10 @@ export const OPTION = [
   { name: "Surat, Gujarat" },
   { name: "Jaipur, Rajasthan" },
   { name: "Lucknow, Uttar Pradesh" },
-
   { name: "Kanpur, Uttar Pradesh" },
   { name: "Nagpur, Maharashtra" },
   { name: "Indore, Madhya Pradesh" },
   { name: "Thane, Maharashtra" },
-  { name: "Pune, Maharashtra" },
-  { name: "Ahmedabad, Gujarat" },
-  { name: "Surat, Gujarat" },
-  { name: "Jaipur, Rajasthan" },
-  { name: "Lucknow, Uttar Pradesh" },
 ];
 
 const Hotels = () => {
@@ -46,9 +40,9 @@ const Hotels = () => {
   const navigate = useNavigate();
 
   const handleNavigation = () => {
-    if (token && inputPlace) {
+    if (token && inputPlace !== "") {
       navigate("/hotels/results");
-    } else if (!inputPlace) {
+    } else if (token && inputPlace === "") {
       notify("Fill the details first!");
     } else {
       notify("You have to login first to continue further!");

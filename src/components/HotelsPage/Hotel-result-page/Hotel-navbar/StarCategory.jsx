@@ -8,10 +8,14 @@ import CheckCircleSharpIcon from "@mui/icons-material/CheckCircleSharp";
 import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
 import { MenuItem } from "@mui/material";
 
-const StarCategory = () => {
-  const [fiveStar, setFiveStar] = useState(false);
-  const [fourStar, setFourStar] = useState(false);
-  const [threeStar, setThreeStar] = useState(false);
+const StarCategory = ({
+  fiveStar,
+  fourStar,
+  threeStar,
+  setFiveStar,
+  setFourStar,
+  setThreeStar,
+}) => {
   const [applyBtn, setApplyBtn] = useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -19,30 +23,35 @@ const StarCategory = () => {
 
   const { filtersData, hotelDetails } = useHotelContext();
   const { hotelPage, setHotelPage } = hotelDetails;
-  const { setFilterItems, handleHotelFilter } = filtersData;
+  const { filterItems, setFilterItems, handleHotelFilter } = filtersData;
 
   useEffect(() => {
     if (applyBtn && (fiveStar || fourStar || threeStar)) {
       handleHotelFilter();
+    } else {
+      delete filterItems["rating"];
     }
   }, [applyBtn, hotelPage]);
 
   const handleFiveStar = () => {
+    setFourStar(false);
+    setThreeStar(false);
     setFilterItems((prev) => ({ ...prev, rating: 5 }));
   };
   const handleFourStar = () => {
+    setFiveStar(false);
+    setThreeStar(false);
     setFilterItems((prev) => ({ ...prev, rating: 4 }));
   };
 
   const handleThreeStar = () => {
+    setFiveStar(false);
+    setFourStar(false);
     setFilterItems((prev) => ({ ...prev, rating: 3 }));
   };
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-    setFiveStar(false);
-    setFourStar(false);
-    setThreeStar(false);
     setApplyBtn(false);
   };
   const handleClose = () => {

@@ -2,6 +2,9 @@ import React from "react";
 import { Stack, Paper } from "@mui/material";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useAuth } from "../../../../UseContext/AuthorizationProvider";
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   display: "flex",
@@ -14,7 +17,20 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
   padding: "20px",
 }));
 
-const Rooms = ({ singleHotel }) => {
+const Rooms = ({ singleHotel, hotelID }) => {
+  const { token } = useAuth().tokenDetails;
+  const navigate = useNavigate();
+  const handleHotelBook = (room) => {
+    localStorage.setItem("room", JSON.stringify(room));
+    console.log("room from rooms", room);
+    if (token) {
+      navigate(`/hotels/itinerary/${hotelID}`);
+    } else {
+      notify("Please login first");
+    }
+  };
+
+  const notify = (text) => toast(text);
   return (
     <div id="rooms">
       <h2>Rooms available</h2>
@@ -54,7 +70,12 @@ const Rooms = ({ singleHotel }) => {
 
                   <span>/ night</span>
                 </div>
-                <button className="room-book-btn">Book</button>
+                <button
+                  className="room-book-btn"
+                  onClick={() => handleHotelBook(room)}
+                >
+                  Book
+                </button>
               </Stack>
             </DemoPaper>
           ))}

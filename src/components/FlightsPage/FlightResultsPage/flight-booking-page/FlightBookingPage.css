@@ -4,27 +4,26 @@
     width: 85%;
     margin: 0 auto;
 }
-
 .booking-details{
     width: 60vw;
 }
 #price-cards{
-    position: -webkit-sticky;
-    position: sticky;
-    top: 40px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 40px;
 }
 .number-circle{
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    font-size: 18px;
-    font-weight: 500;
-    background: #fff;
-    border: 1px solid gray;
-    color: #666;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  font-weight: 500;
+  background: #fff;
+  border: 1px solid gray;
+  color: #666;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .dashed-line-container {
     display: flex;
@@ -47,7 +46,6 @@
   .end-circle {
     bottom: 5px;
   }
-  
   .dashed-line {
     height: 100px; /* Replace with your desired height */
     border-left: 2px dashed #999999; /* Replace with your desired color */

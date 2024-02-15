@@ -61,7 +61,6 @@ const ResultNavbar = () => {
   }, []);
 
   const handleResultFlightSearch = () => {
-    console.log({ source, destination, departDay });
     if (
       source.substring(0, 3) !== destination.substring(0, 3) &&
       cityNameCodes.includes(source.substring(0, 3)) &&

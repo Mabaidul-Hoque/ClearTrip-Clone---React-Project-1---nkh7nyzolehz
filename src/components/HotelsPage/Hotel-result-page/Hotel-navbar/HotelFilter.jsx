@@ -16,29 +16,31 @@ import StarCategory from "./StarCategory";
 import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
 import { fetchSortByPrice } from "../../../../Apis/HotelResulFilterApi";
 import FilterByPriceRange from "./FilterByPriceRange";
-import { fetchHotels } from "../../../../Apis/HotelDetailsApi";
 
 const HotelFilter = () => {
-  const [topRated, setTopRated] = useState(false);
   const [highLow, sethighLow] = useState(false);
   const [lowHigh, setLowHigh] = useState(false);
   const [price, setPrice] = useState(0);
+  const [fiveStar, setFiveStar] = useState(false);
+  const [fourStar, setFourStar] = useState(false);
+  const [threeStar, setThreeStar] = useState(false);
+  const [hotelPrice, setHotelPrice] = useState(10000);
   const [applyBtn, setApplyBtn] = useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
   const { filtersData, hotelDetails } = useHotelContext();
-  const { setFilterItems } = filtersData;
+  const { setFilterItems, handleHotelFilter } = filtersData;
   const { hotelPage, setHotels, setHotelPage, setTotalHotels } = hotelDetails;
 
   useEffect(() => {
     if (applyBtn && (lowHigh || highLow)) {
-      handleFilterbyPrice();
+      handleSortByyPrice();
     }
   }, [applyBtn, hotelPage]);
 
-  const handleFilterbyPrice = () => {
+  const handleSortByyPrice = () => {
     fetchSortByPrice(
       localStorage.getItem("inputPlace"),
       10,
@@ -51,26 +53,27 @@ const HotelFilter = () => {
   };
 
   const handleResetFilter = () => {
-    fetchHotels(localStorage.getItem("inputPlace"), 10, hotelPage).then(
-      (resp) => {
-        setTotalHotels(resp.totalResults);
-        setHotels(resp.data.hotels);
-      }
-    );
+    setLowHigh(false);
+    sethighLow(false);
+    setFiveStar(false);
+    setFourStar(false);
+    setThreeStar(false);
+    setHotelPrice(10000);
+    setFilterItems({});
+    handleHotelFilter();
   };
 
   const handleStateChange = () => {
-    setTopRated(false);
-    sethighLow(false);
-    setLowHigh(false);
     setApplyBtn(false);
   };
 
   const handleHighLowBtn = () => {
+    setLowHigh(false);
     setPrice(-1);
   };
 
   const handleLowHighBtn = () => {
+    sethighLow(false);
     setPrice(1);
   };
 
@@ -121,7 +124,8 @@ const HotelFilter = () => {
         >
           <div className="filter-menu">
             <h4 className="sort-menu">Sort hotels by</h4>
-            <MenuItem
+            {/* top rated sort api isn't given */}
+            {/* <MenuItem
               className="menu-item"
               onClick={() => {
                 setTopRated(!topRated);
@@ -134,7 +138,7 @@ const HotelFilter = () => {
               )}
 
               <span>Top-rated</span>
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem
               className="menu-item"
               onClick={() => {
@@ -178,9 +182,19 @@ const HotelFilter = () => {
         </Menu>
       </div>
       {/* Sort by rating */}
-      <StarCategory />
+      <StarCategory
+        fiveStar={fiveStar}
+        fourStar={fourStar}
+        threeStar={threeStar}
+        setFiveStar={setFiveStar}
+        setFourStar={setFourStar}
+        setThreeStar={setThreeStar}
+      />
       {/* Sort by price range */}
-      <FilterByPriceRange />
+      <FilterByPriceRange
+        hotelPrice={hotelPrice}
+        setHotelPrice={setHotelPrice}
+      />
 
       {/* reset filter */}
       <Button

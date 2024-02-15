@@ -24,17 +24,17 @@ const PrettoSlider = styled(Slider)({
   },
 });
 
-const FilterByPriceRange = () => {
-  const [hotelPrice, setHotelPrice] = useState(10000);
+const FilterByPriceRange = ({ hotelPrice, setHotelPrice }) => {
   const hotelPriceDebounce = useDebounce(hotelPrice, 500);
   const { filtersData, hotelDetails } = useHotelContext();
-  const { setFilterItems, handleHotelFilter } = filtersData;
+  const { filterItems, setFilterItems, handleHotelFilter } = filtersData;
   const { hotelPage, setHotelPage } = hotelDetails;
 
   useEffect(() => {
     if (hotelPriceDebounce || hotelPage) {
       handleHotelFilter();
-      console.log("render in filter by price range");
+    } else {
+      delete filterItems["avgCostPerNight"];
     }
   }, [hotelPriceDebounce, hotelPage]);
 

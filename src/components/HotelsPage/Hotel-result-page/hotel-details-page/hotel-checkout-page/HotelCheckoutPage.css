@@ -1,0 +1,35 @@
+
+
+#h-booking-main{
+    width: 88%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
+}
+#h-booking-content{
+    border: 1px solid green;
+}
+#h-booking-price-card{
+    border: 1px solid blue;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 40px;
+}
+.number-circle{
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+    font-weight: 500;
+    background: #fff;
+    border: 1px solid gray;
+    color: #666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fare{
+    display: flex;
+    justify-content: space-between;
+} 

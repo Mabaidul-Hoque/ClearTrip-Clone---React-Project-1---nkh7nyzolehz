@@ -18,6 +18,7 @@ import SignupPage from "./components/Login-signup/SignupPage";
 import LoginPage from "./components/Login-signup/LoginPage";
 import FlightBookingPage from "./components/FlightsPage/FlightResultsPage/flight-booking-page/FlightBookingPage";
 import FBConfirmation from "./components/FlightsPage/FlightResultsPage/flight-booking-page/flight-booking-confirmation/FBConfirmation";
+import HotelCheckoutPage from "./components/HotelsPage/Hotel-result-page/hotel-details-page/hotel-checkout-page/HotelCheckoutPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -58,8 +59,12 @@ const router = createBrowserRouter([
     element: <HotelResultPage />,
   },
   {
-    path: "/hotels/results/:userID",
+    path: "/hotels/results/:hotelID",
     element: <HotelDetailsPage />,
+  },
+  {
+    path: "/hotels/itinerary/:hotelID",
+    element: <HotelCheckoutPage />,
   },
 ]);
 

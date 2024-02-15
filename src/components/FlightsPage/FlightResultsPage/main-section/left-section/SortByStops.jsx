@@ -15,55 +15,14 @@ const SortByStops = ({ getFilterFlights }) => {
   const { filterItems, setFilterItems } = filterData;
 
   useEffect(() => {
+    setFlightPage(1);
     if (nonStop || oneStop || twoStop) {
-      setFlightPage(1);
       getFilterFlights(filterItems);
     } else {
       delete filterItems["stops"];
       getFilterFlights(filterItems);
     }
   }, [nonStop, oneStop, twoStop]);
-
-  //   will check later
-  // const handleFilterOptions = useCallback(
-  //   (value, type) => {
-  //     console.log("filterItems", filterItems);
-  //     console.log("type", type);
-  //     let newFilterItems = { ...filterItems };
-  //     if (type === "non-stop") {
-  //       if (value) {
-  //         newFilterItems?.stops ? newFilterItems.stops.push("0") : ["0"];
-  //       } else {
-  //         deleteElement(newFilterItems?.stops, "0");
-  //       }
-
-  //       handleFlightResultFilter(newFilterItems);
-  //       setFilterItems(newFilterItems);
-  //     } else if (type === "one-stop") {
-  //       if (value) {
-  //         newFilterItems?.stops ? newFilterItems.stops.push("1") : ["1"];
-  //       } else {
-  //         deleteElement(newFilterItems?.stops, "1");
-  //       }
-
-  //       handleFlightResultFilter(newFilterItems);
-  //       setFilterItems(newFilterItems);
-  //     } else if (type === "two-stop") {
-  //       if (value) {
-  //         newFilterItems?.stops ? newFilterItems.stops.push("2") : ["2"];
-  //       } else {
-  //         deleteElement(newFilterItems?.stops, "2");
-  //       }
-
-  //       handleFlightResultFilter(newFilterItems);
-  //       setFilterItems(newFilterItems);
-  //     }
-
-  //     handleSearchClick();
-  //   },
-  //   [filterItems]
-  // );
-  // }, [checkedBox]);
 
   const handleStopBnt = () => {
     setStop((prev) => !prev);

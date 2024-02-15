@@ -15,19 +15,19 @@ const FlightResultsPage = () => {
   const { setAirplanes } = airplaneDetails;
   const { setTotalResult } = totalFlightsVal;
   // data extract from url using useParams
-  const { searchQuery } = useParams();
-  const encodedString = searchQuery ?? "";
-  console.log("encodedString", encodedString);
-  const extractedEncodedPath = encodedString.replace("results-", "");
-  const decodedPath = atob(extractedEncodedPath);
-  const [location, date] = decodedPath?.split("--");
-  const [source, dest] = location?.split("-");
-  const [departDay, returnDay] = date?.split("-");
+  // const { searchQuery } = useParams();
+  // const encodedString = searchQuery ?? "";
+  // console.log("encodedString", encodedString);
+  // const extractedEncodedPath = encodedString.replace("results-", "");
+  // const decodedPath = atob(extractedEncodedPath);
+  // const [location, date] = decodedPath?.split("--");
+  // const [source, dest] = location?.split("-");
+  // const [departDay, returnDay] = date?.split("-");
 
   const handleFlightResultFilter = (filterItems) => {
-    const sourceVal = source.substring(0, 3);
-    const destinationVal = dest.substring(0, 3);
-    const day = departDay.substring(0, 3);
+    const sourceVal = localStorage.getItem("source").substring(0, 3);
+    const destinationVal = localStorage.getItem("destination").substring(0, 3);
+    const day = localStorage.getItem("departDay").substring(0, 3);
     const JSONFilter = JSON.stringify(filterItems);
     if (filterItems !== undefined) {
       fetchFilteredFlights(
@@ -47,7 +47,7 @@ const FlightResultsPage = () => {
   return (
     <ThemeProvider theme={CustomTheme}>
       <div id="flight-result-page">
-        <ResultNavbar source={source} dest={dest} departDay={departDay} />
+        <ResultNavbar />
         <main id="flight-result-main">
           <Stack
             flexDirection={{

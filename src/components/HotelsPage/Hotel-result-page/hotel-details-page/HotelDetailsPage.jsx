@@ -19,7 +19,7 @@ import Rooms from "./Rooms";
 import HotelDetailsInput from "./HotelDetailsInput";
 import { ResultCheckInOutDate } from "../check-in-out-date/ResultCheckInOutDate";
 import HResAddRoom from "../Hotel-navbar/HResAddRoom";
-import { Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import Footer from "../../../FooterPage/Footer";
 import LoginPage from "../../../Login-signup/LoginPage";
 import { toast } from "react-toastify";
@@ -65,9 +65,7 @@ const HotelDetailsPage = () => {
     hotelDetails;
   const { inputPlace } = inputInfo;
   const navigate = useNavigate();
-  const { userID } = useParams();
-
-  // console.log("userID", userID);
+  const { hotelID } = useParams();
 
   const goToPreviousImage = (images) => {
     setCurrentImageIndex((prevIndex) =>
@@ -82,11 +80,10 @@ const HotelDetailsPage = () => {
   };
 
   useEffect(() => {
-    fetchSingleHotel(userID).then((response) => {
-      // console.log("singleHotel", response);
+    fetchSingleHotel(hotelID).then((response) => {
       setSingleHotel(response.data);
     });
-  }, [userID]);
+  }, [hotelID]);
 
   const handleHotelUpdate = () => {
     if (inputPlace !== "") {
@@ -276,6 +273,7 @@ const HotelDetailsPage = () => {
                 <KeyboardArrowRightOutlinedIcon />
               </button>
             </div>
+            {/* select room card */}
             <DemoPaper
               sx={{
                 width: {
@@ -325,14 +323,16 @@ const HotelDetailsPage = () => {
                   500 tax / night
                 </Typography>
               </Stack>
-              <button className="select-room-btn">Select room</button>
+              <a href="#rooms">
+                <button className="select-room-btn">Select room</button>
+              </a>
             </DemoPaper>
           </div>
         </Stack>
 
-        <Rooms singleHotel={singleHotel} />
+        <Rooms singleHotel={singleHotel} hotelID={hotelID} />
       </main>
-
+      <Box sx={{ borderBottom: "1px solid gray", mt: 10 }}></Box>
       <Footer />
     </div>
   );

@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useDebounce } from "../../../CustomHooks/useDebouce";
 import ImageCarousel from "./image-carousel/ImageCarousel";
-import { Pagination, Stack } from "@mui/material";
+import { Box, Pagination, Stack } from "@mui/material";
 import Footer from "../../FooterPage/Footer";
 
 const HotelResultPage = () => {
@@ -103,6 +103,7 @@ const HotelResultPage = () => {
         </div>
       </Stack>
 
+      <Box sx={{ borderBottom: "1px solid gray" }}></Box>
       <Footer />
     </div>
   );
