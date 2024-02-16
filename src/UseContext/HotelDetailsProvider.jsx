@@ -23,29 +23,25 @@ export const useHotelContext = () => {
 };
 
 export const HotelDetailsProvider = ({ children }) => {
+  const currentDate = new Date();
+  const nextDate = new Date(currentDate);
+  nextDate.setDate(nextDate.getDate() + 1);
   const [focus, setFocus] = useState(false);
   const [inputPlace, setInputPlace] = useState("");
   const [checkInDate, setCheckInDate] = useState(new Date());
-  const [checkOutDate, setCheckOutDate] = useState(new Date());
-  const [checkInDay, setCheckInDay] = useState("");
-  const [checkOutDay, setCheckOutDay] = useState("");
+  const [checkOutDate, setCheckOutDate] = useState(nextDate);
   const [hotels, setHotels] = useState([]);
   const [singleHotel, setSingleHotel] = useState({});
   const [filterItems, setFilterItems] = useState({});
   const [hotelPage, setHotelPage] = useState(1);
   const [totalHotels, setTotalHotels] = useState(0);
+  const [roomType, setRoomType] = useState("1 Room, 2 Adult");
 
-  useEffect(() => {
-    const options = { weekday: "short", month: "short", day: "numeric" };
-    const formattedDate = checkInDate.toLocaleDateString("en-US", options);
-    setCheckInDay(formattedDate);
-    const formattedRDate = checkOutDate.toLocaleDateString("en-US", options);
-    setCheckOutDay(formattedRDate);
-  }, [checkInDate, checkOutDate]);
+  // useEffect(() => {
+  //   localStorage.setItem("checkInDate", JSON.stringify(checkInDate));
+  //   localStorage.setItem("checkOutDate", JSON.stringify(checkOutDate));
+  // }, [checkInDate, checkOutDate]);
 
-  const handleInputChange = (val) => {
-    setInputPlace(val);
-  };
   const handleInputPlaceChange = (val) => {
     setInputPlace(val);
   };
@@ -72,6 +68,7 @@ export const HotelDetailsProvider = ({ children }) => {
   }, [inputPlace, hotelPage, filterItems]);
 
   const handleCheckInDateChange = (date) => {
+    // console.log("check in input value", date);
     setCheckInDate(date);
   };
   const handleCheckOutDateChange = (date) => {
@@ -100,18 +97,16 @@ export const HotelDetailsProvider = ({ children }) => {
     inputInfo: {
       handleInputPlaceChange,
       inputPlace,
-      handleInputChange,
       focus,
       setFocus,
     },
     checkInOutDetails: {
       checkInDate,
-      checkInDay,
       handleCheckInDateChange,
       checkOutDate,
-      checkOutDay,
       handleCheckOutDateChange,
     },
+    roomTypeValues: { roomType, setRoomType },
   };
 
   return (

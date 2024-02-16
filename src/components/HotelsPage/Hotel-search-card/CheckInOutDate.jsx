@@ -1,11 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect } from "react";
 import { forwardRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Button } from "@mui/material";
-import { ThemeProvider, styled } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import { useHotelContext } from "../../../UseContext/HotelDetailsProvider";
-import { CustomTheme } from "../../../util/muiTheme";
 
 const CustomButton = styled(Button)({
   height: "56px",
@@ -23,13 +22,22 @@ const CustomButton = styled(Button)({
 export const CheckInOutDate = () => {
   const {
     checkInDate,
-    checkInDay,
     handleCheckInDateChange,
     checkOutDate,
-    checkOutDay,
     handleCheckOutDateChange,
   } = useHotelContext().checkInOutDetails;
-  const CheckInDateInput = forwardRef(({ checkInDay, onClick }, ref) => (
+
+  const formatDate = (inputDate) => {
+    const options = { day: "2-digit", weekday: "short", month: "short" };
+    const date = new Date(inputDate);
+    return new Intl.DateTimeFormat("en-US", options).format(date);
+  };
+
+  console.log({
+    checkInDate,
+    checkLS: JSON.parse(localStorage.getItem("checkInDate")),
+  });
+  const CheckInDateInput = forwardRef(({ onClick }, ref) => (
     <CustomButton
       ref={ref}
       onClick={onClick}
@@ -46,11 +54,12 @@ export const CheckInOutDate = () => {
         },
       }}
     >
-      {checkInDay}
+      {formatDate(checkInDate)}
+      {/* {formatDate(JSON.parse(localStorage.getItem("checkInDate")))} */}
     </CustomButton>
   ));
 
-  const CheckOutDateInput = forwardRef(({ checkOutDay, onClick }, ref) => (
+  const CheckOutDateInput = forwardRef(({ onClick }, ref) => (
     <CustomButton
       ref={ref}
       onClick={onClick}
@@ -62,7 +71,8 @@ export const CheckInOutDate = () => {
         },
       }}
     >
-      {checkOutDay}
+      {formatDate(checkOutDate)}
+      {/* {formatDate(JSON.parse(localStorage.getItem("checkOutDate")))} */}
     </CustomButton>
   ));
 
@@ -72,13 +82,13 @@ export const CheckInOutDate = () => {
         required
         selected={checkInDate}
         onChange={handleCheckInDateChange}
-        customInput={<CheckInDateInput checkInDay={checkInDay} />}
+        customInput={<CheckInDateInput />}
       />
       <DatePicker
         required
         selected={checkOutDate}
         onChange={handleCheckOutDateChange}
-        customInput={<CheckOutDateInput checkOutDay={checkOutDay} />}
+        customInput={<CheckOutDateInput />}
       />
     </>
   );

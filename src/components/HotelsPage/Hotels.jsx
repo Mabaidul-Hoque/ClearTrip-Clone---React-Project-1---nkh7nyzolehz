@@ -12,13 +12,13 @@ import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import { CheckInOutDate } from "./Hotel-search-card/CheckInOutDate";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import { toast } from "react-toastify";
+import Autocomplete from "../../UI/Autocomplete";
 
 export const OPTION = [
   { name: "Kolkata, West Bengal" },
   { name: "Mumbai, Maharashtra" },
   { name: "Delhi, National Capital Territory of Delhi" },
   { name: "Bangalore, Karnataka" },
-  { name: "Bangaluru, Karnataka" },
   { name: "Chennai, Tamil Nadu" },
   { name: "Hyderabad, Telangana" },
   { name: "Pune, Maharashtra" },
@@ -40,15 +40,16 @@ const Hotels = () => {
   const navigate = useNavigate();
 
   const handleNavigation = () => {
-    if (token && inputPlace !== "") {
+    if (token && inputPlace !== undefined) {
       navigate("/hotels/results");
-    } else if (token && inputPlace === "") {
+    } else if (token && inputPlace === undefined) {
       notify("Fill the details first!");
     } else {
       notify("You have to login first to continue further!");
     }
   };
   const notify = (text) => toast(text);
+
   return (
     <div id="hotel-page">
       {/* hotel home page main content */}
@@ -69,14 +70,13 @@ const Hotels = () => {
         <Paper id="h-search-card">
           {/* hotel search input section */}
           <div className="location-input">
-            <div>
-              <HotelInputSection
-                hotelInputClass="hotel-input-box"
-                options={OPTION}
-                noOptionText={"No Match Found"}
-                optionKey={"name"}
-              />
-            </div>
+            <Autocomplete
+              hotelInputClass="hotel-input-box"
+              options={OPTION}
+              noOptionText={"No Match Found"}
+              optionKey={"name"}
+              height="56px"
+            />
             {focus ? (
               <span className="place-icon">
                 <FmdGoodIcon fontSize="medium" htmlColor="blue" />

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "../HotelResultPage.css";
 import "./HotelDetailsPage.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../../../UseContext/AuthorizationProvider";
@@ -16,13 +15,13 @@ import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import Rooms from "./Rooms";
-import HotelDetailsInput from "./HotelDetailsInput";
-import { ResultCheckInOutDate } from "../check-in-out-date/ResultCheckInOutDate";
 import HResAddRoom from "../Hotel-navbar/HResAddRoom";
 import { Box, Stack, Typography } from "@mui/material";
 import Footer from "../../../FooterPage/Footer";
 import LoginPage from "../../../Login-signup/LoginPage";
 import { toast } from "react-toastify";
+import Autocomplete from "../../../../UI/Autocomplete";
+import { ResultCheckInOutDate } from "../check-in-out-date/ResultCheckInOutDate";
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   display: "flex",
@@ -66,6 +65,8 @@ const HotelDetailsPage = () => {
   const { inputPlace } = inputInfo;
   const navigate = useNavigate();
   const { hotelID } = useParams();
+
+  console.log("hotel id", { hotelID, singleHotel });
 
   const goToPreviousImage = (images) => {
     setCurrentImageIndex((prevIndex) =>
@@ -114,12 +115,22 @@ const HotelDetailsPage = () => {
             </Link>
             {/* search inputs */}
             <div className="logo-login-middle">
-              <HotelDetailsInput
+              <Autocomplete
+                hotelInputClass="hotel-details-input-box"
                 options={OPTION}
                 singleHotel={singleHotel}
                 optionKey={"name"}
                 noOptionText={"No Match Found"}
+                width="200px"
+                height="45px"
+                displayValue={singleHotel?.name}
               />
+              {/* <HotelDetailsInput
+                options={OPTION}
+                singleHotel={singleHotel}
+                optionKey={"name"}
+                noOptionText={"No Match Found"}
+              /> */}
               <ResultCheckInOutDate />
               <HResAddRoom />
               <button className="update-btn" onClick={handleHotelUpdate}>

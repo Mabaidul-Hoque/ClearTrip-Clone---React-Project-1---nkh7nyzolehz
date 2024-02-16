@@ -14,6 +14,8 @@ const StyledRating = styled(Rating)({
 });
 
 const GeneralDetails = ({ singleHotel }) => {
+  console.log("singleHotel in hotel details", singleHotel);
+
   return (
     <>
       <h1 className="gen-header">{singleHotel.name}</h1>

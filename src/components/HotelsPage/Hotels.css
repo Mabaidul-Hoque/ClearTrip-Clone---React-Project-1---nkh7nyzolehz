@@ -26,19 +26,15 @@
 
 /* hotel search card */
 
-.h-autoComplete {
-    width: 12rem;
-    display: flex;
-    flex-direction: column;
-  }
-  .hotel-input-box {
-    width: 46vw;
-    height: 56px;
+.hotel-input-box {
+    width: 95%;
+    height: 100%;
     border-radius: 6px;
     border: 1px solid #D3D3D3;
     font-size: 16px;
     padding-left: 60px;
-  }
+    margin-right: 30px;
+}
   .dropdown {
     width: 46vw;
     height: 50vh;
@@ -184,10 +180,10 @@ input[placeholder="Search your favourite hotels"]{
         height: 53vh;
         padding-left: 10px;
     }
-   .hotel-input-box {
+   /* .hotel-input-box {
         width: 85vw;
         padding-left: 30px;
-    } 
+    }  */
     .place-icon{
         left: 5px;
     }
@@ -234,10 +230,10 @@ input[placeholder="Search your favourite hotels"]{
         height: 53vh;
         padding-left: 10px;
     }
-   .hotel-input-box {
+   /* .hotel-input-box {
         width: 85vw;
         padding-left: 30px;
-    } 
+    }  */
     .place-icon{
         left: 5px;
     }
@@ -279,10 +275,10 @@ input[placeholder="Search your favourite hotels"]{
         height: 55vh;
         padding-left: 10px;
     }
-   .hotel-input-box {
+   /* .hotel-input-box {
         width: 48vw;
         padding-left: 30px;
-    } 
+    }  */
     .place-icon{
         left: 5px;
     }
@@ -339,9 +335,9 @@ input[placeholder="Search your favourite hotels"]{
     .h-search-btn-container{
         justify-content: flex-end;
     }
-    .hotel-input-box {
+    /* .hotel-input-box {
         padding-left: 50px;
-    } 
+    }  */
     .place-icon{
         left: 15px;
     }

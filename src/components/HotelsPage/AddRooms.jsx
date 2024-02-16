@@ -4,12 +4,12 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PersonIcon from "@mui/icons-material/Person";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import { useHotelContext } from "../../UseContext/HotelDetailsProvider";
 
 const AddRooms = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const [roomType, setRoomType] = useState("1 Room, 2 Adult");
-
+  const { roomType, setRoomType } = useHotelContext().roomTypeValues;
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };

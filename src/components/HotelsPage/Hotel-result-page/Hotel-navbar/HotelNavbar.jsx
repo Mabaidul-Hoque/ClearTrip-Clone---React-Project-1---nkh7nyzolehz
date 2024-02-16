@@ -2,16 +2,16 @@ import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import "../HotelResultPage.css";
 import { useAuth } from "../../../../UseContext/AuthorizationProvider";
-import HotelInputSection from "../../Hotel-search-card/HotelInputSection";
-import { OPTION } from "../../Hotels";
 import HotelFilter from "./HotelFilter";
-import { ResultCheckInOutDate } from "../check-in-out-date/ResultCheckInOutDate";
 import HResAddRoom from "./HResAddRoom";
 import LoginPage from "../../../Login-signup/LoginPage";
 import { Tooltip } from "@mui/material";
 import { fetchHotels } from "../../../../Apis/HotelDetailsApi";
-import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
 import { toast } from "react-toastify";
+import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
+import { OPTION } from "../../Hotels";
+import Autocomplete from "../../../../UI/Autocomplete";
+import { ResultCheckInOutDate } from "../check-in-out-date/ResultCheckInOutDate";
 
 const HotelNavbar = () => {
   const { tokenDetails, logSignDetails, handleLogout, signupDetails } =
@@ -34,6 +34,8 @@ const HotelNavbar = () => {
     }
   };
 
+  console.log("inputPlace", inputPlace);
+
   const notify = (text) => toast(text);
 
   return (
@@ -51,11 +53,14 @@ const HotelNavbar = () => {
         </Link>
         <div className="logo-login-middle">
           {/* hotel result input */}
-          <HotelInputSection
-            hotelInputClass="hotel-result-input-box"
+          <Autocomplete
+            hotelInputClass="hotel-res-input-box"
             options={OPTION}
             noOptionText={"No Match Found"}
             optionKey={"name"}
+            width="200px"
+            height="45px"
+            displayValue={inputPlace}
           />
 
           {/* hotel result date inputes */}

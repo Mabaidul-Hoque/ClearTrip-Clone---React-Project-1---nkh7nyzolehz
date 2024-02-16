@@ -12,19 +12,18 @@ const HotelInputSection = ({
   hotelInputClass,
 }) => {
   const [searchText, setSearchText] = useState("");
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState("Kolkata, West Bengal");
   const [allOption, setAllOption] = useState(options || []);
   const hotelSearchRef = useRef();
   const { pathname } = useLocation();
   const { inputInfo } = useHotelContext();
-  const { handleInputPlaceChange, focus, setFocus } = inputInfo;
+  const { inputPlace, handleInputPlaceChange, focus, setFocus } = inputInfo;
+  console.log("inputPlace in hotel search", localStorage.getItem("inputPlace"));
 
   useEffect(() => {
     setAllOption(options);
     handleInputPlaceChange(selected.split(",")[0].trim().toLocaleLowerCase());
-
     document.addEventListener("click", handleOutsideClick);
-
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
@@ -56,15 +55,7 @@ const HotelInputSection = ({
       <input
         ref={hotelSearchRef}
         className={hotelInputClass}
-        placeholder={
-          pathname === "/hotels/results"
-            ? `${localStorage
-                .getItem("inputPlace")
-                .substring(0, 1)
-                .toLocaleUpperCase()}` +
-              `${localStorage.getItem("inputPlace").substring(1)}`
-            : "Enter locality, landmark, city or hotel"
-        }
+        placeholder={"Enter place"}
         onFocus={() => {
           setSelected("");
           setFocus(true);

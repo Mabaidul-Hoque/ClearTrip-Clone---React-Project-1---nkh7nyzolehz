@@ -25,8 +25,6 @@ const HotelResultPage = () => {
     totalHotels,
   } = hotelDetails;
   const { handleHotelFilter } = filtersData;
-  const { handleInputPlaceChange } = inputInfo;
-  const { handleHotelSearchBtn } = hotelSearchHandler;
 
   const memoizedhotels = useMemo(() => hotels, [hotels]);
 
