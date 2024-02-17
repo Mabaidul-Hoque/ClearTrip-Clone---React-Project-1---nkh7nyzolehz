@@ -9,9 +9,9 @@ import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import { toast } from "react-toastify";
-import Autocomplete from "../../ui/Autocomplete";
 import { CheckInOutDate } from "../../ui/CheckInOutDate";
 import AddRooms from "../../ui/AddRooms";
+import Autocomplete from "../../ui/AddRooms";
 
 export const OPTION = [
   { name: "Kolkata, West Bengal" },
