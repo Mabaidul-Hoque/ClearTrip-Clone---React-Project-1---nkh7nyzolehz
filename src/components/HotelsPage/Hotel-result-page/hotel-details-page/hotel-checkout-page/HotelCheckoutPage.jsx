@@ -8,6 +8,9 @@ import { fetchSingleHotel } from "../../../../../Apis/HotelDetailsApi";
 import HotelInfoPriceCard from "../../../../../ui/HotelInfoPriceCard";
 import HotelInfoCard from "../../../../../ui/HotelInfoCard";
 import HotelCancellationPolicy from "../../../../../ui/HotelCancellationPolicy";
+import HotelBookingPolicy from "../../../../../ui/HotelBookingPolicy";
+import Footer from "../../../../FooterPage/Footer";
+import HotelGuestDetails from "../../../../../ui/HotelGuestDetails";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const months = [
@@ -115,6 +118,14 @@ const HotelCheckoutPage = () => {
               getDayTime={getDayTime}
             />
           </div>
+
+          <div id="hotel-booking-policy">
+            <HotelBookingPolicy />
+          </div>
+
+          <div id="guest-details">
+            <HotelGuestDetails />
+          </div>
         </div>
 
         {/* hotel booking price card */}
@@ -122,6 +133,9 @@ const HotelCheckoutPage = () => {
           <HotelInfoPriceCard singleHotel={singleHotel} />
         </div>
       </main>
+
+      <Box mt={10} mb={4} sx={{ borderBottom: "1px solid lightgray" }}></Box>
+      <Footer />
     </div>
   );
 };
