@@ -68,7 +68,8 @@ const Autocomplete = ({
   };
 
   return (
-    <div style={{ width: width, height: height }}>
+    <>
+      {/* <div style={{ width: width, height: height }}> */}
       <input
         ref={hotelSearchRef}
         className={hotelInputClass}
@@ -108,7 +109,8 @@ const Autocomplete = ({
           ))
         )}
       </Paper>
-    </div>
+      {/* </div> */}
+    </>
   );
 };
 export default Autocomplete;

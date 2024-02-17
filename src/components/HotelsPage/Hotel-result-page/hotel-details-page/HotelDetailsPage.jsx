@@ -20,8 +20,8 @@ import { Box, Stack, Typography } from "@mui/material";
 import Footer from "../../../FooterPage/Footer";
 import LoginPage from "../../../Login-signup/LoginPage";
 import { toast } from "react-toastify";
-import Autocomplete from "../../../../UI/Autocomplete";
-import { ResultCheckInOutDate } from "../check-in-out-date/ResultCheckInOutDate";
+import Autocomplete from "../../../../ui/Autocomplete";
+import { CheckInOutDate } from "../../../../ui/CheckInOutDate";
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   display: "flex",
@@ -125,13 +125,7 @@ const HotelDetailsPage = () => {
                 height="45px"
                 displayValue={singleHotel?.name}
               />
-              {/* <HotelDetailsInput
-                options={OPTION}
-                singleHotel={singleHotel}
-                optionKey={"name"}
-                noOptionText={"No Match Found"}
-              /> */}
-              <ResultCheckInOutDate />
+              <CheckInOutDate width="9rem" height="45px" />
               <HResAddRoom />
               <button className="update-btn" onClick={handleHotelUpdate}>
                 Update

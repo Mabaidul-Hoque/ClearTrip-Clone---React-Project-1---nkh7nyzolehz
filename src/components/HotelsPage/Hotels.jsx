@@ -3,16 +3,15 @@ import "./Hotels.css";
 import { Paper, Stack } from "@mui/material";
 import RightSideBar from "../FlightsPage/RightSideBarSection/RightSideBar";
 import AddRooms from "./AddRooms";
-import HotelInputSection from "./Hotel-search-card/HotelInputSection";
 import { useHotelContext } from "../../UseContext/HotelDetailsProvider";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../UseContext/AuthorizationProvider";
 import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
-import { CheckInOutDate } from "./Hotel-search-card/CheckInOutDate";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import { toast } from "react-toastify";
-import Autocomplete from "../../UI/Autocomplete";
+import Autocomplete from "../../ui/Autocomplete";
+import { CheckInOutDate } from "../../ui/CheckInOutDate";
 
 export const OPTION = [
   { name: "Kolkata, West Bengal" },
@@ -69,7 +68,7 @@ const Hotels = () => {
         {/* hotel search container card */}
         <Paper id="h-search-card">
           {/* hotel search input section */}
-          <div className="location-input">
+          <div className="location-input-box">
             <Autocomplete
               hotelInputClass="hotel-input-box"
               options={OPTION}
@@ -96,7 +95,7 @@ const Hotels = () => {
 
             {/* date inputs */}
             <div className="date-input">
-              <CheckInOutDate />
+              <CheckInOutDate dateClass="hotel-search-dates" />
             </div>
 
             {/* rooms add section */}

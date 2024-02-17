@@ -59,6 +59,7 @@ const RightSideBar = () => {
           },
         }}
         justifyContent={"center"}
+        alignItems={"flex-end"}
         gap={1}
       >
         <div className="carousel-container-up">

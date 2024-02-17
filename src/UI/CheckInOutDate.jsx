@@ -4,10 +4,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { useHotelContext } from "../../../UseContext/HotelDetailsProvider";
+import { useHotelContext } from "../UseContext/HotelDetailsProvider";
 
 const CustomButton = styled(Button)({
-  height: "56px",
   background: "#FFFFFF",
   color: "#1A1A1A",
   border: "1px solid lightgray",
@@ -19,7 +18,7 @@ const CustomButton = styled(Button)({
   },
 });
 
-export const CheckInOutDate = () => {
+export const CheckInOutDate = ({ dateClass }) => {
   const {
     checkInDate,
     handleCheckInDateChange,
@@ -41,18 +40,14 @@ export const CheckInOutDate = () => {
     <CustomButton
       ref={ref}
       onClick={onClick}
-      sx={{
-        width: {
-          xs: "45vw",
-          sm: "24vw",
-          md: "15vw",
-        },
-        paddingLeft: {
-          md: "20px",
-          lg: "25px",
-          xl: "0px",
-        },
-      }}
+      //   sx={{
+      //     paddingLeft: {
+      //       md: "20px",
+      //       lg: "25px",
+      //       xl: "0px",
+      //     },
+      //   }}
+      className={dateClass}
     >
       {formatDate(checkInDate)}
       {/* {formatDate(JSON.parse(localStorage.getItem("checkInDate")))} */}
@@ -60,17 +55,7 @@ export const CheckInOutDate = () => {
   ));
 
   const CheckOutDateInput = forwardRef(({ onClick }, ref) => (
-    <CustomButton
-      ref={ref}
-      onClick={onClick}
-      sx={{
-        width: {
-          xs: "40vw",
-          sm: "24vw",
-          md: "14vw",
-        },
-      }}
-    >
+    <CustomButton ref={ref} onClick={onClick} className={dateClass}>
       {formatDate(checkOutDate)}
       {/* {formatDate(JSON.parse(localStorage.getItem("checkOutDate")))} */}
     </CustomButton>

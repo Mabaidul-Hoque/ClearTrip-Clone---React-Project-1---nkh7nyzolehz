@@ -10,8 +10,9 @@ import { fetchHotels } from "../../../../Apis/HotelDetailsApi";
 import { toast } from "react-toastify";
 import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
 import { OPTION } from "../../Hotels";
-import Autocomplete from "../../../../UI/Autocomplete";
+import Autocomplete from "../../../../ui/Autocomplete";
 import { ResultCheckInOutDate } from "../check-in-out-date/ResultCheckInOutDate";
+import { CheckInOutDate } from "../../../../ui/CheckInOutDate";
 
 const HotelNavbar = () => {
   const { tokenDetails, logSignDetails, handleLogout, signupDetails } =
@@ -64,7 +65,7 @@ const HotelNavbar = () => {
           />
 
           {/* hotel result date inputes */}
-          <ResultCheckInOutDate />
+          <CheckInOutDate width="9rem" height="45px" />
 
           {/* hotel result room type */}
           <HResAddRoom />

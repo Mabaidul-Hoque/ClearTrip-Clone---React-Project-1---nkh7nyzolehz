@@ -29,7 +29,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    
+    max-width: 20rem;
 }
 .carousel-item-up, 
 .carousel-item-down{
@@ -58,7 +58,6 @@
 }
 
 .carousel-item-up>img{
-    /* width: 21vw; */
     height: 35vh;
     width: 100%;
 }
