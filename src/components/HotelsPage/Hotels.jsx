@@ -2,7 +2,6 @@ import React from "react";
 import "./Hotels.css";
 import { Paper, Stack } from "@mui/material";
 import RightSideBar from "../FlightsPage/RightSideBarSection/RightSideBar";
-import AddRooms from "../../ui/AddRooms";
 import { useHotelContext } from "../../UseContext/HotelDetailsProvider";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../UseContext/AuthorizationProvider";
@@ -12,6 +11,7 @@ import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined
 import { toast } from "react-toastify";
 import Autocomplete from "../../ui/Autocomplete";
 import { CheckInOutDate } from "../../ui/CheckInOutDate";
+import AddRooms from "../../ui/AddRooms";
 
 export const OPTION = [
   { name: "Kolkata, West Bengal" },
