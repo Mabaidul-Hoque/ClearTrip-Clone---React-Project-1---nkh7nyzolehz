@@ -10,7 +10,6 @@ const CustomButton = styled(Button)({
   background: "#FFFFFF",
   color: "#1A1A1A",
   border: "1px solid lightgray",
-  borderRadius: "5px",
   textTransform: "none",
   fontSize: "16px",
   "&:focus": {
@@ -37,18 +36,7 @@ export const CheckInOutDate = ({ dateClass }) => {
     checkLS: JSON.parse(localStorage.getItem("checkInDate")),
   });
   const CheckInDateInput = forwardRef(({ onClick }, ref) => (
-    <CustomButton
-      ref={ref}
-      onClick={onClick}
-      //   sx={{
-      //     paddingLeft: {
-      //       md: "20px",
-      //       lg: "25px",
-      //       xl: "0px",
-      //     },
-      //   }}
-      className={dateClass}
-    >
+    <CustomButton ref={ref} onClick={onClick} className={dateClass}>
       {formatDate(checkInDate)}
       {/* {formatDate(JSON.parse(localStorage.getItem("checkInDate")))} */}
     </CustomButton>

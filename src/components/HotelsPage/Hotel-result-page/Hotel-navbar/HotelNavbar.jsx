@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "../HotelResultPage.css";
 import { useAuth } from "../../../../UseContext/AuthorizationProvider";
 import HotelFilter from "./HotelFilter";
-import HResAddRoom from "./HResAddRoom";
 import LoginPage from "../../../Login-signup/LoginPage";
 import { Tooltip } from "@mui/material";
 import { fetchHotels } from "../../../../Apis/HotelDetailsApi";
@@ -11,8 +10,8 @@ import { toast } from "react-toastify";
 import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
 import { OPTION } from "../../Hotels";
 import Autocomplete from "../../../../ui/Autocomplete";
-import { ResultCheckInOutDate } from "../check-in-out-date/ResultCheckInOutDate";
 import { CheckInOutDate } from "../../../../ui/CheckInOutDate";
+import AddRooms from "../../../../ui/AddRooms";
 
 const HotelNavbar = () => {
   const { tokenDetails, logSignDetails, handleLogout, signupDetails } =
@@ -54,21 +53,22 @@ const HotelNavbar = () => {
         </Link>
         <div className="logo-login-middle">
           {/* hotel result input */}
-          <Autocomplete
-            hotelInputClass="hotel-res-input-box"
-            options={OPTION}
-            noOptionText={"No Match Found"}
-            optionKey={"name"}
-            width="200px"
-            height="45px"
-            displayValue={inputPlace}
-          />
-
+          <div className="location-input-box-res">
+            <Autocomplete
+              hotelInputClass="hotel-res-input-box"
+              options={OPTION}
+              noOptionText={"No Match Found"}
+              optionKey={"name"}
+              width="200px"
+              height="45px"
+              displayValue={inputPlace}
+            />
+          </div>
           {/* hotel result date inputes */}
-          <CheckInOutDate width="9rem" height="45px" />
+          <CheckInOutDate dateClass="check-in-out-date-res" />
 
           {/* hotel result room type */}
-          <HResAddRoom />
+          <AddRooms btnClassName="add-room-btn add-room-btn-res" />
 
           {/* new search btn */}
           <button className="update-btn" onClick={handleHotelUpdate}>

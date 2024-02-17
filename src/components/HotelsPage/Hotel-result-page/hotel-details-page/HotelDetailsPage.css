@@ -1,18 +1,28 @@
 /* hotel details navbar */
-
+.location-input-box-details{
+    width: 10rem;
+    height: 45px;
+}
 .hotel-details-input-box{
     width: 100%;
     height: 46px;
-    border-radius: 6px;
     border: 1px solid #D3D3D3;
     font-size: 16px;
     padding-left: 30px;
     overflow-y: auto;
     text-overflow: ellipsis;
+    padding-left: 16px;
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
 }
 .hotel-details-input-box:hover{
     outline: 0;
     border-color: #0f53a0;
+}
+.add-room-btn-details{
+    width: 10rem;
+    height: 45px;
+    border-radius: 0;
 }
 .hotel-res-login{
     cursor: pointer;

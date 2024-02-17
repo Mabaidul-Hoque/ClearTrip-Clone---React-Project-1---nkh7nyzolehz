@@ -17,39 +17,37 @@ function App() {
   const { handleLoginOpen } = logSignDetails;
 
   return (
-    <FontProvider>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <div className="App">
-          <Navbar handleLoginOpen={handleLoginOpen} />
-          <Stack
-            sx={{
-              flexDirection: {
-                xxs: "column",
-                xs: "column",
-                sm: "row",
-              },
-            }}
-            className="home-main"
-          >
-            <SideNavbar />
-            {pathname === "/" ? (
-              <Flights />
-            ) : (
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <Outlet />
-              </div>
-            )}
-          </Stack>
-          <Box sx={{ borderBottom: "1px solid gray", mt: "8rem" }}></Box>
-          <Footer />
-        </div>
-      </LocalizationProvider>
-    </FontProvider>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <div className="App">
+        <Navbar handleLoginOpen={handleLoginOpen} />
+        <Stack
+          sx={{
+            flexDirection: {
+              xxs: "column",
+              xs: "column",
+              sm: "row",
+            },
+          }}
+          className="home-main"
+        >
+          <SideNavbar />
+          {pathname === "/" ? (
+            <Flights />
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <Outlet />
+            </div>
+          )}
+        </Stack>
+        <Box sx={{ borderBottom: "1px solid gray", mt: "8rem" }}></Box>
+        <Footer />
+      </div>
+    </LocalizationProvider>
   );
 }
 

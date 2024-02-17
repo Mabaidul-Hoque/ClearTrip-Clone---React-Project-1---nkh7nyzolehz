@@ -15,13 +15,13 @@ import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import Rooms from "./Rooms";
-import HResAddRoom from "../Hotel-navbar/HResAddRoom";
 import { Box, Stack, Typography } from "@mui/material";
 import Footer from "../../../FooterPage/Footer";
 import LoginPage from "../../../Login-signup/LoginPage";
 import { toast } from "react-toastify";
 import Autocomplete from "../../../../ui/Autocomplete";
 import { CheckInOutDate } from "../../../../ui/CheckInOutDate";
+import AddRooms from "../../../../ui/AddRooms";
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   display: "flex",
@@ -115,18 +115,20 @@ const HotelDetailsPage = () => {
             </Link>
             {/* search inputs */}
             <div className="logo-login-middle">
-              <Autocomplete
-                hotelInputClass="hotel-details-input-box"
-                options={OPTION}
-                singleHotel={singleHotel}
-                optionKey={"name"}
-                noOptionText={"No Match Found"}
-                width="200px"
-                height="45px"
-                displayValue={singleHotel?.name}
-              />
-              <CheckInOutDate width="9rem" height="45px" />
-              <HResAddRoom />
+              <div className="location-input-box-details">
+                <Autocomplete
+                  hotelInputClass="hotel-details-input-box"
+                  options={OPTION}
+                  singleHotel={singleHotel}
+                  optionKey={"name"}
+                  noOptionText={"No Match Found"}
+                  width="200px"
+                  height="45px"
+                  displayValue={singleHotel?.name}
+                />
+              </div>
+              <CheckInOutDate dateClass="check-in-out-date-res" />
+              <AddRooms btnClassName="add-room-btn add-room-btn-details" />
               <button className="update-btn" onClick={handleHotelUpdate}>
                 Update
               </button>

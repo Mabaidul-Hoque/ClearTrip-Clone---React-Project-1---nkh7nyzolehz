@@ -7,11 +7,8 @@
     justify-content: space-between;
     gap: 4rem;
 }
-#h-booking-content{
-    border: 1px solid green;
-}
+
 #h-booking-price-card{
-    border: 1px solid blue;
     position: -webkit-sticky;
     position: sticky;
     top: 40px;
@@ -33,3 +30,13 @@
     display: flex;
     justify-content: space-between;
 } 
+
+.price-break-up{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+.room-guests{
+    margin-right: 40px;
+}

@@ -26,6 +26,8 @@
 
 /* hotel search card */
 .location-input-box{
+    display: flex;
+    position: relative;
     width: 48vw;
     height: 56px;
 }
@@ -202,9 +204,6 @@ input[placeholder="Search your favourite hotels"]{
     .hotel-search-dates{
         width: 42.5vw;
     }
-    .place-icon{
-        left: 5px;
-    }
     .dropdown{
         width: 85vw;
     }
@@ -247,9 +246,6 @@ input[placeholder="Search your favourite hotels"]{
     }
     .hotel-search-dates{
         width: 29.2vw;
-    }
-    .place-icon{
-        left: 5px;
     }
     .dropdown{
         width: 48vw;
@@ -326,9 +322,6 @@ input[placeholder="Search your favourite hotels"]{
     }
     .hotel-search-dates{
         width: 14vw;
-    }
-    .place-icon{
-        left: 15px;
     }
     .h-date-icon{
         left: 15px;

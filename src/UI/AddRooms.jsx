@@ -1,18 +1,15 @@
 import React, { useMemo, useState } from "react";
-import "../HotelResultPage.css";
+import "../components/HotelsPage/Hotels.css";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PersonIcon from "@mui/icons-material/Person";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
+import { useHotelContext } from "../UseContext/HotelDetailsProvider";
 
-const HResAddRoom = () => {
+const AddRooms = ({ btnClassName }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const { roomType, setRoomType } = useHotelContext().roomTypeValues;
-
-  console.log("room type", roomType);
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -23,7 +20,7 @@ const HResAddRoom = () => {
   return (
     <div>
       <button
-        className="h-res-add-room-btn"
+        className={btnClassName}
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
@@ -36,7 +33,7 @@ const HResAddRoom = () => {
           <PersonOutlineOutlinedIcon htmlColor="#838383" />
         )}
         <span
-          style={{ fontSize: "16px", fontWeight: "500 ", marginLeft: "5px" }}
+          style={{ fontSize: "16px", fontWeight: "500 ", marginLeft: "10px" }}
         >
           {roomType}
         </span>
@@ -112,4 +109,4 @@ const HResAddRoom = () => {
   );
 };
 
-export default HResAddRoom;
+export default AddRooms;

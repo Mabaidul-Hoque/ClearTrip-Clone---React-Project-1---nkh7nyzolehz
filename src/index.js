@@ -19,6 +19,7 @@ import LoginPage from "./components/Login-signup/LoginPage";
 import FlightBookingPage from "./components/FlightsPage/FlightResultsPage/flight-booking-page/FlightBookingPage";
 import FBConfirmation from "./components/FlightsPage/FlightResultsPage/flight-booking-page/flight-booking-confirmation/FBConfirmation";
 import HotelCheckoutPage from "./components/HotelsPage/Hotel-result-page/hotel-details-page/hotel-checkout-page/HotelCheckoutPage";
+import { FontProvider } from "./UseContext/FontProvider";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -71,16 +72,18 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
-  <AuthorizationProvider>
-    <OfferDetailsProvider>
-      <HotelDetailsProvider>
-        <FlightsSearchProvider>
-          <RouterProvider router={router}>
-            <App />
-          </RouterProvider>
-        </FlightsSearchProvider>
-      </HotelDetailsProvider>
-    </OfferDetailsProvider>
-  </AuthorizationProvider>
+  <FontProvider>
+    <AuthorizationProvider>
+      <OfferDetailsProvider>
+        <HotelDetailsProvider>
+          <FlightsSearchProvider>
+            <RouterProvider router={router}>
+              <App />
+            </RouterProvider>
+          </FlightsSearchProvider>
+        </HotelDetailsProvider>
+      </OfferDetailsProvider>
+    </AuthorizationProvider>
+  </FontProvider>
   // </React.StrictMode>
 );
