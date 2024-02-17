@@ -5,17 +5,33 @@ import MenuItem from "@mui/material/MenuItem";
 import PersonIcon from "@mui/icons-material/Person";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { useHotelContext } from "../UseContext/HotelDetailsProvider";
+import { Box, Button, Divider, Stack, Typography } from "@mui/material";
+import { roomOptions } from "../static-data/StaticData";
 
 const AddRooms = ({ btnClassName }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const [isAddBtn, setIsAddBtn] = useState(false);
   const { roomType, setRoomType } = useHotelContext().roomTypeValues;
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    setIsAddBtn(false);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleAddMoreBtn = () => {
+    setIsAddBtn(true);
+
+  }
+  const handleSelectedRoom = (optionVal) => {
+    setRoomType(optionVal);
+  }
+
+  const getFormatedRoomData = (obj) => (
+    <Typography>{obj.room} {obj.room > 1 ? "Rooms" : "Room"} {obj.adult} {obj.adult > 1 ? "Adults": "Adult"} {obj.children > 0 ? obj.children : ""} {obj.children > 1 ? "Children" : (obj.children > 0 ? "Child" : "")}</Typography>
+    )
 
   return (
     <div>
@@ -35,7 +51,7 @@ const AddRooms = ({ btnClassName }) => {
         <span
           style={{ fontSize: "16px", fontWeight: "500 ", marginLeft: "10px" }}
         >
-          {roomType}
+          {getFormatedRoomData(roomType)}
         </span>
       </button>
 
@@ -48,63 +64,43 @@ const AddRooms = ({ btnClassName }) => {
         MenuListProps={{
           "aria-labelledby": "basic-button",
         }}
+        sx={{width: "100%"}}
       >
-        <MenuItem className="menu-item-header">Quick select</MenuItem>
-        <MenuItem
-          className="menu-item"
-          sx={{
-            "&:hover": {
-              backgroundColor: "#3366CC",
-            },
-          }}
-          onClick={handleClose}
-        >
-          <span
-            onClick={(e) => {
-              setRoomType(e.target.innerHTML);
-              handleClose();
+        <Stack flexDirection={"row"} justifyContent={"space-between"}>
+          <Typography>Quick select</Typography>
+          <Button sx={{display: isAddBtn ? "block" : "none",}} 
+            onClick={() => setIsAddBtn(false)} >Show all options</Button>
+        </Stack>
+        {/* <MenuItem className="menu-item-header">Quick select</MenuItem> */}
+        <Box sx={{display: isAddBtn ? "none" : "block"}}>
+          {roomOptions?.map((option) => (
+            <MenuItem
+            key={option}
+            className="menu-item"
+            sx={{
+              "&:hover": {
+                backgroundColor: "#3366CC",
+              },
             }}
-          >
-            1 Room, 1 Adult
-          </span>
-        </MenuItem>
-        <MenuItem
-          className="menu-item"
-          sx={{
-            "&:hover": {
-              backgroundColor: "#3366CC",
-            },
-          }}
-          onClick={handleClose}
-        >
-          <span
-            onClick={(e) => {
-              setRoomType(e.target.innerHTML);
-              handleClose();
+            onClick={() =>{ 
+              handleSelectedRoom(option);
+              handleClose() ;
             }}
-          >
-            1 Room, 2 Adult
-          </span>
-        </MenuItem>
-        <MenuItem
-          className="menu-item"
-          sx={{
-            "&:hover": {
-              backgroundColor: "#3366CC",
-            },
-          }}
-          onClick={handleClose}
-        >
-          <span
-            onClick={(e) => {
-              setRoomType(e.target.innerHTML);
-              handleClose();
-            }}
-          >
-            2 Room, 4 Adult
-          </span>
-        </MenuItem>
+            >
+              {getFormatedRoomData(option)}
+            </MenuItem>
+          ))}
+        </Box>
+
+        <Button sx={{display: isAddBtn ? "none" : "block"}} onClick={handleAddMoreBtn}>Add more rooms and travellers</Button>
+
+        {isAddBtn ? <Divider /> : ""}
+
+
+        
       </Menu>
+
+
     </div>
   );
 };

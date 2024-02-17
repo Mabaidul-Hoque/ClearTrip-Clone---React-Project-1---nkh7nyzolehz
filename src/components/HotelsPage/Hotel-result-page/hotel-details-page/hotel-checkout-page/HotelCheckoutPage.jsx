@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import "./HotelCheckoutPage.css";
 import FlightBookingNavbar from "../../../../FlightsPage/FlightResultsPage/flight-booking-page/flight-booking-navbar/FlightBookingNavbar";
-import { Box, Stack, Typography } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { Box, Button, Stack, Typography } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
 import { useHotelContext } from "../../../../../UseContext/HotelDetailsProvider";
 import { fetchSingleHotel } from "../../../../../Apis/HotelDetailsApi";
 import HotelInfoPriceCard from "../../../../../ui/HotelInfoPriceCard";
@@ -13,26 +13,14 @@ import Footer from "../../../../FooterPage/Footer";
 import HotelGuestDetails from "../../../../../ui/HotelGuestDetails";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
 const HotelCheckoutPage = () => {
   const { hotelID } = useParams();
   const { hotelDetails, checkInOutDetails, roomTypeValues } = useHotelContext();
   const { singleHotel, setSingleHotel } = hotelDetails;
   const { checkInDate, checkOutDate } = checkInOutDetails;
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchSingleHotel(hotelID).then((response) => {
@@ -55,7 +43,6 @@ const HotelCheckoutPage = () => {
     const formattedDate = `${day}, ${hour12 < 10 ? "0" : ""}${hour12}:${
       minute < 10 ? "0" : ""
     }${minute} ${ampm}`;
-
     return formattedDate;
   };
 
@@ -64,9 +51,13 @@ const HotelCheckoutPage = () => {
     const date2 = new Date(checkOutDate);
     const differenceInMs = date2 - date1;
     const differenceInDays = Math.ceil(differenceInMs / (1000 * 60 * 60 * 24));
-
     return differenceInDays;
   };
+
+  const handleContinueBtn = () => {
+    // if fname , lname , ph num, email and guest list added with name then only navigate
+    navigate("/hotels/HBConfirmation")
+  }
 
   return (
     <div>
@@ -126,12 +117,16 @@ const HotelCheckoutPage = () => {
           <div id="guest-details">
             <HotelGuestDetails />
           </div>
+
+          <Button variant="contained" sx={{width: 300, mt: 4}} onClick={handleContinueBtn}>Continue to payment</Button>
         </div>
 
         {/* hotel booking price card */}
         <div id="h-booking-price-card">
           <HotelInfoPriceCard singleHotel={singleHotel} />
         </div>
+
+        
       </main>
 
       <Box mt={10} mb={4} sx={{ borderBottom: "1px solid lightgray" }}></Box>

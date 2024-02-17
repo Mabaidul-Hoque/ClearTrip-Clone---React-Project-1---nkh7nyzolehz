@@ -35,7 +35,11 @@ export const HotelDetailsProvider = ({ children }) => {
   const [filterItems, setFilterItems] = useState({});
   const [hotelPage, setHotelPage] = useState(1);
   const [totalHotels, setTotalHotels] = useState(0);
-  const [roomType, setRoomType] = useState("1 Room, 2 Adult");
+  const [roomType, setRoomType] = useState({
+    room: 1,
+    adult: 1,
+    children: 0
+  });
 
   // useEffect(() => {
   //   localStorage.setItem("checkInDate", JSON.stringify(checkInDate));

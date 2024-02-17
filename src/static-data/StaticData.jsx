@@ -38,3 +38,21 @@ export const policyList = {
     "Your bank may debit its own separate charges from refunds made to your credit card or bank account.",
   ],
 };
+
+export const roomOptions = [
+  {
+    room: 1,
+    adult: 1,
+    children: 0,
+  },
+  {
+    room: 1,
+    adult: 2,
+    children: 0,
+  },
+  {
+    room: 2,
+    adult: 4,
+    children: 0,
+  }
+]
