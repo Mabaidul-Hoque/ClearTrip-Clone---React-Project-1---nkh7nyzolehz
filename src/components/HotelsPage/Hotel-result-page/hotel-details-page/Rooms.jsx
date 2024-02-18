@@ -26,7 +26,7 @@ const Rooms = ({ singleHotel, hotelID }) => {
   const handleHotelBook = (room) => {
     setSingleRoom(room);
     // after page refrsh singleRoom data --> reset for that stored in the LS
-    localStorage.setItem("singleRoom", JSON.stringify(singleRoom));
+    localStorage.setItem("singleRoom", JSON.stringify(room));
     if (token) {
       navigate(`/hotels/itinerary/${hotelID}`);
     } else {

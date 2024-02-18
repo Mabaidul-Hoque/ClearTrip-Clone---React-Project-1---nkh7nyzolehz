@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./HotelCheckoutPage.css";
 import FlightBookingNavbar from "../../../../FlightsPage/FlightResultsPage/flight-booking-page/flight-booking-navbar/FlightBookingNavbar";
 import { Box, Button, Stack, Typography } from "@mui/material";
@@ -11,16 +11,19 @@ import HotelCancellationPolicy from "../../../../../ui/HotelCancellationPolicy";
 import HotelBookingPolicy from "../../../../../ui/HotelBookingPolicy";
 import Footer from "../../../../FooterPage/Footer";
 import HotelGuestDetails from "../../../../../ui/HotelGuestDetails";
+import { ToastContainer, toast } from "react-toastify";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
 const HotelCheckoutPage = () => {
-  const { hotelID } = useParams();
-  const { hotelDetails, checkInOutDetails } = useHotelContext();
-  const { singleHotel, setSingleHotel } = hotelDetails;
-  const { checkInDate, checkOutDate } = checkInOutDetails;
-  const navigate = useNavigate();
+    const [name ,setName] = useState({fName: "", lName: ""});
+    const [contact, setContact] = useState({ph: "", email: ""});
+    const { hotelID } = useParams();
+    const { hotelDetails, checkInOutDetails } = useHotelContext();
+    const { singleHotel, setSingleHotel } = hotelDetails;
+    const { checkInDate, checkOutDate } = checkInOutDetails;
+    const navigate = useNavigate();
 
   useEffect(() => {
     fetchSingleHotel(hotelID).then((response) => {
@@ -55,9 +58,21 @@ const HotelCheckoutPage = () => {
   };
 
   const handleContinueBtn = () => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     // if fname , lname , ph num, email and guest list added with name then only navigate
-    navigate("/hotels/HBConfirmation")
+    if(name.fName !== "" && name.lName !== "" && contact.ph !== "" && contact.email !== ""){
+        if(regex.test( contact.email)){
+            navigate("/hotels/HBConfirmation");
+        }else {
+            notify("Email is invalid!");
+        }
+        
+    }else {
+        notify("Fill the input details!");
+    }
   }
+
+  const notify = (text) => toast(text);
 
   return (
     <div>
@@ -102,7 +117,10 @@ const HotelCheckoutPage = () => {
           </div>
 
           <div id="guest-details">
-            <HotelGuestDetails />
+            <HotelGuestDetails 
+                name={name} setName={setName} 
+                contact={contact} setContact={setContact}
+            />
           </div>
 
           <Button variant="contained" sx={{width: 300, mt: 4}} onClick={handleContinueBtn}>Continue to payment</Button>
@@ -111,7 +129,6 @@ const HotelCheckoutPage = () => {
         {/* hotel booking price card */}
         <div id="h-booking-price-card">
           <HotelInfoPriceCard 
-            singleHotel={singleHotel} 
             getNights={getNights}
           />
         </div>
@@ -121,6 +138,7 @@ const HotelCheckoutPage = () => {
 
       <Box mt={10} mb={4} sx={{ borderBottom: "1px solid lightgray" }}></Box>
       <Footer />
+      <ToastContainer />
     </div>
   );
 };

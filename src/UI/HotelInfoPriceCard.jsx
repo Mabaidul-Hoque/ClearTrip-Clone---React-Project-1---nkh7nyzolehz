@@ -13,7 +13,7 @@ const CustomPaper = styled(Paper)({
   borderRadius: "10px",
 });
 
-const HotelInfoPriceCard = ({ singleHotel, getNights }) => {
+const HotelInfoPriceCard = ({ getNights }) => {
     const {rooms} = useHotelContext().roomTypeValues;
     const {singleRoom} = useHotelContext().singleRoomData;
 
@@ -23,8 +23,11 @@ const HotelInfoPriceCard = ({ singleHotel, getNights }) => {
     console.log("singleRoomLS", JSON.parse(localStorage.getItem("singleRoom")));
 
     const getBasePrice = () => {
-        const price = Math.ceil((JSON.parse(localStorage.getItem("singleRoom")).costPerNight) * (getNights()) * (rooms.length));
-        return price;
+      const price = Math.ceil((JSON.parse(localStorage.getItem("singleRoom"))?.costPerNight) * (getNights()) * (rooms.length));
+      return price;
+    }
+    const getPrice = (value) => {
+      return JSON.parse(localStorage.getItem("singleRoom"))?.costDetails?.[value];
     }
   return (
     <>
@@ -45,7 +48,15 @@ const HotelInfoPriceCard = ({ singleHotel, getNights }) => {
             {/* hotel taxes from the signleHotel.rooms. */}
             <Typography>Hotel taxes</Typography>
             <Typography>
-              ₹6
+              ₹{getPrice("taxesAndFees")}
+            </Typography>
+          </div>
+
+          <div className="price-break-up">
+            {/* hotel taxes from the signleHotel.rooms. */}
+            <Typography>Discounts</Typography>
+            <Typography>
+              ₹{getPrice("discount")}
             </Typography>
           </div>
 
@@ -55,9 +66,9 @@ const HotelInfoPriceCard = ({ singleHotel, getNights }) => {
             <Typography fontSize={"18px"} fontWeight={"600"}>
               Total price
             </Typography>
-            <Typography>₹6,500</Typography>
+            <Typography>₹{getBasePrice()+ getPrice("taxesAndFees") - getPrice("discount")}</Typography>
           </div>
-          <Typography fontSize={"11px"}>1 room . 3 nights</Typography>
+          <Typography fontSize={"11px"}>{rooms?.length} room . {getNights()} night</Typography>
         </div>
 
         <Typography
