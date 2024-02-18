@@ -251,7 +251,7 @@ input[placeholder="Search your favourite hotels"]{
         width: 48vw;
     }
     .add-room-btn{
-        width: 48vw;
+        width: 58vw;
     }
    .menu{
     width: 48vw;        
@@ -280,11 +280,11 @@ input[placeholder="Search your favourite hotels"]{
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-start;
-        gap: 20px;
+        gap: 0px;
         width: 58vw;
     }
     .add-room-btn{
-        width: 17vw;
+        width: 21vw;
     } 
     .h-date-icon{
         top: 16px;
@@ -329,6 +329,9 @@ input[placeholder="Search your favourite hotels"]{
     .h-search-btn{
         width: 20vw;
         margin-right: 20px;
+    }
+    .add-room-btn{
+        width: 16vw;
     }
  } 
  @media screen and (min-width:1280px) {
