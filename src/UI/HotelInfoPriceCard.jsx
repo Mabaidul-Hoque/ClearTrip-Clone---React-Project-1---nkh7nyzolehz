@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
-import { Button, Paper, Typography } from "@mui/material";
+import { Button, Paper, Typography, getTableSortLabelUtilityClass } from "@mui/material";
 import { Box, Stack } from "@mui/system";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
+import { useHotelContext } from "../UseContext/HotelDetailsProvider";
 
 const CustomPaper = styled(Paper)({
   width: "18rem",
@@ -12,10 +13,19 @@ const CustomPaper = styled(Paper)({
   borderRadius: "10px",
 });
 
-const HotelInfoPriceCard = ({ singleHotel }) => {
-  const singelRoom = useRef(JSON.parse(localStorage.getItem("room")));
-  console.log("singleHotel", singleHotel);
-  console.log("room", JSON.parse(localStorage.getItem("room")));
+const HotelInfoPriceCard = ({ singleHotel, getNights }) => {
+    const {rooms} = useHotelContext().roomTypeValues;
+    const {singleRoom} = useHotelContext().singleRoomData;
+
+    // after page refrsh singleRoom data --> reset
+    console.log("singleRoom", singleRoom);
+
+    console.log("singleRoomLS", JSON.parse(localStorage.getItem("singleRoom")));
+
+    const getBasePrice = () => {
+        const price = Math.ceil((JSON.parse(localStorage.getItem("singleRoom")).costPerNight) * (getNights()) * (rooms.length));
+        return price;
+    }
   return (
     <>
       <CustomPaper elevation={4}>
@@ -25,10 +35,9 @@ const HotelInfoPriceCard = ({ singleHotel }) => {
           </Typography>
           <div className="price-break-up">
             {/* room and night : room from addroom and night day diffenece between checkin and checkout date */}
-            <Typography>1 room x 1 night</Typography>
+            <Typography>{rooms?.length} room x {getNights()} night</Typography>
             <Typography>
-              ₹6,500
-              {/* <span>{singleFlight.ticketPrice}</span> */}
+              ₹{getBasePrice()}
             </Typography>
           </div>
 
@@ -36,7 +45,7 @@ const HotelInfoPriceCard = ({ singleHotel }) => {
             {/* hotel taxes from the signleHotel.rooms. */}
             <Typography>Hotel taxes</Typography>
             <Typography>
-              ₹{singelRoom.current?.costDetails?.taxesAndFees}
+              ₹6
             </Typography>
           </div>
 

@@ -17,7 +17,7 @@ const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov
 
 const HotelCheckoutPage = () => {
   const { hotelID } = useParams();
-  const { hotelDetails, checkInOutDetails, roomTypeValues } = useHotelContext();
+  const { hotelDetails, checkInOutDetails } = useHotelContext();
   const { singleHotel, setSingleHotel } = hotelDetails;
   const { checkInDate, checkOutDate } = checkInOutDetails;
   const navigate = useNavigate();
@@ -68,27 +68,14 @@ const HotelCheckoutPage = () => {
         <div id="h-booking-content">
           {/* header */}
           <Stack
-            mb={4}
-            mt={{
-              xs: -3,
-              sm: 0,
-            }}
-            flexDirection={"row"}
-            alignItems={"center"}
-            gap={2}
-            width={{
-              xs: "90vw",
-              md: "60vw",
-            }}
+            mb={4} mt={{ xs: -3, sm: 0 }} flexDirection={"row"} alignItems={"center"} gap={2}
+            width={{ xs: "90vw", md: "60vw" }}
           >
             <div className="number-circle">
               <span>1</span>
             </div>
             <Typography
-              fontSize={{
-                xs: "24px",
-              }}
-              fontWeight={600}
+              fontSize={{ xs: "24px" }} fontWeight={600}
             >
               Review your itinerary
             </Typography>
@@ -123,7 +110,10 @@ const HotelCheckoutPage = () => {
 
         {/* hotel booking price card */}
         <div id="h-booking-price-card">
-          <HotelInfoPriceCard singleHotel={singleHotel} />
+          <HotelInfoPriceCard 
+            singleHotel={singleHotel} 
+            getNights={getNights}
+          />
         </div>
 
         

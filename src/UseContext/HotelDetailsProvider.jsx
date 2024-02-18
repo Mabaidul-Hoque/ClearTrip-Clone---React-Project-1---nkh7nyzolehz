@@ -35,21 +35,12 @@ export const HotelDetailsProvider = ({ children }) => {
   const [filterItems, setFilterItems] = useState({});
   const [hotelPage, setHotelPage] = useState(1);
   const [totalHotels, setTotalHotels] = useState(0);
-  
-  // const [roomType, setRoomType] = useState({
-  //   room: 1,
-  //   adult: 1,
-  //   children: 0
-  // });
+  const [singleRoom, setSingleRoom] = useState({});
+
   const [rooms, setRooms] = useState([{
     adult: 1,
     children: 0
   }]);
-
-  // useEffect(() => {
-  //   localStorage.setItem("checkInDate", JSON.stringify(checkInDate));
-  //   localStorage.setItem("checkOutDate", JSON.stringify(checkOutDate));
-  // }, [checkInDate, checkOutDate]);
 
   const handleInputPlaceChange = (val) => {
     setInputPlace(val);
@@ -115,10 +106,8 @@ export const HotelDetailsProvider = ({ children }) => {
       checkOutDate,
       handleCheckOutDateChange,
     },
-    roomTypeValues: { 
-      // roomType, setRoomType,
-       rooms, setRooms 
-    },
+    roomTypeValues: { rooms, setRooms },
+    singleRoomData: {singleRoom, setSingleRoom}
   };
 
   return (
