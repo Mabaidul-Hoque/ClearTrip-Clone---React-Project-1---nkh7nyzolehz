@@ -31,10 +31,10 @@ export const CheckInOutDate = ({ dateClass }) => {
     return new Intl.DateTimeFormat("en-US", options).format(date);
   };
 
-  console.log({
-    checkInDate,
-    checkLS: JSON.parse(localStorage.getItem("checkInDate")),
-  });
+  // console.log({
+  //   checkInDate,
+  //   checkLS: JSON.parse(localStorage.getItem("checkInDate")),
+  // });
   const CheckInDateInput = forwardRef(({ onClick }, ref) => (
     <CustomButton ref={ref} onClick={onClick} className={dateClass}>
       {formatDate(checkInDate)}

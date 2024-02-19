@@ -16,6 +16,39 @@ import FareType from "./FareType";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
+const returnDateStyle = () => (
+    {
+        width: {
+          xxs: "45vw",
+          xs: "39.2vw",
+          sm: "16vw",
+          lg: "12vw",
+        },
+        fontSize: {
+          xs: "14px",
+          md: "16px",
+        },
+    }
+)
+const departDateStyle = () => (
+    {
+        width: {
+          xxs: "40vw",
+          xs: "45vw",
+          sm: "19vw",
+          lg: "14vw",
+        },
+        paddingLeft: {
+          xs: 4,
+          sm: 3,
+        },
+        fontSize: {
+          xs: "14px",
+          md: "16px",
+        },
+    }
+)
+
 export default function FlightSearchCard() {
   const [isSwitch, setIsSwitch] = useState(false);
   const navigate = useNavigate();
@@ -106,16 +139,12 @@ export default function FlightSearchCard() {
             <DepartCityInput
               options={airportNames}
               noOptionText={"No Match Found"}
+              source={source}
             />
           </div>
-
           <div className="f-switch-btn" onClick={() => setIsSwitch(!isSwitch)}>
-            <SwapHorizontalCircleOutlinedIcon
-              htmlColor="#5D86D7"
-              fontSize="large"
-            />
+            <SwapHorizontalCircleOutlinedIcon htmlColor="#5D86D7" fontSize="large" />
           </div>
-
           <div id="destination-container">
             <div className="f-landing-icon">
               <FlightLandOutlinedIcon htmlColor="#808080" />
@@ -123,9 +152,11 @@ export default function FlightSearchCard() {
             <DestinationCityInput
               options={airportNames}
               noOptionText={"No Match Found"}
+              destination={destination}
             />
           </div>
         </Stack>
+
         {/* date picker and search btn */}
         <Stack
           sx={{
@@ -151,7 +182,12 @@ export default function FlightSearchCard() {
             <div className="f-calender-icon">
               <CalendarMonthOutlinedIcon htmlColor="#808080" />
             </div>
-            <DateInputs />
+
+            {/* depart and return date */}
+            <DateInputs
+                departStyle = {departDateStyle} 
+                returnStyle = {returnDateStyle} 
+            />
           </Stack>
           <Button
             variant="text"

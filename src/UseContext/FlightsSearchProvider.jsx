@@ -25,8 +25,8 @@ export const FlightsSearchProvider = ({ children }) => {
   const [returnDate, seReturnDate] = useState(new Date());
   const [departDay, setDepartDay] = useState("");
   const [returnDay, setReturnDay] = useState("");
-  const [source, setSource] = useState("");
-  const [destination, setDestination] = useState("");
+  const [source, setSource] = useState("HYD Hyderabad, IN");
+  const [destination, setDestination] = useState("AMD Ahmedabad, IN");
   const [airplanes, setAirplanes] = useState([]);
   const [airportNames, setAirportNames] = useState([]);
   const [flightPage, setFlightPage] = useState(1);
@@ -70,28 +70,30 @@ export const FlightsSearchProvider = ({ children }) => {
     localStorage.setItem("source", source);
     localStorage.setItem("destination", destination);
     localStorage.setItem("departDay", departDay);
-    if (
-      source.substring(0, 3) !== destination.substring(0, 3) &&
-      cityNameCodes.includes(source.substring(0, 3)) &&
-      cityNameCodes.includes(destination.substring(0, 3)) &&
-      days.includes(departDay.substring(0, 3))
-    ) {
-      const sourceVal = source.substring(0, 3);
-      const destinationVal = destination.substring(0, 3);
-      const day = departDay.substring(0, 3);
-      if (sourceVal !== null && destinationVal !== null && day !== null) {
-        fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
-          (response) => {
-            setAirplanes(response.data.flights);
-          }
-        );
-      } else {
-        fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
-          (response) => {
-            setAirplanes(response.data.flights);
-          }
-        );
-      }
+    console.log("source", source);
+    console.log("destination", destination);
+    if(source !== "" && destination !== "") {
+        if (
+            source.substring(0, 3) !== destination.substring(0, 3) &&
+            cityNameCodes.includes(source.substring(0, 3)) &&
+            cityNameCodes.includes(destination.substring(0, 3)) &&
+            days.includes(departDay.substring(0, 3))
+        ) {
+            const sourceVal = source.substring(0, 3);
+            const destinationVal = destination.substring(0, 3);
+            const day = departDay.substring(0, 3);
+            if (sourceVal !== null && destinationVal !== null && day !== null) {
+                fetchFlights(sourceVal, destinationVal, day, 5, flightPage)
+                .then((response) => {
+                    setAirplanes(response.data.flights);
+                });
+        } else {
+            fetchFlights(sourceVal, destinationVal, day, 5, flightPage)
+                .then((response) => {
+                    setAirplanes(response.data.flights);
+                });
+            }
+        }
     } else {
       if (source === "" || destination === "") {
         notify("Fill the details before search!");

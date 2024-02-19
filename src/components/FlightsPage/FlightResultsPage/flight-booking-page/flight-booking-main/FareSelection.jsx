@@ -1,7 +1,17 @@
+import styled from "@emotion/styled";
 import { Box, Paper, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 
+const FareBox = styled(Box)({
+  height: "40vh",
+  border: "1px solid lightgray",
+  "&:hover": {
+    cursor: "pointer",
+  },
+})
 const FareSelection = ({ singleFlight }) => {
+  const [selected, setSelected] = useState(1);
+
   return (
     <Box
       width={{
@@ -16,25 +26,22 @@ const FareSelection = ({ singleFlight }) => {
       >
         Select your fare
       </Typography>
-      <Stack flexDirection={"row"} gap={2}>
+      <Stack flexDirection={"row"} gap={2} mt={2}>
         {/* fare type 1 */}
-        <Box
+        <FareBox
           sx={{
             width: {
               xs: "42vw",
               md: "20vw",
             },
-            height: "40vh",
-            border: "1px solid lightgray",
-            p: 2,
-            "&:hover": {
-              cursor: "pointer",
-            },
+            p: 4,
+            bgcolor: selected === 1 ? "lightgreen" : ""
           }}
+          onClick={() => setSelected(1)}
         >
           <Stack mb={4}>
-            <Typography>Standard fare </Typography>
-            <Typography>₹{singleFlight.ticketPrice}</Typography>
+            <Typography sx={{ fontSize :"16px", fontWeight: 500}}>Standard fare </Typography>
+            <Typography sx={{ fontSize :"16px", fontWeight: 500}}>₹{singleFlight.ticketPrice}</Typography>
           </Stack>
           <Typography
             fontSize={{
@@ -43,25 +50,23 @@ const FareSelection = ({ singleFlight }) => {
           >
             Standard airline cancellation and date change penalties apply
           </Typography>
-        </Box>
+        </FareBox>
+
         {/* fare type 2 */}
-        <Box
+        <FareBox
           sx={{
             width: {
               xs: "42vw",
               md: "20vw",
             },
-            height: "40vh",
-            border: "1px solid lightgray",
-            p: 2,
-            "&:hover": {
-              cursor: "pointer",
-            },
+            p: 4,
+            bgcolor: selected === 2 ? "lightgreen" : ""
           }}
+          onClick={() => setSelected(2)}
         >
           <Stack mb={4}>
-            <Typography>Standard fare </Typography>
-            <Typography>
+            <Typography sx={{ fontSize :"16px", fontWeight: 500}}>CFLEX fare(new) </Typography>
+            <Typography sx={{ fontSize :"16px", fontWeight: 500}}>
               ₹{singleFlight?.ticketPrice} + ₹
               {Math.ceil(singleFlight?.ticketPrice * 0.2)}{" "}
             </Typography>
@@ -73,7 +78,7 @@ const FareSelection = ({ singleFlight }) => {
           >
             Standard airline cancellation and date change penalties apply
           </Typography>
-        </Box>
+        </FareBox>
       </Stack>
     </Box>
   );

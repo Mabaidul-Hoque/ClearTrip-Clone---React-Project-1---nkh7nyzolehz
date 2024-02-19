@@ -23,50 +23,10 @@
     width: 120px;
     cursor: pointer;
 }
-.dest-autoComplete  {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-
-}
-.return-date-result {
-    width: 150px;
-}
-.result-input-source, 
-.result-input-destination{
-    width: 20vw;
-    height: 56px;
-    border-radius: 6px;
-    border: 1px solid #D3D3D3;
-    font-size: 16px;
+.inputBoxRes{
+    width: 12rem;
+    height: 44px;
     padding-left: 20px;
-    transition: 0.5s ease-in-out;
-}
-.result-input-source:hover{
-    outline: 0;
-    border-color: #0f53a0;
-}
-.result-input-source:focus{
-    outline: 0;
-    border-color: #0f53a0;
-    scale: 1.05;
-}
-.result-input-source:active{
-    outline: 0;
-    border-color: #0f53a0;
-}
-.result-input-destination:hover{
-    outline: 0;
-    border-color: #0f53a0;
-}
-.result-input-destination:focus{
-    outline: 0;
-    border-color: #0f53a0;
-    scale: 1.05;
-}
-.result-input-destination:active{
-    outline: 0;
-    border-color: #0f53a0;
 }
 .cursor-change{
     color: gray;
@@ -294,7 +254,7 @@ input[type=checkbox] {
     .result-input-source,
     .result-input-destination{
         width: 43vw;
-        height: 40px;
+        height: 44px;
         font-size: 14px;
         padding-left: 10px;
     }
@@ -329,7 +289,7 @@ input[type=checkbox] {
     .result-input-source,
     .result-input-destination{
         width: 42vw;
-        height: 40px;
+        height: 44px;
         font-size: 16px;
         padding-left: 20px;
     }

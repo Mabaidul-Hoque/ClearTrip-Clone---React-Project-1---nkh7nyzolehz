@@ -13,9 +13,11 @@ const FlightBookingPage = () => {
   const { flightId } = useParams();
 
   useEffect(() => {
-    fetchSingleFlightDetails(flightId).then((resp) => {
-      setSingleFlight(resp.data);
-    });
+    fetchSingleFlightDetails(flightId)
+      .then((resp) => {
+        setSingleFlight(resp.data);
+      }
+    );
   }, []);
 
   return (

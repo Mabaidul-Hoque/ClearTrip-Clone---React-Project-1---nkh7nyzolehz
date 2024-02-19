@@ -68,7 +68,7 @@ const LeftSideSortingBar = ({ getFilterFlights }) => {
 
               <SortByPriceRange getFilterFlights={getFilterFlights} />
 
-              <SortByAirLines />
+              {/* <SortByAirLines /> */}
             </Stack>
           </Paper>
 

@@ -21,6 +21,9 @@ import { useFlightSearch } from "../../../../UseContext/FlightsSearchProvider";
 import { CustomTheme } from "../../../../util/muiTheme";
 import LoginPage from "../../../Login-signup/LoginPage";
 import { toast } from "react-toastify";
+import DateInputs from "../../FlightSearchCard/DateInputs";
+import DepartCityInput from "../../FlightSearchCard/DepartCityInput";
+import DestinationCityInput from "../../FlightSearchCard/DestinationCityInput";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const RightButton = styled(Button)({
@@ -34,6 +37,41 @@ const RightButton = styled(Button)({
     color: "gray",
   },
 });
+const SearchButton = styled(Button)({
+    bgcolor: "black",
+    color: "#FFFFFF",
+    borderRadius: "7px",
+    fontSize: "16px",
+    textTransform: "none",
+    "&:hover": {
+      bgcolor: "black",
+    },
+})
+
+const returnDateStyle = () => (
+    {
+        width: "8rem",
+        height: {
+            xs: "44px"
+        },
+        fontSize: {
+          xs: "14px",
+          md: "16px",
+        },
+    }
+)
+const departDateStyle = () => (
+    {
+        width: "8rem",
+        height: {
+            xs: "44px"
+        },
+        fontSize: {
+          xs: "14px",
+          md: "16px",
+        },
+    }
+)
 
 const ResultNavbar = () => {
   const { tokenDetails, logSignDetails, handleLogout, signupDetails } =
@@ -109,12 +147,8 @@ const ResultNavbar = () => {
             xxs: "95%",
             sm: "92%",
           },
-          height: {
-            xxs: "37vh",
-            lg: "20vh",
-          },
+          height:"fit-content",
           margin: "0 auto",
-          borderBottom: "1px solid lightgray",
         }}
       >
         {/* logo login section */}
@@ -209,6 +243,7 @@ const ResultNavbar = () => {
                 setIsSignup(false);
                 token ? handleLogout() : handleLoginOpen();
               }}
+              sx={{ fontSize: { xs: "12px", sm: "14px"}}}
             >
               <AccountCircleOutlinedIcon
                 sx={{ marginRight: "2px" }}
@@ -224,78 +259,59 @@ const ResultNavbar = () => {
         <Stack
           mt={1}
           flexDirection={"row"}
-          justifyContent={{
-            xxs: "flex-start",
-          }}
+          justifyContent={"center"}
           alignItems={"center"}
           gap={{
-            xxs: 1,
-            xs: 2,
+            xs: 0.5,
             lg: 1,
           }}
           flexWrap={"wrap"}
         >
           {/* source destination input */}
           <Stack
-            flexDirection={"row"}
-            justifyContent={"flex-start"}
+            flexDirection={{ xs: "column", sm: "row"}}
             alignItems={"center"}
-            gap={{
-              xxs: 0,
-            }}
+            gap={0.5}
           >
-            <ResultDepartCity
-              options={airportNames}
-              noOptionText={"No Match Found"}
-              source={source}
+            <DepartCityInput 
+                options={airportNames}
+                noOptionText={"No Match Found"}
+                inputStyleClass="inputBoxRes"
+                source={source}
             />
-            <SyncAltOutlinedIcon htmlColor="#ED6521" />
-            <ResultDestinationCity
-              options={airportNames}
-              noOptionText={"No Match Found"}
-              destination={destination}
+            <SyncAltOutlinedIcon sx={{ display: { xs: "none", sm: "block"}}} htmlColor="#ED6521" />
+            <DestinationCityInput 
+                options={airportNames}
+                noOptionText={"No Match Found"}
+                inputStyleClass="inputBoxRes"
+                destination={destination}
             />
           </Stack>
+
           {/* depart return date */}
           <Box>
-            <DepartDateResult />
+            <DateInputs
+                departStyle = {departDateStyle} 
+                returnStyle = {returnDateStyle} 
+            />
           </Box>
-          <Box
-            sx={{
-              display: {
-                xxs: "none",
-                sm: "inline-block",
-              },
-            }}
-          >
-            <ReturnDateResult />
-          </Box>
+
           {/* traveller options */}
           <Box>
             <Traveller />
           </Box>
+
           {/* search btn */}
-          <Button
-            variant="text"
+          <SearchButton
+            variant="contained"
             sx={{
-              width: {
-                xs: "93vw",
-                md: "89vw",
-                lg: "12vw",
-              },
-              bgcolor: "#000000",
-              color: "#FFFFFF",
-              borderRadius: "7px",
-              fontSize: "16px",
-              textTransform: "none",
-              "&:hover": {
-                bgcolor: "#000000",
-              },
+              width: "10rem",
+              height: "44px"
             }}
             onClick={handleResultFlightSearch}
           >
             Search
-          </Button>
+          </SearchButton>
         </Stack>
       </Stack>
     </ThemeProvider>

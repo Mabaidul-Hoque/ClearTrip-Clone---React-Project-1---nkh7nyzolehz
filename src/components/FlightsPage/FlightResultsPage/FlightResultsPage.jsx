@@ -2,7 +2,7 @@ import React from "react";
 import ResultNavbar from "./navbar-result/ResultNavbar";
 import "./FlightResultPage.css";
 import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
-import { Stack, ThemeProvider } from "@mui/material";
+import { Divider, Stack, ThemeProvider } from "@mui/material";
 import LeftSideSortingBar from "./main-section/left-section/LeftSideSortingBar";
 import MainContent from "./main-section/main-content/MainContent";
 import { fetchFilteredFlights } from "../../../Apis/FlightSearchApi";
@@ -48,6 +48,7 @@ const FlightResultsPage = () => {
     <ThemeProvider theme={CustomTheme}>
       <div id="flight-result-page">
         <ResultNavbar />
+        <Divider sx={{ mt: 2}} />
         <main id="flight-result-main">
           <Stack
             flexDirection={{

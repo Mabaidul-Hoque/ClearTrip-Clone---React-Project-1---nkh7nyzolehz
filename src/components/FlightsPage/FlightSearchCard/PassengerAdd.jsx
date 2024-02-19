@@ -1,4 +1,4 @@
-import * as React from "react";
+import  React, {useState, useRef} from "react";
 import "../FlightPage.css";
 import {
   Box,
@@ -25,9 +25,10 @@ const passengerAddbBtnTexts = [
 ];
 
 const PassengerAdd = () => {
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
-  const [bookingTypeIndex, setTookingTypeIndex] = React.useState(0);
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef(null);
+  const [bookingTypeIndex, setTookingTypeIndex] = useState(0);
+  const [seatType, setSeatType] = useState("Economy");
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -64,7 +65,7 @@ const PassengerAdd = () => {
             <PersonOutlineOutlinedIcon htmlColor="#999999" />
           )}
           <span style={{ fontSize: "16px", fontWeight: "500  " }}>
-            1 Adult, Economy
+            1 Adult, {seatType}
           </span>
           {open ? (
             <ExpandLessOutlinedIcon htmlColor="#999999" />
@@ -248,7 +249,10 @@ const PassengerAdd = () => {
                               cursor: "pointer",
                             },
                           }}
-                          onClick={() => setTookingTypeIndex(index)}
+                          onClick={(e) => {
+                            setTookingTypeIndex(index);
+                            setSeatType(e.target.innerHTML);
+                          }}
                         >
                           {passengerAddbBtnText}
                         </Box>
