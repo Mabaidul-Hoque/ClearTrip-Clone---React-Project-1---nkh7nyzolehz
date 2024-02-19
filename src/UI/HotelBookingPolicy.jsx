@@ -19,11 +19,11 @@ const HotelBookingPolicy = () => {
   };
 
   const list = () => (
-    <Box sx={{ width: 800, padding: "20px 50px" }}>
+    <Box sx={{ width: { xs: 320, sm: 800}, padding: "20px 50px" }}>
       <Button sx={{ mb: 2, cursor: "pointer" }} onClick={toggleDrawer(false)}>
         <CloseIcon htmlColor="orange" />
       </Button>
-      <Typography sx={{ pb: 2 }} variant="h3">
+      <Typography sx={{ pb: 2 }} variant={{ xs: "h5", sm: "h3"}} component={"h2"}>
         Cleartrip booking policy
       </Typography>
       <Typography>

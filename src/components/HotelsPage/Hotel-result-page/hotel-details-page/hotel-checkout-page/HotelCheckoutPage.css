@@ -70,3 +70,50 @@
 .h-info-input{
     width: 25vw;
 }
+
+@media screen and (min-width: 300px){
+    #h-booking-main{
+        width: 91%;
+    }        
+    #h-booking-price-card{
+        display: none;
+    }
+    #h-booking-price-card-mobile{
+        display: block;
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+    }
+    .h-info-input{
+        width: 80vw;
+    }
+}
+
+@media screen and (min-width: 600px){
+    #h-booking-main{
+        width: 88%;
+        gap: 2rem;
+    } 
+    .h-info-input{
+        width: 40vw;
+    }
+}
+@media screen and (min-width: 900px){
+    #h-booking-main{
+        gap: 2rem;
+    } 
+    .h-info-input{
+        width: 25vw;
+    }
+    #h-booking-price-card{
+        display: block;
+    }
+    #h-booking-price-card-mobile{
+        display: none;
+    }
+}
+@media screen and (min-width: 1024px){
+    #h-booking-main{
+        gap: 4rem;
+    } 
+}

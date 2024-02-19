@@ -82,7 +82,7 @@ const HotelGuestDetails = ({name, setName, contact, setContact}) => {
         Guest details
       </Typography>
       <CourtesyTitles />
-      <Stack flexDirection={"row"} mt={2} gap={4}>
+      <Stack flexDirection={{ xs: "column", sm: "row"}} mt={2} gap={4}>
         <TextField type="text" id="f-name" label="First name" className="h-info-input"
             onChange={(e) => setName(prev => ({...prev, fName: e.target.value}))}
             value={name?.fName}
@@ -96,7 +96,7 @@ const HotelGuestDetails = ({name, setName, contact, setContact}) => {
       <Typography mt={2} mb={2}>
         Booking details will be sent to this number and email address
       </Typography>
-      <Stack flexDirection={"row"} mt={2} gap={4}>
+      <Stack flexDirection={{ xs: "column", sm: "row"}} mt={2} gap={4}>
         <Box>
           {/* ph number country code */}
           <TextField

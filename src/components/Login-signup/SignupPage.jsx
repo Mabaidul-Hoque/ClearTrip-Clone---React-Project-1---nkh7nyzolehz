@@ -1,11 +1,9 @@
-import { Modal, Stack, Typography, Box, Button } from "@mui/material";
-import React, { useEffect } from "react";
+import { Modal, Stack, Box } from "@mui/material";
+import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import "./loginSignup.css";
 import { fetchSignup } from "../../Apis/LoginSignupApi";
 import { useAuth } from "../../UseContext/AuthorizationProvider";
-import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const closeBtn = {
@@ -17,36 +15,29 @@ const closeBtn = {
 
 const SignupPage = () => {
   const { signupDetails, logSignDetails, tokenDetails } = useAuth();
-  const { handleLoginOpen, handleLoginClose, islogin } = logSignDetails;
-  const { name, setName, email, setEmail, password, setPassword, setIsSignup } =
-    signupDetails;
-
-  const { token, setToken } = tokenDetails;
-  // const navigate = useNavigate();
-  // const {pathname} = useLocation();
+  const { handleLoginClose, islogin } = logSignDetails;
+  const { name, setName, email, setEmail, password, setPassword, setIsSignup } = signupDetails;
+  const { setToken } = tokenDetails;
 
   const handleSignupSubmit = () => {
-    if (name && email.includes("@") && password) {
-      fetchSignup({
-        name,
-        email,
-        password,
-        appType: "bookingportals",
-      }).then((response) => {
-        if (response.status === "success") {
-          notify("You have registered successfully");
-          localStorage.setItem("token", response.token);
-          setToken(response.token);
-          handleLoginClose();
-        } else {
-          notify("Already you have an accoount , login please");
-        }
-        setName("");
-        setEmail("");
-        setPassword("");
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (name && regex.test(email) && password) {
+      fetchSignup({ name, email, password, appType: "bookingportals" })
+        .then((response) => {
+          if (response.status === "success") {
+            notify("You have registered successfully");
+            localStorage.setItem("token", response.token);
+            setToken(response.token);
+            handleLoginClose();
+          } else {
+            notify("Already you have an accoount , login please");
+          }
+          setName("");
+          setEmail("");
+          setPassword("");
       });
-    } else if (email && !email.includes("@")) {
-      notify("Your email is invalid!");
+    } else if (email && !regex.test(email)) {
+      notify("Email is invalid!");
     } else {
       notify("Some fields are missing or invalid!");
     }

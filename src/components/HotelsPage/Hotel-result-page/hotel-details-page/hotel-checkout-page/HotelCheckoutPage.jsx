@@ -60,15 +60,18 @@ const HotelCheckoutPage = () => {
   const handleContinueBtn = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     // if fname , lname , ph num, email and guest list added with name then only navigate
-    if(name.fName !== "" && name.lName !== "" && contact.ph !== "" && contact.email !== ""){
+    if(name.fName !== "" && name.lName !== "" && contact?.ph !== "" && contact?.email !== ""){
         if(regex.test( contact.email)){
-            navigate("/hotels/HBConfirmation");
+            navigate(`/hotels/HBConfirmation/${hotelID}`);
         }else {
             notify("Email is invalid!");
         }
-        
     }else {
-        notify("Fill the input details!");
+        if(contact?.ph.length !== 10){
+            notify("Phone number is invalid, it must have 10 digits")
+        }else{
+            notify("Fill the input details!");
+        }
     }
   }
 
@@ -105,6 +108,13 @@ const HotelCheckoutPage = () => {
             />
           </div>
 
+          {/* price card only for mobile screen  */}
+          <div id="h-booking-price-card-mobile">
+            <HotelInfoPriceCard 
+                getNights={getNights}
+            />
+          </div>
+
           <div id="cancellation-policy">
             <HotelCancellationPolicy
               getDateMonth={getDateMonth}
@@ -138,7 +148,7 @@ const HotelCheckoutPage = () => {
 
       <Box mt={10} mb={4} sx={{ borderBottom: "1px solid lightgray" }}></Box>
       <Footer />
-      <ToastContainer />
+      <ToastContainer theme="dark" />
     </div>
   );
 };

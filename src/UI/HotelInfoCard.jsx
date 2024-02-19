@@ -47,13 +47,14 @@ const HotelInfoCard = ({ singleHotel, getDateMonth, getDayTime, getNights }) => 
       <InfoCardPaper>
         {/* header part */}
         <Stack
-          flexDirection={"row"} alignItems={"center"} justifyContent={"space-between"}
+          flexDirection={{ xs: "column", sm: "row" }} alignItems={"center"} justifyContent={"space-between"}
+		  gap={{ xs: 2, sm: 0}}
         >
           <div>
             <Typography sx={{ color: "gray" }}>
               {singleHotel?.rating}-star hotel in {singleHotel?.location}
             </Typography>
-            <Typography variant="h3" component="h1" sx={{mb: 1}}>{singleHotel?.name}</Typography>
+            <Typography variant={{ xs: "h5" , sm: "h3" }} component="h1" sx={{mb: 1}}>{singleHotel?.name}</Typography>
             {/* rating component */}
             <HotelRatings rating={singleHotel?.rating ?? ""} />
           </div>
@@ -68,6 +69,7 @@ const HotelInfoCard = ({ singleHotel, getDateMonth, getDayTime, getNights }) => 
         {/* check in out and gauest part */}
         <Stack
           flexDirection={"row"} justifyContent={"space-between"} alignItems={"center"}
+		  flexWrap={"wrap"} rowGap={2}
         >
           <div className="check-in">
             <Typography sx={{ color: "gray" }}>Check-in</Typography>
@@ -95,7 +97,7 @@ const HotelInfoCard = ({ singleHotel, getDateMonth, getDayTime, getNights }) => 
             </Typography>
           </div>
 
-          <Box sx={{ borderRight: "1px solid lightgray", height: "7vh" }}></Box>
+          <Box sx={{ borderRight: "1px solid lightgray", height: "7vh", display: {xs: "none", sm :"block"} }}></Box>
 
           <Stack flexDirection={"row"} gap={2}>
             <Box>

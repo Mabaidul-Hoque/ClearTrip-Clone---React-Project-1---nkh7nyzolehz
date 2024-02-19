@@ -69,7 +69,7 @@ const router = createBrowserRouter([
     element: <HotelCheckoutPage />,
   },
   {
-    path: "/hotels/HBConfirmation",
+    path: "/hotels/HBConfirmation/:hotelID",
     element: <HotelBookingPage />,
   },
 ]);

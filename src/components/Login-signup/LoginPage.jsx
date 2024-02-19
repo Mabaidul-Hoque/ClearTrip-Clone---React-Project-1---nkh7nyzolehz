@@ -1,11 +1,9 @@
-import { Modal, Stack, Typography, Box, Button } from "@mui/material";
-import React, { useEffect } from "react";
+import { Modal, Stack } from "@mui/material";
+import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import "./loginSignup.css";
-import { fetchLogin, fetchSignup } from "../../Apis/LoginSignupApi";
+import { fetchLogin } from "../../Apis/LoginSignupApi";
 import { useAuth } from "../../UseContext/AuthorizationProvider";
-import { useLocation, useNavigate } from "react-router-dom";
 import SignupPage from "./SignupPage";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -18,41 +16,28 @@ const closeBtn = {
 
 const LoginPage = () => {
   const { signupDetails, logSignDetails, tokenDetails } = useAuth();
-  const { handleLoginOpen, handleLoginClose, islogin, logInPagePath } =
-    logSignDetails;
-  const {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    handleSignupSubmit,
-    setIsSignup,
-    isSignup,
-  } = signupDetails;
-  const { token, setToken } = tokenDetails;
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const { handleLoginClose, islogin } = logSignDetails;
+  const { email, setEmail, password, setPassword, setIsSignup, isSignup } = signupDetails;
+  const { setToken } = tokenDetails;
 
   const handleLoginSubmit = () => {
-    if (email.includes("@") && password) {
-      fetchLogin({
-        email,
-        password,
-        appType: "bookingportals",
-      }).then((response) => {
-        if (response.status === "success") {
-          notify("You have logged in successfully");
-          localStorage.setItem("token", response.token);
-          setToken(response.token);
-          handleLoginClose();
-        } else {
-          notify("You don't have an accoount , create one!");
-        }
-        setEmail("");
-        setPassword("");
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (regex.test(email) && password) {
+      fetchLogin({ email, password, appType: "bookingportals" })
+        .then((response) => {
+          if (response.status === "success") {
+            notify("You have logged in successfully");
+            localStorage.setItem("token", response.token);
+            setToken(response.token);
+            handleLoginClose();
+          } else {
+            notify("You don't have an accoount , create one!");
+          }
+          setEmail("");
+          setPassword("");
       });
-    } else if (email && !email.includes("@")) {
-      notify("Your email is invalid!");
+    } else if (email && !regex.test(email)) {
+      notify("Email is invalid!");
     } else {
       notify("Some fields are missing or invalid!");
     }
