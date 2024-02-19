@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
-import { useHotelContext } from "../UseContext/HotelDetailsProvider";
+import { useHotelContext } from "../../UseContext/HotelDetailsProvider"; 
 
 const HotelCancellationPolicy = ({ getDayTime, getDateMonth }) => {
   const { checkInDate } = useHotelContext().checkInOutDetails;

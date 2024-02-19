@@ -19,9 +19,9 @@ import { Box, Stack, Typography } from "@mui/material";
 import Footer from "../../../FooterPage/Footer";
 import LoginPage from "../../../Login-signup/LoginPage";
 import { toast } from "react-toastify";
-import Autocomplete from "../../../../ui/Autocomplete";
-import { CheckInOutDate } from "../../../../ui/CheckInOutDate";
-import AddRooms from "../../../../ui/AddRooms";
+import Autocomplete from "../../../ui/Autocomplete";
+import { CheckInOutDate } from "../../../ui/CheckInOutDate"; 
+import AddRooms from "../../../ui/AddRooms";
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   display: "flex",

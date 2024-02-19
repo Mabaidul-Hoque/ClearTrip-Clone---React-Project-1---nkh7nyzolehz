@@ -2,7 +2,7 @@ import { Box, Button, Drawer, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import NotInterestedOutlinedIcon from "@mui/icons-material/NotInterestedOutlined";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
-import { policyList } from "../static-data/StaticData";
+import { policyList } from "../../static-data/StaticData";
 import CloseIcon from "@mui/icons-material/Close";
 
 const HotelBookingPolicy = () => {

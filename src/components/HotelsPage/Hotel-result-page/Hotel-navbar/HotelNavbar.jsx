@@ -9,9 +9,9 @@ import { fetchHotels } from "../../../../Apis/HotelDetailsApi";
 import { toast } from "react-toastify";
 import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
 import { OPTION } from "../../Hotels";
-import Autocomplete from "../../../../ui/Autocomplete";
-import { CheckInOutDate } from "../../../../ui/CheckInOutDate";
-import AddRooms from "../../../../ui/AddRooms";
+import Autocomplete from "../../../ui/Autocomplete";
+import { CheckInOutDate } from "../../../ui/CheckInOutDate"; 
+import AddRooms from "../../../ui/AddRooms";
 
 const HotelNavbar = () => {
   const { tokenDetails, logSignDetails, handleLogout, signupDetails } =

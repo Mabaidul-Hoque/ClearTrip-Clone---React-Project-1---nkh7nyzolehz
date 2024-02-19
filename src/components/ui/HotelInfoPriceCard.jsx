@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
-import { Button, Paper, Typography, getTableSortLabelUtilityClass } from "@mui/material";
+import { Button, Paper, Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import React, { useEffect, useRef } from "react";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
-import { useHotelContext } from "../UseContext/HotelDetailsProvider";
+import { useHotelContext } from "../../UseContext/HotelDetailsProvider"; 
 
 const CustomPaper = styled(Paper)({
   width: "18rem",

@@ -6,7 +6,6 @@ import { useHotelContext } from "../../../UseContext/HotelDetailsProvider";
 import StarsIcon from "@mui/icons-material/Stars";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { useNavigate } from "react-router-dom";
-
 import { useDebounce } from "../../../CustomHooks/useDebouce";
 import ImageCarousel from "./image-carousel/ImageCarousel";
 import { Box, Pagination, Stack } from "@mui/material";

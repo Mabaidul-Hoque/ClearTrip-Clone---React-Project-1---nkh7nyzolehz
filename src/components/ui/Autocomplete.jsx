@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import "../components/HotelsPage/Hotels.css";
+import "../HotelsPage/Hotels.css";
 import { Paper } from "@mui/material";
-import { useHotelContext } from "../UseContext/HotelDetailsProvider";
+import { useHotelContext } from "../../UseContext/HotelDetailsProvider"; 
 import { useLocation } from "react-router-dom";
 import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 

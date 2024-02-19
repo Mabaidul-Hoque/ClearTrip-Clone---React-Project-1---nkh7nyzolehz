@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import HotelRatings from "../../../../ui/HotelRatings";
+import HotelRatings from "../../../ui/HotelRatings";
 
 const GeneralDetails = ({ singleHotel }) => {
   console.log("singleHotel in hotel details", singleHotel);

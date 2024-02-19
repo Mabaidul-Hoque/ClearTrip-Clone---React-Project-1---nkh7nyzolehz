@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
-import "../components/HotelsPage/Hotels.css";
+import "../HotelsPage/Hotels.css";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PersonIcon from "@mui/icons-material/Person";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import { useHotelContext } from "../UseContext/HotelDetailsProvider";
+import { useHotelContext } from "../../UseContext/HotelDetailsProvider"; 
 import { Box, Button, Divider, Stack, Typography } from "@mui/material";
-import { roomOptions } from "../static-data/StaticData";
+import { roomOptions } from "../../static-data/StaticData"; 
 import { toast } from "react-toastify";
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';

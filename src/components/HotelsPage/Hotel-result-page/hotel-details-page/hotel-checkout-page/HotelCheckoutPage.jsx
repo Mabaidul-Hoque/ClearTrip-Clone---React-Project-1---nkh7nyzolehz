@@ -5,12 +5,12 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { useHotelContext } from "../../../../../UseContext/HotelDetailsProvider";
 import { fetchSingleHotel } from "../../../../../Apis/HotelDetailsApi";
-import HotelInfoPriceCard from "../../../../../ui/HotelInfoPriceCard";
-import HotelInfoCard from "../../../../../ui/HotelInfoCard";
-import HotelCancellationPolicy from "../../../../../ui/HotelCancellationPolicy";
-import HotelBookingPolicy from "../../../../../ui/HotelBookingPolicy";
+import HotelInfoPriceCard from "../../../../ui/HotelInfoPriceCard";
+import HotelInfoCard from "../../../../ui/HotelInfoCard";
+import HotelCancellationPolicy from "../../../../ui/HotelCancellationPolicy";
+import HotelBookingPolicy from "../../../../ui/HotelBookingPolicy";
 import Footer from "../../../../FooterPage/Footer";
-import HotelGuestDetails from "../../../../../ui/HotelGuestDetails";
+import HotelGuestDetails from "../../../../ui/HotelGuestDetails";
 import { ToastContainer, toast } from "react-toastify";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
