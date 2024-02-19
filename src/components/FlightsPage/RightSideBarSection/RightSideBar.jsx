@@ -86,7 +86,7 @@ const RightSideBar = () => {
           </button>
         </div>
 
-        <Box sx={{ fontWeight: "500", fontSize: "18px" }} component="div">
+        <Box sx={{ fontWeight: "500", fontSize: { lg: "16px", xl: "18px"}, mr: "50%" }} component="div">
           More offers
         </Box>
 

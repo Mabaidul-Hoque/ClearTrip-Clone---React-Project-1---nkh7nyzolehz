@@ -36,6 +36,9 @@ export const HotelDetailsProvider = ({ children }) => {
   const [hotelPage, setHotelPage] = useState(1);
   const [totalHotels, setTotalHotels] = useState(0);
   const [singleRoom, setSingleRoom] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
+
 
   const [rooms, setRooms] = useState([{
     adult: 1,
@@ -50,12 +53,13 @@ export const HotelDetailsProvider = ({ children }) => {
     localStorage.setItem("inputPlace", inputPlace);
     fetchHotels(inputPlace, 10, hotelPage).then((resp) => {
       setTotalHotels(resp.totalResults);
-      setHotels(resp.data.hotels);
+      setHotels(resp.data.hotels);  
     });
   };
 
   const handleHotelFilter = useCallback(() => {
     const JSONFilter = JSON.stringify(filterItems);
+    setIsLoading(true);
     fetchFilteredHotels(
       localStorage.getItem("inputPlace"),
       10,
@@ -64,6 +68,7 @@ export const HotelDetailsProvider = ({ children }) => {
     ).then((response) => {
       setTotalHotels(response.totalResults);
       setHotels(response.data.hotels);
+      setIsLoading(false);
     });
   }, [inputPlace, hotelPage, filterItems]);
 
@@ -107,7 +112,8 @@ export const HotelDetailsProvider = ({ children }) => {
       handleCheckOutDateChange,
     },
     roomTypeValues: { rooms, setRooms },
-    singleRoomData: {singleRoom, setSingleRoom}
+    singleRoomData: {singleRoom, setSingleRoom},
+    loadingData: {isLoading, setIsLoading}
   };
 
   return (

@@ -1,12 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-// import "../../FlightResultsPage.css";
+import React, { useState } from "react";
 import { Button, Paper, Stack, ThemeProvider, styled } from "@mui/material";
 import CurrencyRupeeOutlinedIcon from "@mui/icons-material/CurrencyRupeeOutlined";
 import TrendingFlatIcon from "@mui/icons-material/TrendingFlat";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { planes } from "../../../../../static-data/StaticData";
 import { useNavigate } from "react-router-dom";
-import { fetchFlightBookingInfo } from "../../../../../Apis/BookingApi";
 import { fetchSingleFlightDetails } from "../../../../../Apis/FlightSearchApi";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 import { CustomTheme } from "../../../../../util/muiTheme";
@@ -22,10 +19,11 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
   const { token } = useAuth().tokenDetails;
 
   const handleBookBtn = () => {
-    fetchSingleFlightDetails(airplane._id).then((resp) => {
-      // console.log("Single flight details:", resp);
-      setSingleFlight(resp.data);
-    });
+    fetchSingleFlightDetails(airplane._id)
+      .then((resp) => {
+        setSingleFlight(resp.data);
+      }
+    );
   };
 
   const handleId = (value) => {

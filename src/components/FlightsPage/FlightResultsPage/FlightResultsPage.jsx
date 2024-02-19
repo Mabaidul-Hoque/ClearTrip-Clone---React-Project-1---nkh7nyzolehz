@@ -11,9 +11,10 @@ import { CustomTheme } from "../../../util/muiTheme";
 import Footer from "../../FooterPage/Footer";
 
 const FlightResultsPage = () => {
-  const { airplaneDetails, flightPage, totalFlightsVal } = useFlightSearch();
+  const { airplaneDetails, flightPage, totalFlightsVal,loadingData } = useFlightSearch();
   const { setAirplanes } = airplaneDetails;
   const { setTotalResult } = totalFlightsVal;
+  const { setIsLoading } = loadingData;
   // data extract from url using useParams
   // const { searchQuery } = useParams();
   // const encodedString = searchQuery ?? "";
@@ -30,6 +31,7 @@ const FlightResultsPage = () => {
     const day = localStorage.getItem("departDay").substring(0, 3);
     const JSONFilter = JSON.stringify(filterItems);
     if (filterItems !== undefined) {
+      setIsLoading(true);
       fetchFilteredFlights(
         sourceVal,
         destinationVal,
@@ -40,6 +42,7 @@ const FlightResultsPage = () => {
       ).then((response) => {
         setTotalResult(response.totalResults);
         setAirplanes(response.data.flights);
+        setIsLoading(false);
       });
     }
   };

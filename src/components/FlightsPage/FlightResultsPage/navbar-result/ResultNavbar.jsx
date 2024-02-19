@@ -85,11 +85,13 @@ const ResultNavbar = () => {
     flightPage,
     departvalue,
     totalFlightsVal,
+    loadingData
   } = useFlightSearch();
   const { setAirplanes, airportNames, setAirportNames } = airplaneDetails;
   const { cityNameCodes, source, destination } = sourceDestValue;
   const { departDay } = departvalue;
   const { setTotalResult } = totalFlightsVal;
+  const { setIsLoading } = loadingData;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -109,10 +111,12 @@ const ResultNavbar = () => {
       const destinationVal = destination.substring(0, 3);
       const day = departDay.substring(0, 3);
       if (sourceVal !== null && destinationVal !== null && day !== null) {
+        setIsLoading(true);
         fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
           (response) => {
             setTotalResult(response.totalResults);
             setAirplanes(response.data.flights);
+            setIsLoading(false);
           }
         );
       } else {

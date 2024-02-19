@@ -19,22 +19,23 @@ const HotelNavbar = () => {
   const { token } = tokenDetails;
   const { handleLoginOpen } = logSignDetails;
   const { setIsSignup } = signupDetails;
-  const { inputInfo, hotelDetails } = useHotelContext();
+  const { inputInfo, hotelDetails, loadingData} = useHotelContext();
   const { setHotels, setTotalHotels, hotelPage } = hotelDetails;
   const { inputPlace } = inputInfo;
+  const { setIsLoading } = loadingData;
 
   const handleHotelUpdate = () => {
     if (inputPlace !== "") {
+      setIsLoading(true);
       fetchHotels(inputPlace, 10, hotelPage).then((resp) => {
         setTotalHotels(resp.totalResults);
         setHotels(resp.data.hotels);
+        setIsLoading(false);
       });
     } else {
       notify("Fill the input details!");
     }
   };
-
-  console.log("inputPlace", inputPlace);
 
   const notify = (text) => toast(text);
 

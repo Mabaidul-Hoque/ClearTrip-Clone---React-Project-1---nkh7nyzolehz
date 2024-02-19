@@ -1,27 +1,26 @@
 import React, { useEffect } from "react";
-// import "../../FlightResultsPage.css";
 import { Stack, Typography } from "@mui/material";
-import { fetchFlights } from "../../../../../Apis/FlightSearchApi";
 import MainContentCard from "./MainContentCard";
 import Pagination from "@mui/material/Pagination";
 import { planes } from "../../../../../static-data/StaticData";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import Button from "@mui/material/Button";
 
-// import Backdrop from "@mui/material/Backdrop";
-// import CircularProgress from "@mui/material/CircularProgress";
-// import Button from "@mui/material/Button";
-
-const MainContent = ({ getFilterFlights, source, dest, departDay }) => {
+const MainContent = ({ getFilterFlights }) => {
   const {
     flightPage,
     setFlightPage,
     airplaneDetails,
     totalFlightsVal,
     filterData,
+    loadingData,
   } = useFlightSearch();
   const { airplanes } = airplaneDetails;
   const { totalResult } = totalFlightsVal;
   const { filterItems } = filterData;
+  const { isLoading } = loadingData;
 
   useEffect(() => {
     getFilterFlights(filterItems);
@@ -73,23 +72,26 @@ const MainContent = ({ getFilterFlights, source, dest, departDay }) => {
       </Stack>
       {/* flight cards */}
       <Stack flexDirection={"column"} gap={2}>
-        {airplanes.length > 0 ? (
-          airplanes.map((airplane, index) => (
-            <MainContentCard
-              index={index}
-              key={airplane._id + index}
-              airplane={airplane}
-              planeLogoName={planes[index]}
-            />
-          ))
+        {!isLoading ? (
+          airplanes.length > 0 ? (
+            airplanes.map((airplane, index) => (
+              <MainContentCard
+                index={index}
+                key={airplane._id + index}
+                airplane={airplane}
+                planeLogoName={planes[index]}
+              />
+            ))
+          ) : (
+            <h1 style={{ textAlign: "center" }}>NO Flights Are Available!!</h1>
+          )
         ) : (
-          // <Backdrop
-          //   sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-          //   open
-          // >
-          //   <CircularProgress color="inherit" />
-          // </Backdrop>
-          <h1 style={{ textAlign: "center" }}>NO Flights Are Available!!</h1>
+          <Backdrop
+            sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open
+          >
+            <CircularProgress color="inherit" />
+          </Backdrop>
         )}
       </Stack>
       {/* pagination */}

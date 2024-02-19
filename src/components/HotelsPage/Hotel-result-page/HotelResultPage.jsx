@@ -10,10 +10,13 @@ import { useDebounce } from "../../../CustomHooks/useDebouce";
 import ImageCarousel from "./image-carousel/ImageCarousel";
 import { Box, Pagination, Stack } from "@mui/material";
 import Footer from "../../FooterPage/Footer";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import Button from "@mui/material/Button";
 
 const HotelResultPage = () => {
   // const [demoCount, setDemoCount] = useState(0);
-  const { hotelSearchHandler, filtersData, hotelDetails, inputInfo } =
+  const { hotelSearchHandler, filtersData, hotelDetails, loadingData, } =
     useHotelContext();
   const {
     setSingleHotel,
@@ -24,6 +27,8 @@ const HotelResultPage = () => {
     totalHotels,
   } = hotelDetails;
   const { handleHotelFilter } = filtersData;
+  const { isLoading } = loadingData;
+  
 
   const memoizedhotels = useMemo(() => hotels, [hotels]);
 
@@ -49,43 +54,54 @@ const HotelResultPage = () => {
       ></div>
 
       <main id="hotel-result-page-main">
-        {memoizedhotels.length > 0 ? (
-          memoizedhotels.map((hotel) => (
-            <div key={hotel._id} className="hotel-card">
-              <ImageCarousel
-                handleSingleHotelClick={handleSingleHotelClick}
-                hotel={hotel}
-              />
-              <div className="hotel-card-title">
-                <span>{hotel.name}</span>
-                <div>
+        {!isLoading ? (
+          memoizedhotels.length > 0 ? (
+            memoizedhotels.map((hotel) => (
+              <div key={hotel._id} className="hotel-card">
+                <ImageCarousel
+                  handleSingleHotelClick={handleSingleHotelClick}
+                  hotel={hotel}
+                />
+                <div className="hotel-card-title">
+                  <span>{hotel.name}</span>
+                  <div>
+                    <span>
+                      <StarsIcon fontSize="sm" />
+                    </span>
+                    <span>{hotel.rating}/5</span>
+                  </div>
+                </div>
+                <div className="hotel-card-price">
                   <span>
-                    <StarsIcon fontSize="sm" />
+                    <CurrencyRupeeIcon fontSize="sm" />
                   </span>
-                  <span>{hotel.rating}/5</span>
+                  <div>
+                    {Math.ceil(hotel.avgCostPerNight)}
+                    <span className="night"> / night</span>
+                  </div>
                 </div>
               </div>
-              <div className="hotel-card-price">
-                <span>
-                  <CurrencyRupeeIcon fontSize="sm" />
-                </span>
-                <div>
-                  {Math.ceil(hotel.avgCostPerNight)}
-                  <span className="night"> / night</span>
-                </div>
-              </div>
+            ))
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <h1 style={{ textAlign: "center" }}>NO Hotels are Available!</h1>
             </div>
-          ))
+          )
         ) : (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <h1 style={{ textAlign: "center" }}>NO Hotels are Available!</h1>
-          </div>
+          <>
+            <Backdrop
+              sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+              open
+            >
+              <CircularProgress color="inherit" />
+            </Backdrop>
+          </>
         )}
       </main>
       {/* pagination */}

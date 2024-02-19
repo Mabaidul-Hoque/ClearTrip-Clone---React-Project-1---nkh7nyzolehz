@@ -14,13 +14,13 @@ import { OfferDetailsProvider } from "./UseContext/OfferDetailsProvider";
 import HotelResultPage from "./components/HotelsPage/Hotel-result-page/HotelResultPage";
 import HotelDetailsPage from "./components/HotelsPage/Hotel-result-page/hotel-details-page/HotelDetailsPage";
 import AuthorizationProvider from "./UseContext/AuthorizationProvider";
-import SignupPage from "./components/Login-signup/SignupPage";
-import LoginPage from "./components/Login-signup/LoginPage";
 import FlightBookingPage from "./components/FlightsPage/FlightResultsPage/flight-booking-page/FlightBookingPage";
 import FBConfirmation from "./components/FlightsPage/FlightResultsPage/flight-booking-page/flight-booking-confirmation/FBConfirmation";
 import HotelCheckoutPage from "./components/HotelsPage/Hotel-result-page/hotel-details-page/hotel-checkout-page/HotelCheckoutPage";
 import { FontProvider } from "./UseContext/FontProvider";
 import HotelBookingPage from "./components/HotelsPage/Hotel-result-page/hotel-details-page/hotel-checkout-page/hotel-booking-page/HotelBookingPage";
+
+const token = localStorage.getItem("token");
 const router = createBrowserRouter([
   {
     path: "/",
