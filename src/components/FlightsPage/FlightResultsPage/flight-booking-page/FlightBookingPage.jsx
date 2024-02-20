@@ -28,7 +28,8 @@ const FlightBookingPage = () => {
       <Box mt={2} mb={4} sx={{ borderBottom: "1px solid #E6E6E6" }}></Box>
       {/* main content of booking page */}
       <main id="flight-booking-main">
-        <Stack flexDirection={"row"} justifyContent={"space-between"}>
+        <Stack flexDirection={{ xs: "column-reverse", md: "row"}}
+         justifyContent={"space-between"} gap={{xs: 6, md: 0}}>
           {/* booking details */}
           <BookingDetails flightId={flightId} />
 

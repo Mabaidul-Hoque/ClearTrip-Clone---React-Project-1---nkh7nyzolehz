@@ -34,7 +34,7 @@ const FareSelection = ({ singleFlight }) => {
               xs: "42vw",
               md: "20vw",
             },
-            p: 4,
+            p: 2,
             bgcolor: selected === 1 ? "lightgreen" : ""
           }}
           onClick={() => setSelected(1)}
@@ -59,7 +59,7 @@ const FareSelection = ({ singleFlight }) => {
               xs: "42vw",
               md: "20vw",
             },
-            p: 4,
+            p: 2,
             bgcolor: selected === 2 ? "lightgreen" : ""
           }}
           onClick={() => setSelected(2)}

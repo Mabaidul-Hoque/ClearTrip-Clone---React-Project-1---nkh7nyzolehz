@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-// import "../FlightResultsPage.css";
 import MenuList from "@mui/material/MenuList";
 import {
   Box,
@@ -13,9 +12,9 @@ import {
   createTheme,
   ThemeProvider,
 } from "@mui/material";
-import ControlPointOutlinedIcon from "@mui/icons-material/ControlPointOutlined";
-import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
+import TravellerOptionDropdown from "../../../ui/TravellerOptionDropdown";
+import { useFlightSearch } from "../../../../UseContext/FlightsSearchProvider";
 
 
 const theme = createTheme({
@@ -34,10 +33,7 @@ const theme = createTheme({
 const Traveller = () => {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
-  const [adults, setAdults] = useState(1);
-  const [children, setChildren] = useState(0);
-  const [infants, setInfants] = useState(0);
-  const [traveller, setTraveller] = useState(1);
+  const { traveller } = useFlightSearch().travellerData;
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -55,6 +51,14 @@ const Traveller = () => {
     } else if (event.key === "Escape") {
       setOpen(false);
     }
+  }
+
+  const getTotalTraveller = () => {
+    let total = 0;
+    for (let key in traveller){
+      total += traveller[key];
+    }
+    return total;
   }
 
   return (
@@ -81,7 +85,7 @@ const Traveller = () => {
             aria-haspopup="true"
             onClick={handleToggle}
           >
-            <span>{traveller} Traveller</span>
+            <span>{getTotalTraveller()} Traveller</span>
             <ExpandMoreOutlinedIcon htmlColor="#999999" />
           </Button>
         </Box>
@@ -127,149 +131,8 @@ const Traveller = () => {
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}
                   >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        gap: "2rem",
-                      }}
-                    >
-                      <Box>
-                        <Typography
-                          fontSize={"16px"}
-                          fontWeight={"600"}
-                          variant="h6"
-                        >
-                          Adults
-                        </Typography>
-                        <Typography fontSize={"14px"}>(12+ Years)</Typography>
-                      </Box>
-                      <Stack
-                        direction={"row"}
-                        spacing={2}
-                        justifyContent={"center"}
-                        alignItems={"center"}
-                      >
-                        <RemoveCircleOutlineOutlinedIcon
-                          htmlColor="#3567CC"
-                          fontSize="large"
-                          className={
-                            adults === 1 ? "cursor-change" : "cursor-normal"
-                          }
-                          onClick={() =>
-                            setAdults((prev) => (prev - 1 < 1 ? 1 : prev - 1))
-                          }
-                        />
-                        <span>{adults}</span>
-                        <ControlPointOutlinedIcon
-                          htmlColor="#3567CC"
-                          fontSize="large"
-                          sx={{ cursor: "pointer" }}
-                          className={
-                            adults === 7 ? "cursor-change" : "cursor-normal"
-                          }
-                          onClick={() =>
-                            setAdults((prev) => (prev + 1 >= 7 ? 7 : prev + 1))
-                          }
-                        />
-                      </Stack>
-                    </Box>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        gap: "2rem",
-                      }}
-                    >
-                      <Box>
-                        <Typography
-                          fontSize={"16px"}
-                          fontWeight={"600"}
-                          variant="h6"
-                        >
-                          Children
-                        </Typography>
-                        <Typography fontSize={"14px"}>(2 - 12 yrs)</Typography>
-                      </Box>
-                      <Stack
-                        direction={"row"}
-                        spacing={2}
-                        justifyContent={"center"}
-                        alignItems={"center"}
-                      >
-                        <RemoveCircleOutlineOutlinedIcon
-                          htmlColor="#3567CC"
-                          fontSize="large"
-                          className={
-                            children === 0 ? "cursor-change" : "cursor-normal"
-                          }
-                          onClick={() =>
-                            setChildren((prev) => (prev - 1 < 0 ? 0 : prev - 1))
-                          }
-                        />
-                        <span>{children}</span>
-                        <ControlPointOutlinedIcon
-                          htmlColor="#3567CC"
-                          fontSize="large"
-                          className={
-                            children === 7 ? "cursor-change" : "cursor-normal"
-                          }
-                          onClick={() =>
-                            setChildren((prev) => (prev + 1 >= 7 ? 7 : prev + 1))
-                          }
-                        />
-                      </Stack>
-                    </Box>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        gap: "2rem",
-                      }}
-                    >
-                      <Box>
-                        <Typography
-                          fontSize={"16px"}
-                          fontWeight={"600"}
-                          variant="h6"
-                        >
-                          Infants
-                        </Typography>
-                        <Typography fontSize={"14px"}>(Below 2 yrs)</Typography>
-                      </Box>
-                      <Stack
-                        direction={"row"}
-                        spacing={2}
-                        justifyContent={"center"}
-                        alignItems={"center"}
-                      >
-                        <RemoveCircleOutlineOutlinedIcon
-                          htmlColor="#3567CC"
-                          fontSize="large"
-                          className={
-                            infants === 0 ? "cursor-change" : "cursor-normal"
-                          }
-                          onClick={() =>
-                            setInfants((prev) => (prev - 1 < 0 ? 0 : prev - 1))
-                          }
-                        />
-                        <span>{infants}</span>
-                        <ControlPointOutlinedIcon
-                          htmlColor="#3567CC"
-                          fontSize="large"
-                          className={
-                            infants === 7 ? "cursor-change" : "cursor-normal"
-                          }
-                          onClick={() =>
-                            setInfants((prev) => (prev + 1 >= 7 ? 7 : prev + 1))
-                          }
-                        />
-                      </Stack>
-                    </Box>
-                    <Box>
+                    <TravellerOptionDropdown />
+                    {/* <Box>
                       <Box
                         mb={2}
                         mt={2.5}
@@ -293,14 +156,11 @@ const Traveller = () => {
                             color: "whitesmoke",
                             cursor: "pointer",
                           }}
-                          onClick={() =>
-                            setTraveller(adults + children + infants)
-                          }
                         >
                           Update
                         </Box>
                       </Box>
-                    </Box>
+                    </Box> */}
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

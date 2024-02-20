@@ -10,7 +10,7 @@ import React, { useRef, useState } from "react";
 import CourtesyTitles from "./CourtesyTitles";
 import { ToastContainer, toast } from "react-toastify";
 import CloseIcon from "@mui/icons-material/Close";
-import { useHotelContext } from "../../UseContext/HotelDetailsProvider"; 
+import { useHotelContext } from "../../UseContext/HotelDetailsProvider";
 
 const style = {
   position: "absolute",
@@ -24,7 +24,7 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-const HotelGuestDetails = ({name, setName, contact, setContact}) => {
+const HotelGuestDetails = ({ name, setName, contact, setContact }) => {
   const [open, setOpen] = useState(false);
   const [guests, setGuests] = useState([]);
   const [gfName, setGFName] = useState("");
@@ -38,12 +38,10 @@ const HotelGuestDetails = ({name, setName, contact, setContact}) => {
 
   const handleDeleteGuest = (item) => {
     setAddedGuest((prev) => prev - 1);
-    const updatedGuests = guests.filter((guest) => (
-        guest !== item
-    ))
+    const updatedGuests = guests.filter((guest) => guest !== item);
     setGuests(updatedGuests);
-    notify("One guest is removed successfully")
-  }
+    notify("One guest is removed successfully");
+  };
   const totalGuest = () => {
     const totalAdults = rooms.reduce(
       (acc, currentRoom) => acc + currentRoom.adult,
@@ -55,8 +53,10 @@ const HotelGuestDetails = ({name, setName, contact, setContact}) => {
     );
     return totalAdults + totalChildren;
   };
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
   const handleAddGuest = () => {
     setAddedGuest((prev) => prev + 1);
     if (gfullName !== "" && gfName !== "" && glName !== "") {
@@ -76,35 +76,51 @@ const HotelGuestDetails = ({name, setName, contact, setContact}) => {
     }
   };
   const notify = (text) => toast(text);
+
   return (
     <>
       <Typography variant="h4" mt={4} mb={2}>
         Guest details
       </Typography>
       <CourtesyTitles />
-      <Stack flexDirection={{ xs: "column", sm: "row"}} mt={2} gap={4}>
-        <TextField type="text" id="f-name" label="First name" className="h-info-input"
-            onChange={(e) => setName(prev => ({...prev, fName: e.target.value}))}
-            value={name?.fName}
+      {/* FIRST NAME and LAST NAME INPUTS */}
+      <Stack flexDirection={{ xs: "column", sm: "row" }} mt={2} gap={4}>
+        <TextField
+          type="text"
+          id="f-name"
+          label="First name"
+          className="h-info-input"
+          onChange={(e) =>
+            setName((prev) => ({ ...prev, fName: e.target.value }))
+          }
+          value={name?.fName}
         />
-        <TextField type="text" id="l-name" label="Last name" className="h-info-input"
-            onChange={(e) => setName(prev => ({...prev, lName: e.target.value}))}
-            value={name?.lName}
+        <TextField
+          type="text"
+          id="l-name"
+          label="Last name"
+          className="h-info-input"
+          onChange={(e) =>
+            setName((prev) => ({ ...prev, lName: e.target.value }))
+          }
+          value={name?.lName}
         />
       </Stack>
 
       <Typography mt={2} mb={2}>
         Booking details will be sent to this number and email address
       </Typography>
-      <Stack flexDirection={{ xs: "column", sm: "row"}} mt={2} gap={4}>
+      {/* PHONE NUMBER AND EMAIL ADDRESS */}
+      <Stack flexDirection={{ xs: "column", sm: "row" }} mt={2} gap={4}>
         <Box>
-          {/* ph number country code */}
           <TextField
             type="number"
             id="ph-numb"
             label="Enter mobile number"
             className="h-info-input"
-            onChange={(e) => setContact(prev => ({...prev, ph: e.target.value}))}
+            onChange={(e) =>
+              setContact((prev) => ({ ...prev, ph: e.target.value }))
+            }
             value={contact?.ph}
           />
         </Box>
@@ -113,10 +129,13 @@ const HotelGuestDetails = ({name, setName, contact, setContact}) => {
           id="email"
           label="Email address"
           className="h-info-input"
-          onChange={(e) => setContact(prev => ({...prev, email: e.target.value}))}
+          onChange={(e) =>
+            setContact((prev) => ({ ...prev, email: e.target.value }))
+          }
           value={contact?.email}
         />
       </Stack>
+      {/* OTHER GUESTS SECTION */}
       <Box sx={{ display: totalGuest() > 1 ? "block" : "none" }}>
         <Typography variant="h4" sx={{ mt: 6, mb: 2 }}>
           Other guests
@@ -128,10 +147,10 @@ const HotelGuestDetails = ({name, setName, contact, setContact}) => {
           {/* map all the added guest */}
           {guests.length > 0 &&
             guests?.map((item) => (
-                <li key={item}>
-                    <span>{item}</span>
-                    <Button onClick={() => handleDeleteGuest(item)}>Delete</Button>
-                </li>
+              <li key={item} style={{ display: "flex", alignItems: "center" }}>
+                <span>{item}</span>
+                <Button onClick={() => handleDeleteGuest(item)}>Delete</Button>
+              </li>
             ))}
         </ol>
         <Button
@@ -141,6 +160,7 @@ const HotelGuestDetails = ({name, setName, contact, setContact}) => {
         >
           Add new guest
         </Button>
+        {/* ADD NEW GUEST MODAL */}
         <Modal
           open={open}
           onClose={handleClose}

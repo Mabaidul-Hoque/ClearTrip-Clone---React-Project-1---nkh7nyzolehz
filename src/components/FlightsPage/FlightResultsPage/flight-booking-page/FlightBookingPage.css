@@ -7,11 +7,7 @@
 .booking-details{
     width: 60vw;
 }
-#price-cards{
-  position: -webkit-sticky;
-  position: sticky;
-  top: 40px;
-}
+
 .number-circle{
   border-radius: 50%;
   width: 36px;
@@ -112,9 +108,7 @@
 
 
  @media screen and (min-width: 320px) {
-  #price-cards{
-    display: none;
-  }
+  
   .flight-booking-navabr,
   #flight-booking-main{
     width: 92%;
@@ -142,26 +136,22 @@
   .mobile-input{
     width: 64vw;
   }
+  .continue-btn{
+    width: 20vw;
+  }
  }
 
  @media screen and (min-width: 900px) {
-   #price-cards{
-    display: block;
+  #price-cards{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 40px;
   }
-  /*
-  .flight-booking-navabr,
-  #flight-booking-main{
-    width: 92%;
-  }
-  .booking-image{
-    width: 3rem;
-  }*/
-  
   .email-input{
     width: 54.5vw;
   }
   .continue-btn{
-    width: 20vw;
+    width: 30vw;
   } 
  }
  @media screen and (min-width: 1280px) {

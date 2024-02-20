@@ -16,6 +16,8 @@ import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 import ExpandLessOutlinedIcon from "@mui/icons-material/ExpandLessOutlined";
 import PersonIcon from "@mui/icons-material/Person";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import TravellerOptionDropdown from "../../ui/TravellerOptionDropdown";
+import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
 
 const passengerAddbBtnTexts = [
   "Economy",
@@ -29,6 +31,8 @@ const PassengerAdd = () => {
   const anchorRef = useRef(null);
   const [bookingTypeIndex, setTookingTypeIndex] = useState(0);
   const [seatType, setSeatType] = useState("Economy");
+
+  const { traveller } = useFlightSearch().travellerData;
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -64,8 +68,11 @@ const PassengerAdd = () => {
           ) : (
             <PersonOutlineOutlinedIcon htmlColor="#999999" />
           )}
-          <span style={{ fontSize: "16px", fontWeight: "500  " }}>
-            1 Adult, {seatType}
+          <span style={{ fontSize: "16px", fontWeight: 500, paddingLeft: "5px" }}>
+            {traveller.adults} Adults {" "}
+            {traveller.children > 0 ? `${traveller.children} Children` : ""} {" "}
+            {traveller.infants > 0 ? `${traveller.infants} Infants` : ""} , {" "}
+            {seatType}
           </span>
           {open ? (
             <ExpandLessOutlinedIcon htmlColor="#999999" />
@@ -104,117 +111,7 @@ const PassengerAdd = () => {
                   aria-labelledby="composition-button"
                   onKeyDown={handleListKeyDown}
                 >
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      gap: "2rem",
-                    }}
-                  >
-                    <Box>
-                      <Typography
-                        textAlign={"left"}
-                        fontSize={"16px"}
-                        variant="h6"
-                      >
-                        Adults
-                      </Typography>
-                      <Typography fontSize={"14px"}>(12+ Years)</Typography>
-                    </Box>
-                    <Stack
-                      direction={"row"}
-                      spacing={2}
-                      justifyContent={"center"}
-                      alignItems={"center"}
-                    >
-                      <RemoveCircleOutlineOutlinedIcon
-                        sx={{ cursor: "no-drop" }}
-                        htmlColor="#3567CC"
-                        fontSize="large"
-                      />
-                      <span>0</span>
-                      <ControlPointOutlinedIcon
-                        sx={{ cursor: "no-drop" }}
-                        htmlColor="#3567CC"
-                        fontSize="large"
-                      />
-                    </Stack>
-                  </Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      gap: "2rem",
-                    }}
-                  >
-                    <Box>
-                      <Typography
-                        textAlign={"left"}
-                        fontSize={"16px"}
-                        variant="h6"
-                      >
-                        Children
-                      </Typography>
-                      <Typography fontSize={"14px"}>(2 - 12 yrs)</Typography>
-                    </Box>
-                    <Stack
-                      direction={"row"}
-                      spacing={2}
-                      justifyContent={"center"}
-                      alignItems={"center"}
-                    >
-                      <RemoveCircleOutlineOutlinedIcon
-                        sx={{ cursor: "no-drop" }}
-                        htmlColor="#3567CC"
-                        fontSize="large"
-                      />
-                      <span>0</span>
-                      <ControlPointOutlinedIcon
-                        sx={{ cursor: "no-drop" }}
-                        htmlColor="#3567CC"
-                        fontSize="large"
-                      />
-                    </Stack>
-                  </Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      gap: "2rem",
-                    }}
-                  >
-                    <Box>
-                      <Typography
-                        textAlign={"left"}
-                        fontSize={"16px"}
-                        variant="h6"
-                      >
-                        Infants
-                      </Typography>
-                      <Typography fontSize={"14px"}>(Below 2 yrs)</Typography>
-                    </Box>
-                    <Stack
-                      direction={"row"}
-                      spacing={2}
-                      justifyContent={"center"}
-                      alignItems={"center"}
-                    >
-                      <RemoveCircleOutlineOutlinedIcon
-                        sx={{ cursor: "no-drop" }}
-                        htmlColor="#3567CC"
-                        fontSize="large"
-                      />
-                      <span>0</span>
-                      <ControlPointOutlinedIcon
-                        sx={{ cursor: "no-drop" }}
-                        htmlColor="#3567CC"
-                        fontSize="large"
-                      />
-                    </Stack>
-                  </Box>
+                  <TravellerOptionDropdown />
                   {/* fare type btns */}
                   <Stack
                     sx={{

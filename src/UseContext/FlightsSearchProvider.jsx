@@ -34,6 +34,7 @@ export const FlightsSearchProvider = ({ children }) => {
   const [filterItems, setFilterItems] = useState({});
   const [singleFlight, setSingleFlight] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [traveller, setTraveller] = useState({adults: 1, children: 0, infants: 0});
 
   const sourceRef = useRef(null);
   const destinationRef = useRef(null);
@@ -151,6 +152,7 @@ export const FlightsSearchProvider = ({ children }) => {
     },
     totalFlightsVal: { totalResult, setTotalResult },
     loadingData: { isLoading, setIsLoading },
+    travellerData: { traveller, setTraveller },
     flightPage,
     setFlightPage,
   };

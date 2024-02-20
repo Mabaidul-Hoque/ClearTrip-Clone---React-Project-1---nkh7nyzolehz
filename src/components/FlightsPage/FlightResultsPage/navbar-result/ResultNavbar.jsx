@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import "../FlightResultPage.css";
 import { Box, Stack, Button, ThemeProvider, Tooltip } from "@mui/material";
 import LocalAirportOutlinedIcon from "@mui/icons-material/LocalAirportOutlined";
 import HotelIcon from "@mui/icons-material/Hotel";
@@ -9,13 +8,9 @@ import HeadsetMicOutlinedIcon from "@mui/icons-material/HeadsetMicOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import styled from "@emotion/styled";
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
-import DepartDateResult from "./date-picker-result/DepartDateResult";
-import ReturnDateResult from "./date-picker-result/ReturnDateResult";
 import Traveller from "./Traveller";
 import { fetchAirportNames } from "../../../../Apis/AirportNamesApi";
 import { useAuth } from "../../../../UseContext/AuthorizationProvider";
-import ResultDepartCity from "./source-destination/ResultDepartCity";
-import ResultDestinationCity from "./source-destination/ResultDestinationCity";
 import { fetchFlights } from "../../../../Apis/FlightSearchApi";
 import { useFlightSearch } from "../../../../UseContext/FlightsSearchProvider";
 import { CustomTheme } from "../../../../util/muiTheme";
@@ -38,40 +33,36 @@ const RightButton = styled(Button)({
   },
 });
 const SearchButton = styled(Button)({
+  bgcolor: "black",
+  color: "#FFFFFF",
+  borderRadius: "7px",
+  fontSize: "16px",
+  textTransform: "none",
+  "&:hover": {
     bgcolor: "black",
-    color: "#FFFFFF",
-    borderRadius: "7px",
-    fontSize: "16px",
-    textTransform: "none",
-    "&:hover": {
-      bgcolor: "black",
-    },
-})
+  },
+});
 
-const returnDateStyle = () => (
-    {
-        width: "8rem",
-        height: {
-            xs: "44px"
-        },
-        fontSize: {
-          xs: "14px",
-          md: "16px",
-        },
-    }
-)
-const departDateStyle = () => (
-    {
-        width: "8rem",
-        height: {
-            xs: "44px"
-        },
-        fontSize: {
-          xs: "14px",
-          md: "16px",
-        },
-    }
-)
+const returnDateStyle = () => ({
+  width: "8rem",
+  height: {
+    xs: "44px",
+  },
+  fontSize: {
+    xs: "14px",
+    md: "16px",
+  },
+});
+const departDateStyle = () => ({
+  width: "8rem",
+  height: {
+    xs: "44px",
+  },
+  fontSize: {
+    xs: "14px",
+    md: "16px",
+  },
+});
 
 const ResultNavbar = () => {
   const { tokenDetails, logSignDetails, handleLogout, signupDetails } =
@@ -85,7 +76,7 @@ const ResultNavbar = () => {
     flightPage,
     departvalue,
     totalFlightsVal,
-    loadingData
+    loadingData,
   } = useFlightSearch();
   const { setAirplanes, airportNames, setAirportNames } = airplaneDetails;
   const { cityNameCodes, source, destination } = sourceDestValue;
@@ -151,7 +142,7 @@ const ResultNavbar = () => {
             xxs: "95%",
             sm: "92%",
           },
-          height:"fit-content",
+          height: "fit-content",
           margin: "0 auto",
         }}
       >
@@ -247,7 +238,7 @@ const ResultNavbar = () => {
                 setIsSignup(false);
                 token ? handleLogout() : handleLoginOpen();
               }}
-              sx={{ fontSize: { xs: "12px", sm: "14px"}}}
+              sx={{ fontSize: { xs: "12px", sm: "14px" } }}
             >
               <AccountCircleOutlinedIcon
                 sx={{ marginRight: "2px" }}
@@ -273,30 +264,33 @@ const ResultNavbar = () => {
         >
           {/* source destination input */}
           <Stack
-            flexDirection={{ xs: "column", sm: "row"}}
+            flexDirection={{ xs: "column", sm: "row" }}
             alignItems={"center"}
             gap={0.5}
           >
-            <DepartCityInput 
-                options={airportNames}
-                noOptionText={"No Match Found"}
-                inputStyleClass="inputBoxRes"
-                source={source}
+            <DepartCityInput
+              options={airportNames}
+              noOptionText={"No Match Found"}
+              inputStyleClass="inputBoxRes"
+              source={source}
             />
-            <SyncAltOutlinedIcon sx={{ display: { xs: "none", sm: "block"}}} htmlColor="#ED6521" />
-            <DestinationCityInput 
-                options={airportNames}
-                noOptionText={"No Match Found"}
-                inputStyleClass="inputBoxRes"
-                destination={destination}
+            <SyncAltOutlinedIcon
+              sx={{ display: { xs: "none", sm: "block" } }}
+              htmlColor="#ED6521"
+            />
+            <DestinationCityInput
+              options={airportNames}
+              noOptionText={"No Match Found"}
+              inputStyleClass="inputBoxRes"
+              destination={destination}
             />
           </Stack>
 
           {/* depart return date */}
           <Box>
             <DateInputs
-                departStyle = {departDateStyle} 
-                returnStyle = {returnDateStyle} 
+              departStyle={departDateStyle}
+              returnStyle={returnDateStyle}
             />
           </Box>
 
@@ -310,7 +304,7 @@ const ResultNavbar = () => {
             variant="contained"
             sx={{
               width: "10rem",
-              height: "44px"
+              height: "44px",
             }}
             onClick={handleResultFlightSearch}
           >
