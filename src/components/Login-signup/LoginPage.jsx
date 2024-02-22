@@ -52,9 +52,7 @@ const LoginPage = () => {
       ) : (
         <Modal
           open={islogin}
-          onClose={() => {
-            handleLoginClose();
-          }}
+          onClose={handleLoginClose}
           sx={{
             borderColor: "none",
             outline: "none",

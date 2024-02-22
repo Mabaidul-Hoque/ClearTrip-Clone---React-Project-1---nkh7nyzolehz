@@ -1,0 +1,68 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* NAVBAR */
+.mytrip-profile{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+#mytrip-main{
+    background-image: linear-gradient(to top, white, #EFF5FC);
+}
+.main-without-loggedin,
+.mytrip-navbar{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+.main-left{
+    margin-top: 40px;
+}
+.main-left>p{
+    margin-bottom: 10px;
+}
+.main-right{
+    width: 20rem;
+}
+.vacation-plan-photo{
+    width: 80%;
+    margin-top: 15px;
+    text-align: center;
+}
+.item{
+    list-style-type: none;
+}
+#trip-id{
+    margin-bottom: 30px;
+    height: 36px;
+    padding-left: 10px;
+}
+
+@media screen and (min-width: 300px) {
+    .main-without-loggedin{
+        flex-direction: column;
+    }
+    .main-left>h1{
+        font-size: 20px;
+    }
+    .main-left>p{
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .main-without-loggedin{
+        flex-direction: row;
+    }
+    .main-left>h1{
+        font-size: 32px;
+    }
+    .main-left>p{
+        font-size: 16px;
+    }
+}

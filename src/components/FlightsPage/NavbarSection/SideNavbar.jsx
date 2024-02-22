@@ -64,16 +64,20 @@ const SideNavbar = () => {
         <ApartmentRoundedIcon />
         <span>Hotels</span>
       </Link>
-      <Link
-        className={
-          pathname === "/offers" ? "leftSection active-left-btn" : "leftSection"
-        }
-        // to="/offers"
-        onClick={notify}
-      >
-        <MonetizationOnOutlinedIcon />
-        <span>Offers</span>
-      </Link>
+      <Box>
+        <Link
+          className={
+            pathname === "/mytrip"
+              ? "my-trip leftSection active-left-btn"
+              : "leftSection"
+          }
+          to="/mytrip"
+        >
+          <LuggageOutlinedIcon />
+          <span>My trips</span>
+        </Link>
+      </Box>
+
       <Box
         sx={{
           display: {
@@ -84,18 +88,17 @@ const SideNavbar = () => {
       >
         <Link
           className={
-            pathname === "/mytrip"
-              ? "my-trip leftSection active-left-btn"
+            pathname === "/offers"
+              ? "leftSection active-left-btn"
               : "leftSection"
           }
-          // to="/mytrip"
+          // to="/offers"
           onClick={notify}
         >
-          <LuggageOutlinedIcon />
-          <span>My trips</span>
+          <MonetizationOnOutlinedIcon />
+          <span>Offers</span>
         </Link>
       </Box>
-      {/* <ToastContainer theme="dark" /> */}
     </Stack>
   );
 };

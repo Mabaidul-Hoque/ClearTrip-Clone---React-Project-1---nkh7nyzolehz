@@ -16,7 +16,7 @@ const closeBtn = {
 const SignupPage = () => {
   const { signupDetails, logSignDetails, tokenDetails } = useAuth();
   const { handleLoginClose, islogin } = logSignDetails;
-  const { name, setName, email, setEmail, password, setPassword, setIsSignup } = signupDetails;
+  const { name, setName, email, setEmail, password, setPassword,isSignup, setIsSignup } = signupDetails;
   const { setToken } = tokenDetails;
 
   const handleSignupSubmit = () => {
@@ -28,6 +28,7 @@ const SignupPage = () => {
             notify("You have registered successfully");
             localStorage.setItem("token", response.token);
             setToken(response.token);
+            handleSignupClose();
             handleLoginClose();
           } else {
             notify("Already you have an accoount , login please");
@@ -44,11 +45,17 @@ const SignupPage = () => {
   };
   const notify = (text) => toast(text);
 
+  const handleSignupClose = () => {
+    setIsSignup(false);
+  }
   return (
     <div>
       <Modal
-        open={islogin}
-        onClose={handleLoginClose}
+        open={isSignup}
+        onClose={() => {
+          handleSignupClose();
+          handleLoginClose();
+        }}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -67,6 +74,7 @@ const SignupPage = () => {
               alignItems={"flex-end"}
               sx={closeBtn}
               onClick={() => {
+                handleSignupClose();
                 handleLoginClose();
               }}
             >

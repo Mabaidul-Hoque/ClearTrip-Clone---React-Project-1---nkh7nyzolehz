@@ -53,10 +53,6 @@ const router = createBrowserRouter([
     element: <FlightBookingPage />,
   },
   {
-    path: "/flights/flight_booking_confirmation/:flightId",
-    element: <FBConfirmation />,
-  },
-  {
     path: "/hotels/results",
     element: <HotelResultPage />,
   },
