@@ -1,10 +1,26 @@
-import { Container, Paper, Stack, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { Container, Box, Modal,  Button, Stack, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import PaymentGateway from "../../../../ui/PaymentGateway";
+import { toast } from "react-toastify";
 
-const ContactDetails = ({ handleContinue }) => {
+
+
+const ContactDetails = () => {
   const [phone, setPhone] = useState();
-  const [email, setEmail] = useState();
+  const [open, setOpen] = React.useState(false);
+    const handleOpen = () => {
+      if(phone?.length === 10) {
+        setOpen(true);
+      }else {
+        toast.error("Phone number is invalid!", { theme: "colored"})
+      }
+      
+    };
+    const handleClose = () => {
+      setOpen(false);
+    };
+
   return (
     <div>
       {/* header */}
@@ -91,18 +107,23 @@ const ContactDetails = ({ handleContinue }) => {
             type="email"
             id="email"
             placeholder="Enter your email address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={localStorage.getItem("userEmail")}
+            disabled="true"
             required
           />
         </Stack>
 
         <button
           className="continue-btn"
-          onClick={() => handleContinue(phone, email)}
+          onClick={handleOpen}
         >
-          Continue
+          Continue to payment
         </button>
+
+        <PaymentGateway 
+          open={open}
+          handleClose={handleClose}
+        />
       </Container>
     </div>
   );

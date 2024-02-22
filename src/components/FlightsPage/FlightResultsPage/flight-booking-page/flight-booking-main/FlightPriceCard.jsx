@@ -15,7 +15,7 @@ const CustomPaper = styled(Paper)({
   borderRight: "1px solid lightgray",
   borderRadius: "10px",
 });
-const FlightPriceCard = () => {
+const FlightPriceCard = ({selected}) => {
   const { singleFlight } = useFlightSearch().singleFlightValue;
 
   return (
@@ -44,7 +44,9 @@ const FlightPriceCard = () => {
               fontWeight={"500"}
             >
               <CurrencyRupeeIcon fontSize="sm" />
-              <span>{singleFlight.ticketPrice}</span>
+              <span>{ selected === 1 ? singleFlight.ticketPrice : 
+                (singleFlight?.ticketPrice + Math.ceil(singleFlight?.ticketPrice * 0.2))}
+              </span>
             </Stack>
           </Stack>
 
@@ -55,21 +57,27 @@ const FlightPriceCard = () => {
               <Typography>Base fare(1traveller)</Typography>
               <Stack flexDirection={"row"} alignItems={"center "}>
                 <CurrencyRupeeIcon fontSize="sm" />
-                <span>{Math.ceil(singleFlight.ticketPrice * 0.8)}</span>
+                <span>{ selected === 1 ? Math.ceil(singleFlight.ticketPrice * 0.8) : 
+                  Math.ceil((singleFlight?.ticketPrice + (singleFlight?.ticketPrice * 0.2))*0.8)}
+                </span>
               </Stack>
             </div>
             <div className="fare">
               <Typography>Taxes and fees</Typography>
               <Stack flexDirection={"row"} alignItems={"center "}>
                 <CurrencyRupeeIcon fontSize="sm" />
-                <span>{Math.ceil(singleFlight.ticketPrice * 0.15)}</span>
+                <span>{selected === 1 ? Math.ceil(singleFlight.ticketPrice * 0.15) : 
+                  Math.ceil((singleFlight?.ticketPrice + singleFlight?.ticketPrice * 0.2)*0.15)}
+                </span>
               </Stack>
             </div>
             <div className="fare">
               <Typography>Discounts</Typography>
               <Stack flexDirection={"row"} alignItems={"center "}>
                 <CurrencyRupeeIcon fontSize="sm" />
-                <span>{Math.ceil(singleFlight.ticketPrice * 0.05)}</span>
+                <span>{selected === 1 ? Math.ceil(singleFlight.ticketPrice * 0.05) : 
+                  Math.ceil((singleFlight?.ticketPrice + singleFlight?.ticketPrice * 0.2)*0.05)}
+                </span>
               </Stack>
             </div>
           </Stack>

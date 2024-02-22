@@ -55,7 +55,6 @@ const AuthorizationProvider = ({ children }) => {
       logInPagePath,
       setLogInPagePath,
     },
-
     tokenDetails: {
       token,
       setToken,

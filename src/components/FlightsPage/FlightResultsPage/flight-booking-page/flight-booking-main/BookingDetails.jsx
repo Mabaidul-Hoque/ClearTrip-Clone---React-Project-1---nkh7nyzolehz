@@ -11,25 +11,27 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../../../../../UseContext/AuthorizationProvider";
 
-const BookingDetails = ({ flightId }) => {
+const BookingDetails = ({ flightId, selected, setSelected }) => {
   const { singleFlight } = useFlightSearch().singleFlightValue;
-  const { token } = useAuth().tokenDetails;
+  const { token} = useAuth().tokenDetails;
   const navigate = useNavigate();
 
-  const handleContinue = (phone, email) => {
-    if (phone && email.includes("@")) {
-      if (token) {
-        navigate(`/flights/flight_booking_confirmation/${flightId}`);
-      } else {
-        notify("You have to login first, before payment");
-      }
-    } else if (email && !email.includes("@")) {
-      notify("Your email is invalid!");
-    } else {
-      notify("Some fields are missing or invalid!");
-    }
-  };
-  const notify = (text) => toast(text);
+  // doesn't require 
+  // const handleContinue = (phone) => {
+  //   if (phone?.length === 10) {
+  //     if (token) {
+  //       navigate(`/flights/flight_booking_confirmation/${flightId}`);
+  //     } else {
+  //       toast.error("You have to login first, before payment", {
+  //         theme: "colored"
+  //       });
+  //     }
+  //   } else {
+  //     toast.error("Enter valid phone number!", {
+  //       theme: "colored"
+  //     });
+  //   }
+  // };
 
   return (
     <div className="booking-details">
@@ -92,6 +94,7 @@ const BookingDetails = ({ flightId }) => {
               {localStorage.getItem("departDay")} 2024
             </Typography>
           </Stack>
+
           {/* main content */}
           <Stack
             flexDirection={"row"}
@@ -119,6 +122,7 @@ const BookingDetails = ({ flightId }) => {
               <div className="dashed-line"></div>
               <div className="end-circle"></div>
             </div>
+
             {/* right part depart destinatin */}
             <Stack gap={4}>
               <Typography>
@@ -183,7 +187,7 @@ const BookingDetails = ({ flightId }) => {
               {localStorage.getItem("departDay")} 2024
             </Typography>
           </Stack>
-          {/* main content */}
+          {/* flight 2 details main content */}
           <Stack
             flexDirection={"row"}
             gap={2}
@@ -191,7 +195,7 @@ const BookingDetails = ({ flightId }) => {
               xs: "90vw",
             }}
           >
-            {/* left part */}
+            {/*flight 2 details left part */}
             <Stack>
               <img
                 width={"60px"}
@@ -239,11 +243,11 @@ const BookingDetails = ({ flightId }) => {
       <Box mt={3} mb={3} sx={{ borderBottom: "1px dotted #E6E6E6" }}></Box>
 
       {/* fare selection */}
-      <FareSelection singleFlight={singleFlight} />
+      <FareSelection singleFlight={singleFlight} selected={selected} setSelected={setSelected} />
       {/* fare details */}
       <FareDetails />
       {/* contact details */}
-      <ContactDetails handleContinue={handleContinue} />
+      <ContactDetails />
       <Stack mt={10}></Stack>
     </div>
   );

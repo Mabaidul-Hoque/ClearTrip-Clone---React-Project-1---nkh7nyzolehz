@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import FlightBookingNavbar from "./flight-booking-navbar/FlightBookingNavbar";
 import { Box, Stack } from "@mui/material";
 import BookingDetails from "./flight-booking-main/BookingDetails";
@@ -9,6 +9,8 @@ import { useFlightSearch } from "../../../../UseContext/FlightsSearchProvider";
 import Footer from "../../../FooterPage/Footer";
 
 const FlightBookingPage = () => {
+  const [selected, setSelected] = useState(1);
+
   const { singleFlight, setSingleFlight } = useFlightSearch().singleFlightValue;
   const { flightId } = useParams();
 
@@ -31,10 +33,10 @@ const FlightBookingPage = () => {
         <Stack flexDirection={{ xs: "column-reverse", md: "row"}}
          justifyContent={"space-between"} gap={{xs: 6, md: 0}}>
           {/* booking details */}
-          <BookingDetails flightId={flightId} />
+          <BookingDetails flightId={flightId} selected={selected} setSelected={setSelected} />
 
           {/* price card */}
-          <FlightPriceCard />
+          <FlightPriceCard selected={selected} />
         </Stack>
       </main>
 

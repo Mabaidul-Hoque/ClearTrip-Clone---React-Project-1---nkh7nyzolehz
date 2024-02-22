@@ -1,19 +1,13 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import { Button, Paper, Stack } from "@mui/material";
+import { Stack , Box, Typography, Tab, Tabs,  } from "@mui/material";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import LuggageOutlinedIcon from "@mui/icons-material/LuggageOutlined";
 import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 import EditCalendarOutlinedIcon from "@mui/icons-material/EditCalendarOutlined";
 import AirlineSeatReclineNormalOutlinedIcon from "@mui/icons-material/AirlineSeatReclineNormalOutlined";
 import FastfoodOutlinedIcon from "@mui/icons-material/FastfoodOutlined";
-import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 
 function CustomTabPanel(props) {
@@ -106,7 +100,7 @@ export default function FareDetails() {
               },
               textTransform: "none",
             }}
-            label="DEL - BOM: Standard fare"
+            label={`${singleFlight?.source} - ${singleFlight?.destination}: Standard fare`}
             {...a11yProps(0)}
           />
 
@@ -122,7 +116,7 @@ export default function FareDetails() {
               },
               textTransform: "none",
             }}
-            label="BOM - DEL: Standard fare"
+            label={`${singleFlight?.destination} - ${singleFlight?.source}: Standard fare`}
             {...a11yProps(1)}
           />
         </Tabs>

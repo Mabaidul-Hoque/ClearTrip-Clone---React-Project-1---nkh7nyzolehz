@@ -250,7 +250,7 @@ const ResultNavbar = () => {
         </Stack>
         <LoginPage />
 
-        {/* search section */}
+        {/* navbar search section */}
         <Stack
           mt={1}
           flexDirection={"row"}
@@ -287,7 +287,9 @@ const ResultNavbar = () => {
           </Stack>
 
           {/* depart return date */}
-          <Box>
+          <Box sx={{
+            display: "flex"
+          }}>
             <DateInputs
               departStyle={departDateStyle}
               returnStyle={returnDateStyle}

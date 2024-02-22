@@ -55,4 +55,5 @@ export const roomOptions = [
     adult: 4,
     children: 0,
   }
-]
+];
+

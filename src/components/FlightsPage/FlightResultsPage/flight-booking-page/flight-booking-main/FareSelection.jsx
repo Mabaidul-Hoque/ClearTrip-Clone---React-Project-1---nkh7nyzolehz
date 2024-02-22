@@ -9,8 +9,8 @@ const FareBox = styled(Box)({
     cursor: "pointer",
   },
 })
-const FareSelection = ({ singleFlight }) => {
-  const [selected, setSelected] = useState(1);
+const FareSelection = ({ singleFlight, selected, setSelected }) => {
+  
 
   return (
     <Box

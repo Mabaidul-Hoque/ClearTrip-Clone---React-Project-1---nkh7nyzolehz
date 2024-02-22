@@ -54,9 +54,9 @@ const HotelInfoCard = ({ singleHotel, getDateMonth, getDayTime, getNights }) => 
             <Typography sx={{ color: "gray" }}>
               {singleHotel?.rating}-star hotel in {singleHotel?.location}
             </Typography>
-            <Typography variant={{ xs: "h5" , sm: "h3" }} component="h1" sx={{mb: 1}}>{singleHotel?.name}</Typography>
+            <Typography variant="h3" component="h1" sx={{mb: 1}}>{singleHotel?.name}</Typography>
             {/* rating component */}
-            <HotelRatings rating={singleHotel?.rating ?? ""} />
+            <HotelRatings rating={singleHotel?.rating ?? 0} />
           </div>
           <img
             style={{ width: "120px", height: "100px", objectFit: "cover", borderRadius: "10px"}}

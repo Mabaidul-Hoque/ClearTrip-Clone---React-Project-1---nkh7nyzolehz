@@ -29,6 +29,7 @@ const LoginPage = () => {
             notify("You have logged in successfully");
             localStorage.setItem("token", response.token);
             setToken(response.token);
+            localStorage.setItem("userEmail", response?.data?.email);
             handleLoginClose();
           } else {
             notify("You don't have an accoount , create one!");

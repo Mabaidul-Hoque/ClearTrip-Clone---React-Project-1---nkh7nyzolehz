@@ -14,7 +14,7 @@ const GeneralDetails = ({ singleHotel }) => {
       </div>
       <div className="review-rating">
         <span>{singleHotel?.rating} / 5</span>
-        <HotelRatings rating={singleHotel?.rating ?? " "} />
+        <HotelRatings rating={singleHotel?.rating ?? 0} />
       </div>
       <div className="breakfast-plan">
         <div>Free breakfast on select plans</div>

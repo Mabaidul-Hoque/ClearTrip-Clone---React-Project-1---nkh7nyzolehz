@@ -177,16 +177,15 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
                 {airplane.ticketPrice}
               </span>
             </Stack>
-            {/* book btn */}
+
+            {/* BOOK BUTTON */}
             <div>
               <button
                 style={{ fontSize: "16px" }}
                 className="book-btn"
                 onClick={() => {
                   handleBookBtn();
-                  token
-                    ? navigate(`/flights/itinerary/${airplane._id}`)
-                    : notify("To book a flight please login first");
+                  navigate(`/flights/itinerary/${airplane._id}`)
                 }}
               >
                 Book
@@ -261,12 +260,6 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
             >
               {/* details-image section */}
               <div>
-                {/* <img
-                id="view-details-logo"
-                src="../Assets/plane_logo/vistara-logo2.jpeg"
-                alt="vistara-logo"
-              /> */}
-
                 {index % 2 === 0 ? (
                   <img
                     className="details-aiplane-logo"

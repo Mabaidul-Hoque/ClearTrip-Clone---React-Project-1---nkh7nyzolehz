@@ -51,7 +51,9 @@ const FlightResultsPage = () => {
     <ThemeProvider theme={CustomTheme}>
       <div id="flight-result-page">
         <ResultNavbar />
+
         <Divider sx={{ mt: 2}} />
+        
         <main id="flight-result-main">
           <Stack
             flexDirection={{
