@@ -12,11 +12,14 @@ import HotelBookingPolicy from "../../../../ui/HotelBookingPolicy";
 import Footer from "../../../../FooterPage/Footer";
 import HotelGuestDetails from "../../../../ui/HotelGuestDetails";
 import { ToastContainer, toast } from "react-toastify";
+import PaymentGateway from "../../../../ui/PaymentGateway";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
 const HotelCheckoutPage = () => {
+    const [open, setOpen] = useState(false);
+
     const [name ,setName] = useState({fName: "", lName: ""});
     const [contact, setContact] = useState({ph: "", email: ""});
     const { hotelID } = useParams();
@@ -24,6 +27,21 @@ const HotelCheckoutPage = () => {
     const { singleHotel, setSingleHotel } = hotelDetails;
     const { checkInDate, checkOutDate } = checkInOutDetails;
     const navigate = useNavigate();
+    
+
+
+    const handleOpen = () => {
+      if(contact?.ph.length === 10) {
+        setOpen(true);
+      }else {
+        toast.error("Phone number is invalid!", { theme: "colored"})
+      }
+      
+    };
+    const handleClose = () => {
+      setOpen(false);
+    };
+
 
   useEffect(() => {
     fetchSingleHotel(hotelID).then((response) => {
@@ -57,23 +75,25 @@ const HotelCheckoutPage = () => {
     return differenceInDays;
   };
 
-  const handleContinueBtn = () => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    // if fname , lname , ph num, email and guest list added with name then only navigate
-    if(name.fName !== "" && name.lName !== "" && contact?.ph !== "" && contact?.email !== ""){
-        if(regex.test( contact.email)){
-            navigate(`/hotels/HBConfirmation/${hotelID}`);
-        }else {
-            notify("Email is invalid!");
-        }
-    }else {
-        if(contact?.ph.length !== 10){
-            notify("Phone number is invalid, it must have 10 digits")
-        }else{
-            notify("Fill the input details!");
-        }
-    }
-  }
+  // const handleContinueBtn = () => {
+  //   // const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  //   // // if fname , lname , ph num, email and guest list added with name then only navigate
+  //   // if(name.fName !== "" && name.lName !== "" && contact?.ph !== "" && contact?.email !== ""){
+  //   //     if(regex.test( contact.email)){
+  //   //         navigate(`/hotels/HBConfirmation/${hotelID}`);
+  //   //     }else {
+  //   //         notify("Email is invalid!");
+  //   //     }
+  //   // }else {
+  //       if(contact?.ph.length === 10){
+  //         handleOpen();
+            
+  //       }else{
+  //         notify("Phone number is invalid, it must have 10 digits");
+  //           // notify("Fill the input details!");
+  //       }
+  //   // }
+  // }
 
   const notify = (text) => toast(text);
 
@@ -133,7 +153,13 @@ const HotelCheckoutPage = () => {
             />
           </div>
 
-          <Button variant="contained" sx={{width: 300, mt: 4}} onClick={handleContinueBtn}>Continue to payment</Button>
+          <Button variant="contained" sx={{width: 300, mt: 4}} onClick={handleOpen}>Continue to payment</Button>
+
+          <PaymentGateway
+            open={open}
+            handleClose={handleClose}
+          />
+        
         </div>
 
         {/* hotel booking price card */}
@@ -148,7 +174,6 @@ const HotelCheckoutPage = () => {
 
       <Box mt={10} mb={4} sx={{ borderBottom: "1px solid lightgray" }}></Box>
       <Footer />
-      <ToastContainer theme="dark" />
     </div>
   );
 };

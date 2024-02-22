@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./MyTrip.css";
-import Navbar from "../FlightsPage/NavbarSection/Navbar";
 import { Box, Button, Divider, Paper, Tooltip } from "@mui/material";
 import Footer from "../FooterPage/Footer";
 import { useAuth } from "../../UseContext/AuthorizationProvider";
@@ -10,6 +9,8 @@ import FlightIcon from "@mui/icons-material/Flight";
 import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
 import MytripNavbar from "./MytripNavbar";
 import LoginPage from "../Login-signup/LoginPage";
+import LuggageIcon from '@mui/icons-material/Luggage';
+import PersonIcon from '@mui/icons-material/Person';
 
 const fetchYourTrips = [
   "Check your trip details",
@@ -19,8 +20,18 @@ const fetchYourTrips = [
   "and more...",
 ];
 const MyTrip = () => {
+  const [activeIndx, setActiveIndx] = useState(1);
   const { token } = useAuth().tokenDetails;
   const { handleLoginOpen } = useAuth().logSignDetails;
+
+
+  // useEffect(() => {
+    
+  // },[]);
+
+  // const handleFlightInfo = async () => {
+    
+  // }
 
   return (
     <div id="my-trip-page">
@@ -29,7 +40,52 @@ const MyTrip = () => {
       <main id="mytrip-main">
         {token ? (
           <>
-            <h1>Trips you've booked</h1>
+            <h1 className="main-with-header">Trips you've booked</h1>
+            <div className="main-with-loggedin">
+              <div className="with-left">
+                {/* trip section */}
+                <li className={activeIndx === 1 ? "with-item activeTrip" : "with-item"} 
+                  onClick={() => setActiveIndx(1)}>
+                  <LuggageIcon  sx={{mr: 1}} />
+                  <span>Trips</span>
+                </li> 
+
+                <li className={activeIndx === 2 ? "with-item activeTrip" : "with-item"}
+                  onClick={() => setActiveIndx(2)} >
+                  <PersonIcon sx={{mr: 1}} />
+                  <span>Profile</span>
+                </li>
+              </div>
+              <div className="with-right">
+                {/* trip results*/}
+                {activeIndx === 1 && (
+                  <h1 className="intial-msg">Looks like you have not booked any trips yet.Start exploring!</h1>
+                )} 
+
+                {activeIndx === 2 && (
+                  <>
+                    <h1 className="profile-content">Profile</h1>
+                    <h3>Login Information</h3>
+                    <div className="email-details">
+                      <p>Email address</p>
+                      {/* data from booking details */}
+                      <p>mabaidul@gmail.com</p>
+                    </div>
+                    <h3>Personal information</h3>
+                    <div className="p-info">
+                      <p>Full Name</p>
+                      {/* data from booking details */}
+                      <p className="full-name">mabaidul hoque</p>
+
+                      <p className="birthdate">Birthdate</p>
+                      <p>Not Provied</p>
+                    </div>
+
+                  </>
+                  
+                )} 
+              </div>
+            </div>
           </>
         ) : (
           <div className="main-without-loggedin">
@@ -108,7 +164,7 @@ const MyTrip = () => {
 
       <LoginPage />
 
-      <Divider sx={{ mt: 8, mb: 2 }} />
+      <Divider sx={{ mt: 2, mb: 2 }} />
       <Footer />
     </div>
   );

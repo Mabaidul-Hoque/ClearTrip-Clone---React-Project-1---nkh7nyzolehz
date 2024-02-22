@@ -12,6 +12,10 @@ const ProlieButton = styled(Button)({
   textTransform: "none",
   color: "gray",
 });
+const menuItemStyle = {
+    cursor: "default", 
+    "&:hover": {backgroundColor: "white"}
+}
 const MytripNavbar = ({ token, handleLoginOpen }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -25,6 +29,8 @@ const MytripNavbar = ({ token, handleLoginOpen }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+//   console.log("userdetails", JSON.parse(localStorage.getItem("userDetails")));
 
   return (
     <Box className="mytrip-navbar" pt={2} pb={2}>
@@ -46,7 +52,7 @@ const MytripNavbar = ({ token, handleLoginOpen }) => {
         onClick={handleClick}
       >
         <AccountCircleRoundedIcon htmlColor="gray" />
-        <span style={{ fontSize: "14px" }}>Your trips</span>
+        <span className="profile-text" >{token ? JSON.parse(localStorage.getItem("userDetails"))?.name : "Your trips"}</span>
         <ArrowDropDownRoundedIcon htmlColor="gray" />
       </ProlieButton>
 
@@ -61,18 +67,17 @@ const MytripNavbar = ({ token, handleLoginOpen }) => {
       >
         {token ? (
           <>
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Button onClick={handleLogout}>Logout</Button>
+            <MenuItem onClick={handleClose} sx={{...menuItemStyle, cursor: "pointer"}} >Trips</MenuItem>
+            <MenuItem onClick={handleClose} sx={{...menuItemStyle, cursor: "pointer"}} >Profile</MenuItem>
+            <MenuItem onClick={handleClose} sx={{...menuItemStyle}} >
+              <Button onClick={handleLogout} sx={{textTransform: "none", color: "tomato", ml: -1}}>Logout</Button>
             </MenuItem>
           </>
         ) : (
           <>
             <MenuItem 
                 autoFocus="false"
-                sx={{display: "flex", flexDirection: "column",cursor: "default", 
-                    "&:hover": {backgroundColor: "white"}}} 
+                sx={{...menuItemStyle, display: "flex", flexDirection: "column",}} 
                 onClick={handleClose}>
               <Button
                 onClick={handleLoginOpen}
@@ -86,16 +91,6 @@ const MytripNavbar = ({ token, handleLoginOpen }) => {
           </>
         )}
       </Menu>
-
-      {/* <Button
-            onClick={() => {
-              setIsSignup(false);
-              token ? handleLogout() : handleLoginOpen();
-            }}
-            variant="contained"
-          >
-            {token ? "Log out" : "Log in / Sign up"}
-          </Button> */}
     </Box>
   );
 };

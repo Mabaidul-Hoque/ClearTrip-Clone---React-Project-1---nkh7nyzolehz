@@ -70,7 +70,7 @@ export default function PaymentGateway({ open, handleClose }) {
       }
     }
     const handleCheckBooking = () => {
-      navigate("/mytrip")
+      navigate("/mytrip");
     }
 
   return (

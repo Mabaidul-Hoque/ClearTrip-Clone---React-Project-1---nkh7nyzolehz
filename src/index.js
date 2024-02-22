@@ -37,14 +37,6 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/offers",
-    element: <Offers />,
-  },
-  {
-    path: "/mytrip",
-    element: <MyTrip />,
-  },
-  {
     path: "/flights/:searchQuery",
     element: <FlightResultsPage />,
   },
@@ -67,6 +59,14 @@ const router = createBrowserRouter([
   {
     path: "/hotels/HBConfirmation/:hotelID",
     element: <HotelBookingPage />,
+  },
+  {
+    path: "/offers",
+    element: <Offers />,
+  },
+  {
+    path: "/mytrip",
+    element: <MyTrip />,
   },
 ]);
 

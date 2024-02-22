@@ -85,25 +85,28 @@ const HotelGuestDetails = ({ name, setName, contact, setContact }) => {
       <CourtesyTitles />
       {/* FIRST NAME and LAST NAME INPUTS */}
       <Stack flexDirection={{ xs: "column", sm: "row" }} mt={2} gap={4}>
-        <TextField
+        {/* <TextField
           type="text"
           id="f-name"
           label="First name"
           className="h-info-input"
-          onChange={(e) =>
-            setName((prev) => ({ ...prev, fName: e.target.value }))
-          }
-          value={name?.fName}
-        />
+          disabled="true"
+          defaultValue={JSON.parse(localStorage.getItem("userDetails")).name}
+          // onChange={(e) =>
+          //   setName((prev) => ({ ...prev, fName: e.target.value }))
+          // }
+          // value={name?.fName}
+        /> */}
         <TextField
           type="text"
           id="l-name"
-          label="Last name"
           className="h-info-input"
-          onChange={(e) =>
-            setName((prev) => ({ ...prev, lName: e.target.value }))
-          }
-          value={name?.lName}
+          disabled={true}
+          defaultValue={JSON.parse(localStorage.getItem("userDetails")).name}
+          // onChange={(e) =>
+          //   setName((prev) => ({ ...prev, lName: e.target.value }))
+          // }
+          // value={name?.lName}
         />
       </Stack>
 
@@ -127,12 +130,13 @@ const HotelGuestDetails = ({ name, setName, contact, setContact }) => {
         <TextField
           type="email"
           id="email"
-          label="Email address"
           className="h-info-input"
-          onChange={(e) =>
-            setContact((prev) => ({ ...prev, email: e.target.value }))
-          }
-          value={contact?.email}
+          disabled={true}
+          defaultValue={JSON.parse(localStorage.getItem("userDetails")).email}
+          // onChange={(e) =>
+          //   setContact((prev) => ({ ...prev, email: e.target.value }))
+          // }
+          // value={contact?.email}
         />
       </Stack>
       {/* OTHER GUESTS SECTION */}
@@ -225,7 +229,7 @@ const HotelGuestDetails = ({ name, setName, contact, setContact }) => {
           </Box>
         </Modal>
       </Box>
-      <ToastContainer theme="dark" />
+      {/* <ToastContainer theme="dark" /> */}
     </>
   );
 };

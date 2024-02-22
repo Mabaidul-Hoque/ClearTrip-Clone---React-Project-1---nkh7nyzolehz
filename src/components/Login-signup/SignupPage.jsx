@@ -27,6 +27,7 @@ const SignupPage = () => {
           if (response.status === "success") {
             notify("You have registered successfully");
             localStorage.setItem("token", response.token);
+            localStorage.setItem("userDetails", JSON.stringify(response?.data?.user));
             setToken(response.token);
             handleSignupClose();
             handleLoginClose();

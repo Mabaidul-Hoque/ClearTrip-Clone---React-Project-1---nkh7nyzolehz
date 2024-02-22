@@ -107,7 +107,7 @@ const ContactDetails = () => {
             type="email"
             id="email"
             placeholder="Enter your email address"
-            value={localStorage.getItem("userEmail")}
+            value={JSON.parse(localStorage.getItem("userDetails")).email}
             disabled="true"
             required
           />
