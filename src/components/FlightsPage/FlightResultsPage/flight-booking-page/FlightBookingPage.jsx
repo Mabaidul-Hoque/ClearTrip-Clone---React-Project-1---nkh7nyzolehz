@@ -11,7 +11,7 @@ import Footer from "../../../FooterPage/Footer";
 const FlightBookingPage = () => {
   const [selected, setSelected] = useState(1);
 
-  const { singleFlight, setSingleFlight } = useFlightSearch().singleFlightValue;
+  const { setSingleFlight } = useFlightSearch().singleFlightValue;
   const { flightId } = useParams();
 
   useEffect(() => {

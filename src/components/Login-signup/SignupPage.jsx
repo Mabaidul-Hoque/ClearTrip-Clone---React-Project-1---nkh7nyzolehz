@@ -21,7 +21,8 @@ const SignupPage = () => {
 
   const handleSignupSubmit = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (name && regex.test(email) && password) {
+    const passRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#])[A-Za-z\d@#]{8,}$/;
+    if (name && regex.test(email) && passRegex.test(password)) {
       fetchSignup({ name, email, password, appType: "bookingportals" })
         .then((response) => {
           if (response.status === "success") {
@@ -39,8 +40,13 @@ const SignupPage = () => {
           setPassword("");
       });
     } else if (email && !regex.test(email)) {
-      notify("Email is invalid!");
-    } else {
+      toast.error("Email is invalid!", {theme: "colored"});
+      
+    } else if(password && !passRegex.test(password)) {
+      toast.error("Password has to contains 8 character of alphabet and number and special character!", {
+        theme: "colored"
+      })
+    }else {
       notify("Some fields are missing or invalid!");
     }
   };

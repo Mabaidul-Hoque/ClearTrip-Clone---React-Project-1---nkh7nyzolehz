@@ -22,7 +22,8 @@ const LoginPage = () => {
 
   const handleLoginSubmit = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (regex.test(email) && password) {
+    const passRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#])[A-Za-z\d@#]{8,}$/;
+    if (regex.test(email) && passRegex.test(password)) {
       fetchLogin({ email, password, appType: "bookingportals" })
         .then((response) => {
           if (response.status === "success") {

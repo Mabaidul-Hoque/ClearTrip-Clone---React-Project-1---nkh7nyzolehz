@@ -1,5 +1,5 @@
 import { Box, Stack, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import FareDetails from "./FareDetails";
@@ -7,31 +7,9 @@ import ContactDetails from "./ContactDetails";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 import FareSelection from "./FareSelection";
 import "../FlightBookingPage.css";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { useAuth } from "../../../../../UseContext/AuthorizationProvider";
 
 const BookingDetails = ({ flightId, selected, setSelected }) => {
   const { singleFlight } = useFlightSearch().singleFlightValue;
-  const { token} = useAuth().tokenDetails;
-  const navigate = useNavigate();
-
-  // doesn't require 
-  // const handleContinue = (phone) => {
-  //   if (phone?.length === 10) {
-  //     if (token) {
-  //       navigate(`/flights/flight_booking_confirmation/${flightId}`);
-  //     } else {
-  //       toast.error("You have to login first, before payment", {
-  //         theme: "colored"
-  //       });
-  //     }
-  //   } else {
-  //     toast.error("Enter valid phone number!", {
-  //       theme: "colored"
-  //     });
-  //   }
-  // };
 
   return (
     <div className="booking-details">
@@ -247,7 +225,7 @@ const BookingDetails = ({ flightId, selected, setSelected }) => {
       {/* fare details */}
       <FareDetails />
       {/* contact details */}
-      <ContactDetails />
+      <ContactDetails flightId={flightId} />
       <Stack mt={10}></Stack>
     </div>
   );

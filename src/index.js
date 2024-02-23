@@ -15,12 +15,10 @@ import HotelResultPage from "./components/HotelsPage/Hotel-result-page/HotelResu
 import HotelDetailsPage from "./components/HotelsPage/Hotel-result-page/hotel-details-page/HotelDetailsPage";
 import AuthorizationProvider from "./UseContext/AuthorizationProvider";
 import FlightBookingPage from "./components/FlightsPage/FlightResultsPage/flight-booking-page/FlightBookingPage";
-import FBConfirmation from "./components/FlightsPage/FlightResultsPage/flight-booking-page/flight-booking-confirmation/FBConfirmation";
 import HotelCheckoutPage from "./components/HotelsPage/Hotel-result-page/hotel-details-page/hotel-checkout-page/HotelCheckoutPage";
 import { FontProvider } from "./UseContext/FontProvider";
 import HotelBookingPage from "./components/HotelsPage/Hotel-result-page/hotel-details-page/hotel-checkout-page/hotel-booking-page/HotelBookingPage";
 
-const token = localStorage.getItem("token");
 const router = createBrowserRouter([
   {
     path: "/",

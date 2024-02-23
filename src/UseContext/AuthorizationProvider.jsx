@@ -32,6 +32,7 @@ const AuthorizationProvider = ({ children }) => {
     if (token) {
       localStorage.removeItem("token");
       setToken("");
+      localStorage.removeItem("userDetails");
       notify("You have successfully logged out");
     }
   };

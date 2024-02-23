@@ -3,33 +3,37 @@ import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
 import "../FlightPage.css";
 import FlightCityDrowpdown from "../../ui/FlightCityDrowpdown";
 
-const DepartCityInput = ({ options, noOptionText = "No Items" ,inputStyleClass, source}) => {
+const DepartCityInput = ({
+  options,
+  noOptionText = "No Items",
+  inputStyleClass,
+}) => {
   const [searchText, setSearchText] = useState("");
-  const [selected, setSelected] = useState(source);
   const [allOption, setAllOption] = useState(options || []);
   const [focus, setFocus] = useState(false);
 
   const { sourceDestValue } = useFlightSearch();
-  const { handleSourceChange, sourceRef } = sourceDestValue;
+  const { source, setSource, sourceRef } = sourceDestValue;
 
   useEffect(() => {
     setAllOption(options);
-    handleSourceChange(selected);
     document.addEventListener("click", handleOutsideClick);
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
-  }, [options, selected]);
+  }, [options]);
 
-  const handleOutsideClick = (event) => {
-    if (sourceRef.current && !sourceRef.current.contains(event.target)) {
-      setFocus(false);
-    }
-  };
+  useEffect(() => {
+    const storedSource = localStorage.getItem("source");
+    console.log("storedSource", storedSource);
+    if (storedSource) setSource(storedSource);
+  }, [setSource]);
+
   const selectHandle = (val) => {
     setFocus(false);
     setSearchText("");
-    setSelected(`${val.iata_code} ${val.city}, IN`);
+    setSource(`${val.iata_code} ${val.city}, IN`);
+    localStorage.setItem("source", `${val.iata_code} ${val.city}, IN`);
   };
 
   const handleChange = ({ target }) => {
@@ -42,6 +46,13 @@ const DepartCityInput = ({ options, noOptionText = "No Items" ,inputStyleClass, 
     );
     setSearchText(target.value);
     setAllOption(tempOptions);
+    setSource(target.value);
+  };
+
+  const handleOutsideClick = (event) => {
+    if (sourceRef.current && !sourceRef.current.contains(event.target)) {
+      setFocus(false);
+    }
   };
 
   return (
@@ -50,10 +61,9 @@ const DepartCityInput = ({ options, noOptionText = "No Items" ,inputStyleClass, 
         ref={sourceRef}
         className={`inputBox ${inputStyleClass}`}
         placeholder="Where from?"
-        value={selected || searchText}
+        value={source || searchText}
         onChange={handleChange}
         onFocus={() => {
-          setSelected("");
           setFocus(true);
         }}
         style={{
@@ -61,13 +71,12 @@ const DepartCityInput = ({ options, noOptionText = "No Items" ,inputStyleClass, 
           borderBottomRightRadius: searchText ? 0 : "",
         }}
       />
-      <FlightCityDrowpdown  
+      <FlightCityDrowpdown
         allOption={allOption}
         noOptionText={noOptionText}
         selectHandle={selectHandle}
         focus={focus}
       />
-
     </div>
   );
 };

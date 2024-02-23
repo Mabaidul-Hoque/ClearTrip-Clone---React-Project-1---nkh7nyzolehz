@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./MyTrip.css";
-import { Box, Button, Divider, Paper, Tooltip } from "@mui/material";
+import { Box, Button, Divider, Paper, Tooltip, Typography } from "@mui/material";
 import Footer from "../FooterPage/Footer";
 import { useAuth } from "../../UseContext/AuthorizationProvider";
 import DoneIcon from "@mui/icons-material/Done";
@@ -23,15 +23,10 @@ const MyTrip = () => {
   const [activeIndx, setActiveIndx] = useState(1);
   const { token } = useAuth().tokenDetails;
   const { handleLoginOpen } = useAuth().logSignDetails;
+  const bdRef = useRef(JSON.parse(localStorage.getItem("bookingData"))); // bdRef --> bookindDadaRef
 
 
-  // useEffect(() => {
-    
-  // },[]);
-
-  // const handleFlightInfo = async () => {
-    
-  // }
+  console.log("bookingDataref status", bdRef.current[0].status);
 
   return (
     <div id="my-trip-page">
@@ -59,7 +54,23 @@ const MyTrip = () => {
               <div className="with-right">
                 {/* trip results*/}
                 {activeIndx === 1 && (
+                  bdRef?.current?.length > 0 ? (
+                    <div className="bookind-details-container">
+                      {bdRef.current?.map((bd, indx) => (
+                        <li className="bd-box" key={bd._id}>
+                          <Typography sx={{fontSize: "20px", fontWeight: 500,mb: 1}}>Trip number: {indx+1}</Typography>
+                          <Typography><span>Trip ID:</span> {bd?._id}</Typography>
+                          <Typography><span>From:</span> {bd?.flight?.source}</Typography>
+                          <Typography><span>To:</span> {bd?.flight?.destination}</Typography>
+                          <Typography><span>Start date: </span> {bd?.start_date}</Typography>
+                          <Typography><span>End date: </span> {bd?.end_date}</Typography>
+                          <Typography><span>Booking Status:</span> {bd?.status}</Typography>
+                        </li>
+                      ))}
+                    </div>
+                  ) : (
                   <h1 className="intial-msg">Looks like you have not booked any trips yet.Start exploring!</h1>
+                  )  
                 )} 
 
                 {activeIndx === 2 && (

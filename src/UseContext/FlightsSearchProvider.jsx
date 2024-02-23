@@ -34,7 +34,11 @@ export const FlightsSearchProvider = ({ children }) => {
   const [filterItems, setFilterItems] = useState({});
   const [singleFlight, setSingleFlight] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [traveller, setTraveller] = useState({adults: 1, children: 0, infants: 0});
+  const [traveller, setTraveller] = useState({
+    adults: 1,
+    children: 0,
+    infants: 0,
+  });
 
   const sourceRef = useRef(null);
   const destinationRef = useRef(null);
@@ -57,12 +61,12 @@ export const FlightsSearchProvider = ({ children }) => {
   const handleReturnDateChange = (date) => {
     seReturnDate(date);
   };
-  const handleSourceChange = (value) => {
-    setSource(value);
-  };
-  const handleDestinationChange = (value) => {
-    setDestination(value);
-  };
+  // const handleSourceChange = (value) => {
+  //   setSource(value);
+  // };
+  // const handleDestinationChange = (value) => {
+  //   setDestination(value);
+  // };
   const cityNameCodes = airportNames.map(
     (airportName) => airportName.iata_code
   );
@@ -74,28 +78,30 @@ export const FlightsSearchProvider = ({ children }) => {
     localStorage.setItem("departDay", departDay);
     console.log("source", source);
     console.log("destination", destination);
-    if(source !== "" && destination !== "") {
-        if (
-            source.substring(0, 3) !== destination.substring(0, 3) &&
-            cityNameCodes.includes(source.substring(0, 3)) &&
-            cityNameCodes.includes(destination.substring(0, 3)) &&
-            days.includes(departDay.substring(0, 3))
-        ) {
-            const sourceVal = source.substring(0, 3);
-            const destinationVal = destination.substring(0, 3);
-            const day = departDay.substring(0, 3);
-            if (sourceVal !== null && destinationVal !== null && day !== null) {
-                fetchFlights(sourceVal, destinationVal, day, 5, flightPage)
-                .then((response) => {
-                    setAirplanes(response.data.flights);
-                });
-        } else {
-            fetchFlights(sourceVal, destinationVal, day, 5, flightPage)
-                .then((response) => {
-                    setAirplanes(response.data.flights);
-                });
+    if (source !== "" && destination !== "") {
+      if (
+        source.substring(0, 3) !== destination.substring(0, 3) &&
+        cityNameCodes.includes(source.substring(0, 3)) &&
+        cityNameCodes.includes(destination.substring(0, 3)) &&
+        days.includes(departDay.substring(0, 3))
+      ) {
+        const sourceVal = source.substring(0, 3);
+        const destinationVal = destination.substring(0, 3);
+        const day = departDay.substring(0, 3);
+        if (sourceVal !== null && destinationVal !== null && day !== null) {
+          fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
+            (response) => {
+              setAirplanes(response.data.flights);
             }
+          );
+        } else {
+          fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
+            (response) => {
+              setAirplanes(response.data.flights);
+            }
+          );
         }
+      }
     } else {
       if (source === "" || destination === "") {
         notify("Fill the details before search!");
@@ -124,12 +130,13 @@ export const FlightsSearchProvider = ({ children }) => {
       returnDate,
     },
     sourceDestValue: {
-      handleSourceChange,
-      handleDestinationChange,
+      // handleSourceChange,
+      // handleDestinationChange,
       source,
-      destination,
-      cityNameCodes,
       setSource,
+      destination,
+      setDestination,
+      cityNameCodes,
       sourceRef,
       destinationRef,
     },

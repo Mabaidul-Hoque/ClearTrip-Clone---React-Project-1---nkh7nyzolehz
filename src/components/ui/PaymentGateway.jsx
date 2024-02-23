@@ -9,6 +9,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useNavigate } from "react-router-dom";
 import PayConfirmModal from "./PayConfirmModal";
 import CloseIcon from "@mui/icons-material/Close";
+import { useAuth } from "../../UseContext/AuthorizationProvider";
+import { fetchFlightBookingInfo } from "../../Apis/BookingApi";
 
 const style = {
   position: "absolute",
@@ -28,7 +30,7 @@ const paperStyle = {
   mb: 2, mt: 1, ml: 4, p: 2, width: "80%", border :"1px solid lightgray"
 }
 
-export default function PaymentGateway({ open, handleClose }) {
+export default function PaymentGateway({ open, handleClose, flightId }) {
     const [selectedMonth, setSelectedMonth] = useState('');
     const [selectedYear, setSelectedYear] = useState('');
     const [showCardDetails, setShowCardDetails] = useState("upi-option");
@@ -61,6 +63,18 @@ export default function PaymentGateway({ open, handleClose }) {
       const upiRegex = /^[0-9]{10}@upi$/;
       if(upiRegex.test(upiId)){
         setIsLoading(true);
+        fetchFlightBookingInfo(flightId)
+          .then((resp) => {
+            if(resp.status === "success"){
+              // setBookingData(resp?.booking);
+              const dataFromLS = JSON.parse(localStorage.getItem("bookingData"));
+              const bookingDataFromLS = dataFromLS !== null ? dataFromLS : [];
+              localStorage.setItem("bookingData", JSON.stringify([...bookingDataFromLS, resp?.booking]));
+            }
+            // console.log("booking res", resp);
+          }
+        );
+        
         setTimeout(() => {
           setOpenPayConfrm(true);
           setIsLoading(false);

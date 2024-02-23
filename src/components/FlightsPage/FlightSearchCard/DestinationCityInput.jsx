@@ -2,26 +2,31 @@ import { useEffect, useState } from "react";
 import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
 import "../FlightPage.css";
 import FlightCityDrowpdown from "../../ui/FlightCityDrowpdown";
-const DestinationCityInput = ({ options, noOptionText = "No Items",inputStyleClass, destination }) => {
+const DestinationCityInput = ({
+  options,
+  noOptionText = "No Items",
+  inputStyleClass,
+  // destination,
+}) => {
   const [searchText, setSearchText] = useState("");
-  const [selected, setSelected] = useState(destination);
   const [allOption, setAllOption] = useState(options || []);
   const [focus, setFocus] = useState(false);
 
-  const contextValues = useFlightSearch();
-  const { handleDestinationChange, destinationRef } =
-    contextValues.sourceDestValue;
+  const { sourceDestValue } = useFlightSearch();
+  const { destination, setDestination, destinationRef } = sourceDestValue;
 
   useEffect(() => {
     setAllOption(options);
-    handleDestinationChange(selected);
-
     document.addEventListener("click", handleOutsideClick);
-
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
-  }, [options, selected]);
+  }, [options]);
+
+  useEffect(() => {
+    const storedDestination = localStorage.getItem("destination");
+    if (storedDestination) setDestination(storedDestination);
+  }, [setDestination]);
 
   const handleOutsideClick = (event) => {
     if (
@@ -35,7 +40,8 @@ const DestinationCityInput = ({ options, noOptionText = "No Items",inputStyleCla
   const selectHandle = (val) => {
     setFocus(false);
     setSearchText("");
-    setSelected(`${val.iata_code} ${val.city}, IN`);
+    setDestination(`${val.iata_code} ${val.city}, IN`);
+    localStorage.setItem("destination", `${val.iata_code} ${val.city}, IN`);
   };
 
   const handleChange = ({ target }) => {
@@ -44,10 +50,11 @@ const DestinationCityInput = ({ options, noOptionText = "No Items",inputStyleCla
       (obj) =>
         obj.city?.toLowerCase().includes(target.value?.toLowerCase()) ||
         obj.iata_code?.toLowerCase().includes(target.value?.toLowerCase()) ||
-        obj.name?.toLowerCase().includes(target.value?.toLowerCase())
+        obj.name?.toLowerCase().includes(target.classNamevalue?.toLowerCase())
     );
     setSearchText(target.value);
     setAllOption(tempOptions);
+    setDestination(target.value);
   };
 
   return (
@@ -56,9 +63,8 @@ const DestinationCityInput = ({ options, noOptionText = "No Items",inputStyleCla
         ref={destinationRef}
         className={`inputBox ${inputStyleClass}`}
         placeholder="Where to?"
-        value={selected || searchText}
+        value={destination || searchText}
         onFocus={() => {
-          setSelected("");
           setFocus(true);
         }}
         onChange={handleChange}
@@ -73,7 +79,6 @@ const DestinationCityInput = ({ options, noOptionText = "No Items",inputStyleCla
         selectHandle={selectHandle}
         focus={focus}
       />
-
     </div>
   );
 };

@@ -82,7 +82,7 @@
     border: 1px solid lightgray;
     width: 60rem;
     min-height: 60vh;
-    padding: 20px;
+    padding: 30px 40px;
 }
 .activeTrip{
     background-color: #5585B9;
@@ -122,7 +122,16 @@
 }
 .intial-msg{
     font-weight: 500;
-    
+}
+
+/* bookind-details-container */
+.bd-box{
+    margin-bottom: 30px;
+    list-style-type: none;
+}
+.bd-box span{
+    font-weight: 500;
+    margin-right: 10px;
 }
 
 @media screen and (min-width: 300px) {

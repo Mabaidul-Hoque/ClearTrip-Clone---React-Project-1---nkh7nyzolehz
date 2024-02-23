@@ -1,8 +1,10 @@
-import { Box, Button, Stack } from "@mui/material";
+import { Box, Button, Stack, Tooltip } from "@mui/material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
+import LuggageIcon from '@mui/icons-material/Luggage';
+import FlightIcon from "@mui/icons-material/Flight";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import styled from "@emotion/styled";
@@ -35,13 +37,22 @@ const MytripNavbar = ({ token, handleLoginOpen }) => {
   return (
     <Box className="mytrip-navbar" pt={2} pb={2}>
       {/* cleartrip logo  */}
-      <Link to="/">
-        <img
-          className="cleartrip-logo"
-          src="https://careers.cleartrip.com/images/cleartrip/footer-logo.svg"
-          alt="cleartrip-logo"
-        />
-      </Link>
+      <Box sx={{display: "flex", alignItems: "center", gap: "20px"}}>
+        <Link to="/">
+            <img
+            className="cleartrip-logo"
+            src="https://careers.cleartrip.com/images/cleartrip/footer-logo.svg"
+            alt="cleartrip-logo"
+            />
+        </Link>
+        <Link to="/flights">
+            <Tooltip title="Flight"><FlightIcon htmlColor="gray" /></Tooltip>
+        </Link>
+        <Link to="/hotels">
+            <Tooltip title="Hotel"><LuggageIcon htmlColor="gray"/></Tooltip>
+        </Link>
+      </Box>
+      
       {/* profile section */}
 
       <ProlieButton

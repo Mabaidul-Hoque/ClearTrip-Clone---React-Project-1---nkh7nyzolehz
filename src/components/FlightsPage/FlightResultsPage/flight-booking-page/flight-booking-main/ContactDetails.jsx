@@ -3,19 +3,25 @@ import React, { useEffect, useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import PaymentGateway from "../../../../ui/PaymentGateway";
 import { toast } from "react-toastify";
+import { useAuth } from "../../../../../UseContext/AuthorizationProvider";
 
 
 
-const ContactDetails = () => {
+const ContactDetails = ({flightId}) => {
   const [phone, setPhone] = useState();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const {token} = useAuth().tokenDetails;
+
     const handleOpen = () => {
-      if(phone?.length === 10) {
-        setOpen(true);
-      }else {
-        toast.error("Phone number is invalid!", { theme: "colored"})
+      if(phone?.length === 10 && localStorage.getItem("userDetails")?.email) {
+        if(token){
+          setOpen(true);
+        }else {
+          toast.error("For payment you have to log in!");
+        }
+      }else if(phone?.length !== 10 && localStorage.getItem("userDetails")?.email) {
+        toast.error("Phone number is invalid!", { theme: "colored"});
       }
-      
     };
     const handleClose = () => {
       setOpen(false);
@@ -107,7 +113,7 @@ const ContactDetails = () => {
             type="email"
             id="email"
             placeholder="Enter your email address"
-            value={JSON.parse(localStorage.getItem("userDetails")).email}
+            value={JSON.parse(localStorage.getItem("userDetails"))?.email}
             disabled="true"
             required
           />
@@ -123,6 +129,7 @@ const ContactDetails = () => {
         <PaymentGateway 
           open={open}
           handleClose={handleClose}
+          flightId={flightId}
         />
       </Container>
     </div>

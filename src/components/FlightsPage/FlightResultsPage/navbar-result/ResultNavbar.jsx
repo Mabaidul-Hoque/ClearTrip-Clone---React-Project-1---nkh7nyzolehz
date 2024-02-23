@@ -79,7 +79,7 @@ const ResultNavbar = () => {
     loadingData,
   } = useFlightSearch();
   const { setAirplanes, airportNames, setAirportNames } = airplaneDetails;
-  const { cityNameCodes, source, destination } = sourceDestValue;
+  const { cityNameCodes, source, setSource, destination } = sourceDestValue;
   const { departDay } = departvalue;
   const { setTotalResult } = totalFlightsVal;
   const { setIsLoading } = loadingData;
@@ -272,7 +272,6 @@ const ResultNavbar = () => {
               options={airportNames}
               noOptionText={"No Match Found"}
               inputStyleClass="inputBoxRes"
-              source={source}
             />
             <SyncAltOutlinedIcon
               sx={{ display: { xs: "none", sm: "block" } }}
@@ -282,14 +281,15 @@ const ResultNavbar = () => {
               options={airportNames}
               noOptionText={"No Match Found"}
               inputStyleClass="inputBoxRes"
-              destination={destination}
             />
           </Stack>
 
           {/* depart return date */}
-          <Box sx={{
-            display: "flex"
-          }}>
+          <Box
+            sx={{
+              display: "flex",
+            }}
+          >
             <DateInputs
               departStyle={departDateStyle}
               returnStyle={returnDateStyle}
