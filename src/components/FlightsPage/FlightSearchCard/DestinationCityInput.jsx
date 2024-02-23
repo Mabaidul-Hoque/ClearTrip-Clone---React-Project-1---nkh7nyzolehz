@@ -6,7 +6,6 @@ const DestinationCityInput = ({
   options,
   noOptionText = "No Items",
   inputStyleClass,
-  // destination,
 }) => {
   const [searchText, setSearchText] = useState("");
   const [allOption, setAllOption] = useState(options || []);
@@ -65,6 +64,7 @@ const DestinationCityInput = ({
         placeholder="Where to?"
         value={destination || searchText}
         onFocus={() => {
+          setDestination("");
           setFocus(true);
         }}
         onChange={handleChange}

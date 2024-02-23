@@ -11,7 +11,7 @@ import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined
 import { toast } from "react-toastify";
 import AddRooms from "../ui/AddRooms";
 import Autocomplete from "../ui/Autocomplete";
-import { CheckInOutDate } from "../ui/CheckInOutDate"; 
+import { CheckInOutDate } from "../ui/CheckInOutDate";
 
 export const OPTION = [
   { name: "Kolkata, West Bengal" },
@@ -74,7 +74,6 @@ const Hotels = () => {
               options={OPTION}
               noOptionText={"No Match Found"}
               optionKey={"name"}
-              height="56px"
             />
             {focus ? (
               <span className="place-icon">

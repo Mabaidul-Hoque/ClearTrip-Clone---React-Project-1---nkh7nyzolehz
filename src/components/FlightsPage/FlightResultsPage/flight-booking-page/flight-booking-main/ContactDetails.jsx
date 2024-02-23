@@ -1,31 +1,38 @@
-import { Container, Box, Modal,  Button, Stack, Typography } from "@mui/material";
+import {
+  Container,
+  Box,
+  Modal,
+  Button,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import PaymentGateway from "../../../../ui/PaymentGateway";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { useAuth } from "../../../../../UseContext/AuthorizationProvider";
 
-
-
-const ContactDetails = ({flightId}) => {
+const ContactDetails = ({ flightId }) => {
   const [phone, setPhone] = useState();
   const [open, setOpen] = useState(false);
-  const {token} = useAuth().tokenDetails;
+  const { token } = useAuth().tokenDetails;
 
-    const handleOpen = () => {
-      if(phone?.length === 10 && localStorage.getItem("userDetails")?.email) {
-        if(token){
-          setOpen(true);
-        }else {
-          toast.error("For payment you have to log in!");
-        }
-      }else if(phone?.length !== 10 && localStorage.getItem("userDetails")?.email) {
-        toast.error("Phone number is invalid!", { theme: "colored"});
+  const handleOpen = () => {
+    console.log("handleOpen");
+    if (phone?.length === 10) {
+      if (token) {
+        setOpen(true);
+      } else {
+        toast.error("For payment you have to log in!", { theme: "colored" });
       }
-    };
-    const handleClose = () => {
-      setOpen(false);
-    };
+    } else {
+      console.log("handleOpen else ");
+      toast.error("Phone number is invalid!", { theme: "colored" });
+    }
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div>
@@ -119,14 +126,11 @@ const ContactDetails = ({flightId}) => {
           />
         </Stack>
 
-        <button
-          className="continue-btn"
-          onClick={handleOpen}
-        >
+        <button className="continue-btn" onClick={handleOpen}>
           Continue to payment
         </button>
 
-        <PaymentGateway 
+        <PaymentGateway
           open={open}
           handleClose={handleClose}
           flightId={flightId}

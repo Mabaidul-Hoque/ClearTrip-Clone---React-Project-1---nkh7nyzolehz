@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "../HotelsPage/Hotels.css";
 import { Paper } from "@mui/material";
-import { useHotelContext } from "../../UseContext/HotelDetailsProvider"; 
+import { useHotelContext } from "../../UseContext/HotelDetailsProvider";
 import { useLocation } from "react-router-dom";
 import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 
@@ -10,41 +10,26 @@ const Autocomplete = ({
   optionKey = "name",
   noOptionText = "No Items",
   hotelInputClass,
-  width = "100%",
-  height,
   displayValue = "",
-  singleHotel,
 }) => {
-  const [searchText, setSearchText] = useState("");
-  const [selected, setSelected] = useState(displayValue);
+  const [searchText, setSearchText] = useState(displayValue);
   const [allOption, setAllOption] = useState(options || []);
   const hotelSearchRef = useRef();
-  const { pathname } = useLocation();
   const { inputInfo } = useHotelContext();
-  const { inputPlace, handleInputPlaceChange, focus, setFocus } = inputInfo;
+  const { inputPlace, setInputPlace, focus, setFocus } = inputInfo;
 
   useEffect(() => {
     setAllOption(options);
-
-    handleInputPlaceChange(() => {
-      const selectdValue = options.filter((element) =>
-        element?.name === selected
-          ? selected.split(",")[0].trim().toLocaleLowerCase()
-          : ""
-      );
-      return selectdValue[0]?.name;
-    });
-
-    // change into custom hook
     document.addEventListener("click", handleOutsideClick);
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
-  }, [selected]);
+  }, [options]);
 
   useEffect(() => {
-    setSelected(displayValue);
-  }, [singleHotel]);
+    const selectdValueFromLS = localStorage.getItem("inputPlace");
+    if (selectdValueFromLS) setInputPlace(selectdValueFromLS);
+  }, [setInputPlace]);
 
   const handleOutsideClick = (event) => {
     if (
@@ -55,8 +40,10 @@ const Autocomplete = ({
     }
   };
   const selectHandle = (val) => {
+    setFocus(false);
     setSearchText("");
-    setSelected(val[optionKey]);
+    setInputPlace(val[optionKey]);
+    localStorage.setItem("inputPlace", val[optionKey]);
   };
   const handleChange = ({ target }) => {
     let tempOptions = [...options];
@@ -65,20 +52,20 @@ const Autocomplete = ({
     );
     setSearchText(target.value);
     setAllOption(tempOptions);
+    setInputPlace(target.value);
   };
 
   return (
     <>
-      {/* <div style={{ width: width, height: height }}> */}
       <input
         ref={hotelSearchRef}
         className={hotelInputClass}
-        placeholder={"Enter place"}
+        placeholder={"Enter locality, landmark, city or hotel"}
         onFocus={() => {
-          setSelected("");
+          setInputPlace("");
           setFocus(true);
         }}
-        value={selected || searchText}
+        value={inputPlace || searchText}
         onChange={handleChange}
         style={{
           borderBottomLeftRadius: searchText ? 0 : "",
@@ -109,7 +96,6 @@ const Autocomplete = ({
           ))
         )}
       </Paper>
-      {/* </div> */}
     </>
   );
 };

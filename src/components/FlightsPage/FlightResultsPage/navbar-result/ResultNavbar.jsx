@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Box, Stack, Button, ThemeProvider, Tooltip } from "@mui/material";
 import LocalAirportOutlinedIcon from "@mui/icons-material/LocalAirportOutlined";
@@ -79,7 +79,7 @@ const ResultNavbar = () => {
     loadingData,
   } = useFlightSearch();
   const { setAirplanes, airportNames, setAirportNames } = airplaneDetails;
-  const { cityNameCodes, source, setSource, destination } = sourceDestValue;
+  const { cityNameCodes, source, destination } = sourceDestValue;
   const { departDay } = departvalue;
   const { setTotalResult } = totalFlightsVal;
   const { setIsLoading } = loadingData;

@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
 import { OPTION } from "../../Hotels";
 import Autocomplete from "../../../ui/Autocomplete";
-import { CheckInOutDate } from "../../../ui/CheckInOutDate"; 
+import { CheckInOutDate } from "../../../ui/CheckInOutDate";
 import AddRooms from "../../../ui/AddRooms";
 
 const HotelNavbar = () => {
@@ -19,7 +19,7 @@ const HotelNavbar = () => {
   const { token } = tokenDetails;
   const { handleLoginOpen } = logSignDetails;
   const { setIsSignup } = signupDetails;
-  const { inputInfo, hotelDetails, loadingData} = useHotelContext();
+  const { inputInfo, hotelDetails, loadingData } = useHotelContext();
   const { setHotels, setTotalHotels, hotelPage } = hotelDetails;
   const { inputPlace } = inputInfo;
   const { setIsLoading } = loadingData;
@@ -60,9 +60,6 @@ const HotelNavbar = () => {
               options={OPTION}
               noOptionText={"No Match Found"}
               optionKey={"name"}
-              width="200px"
-              height="45px"
-              displayValue={inputPlace}
             />
           </div>
           {/* hotel result date inputes */}

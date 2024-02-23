@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
 import "../FlightPage.css";
 import FlightCityDrowpdown from "../../ui/FlightCityDrowpdown";
@@ -64,6 +64,7 @@ const DepartCityInput = ({
         value={source || searchText}
         onChange={handleChange}
         onFocus={() => {
+          setSource("");
           setFocus(true);
         }}
         style={{

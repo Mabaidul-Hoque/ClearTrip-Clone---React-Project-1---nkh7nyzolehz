@@ -20,7 +20,7 @@ import Footer from "../../../FooterPage/Footer";
 import LoginPage from "../../../Login-signup/LoginPage";
 import { toast } from "react-toastify";
 import Autocomplete from "../../../ui/Autocomplete";
-import { CheckInOutDate } from "../../../ui/CheckInOutDate"; 
+import { CheckInOutDate } from "../../../ui/CheckInOutDate";
 import AddRooms from "../../../ui/AddRooms";
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
@@ -65,8 +65,6 @@ const HotelDetailsPage = () => {
   const { inputPlace } = inputInfo;
   const navigate = useNavigate();
   const { hotelID } = useParams();
-
-  console.log("hotel id", { hotelID, singleHotel });
 
   const goToPreviousImage = (images) => {
     setCurrentImageIndex((prevIndex) =>
@@ -119,12 +117,9 @@ const HotelDetailsPage = () => {
                 <Autocomplete
                   hotelInputClass="hotel-details-input-box"
                   options={OPTION}
-                  singleHotel={singleHotel}
                   optionKey={"name"}
                   noOptionText={"No Match Found"}
-                  width="200px"
-                  height="45px"
-                  displayValue={singleHotel?.name}
+                  // displayValue={singleHotel?.name}
                 />
               </div>
               <CheckInOutDate dateClass="check-in-out-date-res" />

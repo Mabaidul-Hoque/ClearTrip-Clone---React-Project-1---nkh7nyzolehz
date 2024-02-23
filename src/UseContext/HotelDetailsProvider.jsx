@@ -37,23 +37,21 @@ export const HotelDetailsProvider = ({ children }) => {
   const [totalHotels, setTotalHotels] = useState(0);
   const [singleRoom, setSingleRoom] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-
-
-
-  const [rooms, setRooms] = useState([{
-    adult: 1,
-    children: 0
-  }]);
+  const [rooms, setRooms] = useState([
+    {
+      adult: 1,
+      children: 0,
+    },
+  ]);
 
   const handleInputPlaceChange = (val) => {
     setInputPlace(val);
   };
 
   const handleHotelSearchBtn = () => {
-    localStorage.setItem("inputPlace", inputPlace);
     fetchHotels(inputPlace, 10, hotelPage).then((resp) => {
       setTotalHotels(resp.totalResults);
-      setHotels(resp.data.hotels);  
+      setHotels(resp.data.hotels);
     });
   };
 
@@ -102,6 +100,7 @@ export const HotelDetailsProvider = ({ children }) => {
     inputInfo: {
       handleInputPlaceChange,
       inputPlace,
+      setInputPlace,
       focus,
       setFocus,
     },
@@ -112,8 +111,8 @@ export const HotelDetailsProvider = ({ children }) => {
       handleCheckOutDateChange,
     },
     roomTypeValues: { rooms, setRooms },
-    singleRoomData: {singleRoom, setSingleRoom},
-    loadingData: {isLoading, setIsLoading}
+    singleRoomData: { singleRoom, setSingleRoom },
+    loadingData: { isLoading, setIsLoading },
   };
 
   return (
