@@ -77,6 +77,7 @@ const ResultNavbar = () => {
     departvalue,
     totalFlightsVal,
     loadingData,
+    setFlightPage,
   } = useFlightSearch();
   const { setAirplanes, airportNames, setAirportNames } = airplaneDetails;
   const { cityNameCodes, source, destination } = sourceDestValue;
@@ -108,6 +109,7 @@ const ResultNavbar = () => {
             setTotalResult(response.totalResults);
             setAirplanes(response.data.flights);
             setIsLoading(false);
+            setFlightPage(1);
           }
         );
       } else {

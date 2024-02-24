@@ -1,4 +1,4 @@
-export async function fetchFlightBookingInfo(flightID) {
+export async function fetchFlightBookingInfo(flightID, departDate, returnDate) {
   const apiUrl =
     "https://academics.newtonschool.co/api/v1/bookingportals/booking";
   const token = localStorage.getItem("token");
@@ -8,8 +8,8 @@ export async function fetchFlightBookingInfo(flightID) {
     bookingType: "flight",
     bookingDetails: {
       flightId: flightID,
-      startDate: "2023-10-09T01:03:53.554+00:00",
-      endDate: "2023-10-09T12:03:53.554+00:00",
+      startDate: departDate,
+      endDate: returnDate,
     },
   };
 

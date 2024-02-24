@@ -5,7 +5,6 @@ import { Box, Stack, Typography } from "@mui/material";
 import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
-import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
 import { useDebounce } from "../../../../../CustomHooks/useDebouce";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 

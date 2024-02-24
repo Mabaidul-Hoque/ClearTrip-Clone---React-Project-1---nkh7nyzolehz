@@ -61,12 +61,7 @@ export const FlightsSearchProvider = ({ children }) => {
   const handleReturnDateChange = (date) => {
     seReturnDate(date);
   };
-  // const handleSourceChange = (value) => {
-  //   setSource(value);
-  // };
-  // const handleDestinationChange = (value) => {
-  //   setDestination(value);
-  // };
+
   const cityNameCodes = airportNames.map(
     (airportName) => airportName.iata_code
   );
@@ -130,8 +125,6 @@ export const FlightsSearchProvider = ({ children }) => {
       returnDate,
     },
     sourceDestValue: {
-      // handleSourceChange,
-      // handleDestinationChange,
       source,
       setSource,
       destination,

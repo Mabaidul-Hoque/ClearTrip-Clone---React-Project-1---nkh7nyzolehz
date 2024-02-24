@@ -15,33 +15,42 @@ import { ToastContainer, toast } from "react-toastify";
 import PaymentGateway from "../../../../ui/PaymentGateway";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 
 const HotelCheckoutPage = () => {
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
-    const [name ,setName] = useState({fName: "", lName: ""});
-    const [contact, setContact] = useState({ph: "", email: ""});
-    const { hotelID } = useParams();
-    const { hotelDetails, checkInOutDetails } = useHotelContext();
-    const { singleHotel, setSingleHotel } = hotelDetails;
-    const { checkInDate, checkOutDate } = checkInOutDetails;
-    const navigate = useNavigate();
-    
+  const [name, setName] = useState({ fName: "", lName: "" });
+  const [contact, setContact] = useState({ ph: "", email: "" });
+  const { hotelID } = useParams();
+  const { hotelDetails, checkInOutDetails } = useHotelContext();
+  const { singleHotel, setSingleHotel } = hotelDetails;
+  const { checkInDate, checkOutDate } = checkInOutDetails;
+  const navigate = useNavigate();
 
-
-    const handleOpen = () => {
-      if(contact?.ph.length === 10) {
-        setOpen(true);
-      }else {
-        toast.error("Phone number is invalid!", { theme: "colored"})
-      }
-      
-    };
-    const handleClose = () => {
-      setOpen(false);
-    };
-
+  const handleOpen = () => {
+    if (contact?.ph.length === 10) {
+      setOpen(true);
+    } else {
+      toast.error("Phone number is invalid!", { theme: "colored" });
+    }
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     fetchSingleHotel(hotelID).then((response) => {
@@ -87,7 +96,7 @@ const HotelCheckoutPage = () => {
   //   // }else {
   //       if(contact?.ph.length === 10){
   //         handleOpen();
-            
+
   //       }else{
   //         notify("Phone number is invalid, it must have 10 digits");
   //           // notify("Fill the input details!");
@@ -106,15 +115,17 @@ const HotelCheckoutPage = () => {
         <div id="h-booking-content">
           {/* header */}
           <Stack
-            mb={4} mt={{ xs: -3, sm: 0 }} flexDirection={"row"} alignItems={"center"} gap={2}
+            mb={4}
+            mt={{ xs: -3, sm: 0 }}
+            flexDirection={"row"}
+            alignItems={"center"}
+            gap={2}
             width={{ xs: "90vw", md: "60vw" }}
           >
             <div className="number-circle">
               <span>1</span>
             </div>
-            <Typography
-              fontSize={{ xs: "24px" }} fontWeight={600}
-            >
+            <Typography fontSize={{ xs: "24px" }} fontWeight={600}>
               Review your itinerary
             </Typography>
           </Stack>
@@ -130,9 +141,7 @@ const HotelCheckoutPage = () => {
 
           {/* price card only for mobile screen  */}
           <div id="h-booking-price-card-mobile">
-            <HotelInfoPriceCard 
-                getNights={getNights}
-            />
+            <HotelInfoPriceCard getNights={getNights} />
           </div>
 
           <div id="cancellation-policy">
@@ -147,29 +156,35 @@ const HotelCheckoutPage = () => {
           </div>
 
           <div id="guest-details">
-            <HotelGuestDetails 
-                name={name} setName={setName} 
-                contact={contact} setContact={setContact}
+            <HotelGuestDetails
+              name={name}
+              setName={setName}
+              contact={contact}
+              setContact={setContact}
             />
           </div>
 
-          <Button variant="contained" sx={{width: 300, mt: 4}} onClick={handleOpen}>Continue to payment</Button>
+          <Button
+            variant="contained"
+            sx={{ width: 300, mt: 4 }}
+            onClick={handleOpen}
+          >
+            Continue to payment
+          </Button>
 
           <PaymentGateway
             open={open}
             handleClose={handleClose}
+            booingId={hotelID}
+            startDate={checkInDate}
+            endDate={checkOutDate}
           />
-        
         </div>
 
         {/* hotel booking price card */}
         <div id="h-booking-price-card">
-          <HotelInfoPriceCard 
-            getNights={getNights}
-          />
+          <HotelInfoPriceCard getNights={getNights} />
         </div>
-
-        
       </main>
 
       <Box mt={10} mb={4} sx={{ borderBottom: "1px solid lightgray" }}></Box>

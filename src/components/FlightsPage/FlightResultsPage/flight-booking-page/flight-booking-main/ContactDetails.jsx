@@ -11,11 +11,14 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import PaymentGateway from "../../../../ui/PaymentGateway";
 import { ToastContainer, toast } from "react-toastify";
 import { useAuth } from "../../../../../UseContext/AuthorizationProvider";
+import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 
 const ContactDetails = ({ flightId }) => {
   const [phone, setPhone] = useState();
   const [open, setOpen] = useState(false);
   const { token } = useAuth().tokenDetails;
+  const { departDate } = useFlightSearch().departvalue;
+  const { returnDate } = useFlightSearch().returnValue;
 
   const handleOpen = () => {
     console.log("handleOpen");
@@ -133,7 +136,9 @@ const ContactDetails = ({ flightId }) => {
         <PaymentGateway
           open={open}
           handleClose={handleClose}
-          flightId={flightId}
+          booingId={flightId}
+          startDate={departDate}
+          endDate={returnDate}
         />
       </Container>
     </div>

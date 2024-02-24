@@ -14,11 +14,14 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import PayConfirmModal from "./PayConfirmModal";
 import CloseIcon from "@mui/icons-material/Close";
 import { useAuth } from "../../UseContext/AuthorizationProvider";
-import { fetchFlightBookingInfo } from "../../Apis/BookingApi";
+import {
+  fetchFlightBookingInfo,
+  fetchHotelBookingInfo,
+} from "../../Apis/BookingApi";
 
 const style = {
   position: "absolute",
@@ -43,7 +46,13 @@ const paperStyle = {
   border: "1px solid lightgray",
 };
 
-export default function PaymentGateway({ open, handleClose, flightId }) {
+export default function PaymentGateway({
+  open,
+  handleClose,
+  booingId,
+  startDate,
+  endDate,
+}) {
   const [selectedMonth, setSelectedMonth] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
   const [showCardDetails, setShowCardDetails] = useState("upi-option");
@@ -51,6 +60,7 @@ export default function PaymentGateway({ open, handleClose, flightId }) {
   const [openPayConfrm, setOpenPayConfrm] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const handleOpenPayConfrm = () => {
     setOpenPayConfrm(true);
@@ -76,18 +86,32 @@ export default function PaymentGateway({ open, handleClose, flightId }) {
     const upiRegex = /^[0-9]{10}@upi$/;
     if (upiRegex.test(upiId)) {
       setIsLoading(true);
-      fetchFlightBookingInfo(flightId).then((resp) => {
-        if (resp.status === "success") {
-          // setBookingData(resp?.booking);
-          const dataFromLS = JSON.parse(localStorage.getItem("bookingData"));
-          const bookingDataFromLS = dataFromLS !== null ? dataFromLS : [];
-          localStorage.setItem(
-            "bookingData",
-            JSON.stringify([...bookingDataFromLS, resp?.booking])
-          );
-        }
-        // console.log("booking res", resp);
-      });
+      if (pathname.includes("/flights")) {
+        fetchFlightBookingInfo(booingId, startDate, endDate).then((resp) => {
+          if (resp.status === "success") {
+            // setBookingData(resp?.booking);
+            const dataFromLS = JSON.parse(localStorage.getItem("bookingData"));
+            const bookingDataFromLS = dataFromLS !== null ? dataFromLS : [];
+            localStorage.setItem(
+              "bookingData",
+              JSON.stringify([resp?.booking, ...bookingDataFromLS])
+            );
+          }
+        });
+      } else if (pathname.includes("/hotels")) {
+        fetchHotelBookingInfo(booingId, startDate, endDate).then((resp) => {
+          if (resp.status === "success") {
+            const dataFromLS = JSON.parse(
+              localStorage.getItem("hotelBookingData")
+            );
+            const bookingDataFromLS = dataFromLS !== null ? dataFromLS : [];
+            localStorage.setItem(
+              "hotelBookingData",
+              JSON.stringify([resp?.booking, ...bookingDataFromLS])
+            );
+          }
+        });
+      }
 
       setTimeout(() => {
         setOpenPayConfrm(true);

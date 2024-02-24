@@ -2,7 +2,6 @@ import { Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { useFlightResult } from "../../../../../UseContext/FlightResultProvider";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 
 const SortByDeparatureTime = ({ getFilterFlights }) => {

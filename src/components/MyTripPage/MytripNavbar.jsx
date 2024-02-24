@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
-import LuggageIcon from '@mui/icons-material/Luggage';
+import HotelIcon from "@mui/icons-material/Hotel";
 import FlightIcon from "@mui/icons-material/Flight";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -15,15 +15,15 @@ const ProlieButton = styled(Button)({
   color: "gray",
 });
 const menuItemStyle = {
-    cursor: "default", 
-    "&:hover": {backgroundColor: "white"}
-}
-const MytripNavbar = ({ token, handleLoginOpen }) => {
+  cursor: "default",
+  "&:hover": { backgroundColor: "white" },
+};
+const MytripNavbar = ({ token, handleLoginOpen, setActiveIndx }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
   const { handleLogout } = useAuth();
-  const {setIsSignup} = useAuth().signupDetails;
+  const { setIsSignup } = useAuth().signupDetails;
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -32,27 +32,31 @@ const MytripNavbar = ({ token, handleLoginOpen }) => {
     setAnchorEl(null);
   };
 
-//   console.log("userdetails", JSON.parse(localStorage.getItem("userDetails")));
+  //   console.log("userdetails", JSON.parse(localStorage.getItem("userDetails")));
 
   return (
     <Box className="mytrip-navbar" pt={2} pb={2}>
       {/* cleartrip logo  */}
-      <Box sx={{display: "flex", alignItems: "center", gap: "20px"}}>
+      <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
         <Link to="/">
-            <img
+          <img
             className="cleartrip-logo"
             src="https://careers.cleartrip.com/images/cleartrip/footer-logo.svg"
             alt="cleartrip-logo"
-            />
+          />
         </Link>
         <Link to="/flights">
-            <Tooltip title="Flight"><FlightIcon htmlColor="gray" /></Tooltip>
+          <Tooltip title="Flight">
+            <FlightIcon htmlColor="gray" />
+          </Tooltip>
         </Link>
         <Link to="/hotels">
-            <Tooltip title="Hotel"><LuggageIcon htmlColor="gray"/></Tooltip>
+          <Tooltip title="Hotel">
+            <HotelIcon htmlColor="gray" />
+          </Tooltip>
         </Link>
       </Box>
-      
+
       {/* profile section */}
 
       <ProlieButton
@@ -63,7 +67,11 @@ const MytripNavbar = ({ token, handleLoginOpen }) => {
         onClick={handleClick}
       >
         <AccountCircleRoundedIcon htmlColor="gray" />
-        <span className="profile-text" >{token ? JSON.parse(localStorage.getItem("userDetails"))?.name : "Your trips"}</span>
+        <span className="profile-text">
+          {token
+            ? JSON.parse(localStorage.getItem("userDetails"))?.name
+            : "Your trips"}
+        </span>
         <ArrowDropDownRoundedIcon htmlColor="gray" />
       </ProlieButton>
 
@@ -78,26 +86,69 @@ const MytripNavbar = ({ token, handleLoginOpen }) => {
       >
         {token ? (
           <>
-            <MenuItem onClick={handleClose} sx={{...menuItemStyle, cursor: "pointer"}} >Trips</MenuItem>
-            <MenuItem onClick={handleClose} sx={{...menuItemStyle, cursor: "pointer"}} >Profile</MenuItem>
-            <MenuItem onClick={handleClose} sx={{...menuItemStyle}} >
-              <Button onClick={handleLogout} sx={{textTransform: "none", color: "tomato", ml: -1}}>Logout</Button>
+            <MenuItem
+              onClick={() => {
+                setActiveIndx(1);
+                handleClose();
+              }}
+              sx={{ ...menuItemStyle, cursor: "pointer" }}
+            >
+              Trips
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                setActiveIndx(2);
+                handleClose();
+              }}
+              sx={{ ...menuItemStyle, cursor: "pointer" }}
+            >
+              Hotel Booking Info
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                setActiveIndx(3);
+                handleClose();
+              }}
+              sx={{ ...menuItemStyle, cursor: "pointer" }}
+            >
+              Profile
+            </MenuItem>
+            <MenuItem onClick={handleClose} sx={{ ...menuItemStyle }}>
+              <Button
+                onClick={handleLogout}
+                sx={{ textTransform: "none", color: "tomato", ml: -1 }}
+              >
+                Logout
+              </Button>
             </MenuItem>
           </>
         ) : (
           <>
-            <MenuItem 
-                autoFocus="false"
-                sx={{...menuItemStyle, display: "flex", flexDirection: "column",}} 
-                onClick={handleClose}>
+            <MenuItem
+              autoFocus="false"
+              sx={{
+                ...menuItemStyle,
+                display: "flex",
+                flexDirection: "column",
+              }}
+              onClick={handleClose}
+            >
               <Button
                 onClick={handleLoginOpen}
                 variant="contained"
-                sx={{ textTransform: "none", mb: 2}}
+                sx={{ textTransform: "none", mb: 2 }}
               >
                 Sign in
-              </Button> 
-              <p>New here? <Button onClick ={() => setIsSignup(true)} sx={{textTransform: "none"}} >Register</Button></p>
+              </Button>
+              <p>
+                New here?{" "}
+                <Button
+                  onClick={() => setIsSignup(true)}
+                  sx={{ textTransform: "none" }}
+                >
+                  Register
+                </Button>
+              </p>
             </MenuItem>
           </>
         )}
