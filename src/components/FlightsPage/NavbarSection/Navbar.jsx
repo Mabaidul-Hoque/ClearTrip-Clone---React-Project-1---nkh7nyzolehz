@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./NavbarStyles.css";
 import { OffersContext } from "../../../UseContext/OfferDetailsProvider";
-import { Box, Button, Stack } from "@mui/material";
+import { Box, Button, Divider, Stack } from "@mui/material";
 import LoginPage from "../../Login-signup/LoginPage";
 import { useAuth } from "../../../UseContext/AuthorizationProvider";
 import styled from "@emotion/styled";
@@ -77,6 +77,8 @@ const Navbar = ({ handleLoginOpen }) => {
         </Stack>
         <LoginPage />
       </Box>
+
+      <Divider />
     </>
   );
 };

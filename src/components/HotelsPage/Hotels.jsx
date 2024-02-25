@@ -42,12 +42,13 @@ const Hotels = () => {
     if (token && inputPlace !== undefined) {
       navigate("/hotels/results");
     } else if (token && inputPlace === undefined) {
-      notify("Fill the details first!");
+      toast.error("Fill the details first!", { theme: "colored" });
     } else {
-      notify("You have to login first to continue further!");
+      toast.error("You have to login first to continue further!", {
+        theme: "colored",
+      });
     }
   };
-  const notify = (text) => toast(text);
 
   return (
     <div id="hotel-page">

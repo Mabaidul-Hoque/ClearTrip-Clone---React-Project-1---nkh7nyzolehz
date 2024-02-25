@@ -21,7 +21,7 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
 const Rooms = ({ singleHotel, hotelID }) => {
   const { token } = useAuth().tokenDetails;
   const navigate = useNavigate();
-  const {singleRoom, setSingleRoom} = useHotelContext().singleRoomData;
+  const { singleRoom, setSingleRoom } = useHotelContext().singleRoomData;
 
   const handleHotelBook = (room) => {
     setSingleRoom(room);
@@ -30,22 +30,24 @@ const Rooms = ({ singleHotel, hotelID }) => {
     if (token) {
       navigate(`/hotels/itinerary/${hotelID}`);
     } else {
-      notify("Please login first");
+      toast.error("Please login first", { theme: "colored" });
     }
   };
 
-  const notify = (text) => toast(text);
   return (
     <div id="rooms">
       <h2>Rooms available</h2>
       <div className="room-cards">
-        {singleHotel.rooms && singleHotel.rooms.map((room, indx) => (
+        {singleHotel.rooms &&
+          singleHotel.rooms.map((room, indx) => (
             <DemoPaper
               sx={{ width: { xs: "19rem", sm: "15rem", md: "19rem" } }}
               key={room._id}
             >
               <Stack
-                justifyContent={"center"} alignItems={"flex-start"} gap={1}
+                justifyContent={"center"}
+                alignItems={"flex-start"}
+                gap={1}
               >
                 <h3>Room Only</h3>
                 <div className="bed-details">{room.bedDetail}</div>
@@ -53,7 +55,11 @@ const Rooms = ({ singleHotel, hotelID }) => {
                 <div className="room-price">
                   <CurrencyRupeeIcon fontSize="sm" />
                   <span
-                    style={{ fontSize: "20px", fontWeight: "600", paddingRight: "5px" }}
+                    style={{
+                      fontSize: "20px",
+                      fontWeight: "600",
+                      paddingRight: "5px",
+                    }}
                   >
                     {room.CurrencyRupeeIcon}
                     {room.costPerNight}

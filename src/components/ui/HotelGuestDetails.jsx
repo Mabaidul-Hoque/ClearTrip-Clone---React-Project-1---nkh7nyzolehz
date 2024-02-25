@@ -40,7 +40,7 @@ const HotelGuestDetails = ({ name, setName, contact, setContact }) => {
     setAddedGuest((prev) => prev - 1);
     const updatedGuests = guests.filter((guest) => guest !== item);
     setGuests(updatedGuests);
-    notify("One guest is removed successfully");
+    toast.success("One guest is removed successfully", { theme: "colored" });
   };
   const totalGuest = () => {
     const totalAdults = rooms.reduce(
@@ -61,21 +61,20 @@ const HotelGuestDetails = ({ name, setName, contact, setContact }) => {
     setAddedGuest((prev) => prev + 1);
     if (gfullName !== "" && gfName !== "" && glName !== "") {
       setGuests((prev) => [...prev, gfullName]);
-      notify("Guest added successfully");
+      toast.success("Guest added successfully", { theme: "colored" });
       handleClose();
       setGFName("");
       setGLName("");
     } else if (gfName === "" && glName === "") {
       gfNameRef.current.focus();
-      notify("Enter the first name!");
+      toast.warn("Enter the first name!", { theme: "colored" });
     } else if (glName === "") {
       glNameRef.current.focus();
-      notify("Enter the last name!");
+      toast.warn("Enter the last name!", { theme: "colored" });
     } else {
-      notify("Fill all the details!");
+      toast.error("Fill all the details!", { theme: "colored" });
     }
   };
-  const notify = (text) => toast(text);
 
   return (
     <>

@@ -9,9 +9,12 @@ import { fetchFilteredFlights } from "../../../Apis/FlightSearchApi";
 import { useParams } from "react-router-dom";
 import { CustomTheme } from "../../../util/muiTheme";
 import Footer from "../../FooterPage/Footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const FlightResultsPage = () => {
-  const { airplaneDetails, flightPage, totalFlightsVal,loadingData } = useFlightSearch();
+  const { airplaneDetails, flightPage, totalFlightsVal, loadingData } =
+    useFlightSearch();
   const { setAirplanes } = airplaneDetails;
   const { setTotalResult } = totalFlightsVal;
   const { setIsLoading } = loadingData;
@@ -52,8 +55,8 @@ const FlightResultsPage = () => {
       <div id="flight-result-page">
         <ResultNavbar />
 
-        <Divider sx={{ mt: 2}} />
-        
+        <Divider sx={{ mt: 2 }} />
+
         <main id="flight-result-main">
           <Stack
             flexDirection={{
@@ -71,6 +74,7 @@ const FlightResultsPage = () => {
         </main>
 
         <Footer />
+        <ToastContainer />
       </div>
     </ThemeProvider>
   );

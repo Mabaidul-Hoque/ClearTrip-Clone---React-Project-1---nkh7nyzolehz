@@ -122,19 +122,20 @@ const ResultNavbar = () => {
       }
     } else {
       if (source === "" || destination === "") {
-        notify("Fill the details before search!");
+        toast.warn("Fill the details before search!", { theme: "colored" });
       }
       if (
         source !== "" &&
         destination !== "" &&
         source.substring(0, 3) === destination.substring(0, 3)
       ) {
-        notify("Inputs are either same or invalid!, provide correct inputs");
+        toast.error(
+          "Inputs are either same or invalid!, provide correct inputs",
+          { theme: "colored" }
+        );
       }
     }
   };
-
-  const notify = (text) => toast(text);
 
   return (
     <ThemeProvider theme={CustomTheme}>

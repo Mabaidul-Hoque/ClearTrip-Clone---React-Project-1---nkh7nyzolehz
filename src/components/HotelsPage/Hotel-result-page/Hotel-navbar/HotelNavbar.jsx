@@ -33,11 +33,9 @@ const HotelNavbar = () => {
         setIsLoading(false);
       });
     } else {
-      notify("Fill the input details!");
+      toast.error("Fill the input details!", { theme: "colored" });
     }
   };
-
-  const notify = (text) => toast(text);
 
   return (
     <nav className="hotel-result-navbar">

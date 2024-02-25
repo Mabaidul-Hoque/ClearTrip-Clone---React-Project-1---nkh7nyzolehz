@@ -22,6 +22,8 @@ import { toast } from "react-toastify";
 import Autocomplete from "../../../ui/Autocomplete";
 import { CheckInOutDate } from "../../../ui/CheckInOutDate";
 import AddRooms from "../../../ui/AddRooms";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   display: "flex",
@@ -92,11 +94,9 @@ const HotelDetailsPage = () => {
         navigate("/hotels/results");
       });
     } else {
-      notify("Fill the input details!");
+      toast.error("Fill the input details!", { theme: "colored" });
     }
   };
-
-  const notify = (text) => toast(text);
 
   return (
     <div className="hotel-details-page">
@@ -336,6 +336,7 @@ const HotelDetailsPage = () => {
       </main>
       <Box sx={{ borderBottom: "1px solid gray", mt: 10 }}></Box>
       <Footer />
+      <ToastContainer />
     </div>
   );
 };

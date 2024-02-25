@@ -10,6 +10,8 @@ import { FontProvider } from "./UseContext/FontProvider";
 import { Outlet } from "react-router-dom";
 import { useAuth } from "./UseContext/AuthorizationProvider";
 import { Footer } from "./components";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const { pathname } = useLocation();
@@ -46,6 +48,7 @@ function App() {
         </Stack>
         <Box sx={{ borderBottom: "1px solid gray", mt: "8rem" }}></Box>
         <Footer />
+        <ToastContainer />
       </div>
     </LocalizationProvider>
   );

@@ -16,45 +16,63 @@ const closeBtn = {
 const SignupPage = () => {
   const { signupDetails, logSignDetails, tokenDetails } = useAuth();
   const { handleLoginClose, islogin } = logSignDetails;
-  const { name, setName, email, setEmail, password, setPassword,isSignup, setIsSignup } = signupDetails;
+  const {
+    name,
+    setName,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    isSignup,
+    setIsSignup,
+  } = signupDetails;
   const { setToken } = tokenDetails;
 
   const handleSignupSubmit = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#])[A-Za-z\d@#]{8,}$/;
     if (name && regex.test(email) && passRegex.test(password)) {
-      fetchSignup({ name, email, password, appType: "bookingportals" })
-        .then((response) => {
+      fetchSignup({ name, email, password, appType: "bookingportals" }).then(
+        (response) => {
           if (response.status === "success") {
-            notify("You have registered successfully");
+            toast.success("You have registered successfully", {
+              theme: "colored",
+            });
             localStorage.setItem("token", response.token);
-            localStorage.setItem("userDetails", JSON.stringify(response?.data?.user));
+            localStorage.setItem(
+              "userDetails",
+              JSON.stringify(response?.data?.user)
+            );
             setToken(response.token);
             handleSignupClose();
             handleLoginClose();
           } else {
-            notify("Already you have an accoount , login please");
+            toast.error("Already you have an accoount , login please", {
+              theme: "colored",
+            });
           }
           setName("");
           setEmail("");
           setPassword("");
-      });
+        }
+      );
     } else if (email && !regex.test(email)) {
-      toast.error("Email is invalid!", {theme: "colored"});
-      
-    } else if(password && !passRegex.test(password)) {
-      toast.error("Password has to contains 8 character of alphabet and number and special character!", {
-        theme: "colored"
-      })
-    }else {
-      notify("Some fields are missing or invalid!");
+      toast.error("Email is invalid!", { theme: "colored" });
+    } else if (password && !passRegex.test(password)) {
+      toast.error(
+        "Password has to contains 8 character of alphabet and number and special character!",
+        {
+          theme: "colored",
+        }
+      );
+    } else {
+      toast.error("Fill all the details!", { theme: "colored" });
     }
   };
-  const notify = (text) => toast(text);
 
   const handleSignupClose = () => {
     setIsSignup(false);
-  }
+  };
   return (
     <div>
       <Modal

@@ -17,34 +17,43 @@ const closeBtn = {
 const LoginPage = () => {
   const { signupDetails, logSignDetails, tokenDetails } = useAuth();
   const { handleLoginClose, islogin } = logSignDetails;
-  const { email, setEmail, password, setPassword, setIsSignup, isSignup } = signupDetails;
+  const { email, setEmail, password, setPassword, setIsSignup, isSignup } =
+    signupDetails;
   const { setToken } = tokenDetails;
 
   const handleLoginSubmit = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#])[A-Za-z\d@#]{8,}$/;
     if (regex.test(email) && passRegex.test(password)) {
-      fetchLogin({ email, password, appType: "bookingportals" })
-        .then((response) => {
+      fetchLogin({ email, password, appType: "bookingportals" }).then(
+        (response) => {
           if (response.status === "success") {
-            notify("You have logged in successfully");
+            toast.success("You have logged in successfully", {
+              theme: "colored",
+            });
             localStorage.setItem("token", response.token);
             setToken(response.token);
             localStorage.setItem("userDetails", JSON.stringify(response?.data));
             handleLoginClose();
+            setEmail("");
+            setPassword("");
           } else {
-            notify("You don't have an accoount , create one!");
+            toast.error(response?.message, {
+              theme: "colored",
+            });
           }
-          setEmail("");
-          setPassword("");
-      });
+        }
+      );
     } else if (email && !regex.test(email)) {
-      notify("Email is invalid!");
+      toast.error("Email is invalid!", { theme: "colored" });
+    } else if (password && !passRegex.test(password)) {
+      toast.error("Password is incorrect!", {
+        theme: "colored",
+      });
     } else {
-      notify("Some fields are missing or invalid!");
+      toast.error("Fill all the details!", { theme: "colored" });
     }
   };
-  const notify = (text) => toast(text);
 
   return (
     <div>
@@ -119,8 +128,6 @@ const LoginPage = () => {
           </div>
         </Modal>
       )}
-
-      <ToastContainer theme="dark" />
     </div>
   );
 };

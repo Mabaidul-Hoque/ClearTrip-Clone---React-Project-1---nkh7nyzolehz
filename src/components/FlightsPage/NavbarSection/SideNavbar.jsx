@@ -13,7 +13,7 @@ const SideNavbar = () => {
   const { setOffersUrlFilter } = useContext(OffersContext);
   const { pathname } = useLocation();
 
-  const notify = () => toast("Page is under construction");
+  const notify = () => toast("Page is under development!");
   return (
     <Stack
       sx={{

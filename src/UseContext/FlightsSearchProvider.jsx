@@ -71,8 +71,6 @@ export const FlightsSearchProvider = ({ children }) => {
     localStorage.setItem("source", source);
     localStorage.setItem("destination", destination);
     localStorage.setItem("departDay", departDay);
-    console.log("source", source);
-    console.log("destination", destination);
     if (source !== "" && destination !== "") {
       if (
         source.substring(0, 3) !== destination.substring(0, 3) &&
@@ -99,19 +97,19 @@ export const FlightsSearchProvider = ({ children }) => {
       }
     } else {
       if (source === "" || destination === "") {
-        notify("Fill the details before search!");
-      }
-      if (
+        toast.warn("Fill the details before search!", { theme: "colored" });
+      } else if (
         source !== "" &&
         destination !== "" &&
         source.substring(0, 3) === destination.substring(0, 3)
       ) {
-        notify("Inputs are either same or invalid!, provide correct inputs");
+        toast.error(
+          "Inputs are either same or invalid!, provide correct inputs",
+          { theme: "colored" }
+        );
       }
     }
   };
-
-  const notify = (text) => toast(text);
 
   const flightSearch = {
     departvalue: {

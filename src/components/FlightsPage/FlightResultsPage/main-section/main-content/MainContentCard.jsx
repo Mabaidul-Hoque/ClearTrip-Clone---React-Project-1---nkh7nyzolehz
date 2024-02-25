@@ -19,11 +19,9 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
   const { token } = useAuth().tokenDetails;
 
   const handleBookBtn = () => {
-    fetchSingleFlightDetails(airplane._id)
-      .then((resp) => {
-        setSingleFlight(resp.data);
-      }
-    );
+    fetchSingleFlightDetails(airplane._id).then((resp) => {
+      setSingleFlight(resp.data);
+    });
   };
 
   const handleId = (value) => {
@@ -33,7 +31,6 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
   const handleFlightDetails = () => {
     setIsOpen((prev) => !prev);
   };
-  const notify = (text) => toast(text);
   return (
     <ThemeProvider theme={CustomTheme}>
       <Paper elevation={8} className="main-content-card">
@@ -185,7 +182,7 @@ const MainContentCard = ({ airplane, planeLogoName, index }) => {
                 className="book-btn"
                 onClick={() => {
                   handleBookBtn();
-                  navigate(`/flights/itinerary/${airplane._id}`)
+                  navigate(`/flights/itinerary/${airplane._id}`);
                 }}
               >
                 Book

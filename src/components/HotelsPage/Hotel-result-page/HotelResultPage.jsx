@@ -13,10 +13,12 @@ import Footer from "../../FooterPage/Footer";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import Button from "@mui/material/Button";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const HotelResultPage = () => {
   // const [demoCount, setDemoCount] = useState(0);
-  const { hotelSearchHandler, filtersData, hotelDetails, loadingData, } =
+  const { hotelSearchHandler, filtersData, hotelDetails, loadingData } =
     useHotelContext();
   const {
     setSingleHotel,
@@ -28,7 +30,6 @@ const HotelResultPage = () => {
   } = hotelDetails;
   const { handleHotelFilter } = filtersData;
   const { isLoading } = loadingData;
-  
 
   const memoizedhotels = useMemo(() => hotels, [hotels]);
 
@@ -118,6 +119,7 @@ const HotelResultPage = () => {
 
       <Box sx={{ borderBottom: "1px solid gray" }}></Box>
       <Footer />
+      <ToastContainer />
     </div>
   );
 };

@@ -13,6 +13,7 @@ import Footer from "../../../../FooterPage/Footer";
 import HotelGuestDetails from "../../../../ui/HotelGuestDetails";
 import { ToastContainer, toast } from "react-toastify";
 import PaymentGateway from "../../../../ui/PaymentGateway";
+import "react-toastify/dist/ReactToastify.css";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const months = [
@@ -104,7 +105,6 @@ const HotelCheckoutPage = () => {
   //   // }
   // }
 
-  const notify = (text) => toast(text);
 
   return (
     <div>
@@ -189,6 +189,7 @@ const HotelCheckoutPage = () => {
 
       <Box mt={10} mb={4} sx={{ borderBottom: "1px solid lightgray" }}></Box>
       <Footer />
+      <ToastContainer />
     </div>
   );
 };
