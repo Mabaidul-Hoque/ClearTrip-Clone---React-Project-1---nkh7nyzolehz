@@ -4,6 +4,8 @@ import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeft
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../../../../UseContext/AuthorizationProvider";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const ImageCarousel = ({ hotel, handleSingleHotelClick }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -25,14 +27,20 @@ const ImageCarousel = ({ hotel, handleSingleHotelClick }) => {
 
   return (
     <div className="result-carosel">
+      {/* PREV -BUTTON */}
       <button
         className="res-prev-btn"
         onClick={() => goToPreviousImage(hotel.images)}
       >
         <KeyboardArrowLeftOutlinedIcon />
       </button>
-      <img
+      {/* HOTEL IMAGE */}
+      <LazyLoadImage
         loading="lazy"
+        effect="blur"
+        width={300}
+        height={250}
+        style={{ objectFit: "cover" }}
         src={hotel.images && hotel.images[currentImageIndex]}
         alt={hotel.name}
         onClick={() => {
@@ -42,7 +50,7 @@ const ImageCarousel = ({ hotel, handleSingleHotelClick }) => {
             : notify("You have to log in first to continue further");
         }}
       />
-
+      {/* NEXT BUTTON */}
       <button
         className="res-next-btn"
         onClick={() => goToNextImage(hotel.images)}

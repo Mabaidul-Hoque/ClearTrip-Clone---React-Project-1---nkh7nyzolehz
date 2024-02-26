@@ -46,11 +46,11 @@ const departDateStyle = () => ({
 });
 
 export default function FlightSearchCard() {
-  const [isSwitch, setIsSwitch] = useState(false);
   const navigate = useNavigate();
   const { airplaneDetails, searchPlane, departvalue, sourceDestValue } =
     useFlightSearch();
-  const { source, destination, cityNameCodes } = sourceDestValue;
+  const { source, destination, cityNameCodes, setSource, setDestination } =
+    sourceDestValue;
   const { airportNames } = airplaneDetails;
   const { handleSearchClick } = searchPlane;
   const { departDay } = departvalue;
@@ -130,7 +130,6 @@ export default function FlightSearchCard() {
             <DepartCityInput
               options={airportNames}
               noOptionText={"No Match Found"}
-              source={source}
             />
           </div>
           <div className="f-switch-btn" onClick={() => setIsSwitch(!isSwitch)}>

@@ -6,13 +6,18 @@ const DestinationCityInput = ({
   options,
   noOptionText = "No Items",
   inputStyleClass,
+  isSwitch,
+  onValueChange,
 }) => {
   const [searchText, setSearchText] = useState("");
   const [allOption, setAllOption] = useState(options || []);
   const [focus, setFocus] = useState(false);
 
   const { sourceDestValue } = useFlightSearch();
-  const { destination, setDestination, destinationRef } = sourceDestValue;
+  const { destination, setDestination, destinationRef, source } =
+    sourceDestValue;
+
+  console.log("isSwitch in desti-->", isSwitch);
 
   useEffect(() => {
     setAllOption(options);

@@ -4,7 +4,7 @@ import "../HotelResultPage.css";
 import { useAuth } from "../../../../UseContext/AuthorizationProvider";
 import HotelFilter from "./HotelFilter";
 import LoginPage from "../../../Login-signup/LoginPage";
-import { Tooltip } from "@mui/material";
+import { Box, Button, Tooltip } from "@mui/material";
 import { fetchHotels } from "../../../../Apis/HotelDetailsApi";
 import { toast } from "react-toastify";
 import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
@@ -12,6 +12,13 @@ import { OPTION } from "../../Hotels";
 import Autocomplete from "../../../ui/Autocomplete";
 import { CheckInOutDate } from "../../../ui/CheckInOutDate";
 import AddRooms from "../../../ui/AddRooms";
+import styled from "@emotion/styled";
+
+const LoginButton = styled(Button)({
+  width: "8rem",
+  height: "40px",
+  textTransform: "none",
+});
 
 const HotelNavbar = () => {
   const { tokenDetails, logSignDetails, handleLogout, signupDetails } =
@@ -39,6 +46,7 @@ const HotelNavbar = () => {
 
   return (
     <nav className="hotel-result-navbar">
+      {/* LOGO LOGIN SECTION */}
       <div className="logo-login-section">
         {/* cleartrip logo */}
         <Link to="/">
@@ -50,7 +58,26 @@ const HotelNavbar = () => {
             />
           </Tooltip>
         </Link>
-        <div className="logo-login-middle">
+        {/* LOGIN/SIGNUP BUTTON */}
+        <LoginButton
+          variant="contained"
+          sx={{
+            width: { xs: "5.5rem", sm: "6.5rem", md: "8rem" },
+            height: { xs: 30, sm: 35, md: 40 },
+          }}
+          onClick={() => {
+            setIsSignup(false);
+            token ? handleLogout() : handleLoginOpen();
+          }}
+        >
+          {token ? "Log out" : "Log in / Sign up"}
+        </LoginButton>
+      </div>
+      <LoginPage />
+
+      {/* NAVBAR SEARCH SECTION */}
+      <Box sx={{ display: "flex", justifyContent: "center", mt: { lg: -6 } }}>
+        <div className="hres_search_section">
           {/* hotel result input */}
           <div className="location-input-box-res">
             <Autocomplete
@@ -71,21 +98,8 @@ const HotelNavbar = () => {
             Update
           </button>
         </div>
-
-        {/* hotel-res-login */}
-        <button
-          className="hotel-res-login"
-          onClick={() => {
-            setIsSignup(false);
-            token ? handleLogout() : handleLoginOpen();
-          }}
-        >
-          {token ? "Log out" : "Log in / Sign up"}
-        </button>
-      </div>
-
-      <LoginPage />
-      {/* filter section */}
+      </Box>
+      {/* FILTER SECTION */}
       <HotelFilter />
     </nav>
   );

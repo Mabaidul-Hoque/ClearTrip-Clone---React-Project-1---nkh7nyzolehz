@@ -14,6 +14,7 @@ const Autocomplete = ({
 }) => {
   const [searchText, setSearchText] = useState(displayValue);
   const [allOption, setAllOption] = useState(options || []);
+  const [iconThemeIndx, setIconThemeIndx] = useState(-1);
   const hotelSearchRef = useRef();
   const { inputInfo } = useHotelContext();
   const { inputPlace, setInputPlace, focus, setFocus } = inputInfo;
@@ -87,10 +88,15 @@ const Autocomplete = ({
               className="place-option"
               key={`${index}`}
               onClick={() => selectHandle(option)}
+              onMouseEnter={() => setIconThemeIndx(index)}
+              onMouseLeave={() => setIconThemeIndx(-1)}
             >
               <div style={{ marginLeft: "30px" }}>{option[optionKey]}</div>
               <div className="location-icon">
-                <FmdGoodOutlinedIcon fontSize="medium" htmlColor="gray" />
+                <FmdGoodOutlinedIcon
+                  fontSize="medium"
+                  htmlColor={iconThemeIndx === index ? "#0f53a0" : "gray"}
+                />
               </div>
             </div>
           ))

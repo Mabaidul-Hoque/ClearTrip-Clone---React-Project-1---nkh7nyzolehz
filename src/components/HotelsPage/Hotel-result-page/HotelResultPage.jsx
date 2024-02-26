@@ -8,7 +8,7 @@ import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { useNavigate } from "react-router-dom";
 import { useDebounce } from "../../../CustomHooks/useDebouce";
 import ImageCarousel from "./image-carousel/ImageCarousel";
-import { Box, Pagination, Stack } from "@mui/material";
+import { Box, Divider, Pagination, Stack } from "@mui/material";
 import Footer from "../../FooterPage/Footer";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -17,7 +17,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const HotelResultPage = () => {
-  // const [demoCount, setDemoCount] = useState(0);
   const { hotelSearchHandler, filtersData, hotelDetails, loadingData } =
     useHotelContext();
   const {
@@ -49,10 +48,11 @@ const HotelResultPage = () => {
 
   return (
     <div id="hotel-result-page">
+      {/* HOTEL RESULT PAGE NAVBAR */}
       <HotelNavbar />
-      <div
-        style={{ borderBottom: "1px solid #D3D3D3", marginTop: "20px" }}
-      ></div>
+
+      {/* dIVIDER */}
+      <Divider sx={{ mt: 2, mb: 2 }} />
 
       <main id="hotel-result-page-main">
         {!isLoading ? (
@@ -117,7 +117,7 @@ const HotelResultPage = () => {
         </div>
       </Stack>
 
-      <Box sx={{ borderBottom: "1px solid gray" }}></Box>
+      <Divider sx={{ mt: 4, mb: 2 }} />
       <Footer />
       <ToastContainer />
     </div>

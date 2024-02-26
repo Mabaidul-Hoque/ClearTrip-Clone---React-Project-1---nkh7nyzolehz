@@ -78,7 +78,7 @@ const Hotels = () => {
             />
             {focus ? (
               <span className="place-icon">
-                <FmdGoodIcon fontSize="medium" htmlColor="blue" />
+                <FmdGoodIcon fontSize="medium" htmlColor="#254EAF" />
               </span>
             ) : (
               <span className="place-icon">

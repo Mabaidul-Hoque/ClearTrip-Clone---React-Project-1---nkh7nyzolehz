@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./HotelDetailsPage.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../../../UseContext/AuthorizationProvider";
-import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import { OPTION } from "../../Hotels";
 import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
@@ -15,15 +14,28 @@ import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import Rooms from "./Rooms";
-import { Box, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Stack,
+  Tooltip,
+  Typography,
+  Button,
+  Paper,
+  Divider,
+} from "@mui/material";
 import Footer from "../../../FooterPage/Footer";
 import LoginPage from "../../../Login-signup/LoginPage";
-import { toast } from "react-toastify";
 import Autocomplete from "../../../ui/Autocomplete";
 import { CheckInOutDate } from "../../../ui/CheckInOutDate";
 import AddRooms from "../../../ui/AddRooms";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+const LoginButton = styled(Button)({
+  width: "8rem",
+  height: "40px",
+  textTransform: "none",
+});
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   display: "flex",
@@ -100,78 +112,91 @@ const HotelDetailsPage = () => {
 
   return (
     <div className="hotel-details-page">
-      <nav className="hotel-details-navbar">
-        <Stack flexDirection={"column"} gap={4}>
-          <div className="logo-login-section">
-            {/* cleartrip logo */}
-            <Link to="/">
+      <nav style={{ width: "90%", margin: "0 auto" }}>
+        {/* LOGO LOGIN SECTION */}
+        <div className="logo-login-section">
+          {/* cleartrip logo */}
+          <Link to="/">
+            <Tooltip title="Home">
               <img
                 className="cleartrip-logo"
                 src="https://careers.cleartrip.com/images/cleartrip/footer-logo.svg"
                 alt="cleartrip-logo"
               />
-            </Link>
-            {/* search inputs */}
-            <div className="logo-login-middle">
-              <div className="location-input-box-details">
-                <Autocomplete
-                  hotelInputClass="hotel-details-input-box"
-                  options={OPTION}
-                  optionKey={"name"}
-                  noOptionText={"No Match Found"}
-                  // displayValue={singleHotel?.name}
-                />
-              </div>
-              <CheckInOutDate dateClass="check-in-out-date-res" />
-              <AddRooms btnClassName="add-room-btn add-room-btn-details" />
-              <button className="update-btn" onClick={handleHotelUpdate}>
-                Update
-              </button>
+            </Tooltip>
+          </Link>
+          {/* LOGIN/SIGNUP BUTTON */}
+          <LoginButton
+            variant="contained"
+            sx={{
+              width: { xs: "5.5rem", sm: "6.5rem", md: "8rem" },
+              height: { xs: 30, sm: 35, md: 40 },
+            }}
+            onClick={() => {
+              setIsSignup(false);
+              token ? handleLogout() : handleLoginOpen();
+            }}
+          >
+            {token ? "Log out" : "Log in / Sign up"}
+          </LoginButton>
+        </div>
+        <LoginPage />
+
+        {/* NAVBAR SEARCH SECTION */}
+        <Box sx={{ display: "flex", justifyContent: "center", mt: { lg: -6 } }}>
+          <div className="hres_search_section">
+            {/* hotel result input */}
+            <div className="location-input-box-res">
+              <Autocomplete
+                hotelInputClass="hotel-res-input-box"
+                options={OPTION}
+                noOptionText={"No Match Found"}
+                optionKey={"name"}
+                displayValue={singleHotel?.name}
+              />
             </div>
-            {/* log in btn */}
-            <button
-              onClick={() => {
-                setIsSignup(false);
-                token ? handleLogout() : handleLoginOpen();
-              }}
-              className="hotel-res-login"
-            >
-              {token ? "Log out" : "Log in / Sign up"}
+            {/* hotel result date inputes */}
+            <CheckInOutDate dateClass="check-in-out-date-res" />
+
+            {/* hotel result room type */}
+            <AddRooms btnClassName="add-room-btn add-room-btn-res" />
+
+            {/* new search btn */}
+            <button className="update-btn" onClick={handleHotelUpdate}>
+              Update
             </button>
           </div>
+        </Box>
 
-          <LoginPage />
-
-          <Stack
-            flexDirection={"row"}
-            alignItems={"center"}
-            gap={{
-              xs: 2,
-              sm: 4,
-            }}
-            sx={{
-              fontSize: "16px",
-              fontWeight: "500",
-              color: "#515152",
-              cursor: "pointer",
-            }}
-            className="details-topic"
-          >
-            {detailTopics.map((topic, index) => (
-              <a
-                key={topic.id + index}
-                className={topicIndx === index ? "topic active-topic" : "topic"}
-                onClick={() => setTopicIndx(index)}
-                href={`#${topic.id}`}
-              >
-                {topic.name}
-              </a>
-            ))}
-          </Stack>
+        <Stack
+          flexDirection={"row"}
+          alignItems={"center"}
+          gap={{
+            xs: 2,
+            sm: 4,
+          }}
+          sx={{
+            mt: 3,
+            fontSize: "16px",
+            fontWeight: "500",
+            color: "#515152",
+            cursor: "pointer",
+          }}
+        >
+          {detailTopics.map((topic, index) => (
+            <a
+              key={topic.id + index}
+              className={topicIndx === index ? "topic active-topic" : "topic"}
+              onClick={() => setTopicIndx(index)}
+              href={`#${topic.id}`}
+            >
+              {topic.name}
+            </a>
+          ))}
         </Stack>
       </nav>
+      <Divider sx={{ mb: 2 }} />
 
-      <div style={{ borderBottom: "1px solid gray" }}></div>
       <main className="hotel-details-main">
         <Stack
           mb={4}
