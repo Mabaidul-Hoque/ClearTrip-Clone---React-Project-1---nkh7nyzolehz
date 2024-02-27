@@ -20,7 +20,7 @@ export default function CountryCodeDropdown() {
 
   const searchCode = ({ target }) => {
     const filteredData = countries.filter((country) =>
-      country?.countryName.toLowerCase().includes(target.value)
+      country?.countryName.toLowerCase().includes(target.value.toLowerCase())
     );
     setFilteredCountries(filteredData);
   };
