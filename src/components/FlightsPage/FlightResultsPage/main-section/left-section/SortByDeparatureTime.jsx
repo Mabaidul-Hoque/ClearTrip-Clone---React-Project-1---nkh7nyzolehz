@@ -3,17 +3,25 @@ import React, { useEffect, useState } from "react";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
+import { useFlightFilter } from "../../../../../UseContext/FlightFilterProvider";
 
 const SortByDeparatureTime = ({ getFilterFlights }) => {
-  const [isDeparature, setIsDeparature] = useState(true);
-  const [isEarlyMorning, setIsEarlyMorning] = useState(false);
-  const [isMorning, setIsMorning] = useState(false);
-  const [isAfterNoon, setIsAfterNoon] = useState(false);
-  const [isEvening, setIsEvening] = useState(false);
-  const [isNight, setIsNight] = useState(false);
-
   const { filterData, setFlightPage } = useFlightSearch();
   const { filterItems, setFilterItems } = filterData;
+  const {
+    isDeparature,
+    setIsDeparature,
+    isEarlyMorning,
+    setIsEarlyMorning,
+    isMorning,
+    setIsMorning,
+    isAfterNoon,
+    setIsAfterNoon,
+    isEvening,
+    setIsEvening,
+    isNight,
+    setIsNight,
+  } = useFlightFilter().filterByDepartTime;
 
   useEffect(() => {
     setFlightPage(1);

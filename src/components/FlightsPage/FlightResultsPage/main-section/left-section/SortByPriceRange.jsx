@@ -7,6 +7,7 @@ import { styled } from "@mui/material/styles";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { useDebounce } from "../../../../../CustomHooks/useDebouce";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
+import { useFlightFilter } from "../../../../../UseContext/FlightFilterProvider";
 
 const PriceSlider = styled(Slider)({
   color: "green",
@@ -29,11 +30,10 @@ const PriceSlider = styled(Slider)({
 });
 
 const SortByPriceRange = ({ getFilterFlights }) => {
-  const [isPrice, setIsPrice] = useState(true);
-  const [flightPrice, setFlightPrice] = useState();
-
   const { filterData, setFlightPage } = useFlightSearch();
   const { setFilterItems, filterItems } = filterData;
+  const { isPrice, setIsPrice, flightPrice, setFlightPrice } =
+    useFlightFilter().filterPriceRange;
 
   const flightPriceDebounce = useDebounce(flightPrice, 500);
 

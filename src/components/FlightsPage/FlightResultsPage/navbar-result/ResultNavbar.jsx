@@ -19,6 +19,7 @@ import { toast } from "react-toastify";
 import DateInputs from "../../FlightSearchCard/DateInputs";
 import DepartCityInput from "../../FlightSearchCard/DepartCityInput";
 import DestinationCityInput from "../../FlightSearchCard/DestinationCityInput";
+import { useFlightFilter } from "../../../../UseContext/FlightFilterProvider";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const RightButton = styled(Button)({
@@ -85,6 +86,15 @@ const ResultNavbar = () => {
   const { setTotalResult } = totalFlightsVal;
   const { setIsLoading } = loadingData;
   const navigate = useNavigate();
+  const { setNonStop, setOneStop, setTwoStop } = useFlightFilter().filterByStop;
+  const {
+    setIsEarlyMorning,
+    setIsMorning,
+    setIsAfterNoon,
+    setIsEvening,
+    setIsNight,
+  } = useFlightFilter().filterByDepartTime;
+  const { setFlightPrice } = useFlightFilter().filterPriceRange;
 
   useEffect(() => {
     fetchAirportNames().then((res) => {
@@ -93,6 +103,15 @@ const ResultNavbar = () => {
   }, []);
 
   const handleResultFlightSearch = () => {
+    setNonStop(false);
+    setOneStop(false);
+    setTwoStop(false);
+    setIsEarlyMorning(false);
+    setIsMorning(false);
+    setIsAfterNoon(false);
+    setIsEvening(false);
+    setIsNight(false);
+    setFlightPrice(3000);
     if (
       source.substring(0, 3) !== destination.substring(0, 3) &&
       cityNameCodes.includes(source.substring(0, 3)) &&

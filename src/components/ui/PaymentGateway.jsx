@@ -89,7 +89,6 @@ export default function PaymentGateway({
       if (pathname.includes("/flights")) {
         fetchFlightBookingInfo(booingId, startDate, endDate).then((resp) => {
           if (resp.status === "success") {
-            // setBookingData(resp?.booking);
             const dataFromLS = JSON.parse(localStorage.getItem("bookingData"));
             const bookingDataFromLS = dataFromLS !== null ? dataFromLS : [];
             localStorage.setItem(

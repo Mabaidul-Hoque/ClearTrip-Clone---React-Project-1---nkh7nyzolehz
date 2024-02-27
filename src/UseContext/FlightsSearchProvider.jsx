@@ -67,10 +67,6 @@ export const FlightsSearchProvider = ({ children }) => {
   );
 
   const handleSearchClick = () => {
-    // setting in the local storage beacause via context , data is unable read in the flight result page
-    // localStorage.setItem("source", source);
-    // localStorage.setItem("destination", destination);
-    // localStorage.setItem("departDay", departDay);
     if (source !== "" && destination !== "") {
       if (
         source.substring(0, 3) !== destination.substring(0, 3) &&

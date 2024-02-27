@@ -4,15 +4,20 @@ import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutl
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
 import { CustomTheme } from "../../../../../util/muiTheme";
+import { useFlightFilter } from "../../../../../UseContext/FlightFilterProvider";
 const SortByStops = ({ getFilterFlights }) => {
-  const [stop, setStop] = useState(true);
-  const [nonStop, setNonStop] = useState(false);
-  const [oneStop, setOneStop] = useState(false);
-  const [twoStop, setTwoStop] = useState(false);
-
-  const { searchPlane, filterData, setFlightPage } = useFlightSearch();
-  const { handleSearchClick } = searchPlane;
+  const { filterData, setFlightPage } = useFlightSearch();
   const { filterItems, setFilterItems } = filterData;
+  const {
+    stop,
+    setStop,
+    nonStop,
+    setNonStop,
+    oneStop,
+    setOneStop,
+    twoStop,
+    setTwoStop,
+  } = useFlightFilter().filterByStop;
 
   useEffect(() => {
     setFlightPage(1);
@@ -31,34 +36,19 @@ const SortByStops = ({ getFilterFlights }) => {
   const handleNonStopFilter = () => {
     setOneStop(false);
     setTwoStop(false);
-    // if (!nonStop) {
-
     setFilterItems((prev) => ({ ...prev, stops: "0" }));
-
-    // } else {
-    // delete filterItems["stops"];
-    // }
   };
 
   const handleOneStopFilter = () => {
     setNonStop(false);
     setTwoStop(false);
-    // if (!oneStop) {
     setFilterItems((prev) => ({ ...prev, stops: "1" }));
-    // } else {
-    // delete filterItems["stops"];
-    // }
   };
 
   const handleTwoStopFilter = () => {
     setNonStop(false);
     setOneStop(false);
-
-    // if (!twoStop) {
     setFilterItems((prev) => ({ ...prev, stops: "2" }));
-    // } else {
-    // delete filterItems["stops"];
-    // }
   };
 
   return (

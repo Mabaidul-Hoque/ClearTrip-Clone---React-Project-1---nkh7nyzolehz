@@ -11,6 +11,7 @@ import { CustomTheme } from "../../../util/muiTheme";
 import Footer from "../../FooterPage/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import FlightFilterProvider from "../../../UseContext/FlightFilterProvider";
 
 const FlightResultsPage = () => {
   const { airplaneDetails, flightPage, totalFlightsVal, loadingData } =
@@ -51,32 +52,34 @@ const FlightResultsPage = () => {
   };
 
   return (
-    <ThemeProvider theme={CustomTheme}>
-      <div id="flight-result-page">
-        <ResultNavbar />
+    <FlightFilterProvider>
+      <ThemeProvider theme={CustomTheme}>
+        <div id="flight-result-page">
+          <ResultNavbar />
 
-        <Divider sx={{ mt: 2 }} />
+          <Divider sx={{ mt: 2 }} />
 
-        <main id="flight-result-main">
-          <Stack
-            flexDirection={{
-              xxs: "column",
-              lg: "row",
-            }}
-            justifyContent={"flex-start"}
-            alignItems={"flex-start"}
-            gap={2}
-            id="main-section-container"
-          >
-            <LeftSideSortingBar getFilterFlights={handleFlightResultFilter} />
-            <MainContent getFilterFlights={handleFlightResultFilter} />
-          </Stack>
-        </main>
+          <main id="flight-result-main">
+            <Stack
+              flexDirection={{
+                xxs: "column",
+                lg: "row",
+              }}
+              justifyContent={"flex-start"}
+              alignItems={"flex-start"}
+              gap={2}
+              id="main-section-container"
+            >
+              <LeftSideSortingBar getFilterFlights={handleFlightResultFilter} />
+              <MainContent getFilterFlights={handleFlightResultFilter} />
+            </Stack>
+          </main>
 
-        <Footer />
-        <ToastContainer />
-      </div>
-    </ThemeProvider>
+          <Footer />
+          <ToastContainer />
+        </div>
+      </ThemeProvider>
+    </FlightFilterProvider>
   );
 };
 

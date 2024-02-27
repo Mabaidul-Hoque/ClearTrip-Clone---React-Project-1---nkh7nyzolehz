@@ -21,6 +21,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import MenuIcon from "@mui/icons-material/Menu";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { ToastContainer } from "react-toastify";
 
 const fetchYourTrips = [
   "Check your trip details",
@@ -38,6 +39,7 @@ const MyTrip = () => {
   const bdRef = useRef(JSON.parse(localStorage.getItem("bookingData"))); // bdRef --> bookindDadaRef
   const hbdRef = useRef(JSON.parse(localStorage.getItem("hotelBookingData"))); // hbdRef --> HotelBookindDadaRef
 
+  console.log("hbdRef", hbdRef);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -187,7 +189,7 @@ const MyTrip = () => {
                       ))}
                     </div>
                   ) : (
-                    <h1 className="intial-msg">
+                    <h1 style={{ fontSize: 18, fontWeight: 500 }}>
                       Looks like you have not booked any trips yet.Start
                       exploring!
                     </h1>
@@ -232,13 +234,13 @@ const MyTrip = () => {
                       ))}
                     </div>
                   ) : (
-                    <h1>
+                    <h1 style={{ fontSize: 16, fontWeight: 450 }}>
                       Hotels Booking Information : Looks Like You haven't book
                       any hotels yet.
                     </h1>
                   ))}
 
-                {/* profile data */}
+                {/* PROFILE INFO */}
                 {activeIndx === 3 && (
                   <>
                     <h1 className="profile-content">Profile</h1>
@@ -246,13 +248,17 @@ const MyTrip = () => {
                     <div className="email-details">
                       <p>Email address</p>
                       {/* data from booking details */}
-                      <p>mabaidul@gmail.com</p>
+                      <p>
+                        {JSON.parse(localStorage.getItem("userDetails"))?.email}
+                      </p>
                     </div>
                     <h3>Personal information</h3>
                     <div className="p-info">
                       <p>Full Name</p>
                       {/* data from booking details */}
-                      <p className="full-name">mabaidul hoque</p>
+                      <p className="full-name">
+                        {JSON.parse(localStorage.getItem("userDetails"))?.name}
+                      </p>
 
                       <p className="birthdate">Birthdate</p>
                       <p>Not Provied</p>
@@ -360,6 +366,8 @@ const MyTrip = () => {
 
       <Divider sx={{ mt: 2, mb: 2 }} />
       <Footer />
+
+      <ToastContainer />
     </div>
   );
 };

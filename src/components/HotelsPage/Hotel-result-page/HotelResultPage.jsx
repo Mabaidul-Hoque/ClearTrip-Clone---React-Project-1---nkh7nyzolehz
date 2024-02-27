@@ -52,17 +52,19 @@ const HotelResultPage = () => {
       <HotelNavbar />
 
       {/* dIVIDER */}
-      <Divider sx={{ mt: 2, mb: 2 }} />
-
+      <Divider sx={{ mt: 2, mb: 4 }} />
+      {/* HOTEL RESULT MAIN CONTENT */}
       <main id="hotel-result-page-main">
         {!isLoading ? (
           memoizedhotels.length > 0 ? (
             memoizedhotels.map((hotel) => (
               <div key={hotel._id} className="hotel-card">
+                {/* CARD IMAGE CAROUSEL */}
                 <ImageCarousel
                   handleSingleHotelClick={handleSingleHotelClick}
                   hotel={hotel}
                 />
+                {/* CARD TITLE */}
                 <div className="hotel-card-title">
                   <span>{hotel.name}</span>
                   <div>
@@ -72,14 +74,21 @@ const HotelResultPage = () => {
                     <span>{hotel.rating}/5</span>
                   </div>
                 </div>
+                {/* CARD RATING */}
+                <div style={{ marginBottom: 10 }}>
+                  <p style={{ fontSize: 14, color: "gray" }}>
+                    {hotel?.rating}-star hotel · {hotel?.location}
+                  </p>
+                </div>
+                {/* CARD PRICE DETAILS */}
                 <div className="hotel-card-price">
                   <span>
-                    <CurrencyRupeeIcon fontSize="sm" />
+                    ₹{Math.ceil(hotel?.avgCostPerNight)} +{" "}
+                    <span className="night">
+                      ₹{Math.ceil(hotel?.avgCostPerNight * 0.1)} tax / night
+                    </span>
                   </span>
-                  <div>
-                    {Math.ceil(hotel.avgCostPerNight)}
-                    <span className="night"> / night</span>
-                  </div>
+                  <div></div>
                 </div>
               </div>
             ))

@@ -2,7 +2,7 @@
 .hotel-result-navbar,
 .hotel-details-navbar {
   width: 90%;
-  margin: auto;
+  margin: 0 auto;
 }
 
 /* LOGO LOGIN SECTION */
@@ -100,7 +100,7 @@
   background-color: #f3f3f3;
 }
 #hotel-result-page-main {
-  width: 90%;
+  width: 95%;
   margin: auto;
   margin-top: 20px;
 }
@@ -162,7 +162,8 @@
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 50px;
+  gap: 20px;
+  row-gap: 60px;
 }
 
 /* IMAGE-CARD CONTAINER */
@@ -171,7 +172,6 @@
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  gap: 10px;
   width: 300px;
   height: 300px;
 }
@@ -212,6 +212,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 10px;
 }
 .hotel-card-title > span {
   max-width: 16vw;

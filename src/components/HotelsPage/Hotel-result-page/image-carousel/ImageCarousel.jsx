@@ -40,7 +40,7 @@ const ImageCarousel = ({ hotel, handleSingleHotelClick }) => {
         effect="blur"
         width={300}
         height={250}
-        style={{ objectFit: "cover" }}
+        style={{ objectFit: "cover", borderRadius: 15 }}
         src={hotel.images && hotel.images[currentImageIndex]}
         alt={hotel.name}
         onClick={() => {
