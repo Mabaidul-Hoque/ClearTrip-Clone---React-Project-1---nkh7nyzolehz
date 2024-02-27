@@ -7,11 +7,12 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+
 import PaymentGateway from "../../../../ui/PaymentGateway";
 import { ToastContainer, toast } from "react-toastify";
 import { useAuth } from "../../../../../UseContext/AuthorizationProvider";
 import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
+import CountryCodeDropdown from "../../../../ui/CountryCodeDropdown";
 
 const ContactDetails = ({ flightId }) => {
   const [phone, setPhone] = useState();
@@ -84,23 +85,19 @@ const ContactDetails = ({ flightId }) => {
             }}
           >
             <Stack
-              p={1}
               border={"1px solid lightgray"}
               borderRadius={"5px"}
               flexDirection={"row"}
+              justifyContent={"center"}
               sx={{
                 gap: {
                   xs: 1,
                 },
                 cursor: "pointer",
-                width: {
-                  xs: "80px",
-                  // xl: "4vw",
-                },
+                minWidth: "6rem",
               }}
             >
-              <Typography>+91</Typography>
-              <KeyboardArrowDownIcon />
+              <CountryCodeDropdown />
             </Stack>
             <input
               className="mobile-input"
