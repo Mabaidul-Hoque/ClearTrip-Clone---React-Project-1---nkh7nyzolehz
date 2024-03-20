@@ -1,16 +1,5 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-} from "react";
+import React, { createContext, useContext, useState, useCallback } from "react";
 import { fetchHotels, fetchFilteredHotels } from "../Apis/HotelDetailsApi";
-import { fetchSortByPrice } from "../Apis/HotelResulFilterApi";
-import { useDebounce } from "../hooks/useDebouce";
-import { toast } from "react-toastify";
-const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const HotelContext = createContext();
 
@@ -71,7 +60,6 @@ export const HotelDetailsProvider = ({ children }) => {
   }, [inputPlace, hotelPage, filterItems]);
 
   const handleCheckInDateChange = (date) => {
-    // console.log("check in input value", date);
     setCheckInDate(date);
   };
   const handleCheckOutDateChange = (date) => {

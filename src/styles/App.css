@@ -3,24 +3,11 @@
   box-sizing: border-box;
 }
 
-.home-navbar{
+.home-navbar {
   width: 93%;
   margin: 0 auto;
 }
-.home-main{
-  /* display: flex; */
+.home-main {
   width: 93%;
   margin: 0 auto;
 }
-/* .App{
-  border: 1px solid red;
-} */
-
-@media only screen and (max-width: 600px) {
-  /* .App{
-    width: 00px;
-    margin: 0 auto;
-  } */
-  
-}
-

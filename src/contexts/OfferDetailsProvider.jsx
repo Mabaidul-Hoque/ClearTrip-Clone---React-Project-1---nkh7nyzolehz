@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 import { fetchOffers } from "../Apis/OffersApi";
 
 export const OffersContext = createContext();
@@ -16,7 +16,6 @@ export const OfferDetailsProvider = ({ children }) => {
 
     // if (type !== undefined || type !== "") {
     fetchOffers().then((res) => {
-      // console.log(res);
       setOffers(res.data.offers);
     });
     // }

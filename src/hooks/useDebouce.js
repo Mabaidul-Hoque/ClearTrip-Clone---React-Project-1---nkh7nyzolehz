@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-// import "../../public/assets/plane_logo/air-india-logo.png";
+import { useEffect, useState } from "react";
 
 function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
