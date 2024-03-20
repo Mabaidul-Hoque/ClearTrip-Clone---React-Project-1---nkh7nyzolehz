@@ -3,7 +3,7 @@ import { Stack, Typography } from "@mui/material";
 import MainContentCard from "./MainContentCard";
 import Pagination from "@mui/material/Pagination";
 import { planes } from "../../../../../static-data/StaticData";
-import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
+import { useFlightSearch } from "../../../../../contexts/FlightsSearchProvider";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import Button from "@mui/material/Button";

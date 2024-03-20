@@ -5,7 +5,7 @@ import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 import LuggageOutlinedIcon from "@mui/icons-material/LuggageOutlined";
 import { Link, useLocation } from "react-router-dom";
-import { OffersContext } from "../../../UseContext/OfferDetailsProvider";
+import { OffersContext } from "../../../contexts/OfferDetailsProvider";
 import { Box, Stack } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 

@@ -10,16 +10,16 @@ import styled from "@emotion/styled";
 import SyncAltOutlinedIcon from "@mui/icons-material/SyncAltOutlined";
 import Traveller from "./Traveller";
 import { fetchAirportNames } from "../../../../Apis/AirportNamesApi";
-import { useAuth } from "../../../../UseContext/AuthorizationProvider";
+import { useAuth } from "../../../../contexts/AuthorizationProvider";
 import { fetchFlights } from "../../../../Apis/FlightSearchApi";
-import { useFlightSearch } from "../../../../UseContext/FlightsSearchProvider";
+import { useFlightSearch } from "../../../../contexts/FlightsSearchProvider";
 import { CustomTheme } from "../../../../util/muiTheme";
 import LoginPage from "../../../Login-signup/LoginPage";
 import { toast } from "react-toastify";
 import DateInputs from "../../FlightSearchCard/DateInputs";
 import DepartCityInput from "../../FlightSearchCard/DepartCityInput";
 import DestinationCityInput from "../../FlightSearchCard/DestinationCityInput";
-import { useFlightFilter } from "../../../../UseContext/FlightFilterProvider";
+import { useFlightFilter } from "../../../../contexts/FlightFilterProvider";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const RightButton = styled(Button)({

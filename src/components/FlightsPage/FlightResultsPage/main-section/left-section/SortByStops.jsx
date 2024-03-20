@@ -2,9 +2,9 @@ import { Box, Stack, ThemeProvider, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
+import { useFlightSearch } from "../../../../../contexts/FlightsSearchProvider";
 import { CustomTheme } from "../../../../../util/muiTheme";
-import { useFlightFilter } from "../../../../../UseContext/FlightFilterProvider";
+import { useFlightFilter } from "../../../../../contexts/FlightFilterProvider";
 const SortByStops = ({ getFilterFlights }) => {
   const { filterData, setFlightPage } = useFlightSearch();
   const { filterItems, setFilterItems } = filterData;

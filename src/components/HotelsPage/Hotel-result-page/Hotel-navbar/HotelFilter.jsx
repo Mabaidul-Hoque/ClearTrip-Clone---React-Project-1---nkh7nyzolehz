@@ -13,7 +13,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 import CheckCircleSharpIcon from "@mui/icons-material/CheckCircleSharp";
 import StarCategory from "./StarCategory";
-import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
+import { useHotelContext } from "../../../../contexts/HotelDetailsProvider";
 import { fetchSortByPrice } from "../../../../Apis/HotelResulFilterApi";
 import FilterByPriceRange from "./FilterByPriceRange";
 

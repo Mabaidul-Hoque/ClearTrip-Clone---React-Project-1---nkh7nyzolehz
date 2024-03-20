@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { Box, Button, MenuItem, Modal, Paper, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import HotelRatings from "./HotelRatings";
-import { useHotelContext } from "../../UseContext/HotelDetailsProvider"; 
+import { useHotelContext } from "../../contexts/HotelDetailsProvider"; 
 import CloseIcon from "@mui/icons-material/Close";
 
 const InfoCardPaper = styled(Paper)({

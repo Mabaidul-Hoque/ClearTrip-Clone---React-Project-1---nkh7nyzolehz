@@ -1,4 +1,4 @@
-import  React, {useState, useRef} from "react";
+import React, { useState, useRef } from "react";
 import "../FlightPage.css";
 import {
   Box,
@@ -17,7 +17,7 @@ import ExpandLessOutlinedIcon from "@mui/icons-material/ExpandLessOutlined";
 import PersonIcon from "@mui/icons-material/Person";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import TravellerOptionDropdown from "../../ui/TravellerOptionDropdown";
-import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
+import { useFlightSearch } from "../../../contexts/FlightsSearchProvider";
 
 const passengerAddbBtnTexts = [
   "Economy",
@@ -68,10 +68,12 @@ const PassengerAdd = () => {
           ) : (
             <PersonOutlineOutlinedIcon htmlColor="#999999" />
           )}
-          <span style={{ fontSize: "16px", fontWeight: 500, paddingLeft: "5px" }}>
-            {traveller.adults} Adults {" "}
-            {traveller.children > 0 ? `${traveller.children} Children` : ""} {" "}
-            {traveller.infants > 0 ? `${traveller.infants} Infants` : ""} , {" "}
+          <span
+            style={{ fontSize: "16px", fontWeight: 500, paddingLeft: "5px" }}
+          >
+            {traveller.adults} Adults{" "}
+            {traveller.children > 0 ? `${traveller.children} Children` : ""}{" "}
+            {traveller.infants > 0 ? `${traveller.infants} Infants` : ""} ,{" "}
             {seatType}
           </span>
           {open ? (

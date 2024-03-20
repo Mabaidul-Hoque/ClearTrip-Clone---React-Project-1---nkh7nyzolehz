@@ -17,7 +17,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useLocation, useNavigate } from "react-router-dom";
 import PayConfirmModal from "./PayConfirmModal";
 import CloseIcon from "@mui/icons-material/Close";
-import { useAuth } from "../../UseContext/AuthorizationProvider";
+import { useAuth } from "../../contexts/AuthorizationProvider";
 import {
   fetchFlightBookingInfo,
   fetchHotelBookingInfo,

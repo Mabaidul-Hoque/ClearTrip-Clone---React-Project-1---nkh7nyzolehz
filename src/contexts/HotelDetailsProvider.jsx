@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import { fetchHotels, fetchFilteredHotels } from "../Apis/HotelDetailsApi";
 import { fetchSortByPrice } from "../Apis/HotelResulFilterApi";
-import { useDebounce } from "../CustomHooks/useDebouce";
+import { useDebounce } from "../hooks/useDebouce";
 import { toast } from "react-toastify";
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 

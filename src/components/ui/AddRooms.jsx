@@ -4,7 +4,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PersonIcon from "@mui/icons-material/Person";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import { useHotelContext } from "../../UseContext/HotelDetailsProvider";
+import { useHotelContext } from "../../contexts/HotelDetailsProvider";
 import { Box, Button, Divider, Stack, Typography } from "@mui/material";
 import { roomOptions } from "../../static-data/StaticData";
 import { toast } from "react-toastify";

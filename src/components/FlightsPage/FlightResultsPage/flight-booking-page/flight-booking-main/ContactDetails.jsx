@@ -10,8 +10,8 @@ import React, { useEffect, useState } from "react";
 
 import PaymentGateway from "../../../../ui/PaymentGateway";
 import { ToastContainer, toast } from "react-toastify";
-import { useAuth } from "../../../../../UseContext/AuthorizationProvider";
-import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
+import { useAuth } from "../../../../../contexts/AuthorizationProvider";
+import { useFlightSearch } from "../../../../../contexts/FlightsSearchProvider";
 import CountryCodeDropdown from "../../../../ui/CountryCodeDropdown";
 
 const ContactDetails = ({ flightId }) => {

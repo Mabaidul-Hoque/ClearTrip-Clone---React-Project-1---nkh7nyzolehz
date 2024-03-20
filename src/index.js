@@ -8,15 +8,15 @@ import Flights from "./components/FlightsPage/Flights";
 import Offers from "./components/OffersPage/OffersPage";
 import MyTrip from "./components/MyTripPage/MyTrip";
 import FlightResultsPage from "./components/FlightsPage/FlightResultsPage/FlightResultsPage";
-import { FlightsSearchProvider } from "./UseContext/FlightsSearchProvider";
-import { HotelDetailsProvider } from "./UseContext/HotelDetailsProvider";
-import { OfferDetailsProvider } from "./UseContext/OfferDetailsProvider";
+import { FlightsSearchProvider } from "./contexts/FlightsSearchProvider";
+import { HotelDetailsProvider } from "./contexts/HotelDetailsProvider";
+import { OfferDetailsProvider } from "./contexts/OfferDetailsProvider";
 import HotelResultPage from "./components/HotelsPage/Hotel-result-page/HotelResultPage";
 import HotelDetailsPage from "./components/HotelsPage/Hotel-result-page/hotel-details-page/HotelDetailsPage";
-import AuthorizationProvider from "./UseContext/AuthorizationProvider";
+import AuthorizationProvider from "./contexts/AuthorizationProvider";
 import FlightBookingPage from "./components/FlightsPage/FlightResultsPage/flight-booking-page/FlightBookingPage";
 import HotelCheckoutPage from "./components/HotelsPage/Hotel-result-page/hotel-details-page/hotel-checkout-page/HotelCheckoutPage";
-import { FontProvider } from "./UseContext/FontProvider";
+import { FontProvider } from "./contexts/FontProvider";
 import HotelBookingPage from "./components/HotelsPage/Hotel-result-page/hotel-details-page/hotel-checkout-page/hotel-booking-page/HotelBookingPage";
 
 const router = createBrowserRouter([

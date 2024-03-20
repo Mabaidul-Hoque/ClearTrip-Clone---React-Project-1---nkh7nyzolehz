@@ -3,7 +3,7 @@ import { Button, Paper, Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import React from "react";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
-import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
+import { useFlightSearch } from "../../../../../contexts/FlightsSearchProvider";
 
 const CustomPaper = styled(Paper)({
   width: "18rem",
@@ -15,7 +15,7 @@ const CustomPaper = styled(Paper)({
   borderRight: "1px solid lightgray",
   borderRadius: "10px",
 });
-const FlightPriceCard = ({selected}) => {
+const FlightPriceCard = ({ selected }) => {
   const { singleFlight } = useFlightSearch().singleFlightValue;
 
   return (
@@ -44,8 +44,11 @@ const FlightPriceCard = ({selected}) => {
               fontWeight={"500"}
             >
               <CurrencyRupeeIcon fontSize="sm" />
-              <span>{ selected === 1 ? singleFlight.ticketPrice : 
-                (singleFlight?.ticketPrice + Math.ceil(singleFlight?.ticketPrice * 0.2))}
+              <span>
+                {selected === 1
+                  ? singleFlight.ticketPrice
+                  : singleFlight?.ticketPrice +
+                    Math.ceil(singleFlight?.ticketPrice * 0.2)}
               </span>
             </Stack>
           </Stack>
@@ -57,8 +60,14 @@ const FlightPriceCard = ({selected}) => {
               <Typography>Base fare(1traveller)</Typography>
               <Stack flexDirection={"row"} alignItems={"center "}>
                 <CurrencyRupeeIcon fontSize="sm" />
-                <span>{ selected === 1 ? Math.ceil(singleFlight.ticketPrice * 0.8) : 
-                  Math.ceil((singleFlight?.ticketPrice + (singleFlight?.ticketPrice * 0.2))*0.8)}
+                <span>
+                  {selected === 1
+                    ? Math.ceil(singleFlight.ticketPrice * 0.8)
+                    : Math.ceil(
+                        (singleFlight?.ticketPrice +
+                          singleFlight?.ticketPrice * 0.2) *
+                          0.8
+                      )}
                 </span>
               </Stack>
             </div>
@@ -66,8 +75,14 @@ const FlightPriceCard = ({selected}) => {
               <Typography>Taxes and fees</Typography>
               <Stack flexDirection={"row"} alignItems={"center "}>
                 <CurrencyRupeeIcon fontSize="sm" />
-                <span>{selected === 1 ? Math.ceil(singleFlight.ticketPrice * 0.15) : 
-                  Math.ceil((singleFlight?.ticketPrice + singleFlight?.ticketPrice * 0.2)*0.15)}
+                <span>
+                  {selected === 1
+                    ? Math.ceil(singleFlight.ticketPrice * 0.15)
+                    : Math.ceil(
+                        (singleFlight?.ticketPrice +
+                          singleFlight?.ticketPrice * 0.2) *
+                          0.15
+                      )}
                 </span>
               </Stack>
             </div>
@@ -75,8 +90,14 @@ const FlightPriceCard = ({selected}) => {
               <Typography>Discounts</Typography>
               <Stack flexDirection={"row"} alignItems={"center "}>
                 <CurrencyRupeeIcon fontSize="sm" />
-                <span>{selected === 1 ? Math.ceil(singleFlight.ticketPrice * 0.05) : 
-                  Math.ceil((singleFlight?.ticketPrice + singleFlight?.ticketPrice * 0.2)*0.05)}
+                <span>
+                  {selected === 1
+                    ? Math.ceil(singleFlight.ticketPrice * 0.05)
+                    : Math.ceil(
+                        (singleFlight?.ticketPrice +
+                          singleFlight?.ticketPrice * 0.2) *
+                          0.05
+                      )}
                 </span>
               </Stack>
             </div>

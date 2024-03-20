@@ -1,8 +1,8 @@
 import { Slider, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
-import { useDebounce } from "../../../../CustomHooks/useDebouce";
+import { useHotelContext } from "../../../../contexts/HotelDetailsProvider";
+import { useDebounce } from "../../../../hooks/useDebouce";
 
 const PrettoSlider = styled(Slider)({
   color: "black",

@@ -7,7 +7,7 @@ import FlightTakeoffOutlinedIcon from "@mui/icons-material/FlightTakeoffOutlined
 import FlightLandOutlinedIcon from "@mui/icons-material/FlightLandOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import PassengerAdd from "./PassengerAdd";
-import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
+import { useFlightSearch } from "../../../contexts/FlightsSearchProvider";
 import DepartCityInput from "./DepartCityInput";
 import DestinationCityInput from "./DestinationCityInput";
 import { CustomTheme } from "../../../util/muiTheme";

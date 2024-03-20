@@ -1,7 +1,7 @@
 import React from "react";
 import ResultNavbar from "./navbar-result/ResultNavbar";
 import "./FlightResultPage.css";
-import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
+import { useFlightSearch } from "../../../contexts/FlightsSearchProvider";
 import { Divider, Stack, ThemeProvider } from "@mui/material";
 import LeftSideSortingBar from "./main-section/left-section/LeftSideSortingBar";
 import MainContent from "./main-section/main-content/MainContent";
@@ -11,7 +11,7 @@ import { CustomTheme } from "../../../util/muiTheme";
 import Footer from "../../FooterPage/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import FlightFilterProvider from "../../../UseContext/FlightFilterProvider";
+import FlightFilterProvider from "../../../contexts/FlightFilterProvider";
 
 const FlightResultsPage = () => {
   const { airplaneDetails, flightPage, totalFlightsVal, loadingData } =

@@ -3,7 +3,7 @@ import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import "./loginSignup.css";
 import { fetchSignup } from "../../Apis/LoginSignupApi";
-import { useAuth } from "../../UseContext/AuthorizationProvider";
+import { useAuth } from "../../contexts/AuthorizationProvider";
 import { toast } from "react-toastify";
 
 const closeBtn = {

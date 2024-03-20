@@ -8,7 +8,7 @@ import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 import EditCalendarOutlinedIcon from "@mui/icons-material/EditCalendarOutlined";
 import AirlineSeatReclineNormalOutlinedIcon from "@mui/icons-material/AirlineSeatReclineNormalOutlined";
 import FastfoodOutlinedIcon from "@mui/icons-material/FastfoodOutlined";
-import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
+import { useFlightSearch } from "../../../../../contexts/FlightsSearchProvider";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;

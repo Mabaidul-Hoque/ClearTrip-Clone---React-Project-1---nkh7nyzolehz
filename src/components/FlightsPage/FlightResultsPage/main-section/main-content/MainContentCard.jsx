@@ -5,9 +5,9 @@ import TrendingFlatIcon from "@mui/icons-material/TrendingFlat";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { useNavigate } from "react-router-dom";
 import { fetchSingleFlightDetails } from "../../../../../Apis/FlightSearchApi";
-import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
+import { useFlightSearch } from "../../../../../contexts/FlightsSearchProvider";
 import { CustomTheme } from "../../../../../util/muiTheme";
-import { useAuth } from "../../../../../UseContext/AuthorizationProvider";
+import { useAuth } from "../../../../../contexts/AuthorizationProvider";
 import { toast } from "react-toastify";
 
 const MainContentCard = ({ airplane, planeLogoName, index }) => {

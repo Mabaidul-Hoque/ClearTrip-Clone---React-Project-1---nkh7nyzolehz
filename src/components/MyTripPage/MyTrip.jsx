@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import Footer from "../FooterPage/Footer";
-import { useAuth } from "../../UseContext/AuthorizationProvider";
+import { useAuth } from "../../contexts/AuthorizationProvider";
 import DoneIcon from "@mui/icons-material/Done";
 import HotelIcon from "@mui/icons-material/Hotel";
 import FlightIcon from "@mui/icons-material/Flight";

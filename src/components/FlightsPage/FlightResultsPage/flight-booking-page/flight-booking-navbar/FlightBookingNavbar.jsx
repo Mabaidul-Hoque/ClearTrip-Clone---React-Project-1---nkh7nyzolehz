@@ -4,7 +4,7 @@ import AccountCircleSharpIcon from "@mui/icons-material/AccountCircleSharp";
 import { Box, Button, Stack, Tooltip } from "@mui/material";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../../../UseContext/AuthorizationProvider";
+import { useAuth } from "../../../../../contexts/AuthorizationProvider";
 import LoginPage from "../../../../Login-signup/LoginPage";
 
 const CustomButton = styled(Button)({

@@ -5,9 +5,9 @@ import { Box, Stack, Typography } from "@mui/material";
 import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
-import { useDebounce } from "../../../../../CustomHooks/useDebouce";
-import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
-import { useFlightFilter } from "../../../../../UseContext/FlightFilterProvider";
+import { useDebounce } from "../../../../../hooks/useDebouce";
+import { useFlightSearch } from "../../../../../contexts/FlightsSearchProvider";
+import { useFlightFilter } from "../../../../../contexts/FlightFilterProvider";
 
 const PriceSlider = styled(Slider)({
   color: "green",

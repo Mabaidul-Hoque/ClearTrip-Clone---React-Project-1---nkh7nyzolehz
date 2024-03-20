@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useFlightSearch } from "../../../UseContext/FlightsSearchProvider";
+import { useFlightSearch } from "../../../contexts/FlightsSearchProvider";
 import "../FlightPage.css";
 import FlightCityDrowpdown from "../../ui/FlightCityDrowpdown";
 const DestinationCityInput = ({

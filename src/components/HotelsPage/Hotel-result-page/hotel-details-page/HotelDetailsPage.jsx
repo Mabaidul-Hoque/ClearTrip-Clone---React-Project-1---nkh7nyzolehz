@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./HotelDetailsPage.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "../../../../UseContext/AuthorizationProvider";
+import { useAuth } from "../../../../contexts/AuthorizationProvider";
 import { styled } from "@mui/material/styles";
 import { OPTION } from "../../Hotels";
-import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
+import { useHotelContext } from "../../../../contexts/HotelDetailsProvider";
 import {
   fetchHotels,
   fetchSingleHotel,

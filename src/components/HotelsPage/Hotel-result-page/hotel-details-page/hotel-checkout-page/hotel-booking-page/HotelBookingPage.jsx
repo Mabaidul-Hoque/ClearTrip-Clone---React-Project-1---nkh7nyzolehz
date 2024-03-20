@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { fetchHotelBookingInfo } from '../../../../../../Apis/BookingApi';
-import { useHotelContext } from '../../../../../../UseContext/HotelDetailsProvider';
+import { useHotelContext } from '../../../../../../contexts/HotelDetailsProvider';
 import { Divider, Typography } from '@mui/material';
 import FlightBookingNavbar from '../../../../../FlightsPage/FlightResultsPage/flight-booking-page/flight-booking-navbar/FlightBookingNavbar';
 

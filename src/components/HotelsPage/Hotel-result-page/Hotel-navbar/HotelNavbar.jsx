@@ -1,13 +1,13 @@
 import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import "../HotelResultPage.css";
-import { useAuth } from "../../../../UseContext/AuthorizationProvider";
+import { useAuth } from "../../../../contexts/AuthorizationProvider";
 import HotelFilter from "./HotelFilter";
 import LoginPage from "../../../Login-signup/LoginPage";
 import { Box, Button, Tooltip } from "@mui/material";
 import { fetchHotels } from "../../../../Apis/HotelDetailsApi";
 import { toast } from "react-toastify";
-import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
+import { useHotelContext } from "../../../../contexts/HotelDetailsProvider";
 import { OPTION } from "../../Hotels";
 import Autocomplete from "../../../ui/Autocomplete";
 import { CheckInOutDate } from "../../../ui/CheckInOutDate";

@@ -4,7 +4,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import FareDetails from "./FareDetails";
 import ContactDetails from "./ContactDetails";
-import { useFlightSearch } from "../../../../../UseContext/FlightsSearchProvider";
+import { useFlightSearch } from "../../../../../contexts/FlightsSearchProvider";
 import FareSelection from "./FareSelection";
 import "../FlightBookingPage.css";
 
@@ -221,7 +221,11 @@ const BookingDetails = ({ flightId, selected, setSelected }) => {
       <Box mt={3} mb={3} sx={{ borderBottom: "1px dotted #E6E6E6" }}></Box>
 
       {/* fare selection */}
-      <FareSelection singleFlight={singleFlight} selected={selected} setSelected={setSelected} />
+      <FareSelection
+        singleFlight={singleFlight}
+        selected={selected}
+        setSelected={setSelected}
+      />
       {/* fare details */}
       <FareDetails />
       {/* contact details */}

@@ -10,7 +10,7 @@ import React, { useRef, useState } from "react";
 import CourtesyTitles from "./CourtesyTitles";
 import { ToastContainer, toast } from "react-toastify";
 import CloseIcon from "@mui/icons-material/Close";
-import { useHotelContext } from "../../UseContext/HotelDetailsProvider";
+import { useHotelContext } from "../../contexts/HotelDetailsProvider";
 
 const style = {
   position: "absolute",

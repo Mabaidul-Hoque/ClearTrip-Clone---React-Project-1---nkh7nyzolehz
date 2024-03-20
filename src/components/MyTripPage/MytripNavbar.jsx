@@ -8,7 +8,7 @@ import FlightIcon from "@mui/icons-material/Flight";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import styled from "@emotion/styled";
-import { useAuth } from "../../UseContext/AuthorizationProvider";
+import { useAuth } from "../../contexts/AuthorizationProvider";
 
 const ProlieButton = styled(Button)({
   textTransform: "none",

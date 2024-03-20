@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { useHotelContext } from "../../UseContext/HotelDetailsProvider"; 
+import { useHotelContext } from "../../contexts/HotelDetailsProvider"; 
 
 const CustomButton = styled(Button)({
   background: "#FFFFFF",

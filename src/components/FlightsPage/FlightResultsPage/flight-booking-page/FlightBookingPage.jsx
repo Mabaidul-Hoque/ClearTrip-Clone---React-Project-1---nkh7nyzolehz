@@ -5,7 +5,7 @@ import BookingDetails from "./flight-booking-main/BookingDetails";
 import FlightPriceCard from "./flight-booking-main/FlightPriceCard";
 import { fetchSingleFlightDetails } from "../../../../Apis/FlightSearchApi";
 import { useParams } from "react-router-dom";
-import { useFlightSearch } from "../../../../UseContext/FlightsSearchProvider";
+import { useFlightSearch } from "../../../../contexts/FlightsSearchProvider";
 import Footer from "../../../FooterPage/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

@@ -4,8 +4,8 @@ import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuth } from "../../../../UseContext/AuthorizationProvider";
-import { useHotelContext } from "../../../../UseContext/HotelDetailsProvider";
+import { useAuth } from "../../../../contexts/AuthorizationProvider";
+import { useHotelContext } from "../../../../contexts/HotelDetailsProvider";
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   display: "flex",

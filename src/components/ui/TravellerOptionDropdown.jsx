@@ -1,40 +1,44 @@
 import React from "react";
-import { useFlightSearch } from "../../UseContext/FlightsSearchProvider";
+import { useFlightSearch } from "../../contexts/FlightsSearchProvider";
 import { Box, Stack, Typography } from "@mui/material";
 import ControlPointOutlinedIcon from "@mui/icons-material/ControlPointOutlined";
 import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
 
-
 const TravellerOptionDropdown = () => {
-    const { traveller, setTraveller } = useFlightSearch().travellerData;
+  const { traveller, setTraveller } = useFlightSearch().travellerData;
 
-    const handleIncrese = (state) => {
-        const updatedTraveller = {...traveller};
-        const totalTrvaller = updatedTraveller["adults"] + updatedTraveller["children"] + updatedTraveller["infants"];
-        if(state !== "infants" && totalTrvaller<12){
-            updatedTraveller[state] += 1;
-        } else if(state === "infants" && updatedTraveller["infants"] < 2){
-            updatedTraveller[state] += 1;
-        }
-        setTraveller(updatedTraveller);
+  const handleIncrese = (state) => {
+    const updatedTraveller = { ...traveller };
+    const totalTrvaller =
+      updatedTraveller["adults"] +
+      updatedTraveller["children"] +
+      updatedTraveller["infants"];
+    if (state !== "infants" && totalTrvaller < 12) {
+      updatedTraveller[state] += 1;
+    } else if (state === "infants" && updatedTraveller["infants"] < 2) {
+      updatedTraveller[state] += 1;
     }
-    const handleDecrease = (state) => {
-        const updatedTraveller = {...traveller};
-        if(state === "adults" && updatedTraveller[state] > 1){
-            updatedTraveller[state] -= 1;
-        }else if((state === "children" || state === "infants") && updatedTraveller[state] > 0){
-            updatedTraveller[state] -= 1;
-        } 
-        setTraveller(updatedTraveller);
+    setTraveller(updatedTraveller);
+  };
+  const handleDecrease = (state) => {
+    const updatedTraveller = { ...traveller };
+    if (state === "adults" && updatedTraveller[state] > 1) {
+      updatedTraveller[state] -= 1;
+    } else if (
+      (state === "children" || state === "infants") &&
+      updatedTraveller[state] > 0
+    ) {
+      updatedTraveller[state] -= 1;
     }
-    const getAddedTraveller = () => {
-        let addedTraveller = 0;
-        for( let key in traveller){
-            addedTraveller += traveller[key];
-        }
-        return addedTraveller;
+    setTraveller(updatedTraveller);
+  };
+  const getAddedTraveller = () => {
+    let addedTraveller = 0;
+    for (let key in traveller) {
+      addedTraveller += traveller[key];
     }
-
+    return addedTraveller;
+  };
 
   return (
     <>
@@ -62,7 +66,9 @@ const TravellerOptionDropdown = () => {
           <RemoveCircleOutlineOutlinedIcon
             htmlColor="#3567CC"
             fontSize="large"
-            className={traveller.adults === 1 ? "cursor-change" : "cursor-normal"}
+            className={
+              traveller.adults === 1 ? "cursor-change" : "cursor-normal"
+            }
             onClick={() => handleDecrease("adults")}
           />
           <span>{traveller.adults}</span>
@@ -70,7 +76,9 @@ const TravellerOptionDropdown = () => {
             htmlColor="#3567CC"
             fontSize="large"
             sx={{ cursor: "pointer" }}
-            className={getAddedTraveller() === 12 ? "cursor-change" : "cursor-normal"}
+            className={
+              getAddedTraveller() === 12 ? "cursor-change" : "cursor-normal"
+            }
             onClick={() => handleIncrese("adults")}
           />
         </Stack>
@@ -99,17 +107,19 @@ const TravellerOptionDropdown = () => {
           <RemoveCircleOutlineOutlinedIcon
             htmlColor="#3567CC"
             fontSize="large"
-            className={traveller.children === 0 ? "cursor-change" : "cursor-normal"}
-            onClick={() =>handleDecrease("children")}
+            className={
+              traveller.children === 0 ? "cursor-change" : "cursor-normal"
+            }
+            onClick={() => handleDecrease("children")}
           />
           <span>{traveller.children}</span>
           <ControlPointOutlinedIcon
             htmlColor="#3567CC"
             fontSize="large"
-            className={getAddedTraveller() === 12 ? "cursor-change" : "cursor-normal"}
-            onClick={() =>
-              handleIncrese("children")
+            className={
+              getAddedTraveller() === 12 ? "cursor-change" : "cursor-normal"
             }
+            onClick={() => handleIncrese("children")}
           />
         </Stack>
       </Box>
@@ -137,14 +147,20 @@ const TravellerOptionDropdown = () => {
           <RemoveCircleOutlineOutlinedIcon
             htmlColor="#3567CC"
             fontSize="large"
-            className={traveller.infants === 0 ? "cursor-change" : "cursor-normal"}
+            className={
+              traveller.infants === 0 ? "cursor-change" : "cursor-normal"
+            }
             onClick={() => handleDecrease("infants")}
           />
           <span>{traveller.infants}</span>
           <ControlPointOutlinedIcon
             htmlColor="#3567CC"
             fontSize="large"
-            className={(traveller.infants  === 2 || getAddedTraveller() === 12) ? "cursor-change" : "cursor-normal"}
+            className={
+              traveller.infants === 2 || getAddedTraveller() === 12
+                ? "cursor-change"
+                : "cursor-normal"
+            }
             onClick={() => handleIncrese("infants")}
           />
         </Stack>

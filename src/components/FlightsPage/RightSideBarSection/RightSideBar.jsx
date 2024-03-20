@@ -7,7 +7,7 @@ import {
   createTheme,
 } from "@mui/material";
 import React, { useState, useContext, useEffect } from "react";
-import { OffersContext } from "../../../UseContext/OfferDetailsProvider";
+import { OffersContext } from "../../../contexts/OfferDetailsProvider";
 import "./RightSideBarStyles.css";
 import "../../../styles/App.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -86,7 +86,14 @@ const RightSideBar = () => {
           </button>
         </div>
 
-        <Box sx={{ fontWeight: "500", fontSize: { lg: "16px", xl: "18px"}, mr: "50%" }} component="div">
+        <Box
+          sx={{
+            fontWeight: "500",
+            fontSize: { lg: "16px", xl: "18px" },
+            mr: "50%",
+          }}
+          component="div"
+        >
           More offers
         </Box>
 

@@ -3,7 +3,7 @@ import "./HotelCheckoutPage.css";
 import FlightBookingNavbar from "../../../../FlightsPage/FlightResultsPage/flight-booking-page/flight-booking-navbar/FlightBookingNavbar";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
-import { useHotelContext } from "../../../../../UseContext/HotelDetailsProvider";
+import { useHotelContext } from "../../../../../contexts/HotelDetailsProvider";
 import { fetchSingleHotel } from "../../../../../Apis/HotelDetailsApi";
 import HotelInfoPriceCard from "../../../../ui/HotelInfoPriceCard";
 import HotelInfoCard from "../../../../ui/HotelInfoCard";
