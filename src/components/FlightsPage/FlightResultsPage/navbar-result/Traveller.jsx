@@ -14,8 +14,7 @@ import {
 } from "@mui/material";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 import TravellerOptionDropdown from "../../../ui/TravellerOptionDropdown";
-import { useFlightSearch } from "../../../../UseContext/FlightsSearchProvider";
-
+import { useFlightSearch } from "../../../../contexts/FlightsSearchProvider";
 
 const theme = createTheme({
   breakpoints: {
@@ -26,10 +25,10 @@ const theme = createTheme({
       sm: 600,
       md: 900,
       lg: 1024,
-      xl: 1280
-    }
-  }
-})
+      xl: 1280,
+    },
+  },
+});
 const Traveller = () => {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
@@ -55,11 +54,11 @@ const Traveller = () => {
 
   const getTotalTraveller = () => {
     let total = 0;
-    for (let key in traveller){
+    for (let key in traveller) {
       total += traveller[key];
     }
     return total;
-  }
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -112,11 +111,11 @@ const Traveller = () => {
             >
               <Paper
                 sx={{
-                  width: { xs: "16rem"},
+                  width: { xs: "16rem" },
                   height: "fit-contained",
                   padding: "10px 20px",
-                  mr: { xs: "20px",},
-                  ml: { xs: "-30px", xss: "0px"}
+                  mr: { xs: "20px" },
+                  ml: { xs: "-30px", xss: "0px" },
                 }}
               >
                 <ClickAwayListener onClickAway={handleClose}>
