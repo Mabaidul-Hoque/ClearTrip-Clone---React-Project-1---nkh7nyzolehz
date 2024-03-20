@@ -1,7 +1,7 @@
 import React from "react";
 import "./Hotels.css";
 import { Paper, Stack } from "@mui/material";
-import RightSideBar from "../FlightsPage/RightSideBarSection/RightSideBar";
+import RightSideBar from "../right-side-bar/RightSideBar";
 import { useHotelContext } from "../../contexts/HotelDetailsProvider";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthorizationProvider";

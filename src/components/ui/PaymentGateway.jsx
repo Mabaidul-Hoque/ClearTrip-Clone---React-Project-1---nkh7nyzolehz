@@ -9,7 +9,7 @@ import {
   Tooltip,
 } from "@mui/material";
 import ExpiryDateDropdown from "./ExpiryDateDropdown";
-import "../../styles/FlightUi.css";
+import "../../styles/flight/FlightUi.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Backdrop from "@mui/material/Backdrop";

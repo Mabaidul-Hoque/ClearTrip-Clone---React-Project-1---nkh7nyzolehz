@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./HotelCheckoutPage.css";
-import FlightBookingNavbar from "../../../../FlightsPage/FlightResultsPage/flight-booking-page/flight-booking-navbar/FlightBookingNavbar";
+import FlightBookingNavbar from "../../../../flight-booking-page/flight-booking-navbar/FlightBookingNavbar";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { useHotelContext } from "../../../../../contexts/HotelDetailsProvider";
@@ -104,7 +104,6 @@ const HotelCheckoutPage = () => {
   //       }
   //   // }
   // }
-
 
   return (
     <div>

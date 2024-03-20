@@ -1,11 +1,15 @@
-import React from 'react';
-import "../FlightsPage/FlightPage.css"
-import { Paper, Stack } from '@mui/material';
+import React from "react";
+import "../../styles/flight/Flight.css";
+import { Paper, Stack } from "@mui/material";
 
-const FlightCityDrowpdown = ({ allOption, noOptionText, selectHandle, focus}) => {
+const FlightCityDrowpdown = ({
+  allOption,
+  noOptionText,
+  selectHandle,
+  focus,
+}) => {
   return (
     <>
-      
       <Paper
         className="flight-input-dropdown"
         style={{
@@ -39,7 +43,7 @@ const FlightCityDrowpdown = ({ allOption, noOptionText, selectHandle, focus}) =>
         )}
       </Paper>
     </>
-  )
-}
+  );
+};
 
-export default FlightCityDrowpdown
+export default FlightCityDrowpdown;

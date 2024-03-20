@@ -1,7 +1,7 @@
 import "./styles/App.css";
-import SideNavbar from "./components/FlightsPage/NavbarSection/SideNavbar";
-import Navbar from "./components/FlightsPage/NavbarSection/Navbar";
-import Flights from "./components/FlightsPage/Flights";
+import SideNavbar from "./components/flight-page/navabr-section/SideNavbar";
+import Navbar from "./components/flight-page/navabr-section/Navbar";
+import Flight from "./pages/flight/Flight";
 import { Box, Stack, ThemeProvider, createTheme } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -34,7 +34,7 @@ function App() {
         >
           <SideNavbar />
           {pathname === "/" ? (
-            <Flights />
+            <Flight />
           ) : (
             <div
               style={{
