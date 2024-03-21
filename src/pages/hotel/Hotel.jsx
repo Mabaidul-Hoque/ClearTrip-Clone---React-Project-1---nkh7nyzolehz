@@ -1,7 +1,7 @@
 import React from "react";
-import "./Hotels.css";
+import "../../styles/hotel/Hotel.css";
 import { Paper, Stack } from "@mui/material";
-import RightSideBar from "../right-side-bar/RightSideBar";
+import RightSideBar from "../../components/right-side-bar/RightSideBar";
 import { useHotelContext } from "../../contexts/HotelDetailsProvider";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthorizationProvider";
@@ -9,9 +9,9 @@ import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import { toast } from "react-toastify";
-import AddRooms from "../ui/AddRooms";
-import Autocomplete from "../ui/Autocomplete";
-import { CheckInOutDate } from "../ui/CheckInOutDate";
+import AddRooms from "../../components/ui/AddRooms";
+import Autocomplete from "../../components/ui/Autocomplete";
+import { CheckInOutDate } from "../../components/ui/CheckInOutDate";
 
 export const OPTION = [
   { name: "Kolkata, West Bengal" },
@@ -116,7 +116,7 @@ const Hotels = () => {
         </Paper>
       </Stack>
 
-      {/* right side bar similar to flight page */}
+      {/* RIGHT SIDE BAR */}
       <div id="hotel-right-side-bar">
         <RightSideBar />
       </div>

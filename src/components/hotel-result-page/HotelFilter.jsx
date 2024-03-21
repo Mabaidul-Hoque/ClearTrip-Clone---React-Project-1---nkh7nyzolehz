@@ -7,14 +7,14 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
-import "../HotelResultPage.css";
+import "../../styles/hotel/HotelResultPage.css";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 import CheckCircleSharpIcon from "@mui/icons-material/CheckCircleSharp";
 import StarCategory from "./StarCategory";
-import { useHotelContext } from "../../../../contexts/HotelDetailsProvider";
-import { fetchSortByPrice } from "../../../../Apis/HotelResulFilterApi";
+import { useHotelContext } from "../../contexts/HotelDetailsProvider";
+import { fetchSortByPrice } from "../../Apis/HotelResulFilterApi";
 import FilterByPriceRange from "./FilterByPriceRange";
 
 const HotelFilter = () => {

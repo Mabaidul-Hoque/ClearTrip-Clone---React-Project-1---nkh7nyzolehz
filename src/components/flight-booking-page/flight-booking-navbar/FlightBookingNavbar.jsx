@@ -5,7 +5,7 @@ import { Box, Button, Stack, Tooltip } from "@mui/material";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthorizationProvider";
-import LoginPage from "../../Login-signup/LoginPage";
+import LoginPage from "../../../pages/login/LoginPage";
 
 const CustomButton = styled(Button)({
   variant: "text",

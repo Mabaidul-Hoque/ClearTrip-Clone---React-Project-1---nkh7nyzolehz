@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchHotelBookingInfo } from "../../../../../../Apis/BookingApi";
-import { useHotelContext } from "../../../../../../contexts/HotelDetailsProvider";
+import { fetchHotelBookingInfo } from "../../Apis/BookingApi";
+import { useHotelContext } from "../../contexts/HotelDetailsProvider";
 import { Divider, Typography } from "@mui/material";
-import FlightBookingNavbar from "../../../../../flight-booking-page/flight-booking-navbar/FlightBookingNavbar";
+import FlightBookingNavbar from "../../components/flight-booking-page/flight-booking-navbar/FlightBookingNavbar";
 
 const HotelBookingPage = () => {
   const [hotelInfo, setHotelInfo] = useState({});

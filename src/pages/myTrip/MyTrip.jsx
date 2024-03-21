@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./MyTrip.css";
+import "../../styles/myTrip/MyTrip.css";
 import {
   Box,
   Button,
@@ -8,14 +8,14 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import Footer from "../FooterPage/Footer";
+import Footer from "../footer/Footer";
 import { useAuth } from "../../contexts/AuthorizationProvider";
 import DoneIcon from "@mui/icons-material/Done";
 import HotelIcon from "@mui/icons-material/Hotel";
 import FlightIcon from "@mui/icons-material/Flight";
 import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
-import MytripNavbar from "./MytripNavbar";
-import LoginPage from "../Login-signup/LoginPage";
+import MytripNavbar from "../../components/mytrip-page/MytripNavbar";
+import LoginPage from "../login/LoginPage";
 import LuggageIcon from "@mui/icons-material/Luggage";
 import PersonIcon from "@mui/icons-material/Person";
 import MenuIcon from "@mui/icons-material/Menu";

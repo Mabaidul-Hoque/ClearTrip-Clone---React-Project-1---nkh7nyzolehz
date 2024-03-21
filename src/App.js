@@ -9,9 +9,9 @@ import { useLocation } from "react-router-dom";
 import { FontProvider } from "./contexts/FontProvider";
 import { Outlet } from "react-router-dom";
 import { useAuth } from "./contexts/AuthorizationProvider";
-import { Footer } from "./components";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "./pages/footer/Footer";
 
 function App() {
   const { pathname } = useLocation();

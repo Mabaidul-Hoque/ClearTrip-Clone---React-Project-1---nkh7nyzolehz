@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import "../HotelsPage/Hotels.css";
+import "../../styles/hotel/Hotel.css";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PersonIcon from "@mui/icons-material/Person";

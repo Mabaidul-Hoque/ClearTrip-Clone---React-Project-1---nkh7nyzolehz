@@ -1,7 +1,7 @@
 import { Modal, Stack } from "@mui/material";
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import "./loginSignup.css";
+import "../../styles/loginSignup.css";
 import { fetchLogin } from "../../Apis/LoginSignupApi";
 import { useAuth } from "../../contexts/AuthorizationProvider";
 import SignupPage from "./SignupPage";

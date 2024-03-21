@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./NavbarStyles.css";
 import { OffersContext } from "../../../contexts/OfferDetailsProvider";
 import { Box, Button, Divider, Stack } from "@mui/material";
-import LoginPage from "../../Login-signup/LoginPage";
+import LoginPage from "../../../pages/login/LoginPage";
 import { useAuth } from "../../../contexts/AuthorizationProvider";
 import styled from "@emotion/styled";
 import "react-toastify/dist/ReactToastify.css";

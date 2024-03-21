@@ -1,7 +1,7 @@
 import { Box, Stack } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "../FooterPage/Footer";
+import Footer from "../../components/FooterPage/Footer";
 
 const OffersPage = () => {
   const navigate = useNavigate();

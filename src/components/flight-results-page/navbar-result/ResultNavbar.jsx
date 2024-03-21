@@ -14,7 +14,7 @@ import { useAuth } from "../../../contexts/AuthorizationProvider";
 import { fetchFlights } from "../../../Apis/FlightSearchApi";
 import { useFlightSearch } from "../../../contexts/FlightsSearchProvider";
 import { CustomTheme } from "../../../util/muiTheme";
-import LoginPage from "../../Login-signup/LoginPage";
+import LoginPage from "../../../pages/login/LoginPage";
 import { toast } from "react-toastify";
 import DateInputs from "../../flight-page/flight-search-form/DateInputs";
 import DepartCityInput from "../../flight-page/flight-search-form/DepartCityInput";

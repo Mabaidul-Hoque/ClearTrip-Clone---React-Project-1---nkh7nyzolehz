@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
-import "./HotelDetailsPage.css";
+import "../../styles/hotel/HotelDetailsPage.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "../../../../contexts/AuthorizationProvider";
+import { useAuth } from "../../contexts/AuthorizationProvider";
 import { styled } from "@mui/material/styles";
-import { OPTION } from "../../Hotels";
-import { useHotelContext } from "../../../../contexts/HotelDetailsProvider";
-import {
-  fetchHotels,
-  fetchSingleHotel,
-} from "../../../../Apis/HotelDetailsApi";
-import GeneralDetails from "./GeneralDetails";
+import { OPTION } from "./Hotel";
+import { useHotelContext } from "../../contexts/HotelDetailsProvider";
+import { fetchHotels, fetchSingleHotel } from "../../Apis/HotelDetailsApi";
+import GeneralDetails from "../../components/hotel-details-page/GeneralDetails";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
-import Rooms from "./Rooms";
+import Rooms from "../../components/hotel-details-page/Rooms";
 import {
   Box,
   Stack,
@@ -23,11 +20,11 @@ import {
   Paper,
   Divider,
 } from "@mui/material";
-import Footer from "../../../FooterPage/Footer";
-import LoginPage from "../../../Login-signup/LoginPage";
-import Autocomplete from "../../../ui/Autocomplete";
-import { CheckInOutDate } from "../../../ui/CheckInOutDate";
-import AddRooms from "../../../ui/AddRooms";
+import Footer from "../footer/Footer";
+import LoginPage from "../login/LoginPage";
+import Autocomplete from "../../components/ui/Autocomplete";
+import { CheckInOutDate } from "../../components/ui/CheckInOutDate";
+import AddRooms from "../../components/ui/AddRooms";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

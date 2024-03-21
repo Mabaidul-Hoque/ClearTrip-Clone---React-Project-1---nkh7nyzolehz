@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import "../HotelsPage/Hotels.css";
+import "../../styles/hotel/Hotel.css";
 import { Paper } from "@mui/material";
 import { useHotelContext } from "../../contexts/HotelDetailsProvider";
 import { useLocation } from "react-router-dom";

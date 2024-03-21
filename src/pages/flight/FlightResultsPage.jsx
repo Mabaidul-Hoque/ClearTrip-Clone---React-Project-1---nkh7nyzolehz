@@ -8,7 +8,7 @@ import MainContent from "../../components/flight-results-page/main-sections/main
 import { fetchFilteredFlights } from "../../Apis/FlightSearchApi";
 import { useParams } from "react-router-dom";
 import { CustomTheme } from "../../util/muiTheme";
-import Footer from "../../components/FooterPage/Footer";
+import Footer from "../../pages/footer/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FlightFilterProvider from "../../contexts/FlightFilterProvider";

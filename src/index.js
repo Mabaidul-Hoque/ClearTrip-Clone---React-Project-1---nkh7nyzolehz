@@ -3,21 +3,25 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Hotels from "./components/HotelsPage/Hotels";
-import Flights from "./pages/flight/Flight";
-import Offers from "./components/OffersPage/OffersPage";
-import MyTrip from "./components/MyTripPage/MyTrip";
+
+import Flight from "./pages/flight/Flight";
 import FlightResultsPage from "./pages/flight/FlightResultsPage";
+import FlightBookingPage from "./pages/flight/FlightBookingPage";
+
+import Hotel from "./pages/hotel/Hotel";
+import HotelResultPage from "./pages/hotel/HotelResultPage";
+import HotelDetailsPage from "./pages/hotel/HotelDetailsPage";
+import HotelBookingPage from "./pages/hotel/HotelBookingPage";
+import HotelCheckoutPage from "./pages/hotel/HotelCheckoutPage";
+
+import Offers from "./pages/hotel/Hotel";
+import MyTrip from "./pages/myTrip/MyTrip";
+
 import { FlightsSearchProvider } from "./contexts/FlightsSearchProvider";
 import { HotelDetailsProvider } from "./contexts/HotelDetailsProvider";
 import { OfferDetailsProvider } from "./contexts/OfferDetailsProvider";
-import HotelResultPage from "./components/HotelsPage/Hotel-result-page/HotelResultPage";
-import HotelDetailsPage from "./components/HotelsPage/Hotel-result-page/hotel-details-page/HotelDetailsPage";
 import AuthorizationProvider from "./contexts/AuthorizationProvider";
-import FlightBookingPage from "./pages/flight/FlightBookingPage";
-import HotelCheckoutPage from "./components/HotelsPage/Hotel-result-page/hotel-details-page/hotel-checkout-page/HotelCheckoutPage";
 import { FontProvider } from "./contexts/FontProvider";
-import HotelBookingPage from "./components/HotelsPage/Hotel-result-page/hotel-details-page/hotel-checkout-page/hotel-booking-page/HotelBookingPage";
 
 const router = createBrowserRouter([
   {
@@ -26,11 +30,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/flights",
-        element: <Flights />,
+        element: <Flight />,
       },
       {
         path: "/hotels",
-        element: <Hotels />,
+        element: <Hotel />,
       },
     ],
   },

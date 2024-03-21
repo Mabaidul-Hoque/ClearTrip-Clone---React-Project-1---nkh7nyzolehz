@@ -5,7 +5,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Menu from "@mui/material/Menu";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 import CheckCircleSharpIcon from "@mui/icons-material/CheckCircleSharp";
-import { useHotelContext } from "../../../../contexts/HotelDetailsProvider";
+import { useHotelContext } from "../../contexts/HotelDetailsProvider";
 import { MenuItem } from "@mui/material";
 
 const StarCategory = ({
