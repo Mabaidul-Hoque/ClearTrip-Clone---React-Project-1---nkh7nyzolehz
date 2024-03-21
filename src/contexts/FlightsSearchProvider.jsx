@@ -49,8 +49,11 @@ export const FlightsSearchProvider = ({ children }) => {
     });
 
     const options = { weekday: "short", month: "short", day: "numeric" };
-    const formattedDate = departDate.toLocaleDateString("en-US", options);
+
+    const formattedDate = departDate.toLocaleDateString("en-US", options) || "";
+    localStorage.setItem("departDay", formattedDate);
     setDepartDay(formattedDate);
+
     const formattedRDate = returnDate.toLocaleDateString("en-US", options);
     setReturnDay(formattedRDate);
   }, [departDate, returnDate]);
