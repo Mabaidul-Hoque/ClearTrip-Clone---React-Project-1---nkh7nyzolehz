@@ -7,7 +7,7 @@ import LuggageOutlinedIcon from "@mui/icons-material/LuggageOutlined";
 import { Link, useLocation } from "react-router-dom";
 import { OffersContext } from "../../../contexts/OfferDetailsProvider";
 import { Box, Stack } from "@mui/material";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const SideNavbar = () => {
   const { setOffersUrlFilter } = useContext(OffersContext);
@@ -64,7 +64,14 @@ const SideNavbar = () => {
         <ApartmentRoundedIcon />
         <span>Hotels</span>
       </Link>
-      <Box>
+      <Box
+        sx={{
+          display: {
+            xs: "none",
+            sm: "block",
+          },
+        }}
+      >
         <Link
           className={
             pathname === "/mytrip"

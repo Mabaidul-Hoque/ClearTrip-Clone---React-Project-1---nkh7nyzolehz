@@ -1,13 +1,10 @@
 #hotel-page {
   padding-top: 32px;
   display: flex;
-  gap: 30px;
 }
-.hotel-search-header h1 {
-  color: #292929;
-}
+
 .hotel-search-header h4 {
-  color: #444444;
+  color: #525252;
   font-weight: 500;
 }
 #h-search-card {
@@ -196,7 +193,7 @@ input[placeholder="Search your favourite hotels"] {
     font-weight: 400;
   }
   #h-search-card {
-    width: 93vw;
+    width: 90vw;
     padding-left: 10px;
   }
   .location-input-box {

@@ -56,13 +56,15 @@ const Hotels = () => {
       <Stack id="h-search-container">
         {/* search header */}
         <Stack
-          flexDirection={"column"}
-          justifyContent={"flex-start"}
-          alignItems={"flex-start"}
-          gap={1}
+          sx={{
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            alignItems: "flex-start",
+            gap: 1,
+          }}
           className="hotel-search-header"
         >
-          <h1>Search hotels</h1>
+          <h1 style={{ color: "#3B3B3B" }}>Search hotels</h1>
           <h4>Enjoy hassle free bookings with Cleartrip</h4>
         </Stack>
 
