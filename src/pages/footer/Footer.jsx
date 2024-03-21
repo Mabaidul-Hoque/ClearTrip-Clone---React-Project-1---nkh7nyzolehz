@@ -32,8 +32,8 @@ const Footer = () => {
         }}
       >
         <img
-          className="ft-cleartrip-logo"
-          src="https://cxotoday.com/wp-content/uploads/2024/02/Cleartrip-logo.png"
+          width={250}
+          src="/assets/Cleartrip-footer-logo.png"
           alt="footer-cleartrip-logo"
         />
         <Stack

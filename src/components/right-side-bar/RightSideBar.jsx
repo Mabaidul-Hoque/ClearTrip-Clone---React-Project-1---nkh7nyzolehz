@@ -1,11 +1,4 @@
-import {
-  Box,
-  Paper,
-  Stack,
-  ThemeProvider,
-  Typography,
-  createTheme,
-} from "@mui/material";
+import { Box, Paper, Stack, ThemeProvider } from "@mui/material";
 import React, { useState, useContext, useEffect } from "react";
 import { OffersContext } from "../../contexts/OfferDetailsProvider";
 import "./RightSideBar.css";
@@ -57,15 +50,18 @@ const RightSideBar = () => {
             xxs: "none",
             lg: "flex",
           },
+          justifyContent: "center",
+          alignItems: "flex-end",
+          gap: 1,
         }}
-        justifyContent={"center"}
-        alignItems={"flex-end"}
-        gap={1}
       >
-        <div className="carousel-container-up">
+        {/* OFFER UPPER CAROUSEL */}
+        <Box component={"div"} className="carousel-container-up">
+          {/* PREV BTN */}
           <button className="up-prev-btn" onClick={handlePrevUp}>
             <KeyboardArrowLeftOutlinedIcon />
           </button>
+          {/* OFFERS */}
           {offers.map((offer, index) => (
             <Paper
               key={offer._id}
@@ -81,22 +77,24 @@ const RightSideBar = () => {
               </div>
             </Paper>
           ))}
+          {/* NEXT BTN  */}
           <button className="up-next-btn" onClick={handleNextUp}>
             <KeyboardArrowRightOutlinedIcon />
           </button>
-        </div>
-
+        </Box>
+        {/* MORE OFFERS */}
         <Box
           sx={{
             fontWeight: "500",
             fontSize: { lg: "16px", xl: "18px" },
             mr: "50%",
+            color: "#525252",
           }}
           component="div"
         >
           More offers
         </Box>
-
+        {/* OFFER LOWER CAROUSEL */}
         <div className="carousel-container-down">
           <button className="down-prev-btn" onClick={handlePrevDown}>
             <KeyboardArrowLeftOutlinedIcon htmlColor="blue" />
@@ -110,7 +108,7 @@ const RightSideBar = () => {
                 }`}
               >
                 <div className="offer-details-down">
-                  <h3>{offer.pTl}</h3>
+                  <h3 style={{ color: "#525252" }}>{offer.pTl}</h3>
                   <p>{offer.pTx}</p>
                   <button className="know-more-btn">Know more</button>
                 </div>

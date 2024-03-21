@@ -2,7 +2,7 @@ import "./styles/App.css";
 import SideNavbar from "./components/flight-page/navabr-section/SideNavbar";
 import Navbar from "./components/flight-page/navabr-section/Navbar";
 import Flight from "./pages/flight/Flight";
-import { Box, Stack, ThemeProvider, createTheme } from "@mui/material";
+import { Box, Divider, Stack, ThemeProvider, createTheme } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useLocation } from "react-router-dom";
@@ -21,7 +21,9 @@ function App() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className="App">
+        {/* NAVBAR */}
         <Navbar handleLoginOpen={handleLoginOpen} />
+        {/* MAIN CONTENT OR DIFFERENT ROUTE DISPLAY */}
         <Stack
           sx={{
             flexDirection: {
@@ -46,8 +48,11 @@ function App() {
             </div>
           )}
         </Stack>
-        <Box sx={{ borderBottom: "1px solid gray", mt: "8rem" }}></Box>
+        {/* DIVIDER */}
+        <Divider sx={{ my: "4rem" }} />
+        {/* FOOTER */}
         <Footer />
+        {/* TOAST_CONATINER */}
         <ToastContainer />
       </div>
     </LocalizationProvider>

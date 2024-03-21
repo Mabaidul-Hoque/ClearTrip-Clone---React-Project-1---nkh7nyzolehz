@@ -69,7 +69,12 @@ const PassengerAdd = () => {
             <PersonOutlineOutlinedIcon htmlColor="#999999" />
           )}
           <span
-            style={{ fontSize: "16px", fontWeight: 500, paddingLeft: "5px" }}
+            style={{
+              fontSize: "16px",
+              fontWeight: 500,
+              paddingLeft: "5px",
+              color: "#525252",
+            }}
           >
             {traveller.adults} Adults{" "}
             {traveller.children > 0 ? `${traveller.children} Children` : ""}{" "}

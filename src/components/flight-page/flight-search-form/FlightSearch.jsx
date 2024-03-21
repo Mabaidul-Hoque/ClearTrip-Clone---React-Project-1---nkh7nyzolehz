@@ -1,13 +1,14 @@
-import { Typography, Box } from "@mui/material";
-import "../../../styles/flight/Flight.css";
 import React from "react";
+import "../../../styles/flight/Flight.css";
 import FlightSearchCard from "./FlightSearchCard";
+import { Typography, Box } from "@mui/material";
 
 const FlightSearch = () => {
   return (
     <Box component="div">
-      {/* flight search header */}
+      {/* FLIGHT SEARCH HEADER */}
       <Box
+        component="div"
         sx={{
           textAlign: "left",
           mb: {
@@ -15,26 +16,25 @@ const FlightSearch = () => {
             sm: 4,
           },
         }}
-        component="div"
       >
         <Typography
-          mb={1}
+          variant="h4"
           sx={{
+            mb: 1,
             fontWeight: "500",
-            color: "#1A1A1A",
+            color: "#3B3B3B",
             fontSize: {
               xs: "23px",
               md: "36px",
             },
           }}
-          variant="h4"
         >
           Search flights
         </Typography>
         <Typography
           gutterBottom
           sx={{
-            color: "#1A1A1A",
+            color: "#525252",
             fontWeight: {
               xs: "400",
               md: "500",
@@ -47,7 +47,7 @@ const FlightSearch = () => {
           Enjoy hassle free bookings with Cleartrip
         </Typography>
       </Box>
-      {/* flight search card */}
+      {/* FLIGHT SEARCH CARD */}
       <FlightSearchCard />
     </Box>
   );
