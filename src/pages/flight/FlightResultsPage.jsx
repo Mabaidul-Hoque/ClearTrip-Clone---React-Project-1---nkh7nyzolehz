@@ -30,9 +30,14 @@ const FlightResultsPage = () => {
   // const [departDay, returnDay] = date?.split("-");
 
   const handleFlightResultFilter = (filterItems) => {
-    const sourceVal = localStorage.getItem("source").substring(0, 3);
-    const destinationVal = localStorage.getItem("destination").substring(0, 3);
-    const day = localStorage.getItem("departDay").substring(0, 3);
+    const source = localStorage.getItem("source");
+    const destination = localStorage.getItem("destination");
+    const departDay = localStorage.getItem("departDay");
+
+    // Check if the values are not null before calling substring
+    const sourceVal = source ? source.substring(0, 3) : "";
+    const destinationVal = destination ? destination.substring(0, 3) : "";
+    const day = departDay ? departDay.substring(0, 3) : "";
     const JSONFilter = JSON.stringify(filterItems);
     if (filterItems !== undefined) {
       setIsLoading(true);
