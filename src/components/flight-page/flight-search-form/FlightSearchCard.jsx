@@ -49,8 +49,7 @@ export default function FlightSearchCard() {
   const navigate = useNavigate();
   const { airplaneDetails, searchPlane, departvalue, sourceDestValue } =
     useFlightSearch();
-  const { source, destination, cityNameCodes, setSource, setDestination } =
-    sourceDestValue;
+  const { source, destination, cityNameCodes } = sourceDestValue;
   const { airportNames } = airplaneDetails;
   const { handleSearchClick } = searchPlane;
   const { departDay } = departvalue;
@@ -104,11 +103,11 @@ export default function FlightSearchCard() {
           position: "relative",
         }}
       >
-        {/* passenger addtion popper */}
+        {/* PASSENGER ADD SECTION */}
         <PassengerAdd />
-        {/* fare btns section */}
+        {/* FARE TYPE SECTION */}
         <FareType />
-        {/*source dest inputs section */}
+        {/* SOURCE DESTINATION INPUTS SECTION */}
         <Stack
           sx={{
             flexDirection: {
@@ -123,6 +122,7 @@ export default function FlightSearchCard() {
             width: "100%",
           }}
         >
+          {/* SOURCE CONTAINER */}
           <div id="source-container">
             <div className="f-takeoff-icon">
               <FlightTakeoffOutlinedIcon htmlColor="#808080" />
@@ -132,12 +132,14 @@ export default function FlightSearchCard() {
               noOptionText={"No Match Found"}
             />
           </div>
+          {/* SWITCH BTN */}
           <div className="f-switch-btn" onClick={() => setIsSwitch(!isSwitch)}>
             <SwapHorizontalCircleOutlinedIcon
               htmlColor="#5D86D7"
               fontSize="large"
             />
           </div>
+          {/* DESTINATION CONTAINER */}
           <div id="destination-container">
             <div className="f-landing-icon">
               <FlightLandOutlinedIcon htmlColor="#808080" />
@@ -149,7 +151,7 @@ export default function FlightSearchCard() {
           </div>
         </Stack>
 
-        {/* date picker and search btn */}
+        {/* DATE PICKER AND SEARCH BTN SECTION */}
         <Stack
           sx={{
             flexDirection: {
@@ -175,7 +177,7 @@ export default function FlightSearchCard() {
               <CalendarMonthOutlinedIcon htmlColor="#808080" />
             </div>
 
-            {/* depart and return date */}
+            {/* DEPART DATE AND RETURN DATE CONTAINER */}
             <DateInputs
               departStyle={departDateStyle}
               returnStyle={returnDateStyle}

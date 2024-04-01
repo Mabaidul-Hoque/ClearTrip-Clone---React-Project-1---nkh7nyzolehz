@@ -53,7 +53,7 @@ const PassengerAdd = () => {
   }
 
   return (
-    <Stack sx={{ zIndex: 5 }} spacing={2}>
+    <Stack spacing={2}>
       <div className="card-header">
         <button
           ref={anchorRef}
@@ -96,6 +96,7 @@ const PassengerAdd = () => {
         placement="bottom-start"
         transition
         disablePortal
+        sx={{ zIndex: 5 }}
       >
         {({ TransitionProps, placement }) => (
           <Grow

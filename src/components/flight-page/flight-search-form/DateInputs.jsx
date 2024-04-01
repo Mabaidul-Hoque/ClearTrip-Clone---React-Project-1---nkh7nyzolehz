@@ -36,13 +36,14 @@ const DateInputs = ({ departStyle, returnStyle }) => {
 
   return (
     <ThemeProvider theme={CustomTheme}>
+      {/* DEPART DATE PICKER */}
       <DatePicker
         required
         selected={departDate}
         onChange={handleDepartDateChange}
         customInput={<DepartDateInput departDay={departDay} />}
       />
-
+      {/* RETURN DATE PICKER */}
       <DatePicker
         className="date-picker-btn"
         required

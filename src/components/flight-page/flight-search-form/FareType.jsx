@@ -1,9 +1,7 @@
 import React, { useRef, useState } from "react";
 import "../../../styles/flight/Flight.css";
 import MenuList from "@mui/material/MenuList";
-import { Box, Stack, Typography } from "@mui/material";
-import ControlPointOutlinedIcon from "@mui/icons-material/ControlPointOutlined";
-import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
+import { Box, Stack } from "@mui/material";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import Grow from "@mui/material/Grow";
 import Paper from "@mui/material/Paper";
@@ -85,7 +83,7 @@ const FareType = () => {
           ))}
         </Stack>
       </Box>
-      {/* for mobile */}
+      {/* MOBILE DESIGN */}
       <Stack
         sx={{
           zIndex: 20,
