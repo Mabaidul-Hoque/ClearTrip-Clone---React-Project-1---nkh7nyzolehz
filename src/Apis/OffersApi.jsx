@@ -1,7 +1,7 @@
-export async function fetchOffers() {
+export async function fetchOffers(type) {
   try {
     const res = await fetch(
-      `https://academics.newtonschool.co/api/v1/bookingportals/offers`,
+      `https://academics.newtonschool.co/api/v1/bookingportals/offers?filter={"type":"${type}"}`,
       {
         method: "GET",
         headers: {

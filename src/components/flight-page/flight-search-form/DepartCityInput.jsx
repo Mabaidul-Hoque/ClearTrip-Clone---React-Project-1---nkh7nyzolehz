@@ -17,8 +17,6 @@ const DepartCityInput = ({
   const { sourceDestValue } = useFlightSearch();
   const { source, setSource, sourceRef, destination } = sourceDestValue;
 
-  console.log("isSwitch in depart-->", isSwitch);
-
   useEffect(() => {
     setAllOption(options);
     document.addEventListener("click", handleOutsideClick);

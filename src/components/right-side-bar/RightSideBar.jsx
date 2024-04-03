@@ -7,15 +7,18 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import { CustomTheme } from "../../util/muiTheme";
+import { useLocation } from "react-router-dom";
 
 const RightSideBar = () => {
   const [upCurrentIndex, setUpCurrentIndex] = useState(0);
   const [downCurrentIndex, setDownCurrentIndex] = useState(0);
-  const { offers } = useContext(OffersContext);
-  const { handleOfferFecth } = useContext(OffersContext);
+  const { offers, handleOfferFecth } = useContext(OffersContext);
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    handleOfferFecth();
+    if (pathname === "/" || pathname === "/flights")
+      handleOfferFecth("FLIGHTS");
+    else if (pathname === "/hotels") handleOfferFecth("HOTELS");
   }, []);
 
   const handleNextUp = () => {

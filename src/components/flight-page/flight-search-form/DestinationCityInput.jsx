@@ -18,8 +18,6 @@ const DestinationCityInput = ({
   const { destination, setDestination, destinationRef, source } =
     sourceDestValue;
 
-  console.log("isSwitch in desti-->", isSwitch);
-
   useEffect(() => {
     setAllOption(options);
     document.addEventListener("click", handleOutsideClick);

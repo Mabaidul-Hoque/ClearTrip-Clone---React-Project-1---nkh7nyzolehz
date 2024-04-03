@@ -5,25 +5,22 @@ export const OffersContext = createContext();
 
 export const OfferDetailsProvider = ({ children }) => {
   const [offers, setOffers] = useState([]);
-  const [offersUrlFilter, setOffersUrlFilter] = useState("ALL");
 
-  const handleOfferFecth = () => {
-    // let type = "";
+  const handleOfferFecth = (offerType) => {
+    let type = "";
 
-    // if (offersUrlFilter === "ALL") type = "ALL";
-    // else if (offersUrlFilter === "FLIGHTS") type = "FLIGHTS";
-    // else if (offersUrlFilter === "HOTELS") type = "HOTELS";
+    if (offerType === "ALL") type = "ALL";
+    else if (offerType === "FLIGHTS") type = "FLIGHTS";
+    else if (offerType === "HOTELS") type = "HOTELS";
 
-    // if (type !== undefined || type !== "") {
-    fetchOffers().then((res) => {
-      setOffers(res.data.offers);
-    });
-    // }
+    if (type) {
+      fetchOffers(type).then((res) => {
+        setOffers(res.data.offers);
+      });
+    }
   };
 
   const offersValue = {
-    offersUrlFilter,
-    setOffersUrlFilter,
     offers,
     setOffers,
     handleOfferFecth,
