@@ -21,8 +21,8 @@ const HotelRatings = ({ rating }) => {
       value={rating}
       getLabelText={(value) => `${value} Heart${value !== 1 ? "s" : ""}`}
       precision={0.5}
-      icon={<CircleIcon fontSize="inherit" htmlColor="green" />}
-      emptyIcon={<CircleOutlinedIcon fontSize="inherit" htmlColor="green" />}
+      icon={<CircleIcon fontSize="small" htmlColor="#52b788" />}
+      emptyIcon={<CircleOutlinedIcon fontSize="small" htmlColor="#52b788" />}
     />
   );
 };
