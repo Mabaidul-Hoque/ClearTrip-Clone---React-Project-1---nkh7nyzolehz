@@ -32,7 +32,7 @@ const HotelGuestDetails = ({ name, setName, contact, setContact }) => {
   const [addedGuest, setAddedGuest] = useState(0);
   const gfNameRef = useRef(null);
   const glNameRef = useRef(null);
-  const gfullName = gfName + glName;
+  const gfullName = gfName + " " + glName;
 
   const { rooms } = useHotelContext().roomTypeValues;
 

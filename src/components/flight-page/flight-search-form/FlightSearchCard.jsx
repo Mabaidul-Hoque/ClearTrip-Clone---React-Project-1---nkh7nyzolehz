@@ -133,7 +133,7 @@ export default function FlightSearchCard() {
             />
           </div>
           {/* SWITCH BTN */}
-          <div className="f-switch-btn" onClick={() => setIsSwitch(!isSwitch)}>
+          <div className="f-switch-btn">
             <SwapHorizontalCircleOutlinedIcon
               htmlColor="#5D86D7"
               fontSize="large"
