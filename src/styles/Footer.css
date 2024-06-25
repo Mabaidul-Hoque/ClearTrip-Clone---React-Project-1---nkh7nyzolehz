@@ -8,6 +8,17 @@
   text-decoration: none;
   color: inherit;
 }
+.hoverStyle{
+  font-weight: 500;
+}
+.hoverStyle:hover{
+  text-decoration: underline;
+}
+
+.route_location:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 @media screen and (min-width: 300px) {
   .ft-cleartrip-logo {

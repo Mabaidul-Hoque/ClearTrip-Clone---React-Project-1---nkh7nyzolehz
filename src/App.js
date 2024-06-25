@@ -47,10 +47,13 @@ function App() {
             </div>
           )}
         </Stack>
+
+        {/* FOOTER */}
+        <div style={{ backgroundColor: "#F7F7F7",}}>
         {/* DIVIDER */}
         <Divider sx={{ my: "4rem" }} />
-        {/* FOOTER */}
         <Footer />
+        </div>
         {/* TOAST_CONATINER */}
         <ToastContainer />
       </div>

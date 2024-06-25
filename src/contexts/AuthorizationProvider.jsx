@@ -10,6 +10,7 @@ export const useAuth = () => {
   }
   return context;
 };
+
 const AuthorizationProvider = ({ children }) => {
   const [islogin, setIsLogin] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
