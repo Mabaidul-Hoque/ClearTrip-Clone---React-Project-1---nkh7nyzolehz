@@ -20,6 +20,13 @@
   cursor: pointer;
 }
 
+.footer_item{
+  text-decoration: none;
+}
+.footer_item:hover{
+  text-decoration: underline;
+}
+
 @media screen and (min-width: 300px) {
   .ft-cleartrip-logo {
     width: 7rem;

@@ -65,19 +65,32 @@ const Footer = () => {
               <a
                 href="https://www.cleartrip.com/privacy-policy/"
                 target="_blank"
+                className="footer_item"
               >
                 Privacy
               </a>{" "}
-              ·
-              <a href="https://www.cleartrip.com/security/" target="_blank">
+              ·{" "}
+              <a
+                href="https://www.cleartrip.com/security/"
+                target="_blank"
+                className="footer_item"
+              >
                 Security
               </a>{" "}
-              ·
-              <a href="https://www.cleartrip.com/terms/" target="_blank">
+              ·{" "}
+              <a
+                href="https://www.cleartrip.com/terms/"
+                target="_blank"
+                className="footer_item"
+              >
                 Terms of Use
               </a>{" "}
-              ·
-              <a href="https://www.cleartrip.com/grievance" target="_blank">
+              ·{" "}
+              <a
+                href="https://www.cleartrip.com/grievance"
+                target="_blank"
+                className="footer_item"
+              >
                 Grievance Redressal
               </a>
             </Typography>
