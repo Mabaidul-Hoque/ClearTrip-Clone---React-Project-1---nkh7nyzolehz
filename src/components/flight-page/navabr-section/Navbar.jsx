@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./NavbarStyles.css";
 import { OffersContext } from "../../../contexts/OfferDetailsProvider";
-import { Box, Button, Divider, Stack } from "@mui/material";
+import { Box, Button, Divider, Stack, Typography } from "@mui/material";
 import LoginPage from "../../../pages/login/LoginPage";
 import { useAuth } from "../../../contexts/AuthorizationProvider";
 import styled from "@emotion/styled";
 import "react-toastify/dist/ReactToastify.css";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const LoginButton = styled(Button)({
   color: "#FFFFFF",
@@ -72,7 +73,21 @@ const Navbar = ({ handleLoginOpen }) => {
             }}
             variant="contained"
           >
-            {token ? "Log out" : "Log in / Sign up"}
+            {token ? (
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: 2,
+                }}
+              >
+                <AccountCircleIcon />
+                <span>Log out</span>
+              </Box>
+            ) : (
+              "Log in / Sign up"
+            )}
           </LoginButton>
         </Stack>
         <LoginPage />
