@@ -70,6 +70,7 @@ export default function PaymentGateway({
   };
   const handleRadioChange = (e) => {
     setShowCardDetails(e.target.id);
+    toast.info(" it is under process", { theme: "colored" });
   };
 
   const handleMonthChange = (e) => {
@@ -194,6 +195,9 @@ export default function PaymentGateway({
             <label
               htmlFor="debit"
               style={{ fontSize: "18px", fontWeight: 500, color: "gray" }}
+              onClick={() =>
+                toast.info(" it is under process", { theme: "colored" })
+              }
             >
               <input
                 onChange={handleRadioChange}
@@ -269,6 +273,9 @@ export default function PaymentGateway({
             <label
               htmlFor="net-banking"
               style={{ fontSize: "18px", fontWeight: 500, color: "gray" }}
+              onClick={() =>
+                toast.info(" it is under process", { theme: "colored" })
+              }
             >
               <input
                 onChange={handleRadioChange}
