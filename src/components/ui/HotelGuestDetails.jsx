@@ -144,7 +144,7 @@ const HotelGuestDetails = ({
           {guests.length > 0 &&
             guests?.map((item) => (
               <li key={item} style={{ display: "flex", alignItems: "center" }}>
-                <span>{item}</span>
+                <span style={{ fontWeight: 400, fontSize: 16 }}>{item}</span>
                 <Button onClick={() => handleDeleteGuest(item)}>Delete</Button>
               </li>
             ))}

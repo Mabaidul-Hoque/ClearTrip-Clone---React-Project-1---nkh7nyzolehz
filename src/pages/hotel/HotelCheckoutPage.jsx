@@ -33,7 +33,7 @@ const months = [
 
 const HotelCheckoutPage = () => {
   const [open, setOpen] = useState(false);
-  const [name, setName] = useState({ fName: "", lName: "" });
+  // const [name, setName] = useState({ fName: "", lName: "" });
   const [contact, setContact] = useState({ ph: "", email: "" });
   const [guests, setGuests] = useState([]);
   const [gfName, setGFName] = useState("");
