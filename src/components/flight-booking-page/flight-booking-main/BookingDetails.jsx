@@ -40,7 +40,7 @@ const BookingDetails = ({ flightId, selected, setSelected }) => {
           Review your itinerary
         </Typography>
       </Stack>
-      {/* flight details */}
+      {/* 1 flight details */}
       <Stack
         sx={{
           width: "60vw",
@@ -228,7 +228,8 @@ const BookingDetails = ({ flightId, selected, setSelected }) => {
       />
       {/* fare details */}
       <FareDetails />
-      {/* contact details */}
+
+      {/* 2 contact details */}
       <ContactDetails flightId={flightId} />
       <Stack mt={10}></Stack>
     </div>

@@ -1,38 +1,26 @@
-import {
-  Box,
-  Button,
-  Modal,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import React, { useRef, useState } from "react";
 import CourtesyTitles from "./CourtesyTitles";
 import { ToastContainer, toast } from "react-toastify";
-import CloseIcon from "@mui/icons-material/Close";
 import { useHotelContext } from "../../contexts/HotelDetailsProvider";
+import AddGuestModal from "./AddGuestModal";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "none",
-  borderRadius: "10px",
-  boxShadow: 24,
-  p: 4,
-};
-const HotelGuestDetails = ({ name, setName, contact, setContact }) => {
+const HotelGuestDetails = ({
+  guests,
+  setGuests,
+  gfName,
+  setGFName,
+  glName,
+  setGLName,
+  contact,
+  setContact,
+  gfullName,
+  addedGuest,
+  setAddedGuest,
+}) => {
   const [open, setOpen] = useState(false);
-  const [guests, setGuests] = useState([]);
-  const [gfName, setGFName] = useState("");
-  const [glName, setGLName] = useState("");
-  const [addedGuest, setAddedGuest] = useState(0);
   const gfNameRef = useRef(null);
   const glNameRef = useRef(null);
-  const gfullName = gfName + " " + glName;
 
   const { rooms } = useHotelContext().roomTypeValues;
 
@@ -40,7 +28,7 @@ const HotelGuestDetails = ({ name, setName, contact, setContact }) => {
     setAddedGuest((prev) => prev - 1);
     const updatedGuests = guests.filter((guest) => guest !== item);
     setGuests(updatedGuests);
-    toast.success("One guest is removed successfully", { theme: "colored" });
+    // toast.success("One guest is removed successfully", { theme: "colored" });
   };
   const totalGuest = () => {
     const totalAdults = rooms.reduce(
@@ -58,13 +46,18 @@ const HotelGuestDetails = ({ name, setName, contact, setContact }) => {
   const handleClose = () => setOpen(false);
 
   const handleAddGuest = () => {
-    setAddedGuest((prev) => prev + 1);
     if (gfullName !== "" && gfName !== "" && glName !== "") {
-      setGuests((prev) => [...prev, gfullName]);
-      toast.success("Guest added successfully", { theme: "colored" });
-      handleClose();
-      setGFName("");
-      setGLName("");
+      const nameExist = guests.find((guestName) => guestName === gfullName);
+      if (nameExist) {
+        toast.warn("Two guest name can not be same!", { theme: "colored" });
+      } else {
+        setGuests((prev) => [...prev, gfullName]);
+        setAddedGuest((prev) => prev + 1);
+        // toast.success("Guest added successfully", { theme: "colored" });
+        handleClose();
+        setGFName("");
+        setGLName("");
+      }
     } else if (gfName === "" && glName === "") {
       gfNameRef.current.focus();
       toast.warn("Enter the first name!", { theme: "colored" });
@@ -77,7 +70,7 @@ const HotelGuestDetails = ({ name, setName, contact, setContact }) => {
   };
 
   return (
-    <>
+    <div>
       <Typography variant="h4" mt={4} mb={2}>
         Guest details
       </Typography>
@@ -156,6 +149,7 @@ const HotelGuestDetails = ({ name, setName, contact, setContact }) => {
               </li>
             ))}
         </ol>
+
         <Button
           variant="outlined"
           sx={{ textTransform: "none" }}
@@ -163,73 +157,25 @@ const HotelGuestDetails = ({ name, setName, contact, setContact }) => {
         >
           Add new guest
         </Button>
+
         {/* ADD NEW GUEST MODAL */}
-        <Modal
+        <AddGuestModal
           open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <Stack flexDirection={"row"} justifyContent={"flex-end"}>
-              <Button onClick={handleClose}>
-                <CloseIcon />
-              </Button>
-            </Stack>
-            <Typography
-              id="modal-modal-title"
-              variant="h4"
-              component="h2"
-              sx={{ textAlign: "center" }}
-            >
-              Add new guest
-            </Typography>
-            <Box id="modal-modal-description" sx={{ mt: 4 }}>
-              <CourtesyTitles />
-              <TextField
-                type="text"
-                id="guest-f-name"
-                label="Enter first name"
-                sx={{ mt: 2, mb: 2, width: "20rem" }}
-                onChange={(e) => setGFName(e.target.value)}
-                value={gfName}
-                inputRef={gfNameRef}
-              />
-              <TextField
-                type="text"
-                id="guest-l-name"
-                label="Enter last name"
-                sx={{ width: "20rem" }}
-                onChange={(e) => setGLName(e.target.value)}
-                value={glName}
-                inputRef={glNameRef}
-              />
-            </Box>
-            <Box sx={{ textAlign: "center" }}>
-              <Button
-                variant="contained"
-                sx={{
-                  mt: 10,
-                  textAlign: "center",
-                  cursor:
-                    totalGuest() === addedGuest + 1 ? "no-drop" : "pointer",
-                  bgcolor: totalGuest() === addedGuest + 1 ? "lightgray" : "",
-                  "&:hover": {
-                    bgcolor: totalGuest() === addedGuest + 1 ? "lightgray" : "",
-                  },
-                }}
-                onClick={() => {
-                  totalGuest() !== addedGuest + 1 ? handleAddGuest() : "";
-                }}
-              >
-                Add guest
-              </Button>
-            </Box>
-          </Box>
-        </Modal>
+          handleClose={handleClose}
+          gfName={gfName}
+          setGFName={setGFName}
+          gfNameRef={gfNameRef}
+          glName={glName}
+          setGLName={setGLName}
+          glNameRef={glNameRef}
+          totalGuest={totalGuest}
+          addedGuest={addedGuest}
+          handleAddGuest={handleAddGuest}
+        />
       </Box>
-      {/* <ToastContainer theme="dark" /> */}
-    </>
+
+      <ToastContainer />
+    </div>
   );
 };
 

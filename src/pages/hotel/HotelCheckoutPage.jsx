@@ -33,14 +33,18 @@ const months = [
 
 const HotelCheckoutPage = () => {
   const [open, setOpen] = useState(false);
-
   const [name, setName] = useState({ fName: "", lName: "" });
   const [contact, setContact] = useState({ ph: "", email: "" });
+  const [guests, setGuests] = useState([]);
+  const [gfName, setGFName] = useState("");
+  const [glName, setGLName] = useState("");
+  const [addedGuest, setAddedGuest] = useState(0);
   const { hotelID } = useParams();
   const { hotelDetails, checkInOutDetails } = useHotelContext();
   const { singleHotel, setSingleHotel } = hotelDetails;
   const { checkInDate, checkOutDate } = checkInOutDetails;
   const navigate = useNavigate();
+  const gfullName = gfName + " " + glName;
 
   const handleOpen = () => {
     if (contact?.ph.length === 10) {
@@ -105,6 +109,8 @@ const HotelCheckoutPage = () => {
   //   // }
   // }
 
+  console.log("rendered");
+
   return (
     <div>
       <FlightBookingNavbar />
@@ -156,10 +162,17 @@ const HotelCheckoutPage = () => {
 
           <div id="guest-details">
             <HotelGuestDetails
-              name={name}
-              setName={setName}
+              guests={guests}
+              setGuests={setGuests}
+              gfName={gfName}
+              setGFName={setGFName}
+              glName={glName}
+              setGLName={setGLName}
               contact={contact}
               setContact={setContact}
+              gfullName={gfullName}
+              addedGuest={addedGuest}
+              setAddedGuest={setAddedGuest}
             />
           </div>
 
@@ -188,7 +201,6 @@ const HotelCheckoutPage = () => {
 
       <Box mt={10} mb={4} sx={{ borderBottom: "1px solid lightgray" }}></Box>
       <Footer />
-      <ToastContainer />
     </div>
   );
 };

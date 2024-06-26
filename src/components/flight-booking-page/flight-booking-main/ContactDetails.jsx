@@ -111,7 +111,7 @@ const ContactDetails = ({ flightId }) => {
           </Stack>
         </Stack>
 
-        <Stack mb={6}>
+        <Stack mb={2}>
           <label className="email-label" htmlFor="email">
             Email address
           </label>
@@ -124,6 +124,18 @@ const ContactDetails = ({ flightId }) => {
             disabled="true"
             required
           />
+        </Stack>
+
+        {/* Add Guests */}
+        <Stack sx={{ mb: 2 }}>
+          <h3>Guests details</h3>
+          <Button
+            variant="outlined"
+            sx={{ textTransform: "none", my: 4, width: "20%" }}
+            // onClick={handleOpen}
+          >
+            Add new guest
+          </Button>
         </Stack>
 
         <button className="continue-btn" onClick={handleOpen}>

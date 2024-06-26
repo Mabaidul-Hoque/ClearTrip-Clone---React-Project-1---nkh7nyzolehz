@@ -18,9 +18,9 @@ const HotelInfoPriceCard = ({ getNights }) => {
   const { singleRoom } = useHotelContext().singleRoomData;
 
   // after page refrsh singleRoom data --> reset
-  console.log("singleRoom", singleRoom);
+  // console.log("singleRoom", singleRoom);
 
-  console.log("singleRoomLS", JSON.parse(localStorage.getItem("singleRoom")));
+  // console.log("singleRoomLS", JSON.parse(localStorage.getItem("singleRoom")));
 
   const getBasePrice = () => {
     const price = Math.ceil(
