@@ -13,6 +13,8 @@ import DestinationCityInput from "./DestinationCityInput";
 import { CustomTheme } from "../../../util/muiTheme";
 import DateInputs from "./DateInputs";
 import FareType from "./FareType";
+import { fetchFlights } from "../../../Apis/FlightSearchApi";
+import { toast, ToastContainer } from "react-toastify";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -47,12 +49,54 @@ const departDateStyle = () => ({
 
 export default function FlightSearchCard() {
   const navigate = useNavigate();
-  const { airplaneDetails, searchPlane, departvalue, sourceDestValue } =
-    useFlightSearch();
+  const {
+    airplaneDetails,
+    searchPlane,
+    departvalue,
+    sourceDestValue,
+    flightPage,
+  } = useFlightSearch();
   const { source, destination, cityNameCodes } = sourceDestValue;
-  const { airportNames } = airplaneDetails;
-  const { handleSearchClick } = searchPlane;
+  const { airportNames, setAirplanes } = airplaneDetails;
+  // const { handleSearchClick } = searchPlane;
   const { departDay } = departvalue;
+
+  const handleSearchClick = () => {
+    if (source !== "" && destination !== "") {
+      if (source.substring(0, 3) === destination.substring(0, 3)) {
+        toast.error("Source and Destination can't be same!", {
+          theme: "colored",
+        });
+      }
+      if (
+        source.substring(0, 3) !== destination.substring(0, 3) &&
+        cityNameCodes.includes(source.substring(0, 3)) &&
+        cityNameCodes.includes(destination.substring(0, 3)) &&
+        days.includes(departDay.substring(0, 3))
+      ) {
+        const sourceVal = source.substring(0, 3);
+        const destinationVal = destination.substring(0, 3);
+        const day = departDay.substring(0, 3);
+        if (sourceVal !== null && destinationVal !== null && day !== null) {
+          fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
+            (response) => {
+              setAirplanes(response.data.flights);
+            }
+          );
+        } else {
+          fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
+            (response) => {
+              setAirplanes(response.data.flights);
+            }
+          );
+        }
+      }
+    } else {
+      if (source === "" || destination === "") {
+        toast.warn("Fill the details before search!", { theme: "colored" });
+      }
+    }
+  };
 
   const handleNavigation = () => {
     const encodedPath = btoa(
@@ -213,6 +257,7 @@ export default function FlightSearchCard() {
             Search flights
           </Button>
         </Stack>
+        <ToastContainer />
       </Paper>
     </ThemeProvider>
   );

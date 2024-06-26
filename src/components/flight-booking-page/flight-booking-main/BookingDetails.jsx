@@ -11,6 +11,12 @@ import "../../../styles/flight/FlightBookingPage.css";
 const BookingDetails = ({ flightId, selected, setSelected }) => {
   const { singleFlight } = useFlightSearch().singleFlightValue;
 
+  const returnDay = () => {
+    let date = new Date(localStorage.getItem("departDate"));
+    date.setDate(date.getDate() + 1);
+    return date.toDateString();
+  };
+
   return (
     <div className="booking-details">
       {/* header */}
@@ -40,14 +46,14 @@ const BookingDetails = ({ flightId, selected, setSelected }) => {
           Review your itinerary
         </Typography>
       </Stack>
-      {/* 1 flight details */}
+      {/* flight details */}
       <Stack
         sx={{
           width: "60vw",
         }}
       >
         {/* flight 1 details */}
-        <div className="details-one">
+        <div className="details-one" style={{ paddingLeft: 20 }}>
           {/* header */}
           <Stack
             mb={2}
@@ -113,9 +119,9 @@ const BookingDetails = ({ flightId, selected, setSelected }) => {
                 >
                   {singleFlight.departureTime} {singleFlight.source}
                 </span>
-                <span style={{ fontSize: "12px", fontWeight: "500" }}>
+                {/* <span style={{ fontSize: "12px", fontWeight: "500" }}>
                   Indira Gandhi Airport New Delhi, Terminal 2
-                </span>
+                </span> */}
               </Typography>
               <Stack flexDirection={"row"} alignItems={"flex-start"} gap={1}>
                 <AccessTimeIcon htmlColor="gray" />
@@ -131,9 +137,9 @@ const BookingDetails = ({ flightId, selected, setSelected }) => {
                 >
                   {singleFlight.arrivalTime} {singleFlight.destination}
                 </span>
-                <span style={{ fontSize: "12px", fontWeight: "500" }}>
+                {/* <span style={{ fontSize: "12px", fontWeight: "500" }}>
                   Chatrapati Shivaji Airport Mumbai, Terminal 2
-                </span>
+                </span> */}
               </Typography>
             </Stack>
           </Stack>
@@ -141,7 +147,7 @@ const BookingDetails = ({ flightId, selected, setSelected }) => {
         <Box mt={3} mb={3} sx={{ borderBottom: "1px dotted #E6E6E6" }}></Box>
 
         {/* flight 2 details */}
-        <div className="details-two">
+        <div className="details-two" style={{ paddingLeft: 20 }}>
           {/* header */}
           <Stack
             mb={2}
@@ -161,9 +167,7 @@ const BookingDetails = ({ flightId, selected, setSelected }) => {
               <ArrowForwardIcon fontSize="small" />
               {singleFlight.source}
             </Stack>
-            <Typography fontSize={"14px"}>
-              {localStorage.getItem("departDay")} 2024
-            </Typography>
+            <Typography fontSize={"14px"}>{returnDay()}</Typography>
           </Stack>
           {/* flight 2 details main content */}
           <Stack
@@ -198,9 +202,9 @@ const BookingDetails = ({ flightId, selected, setSelected }) => {
                 <span style={{ fontSize: "18px", fontWeight: "500" }}>
                   {singleFlight.arrivalTime} {singleFlight.destination}{" "}
                 </span>
-                <span style={{ fontSize: "12px", fontWeight: "500" }}>
+                {/* <span style={{ fontSize: "12px", fontWeight: "500" }}>
                   Indira Gandhi Airport New Delhi, Terminal 2
-                </span>
+                </span> */}
               </Typography>
               <Stack flexDirection={"row"} alignItems={"flex-start"} gap={1}>
                 <AccessTimeIcon htmlColor="gray" />
@@ -210,9 +214,9 @@ const BookingDetails = ({ flightId, selected, setSelected }) => {
                 <span style={{ fontSize: "18px", fontWeight: "500" }}>
                   {singleFlight.departureTime} {singleFlight.source}{" "}
                 </span>
-                <span style={{ fontSize: "12px", fontWeight: "500" }}>
+                {/* <span style={{ fontSize: "12px", fontWeight: "500" }}>
                   Chatrapati Shivaji Airport Mumbai, Terminal 2
-                </span>
+                </span> */}
               </Typography>
             </Stack>
           </Stack>

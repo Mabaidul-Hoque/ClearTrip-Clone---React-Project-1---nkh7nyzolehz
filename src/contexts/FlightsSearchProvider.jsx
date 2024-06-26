@@ -52,6 +52,7 @@ export const FlightsSearchProvider = ({ children }) => {
 
     const formattedDate = departDate.toLocaleDateString("en-US", options) || "";
     localStorage.setItem("departDay", formattedDate);
+    localStorage.setItem("departDate", departDate);
     setDepartDay(formattedDate);
 
     const formattedRDate = returnDate.toLocaleDateString("en-US", options);
@@ -69,46 +70,46 @@ export const FlightsSearchProvider = ({ children }) => {
     (airportName) => airportName.iata_code
   );
 
-  const handleSearchClick = () => {
-    if (source !== "" && destination !== "") {
-      if (
-        source.substring(0, 3) !== destination.substring(0, 3) &&
-        cityNameCodes.includes(source.substring(0, 3)) &&
-        cityNameCodes.includes(destination.substring(0, 3)) &&
-        days.includes(departDay.substring(0, 3))
-      ) {
-        const sourceVal = source.substring(0, 3);
-        const destinationVal = destination.substring(0, 3);
-        const day = departDay.substring(0, 3);
-        if (sourceVal !== null && destinationVal !== null && day !== null) {
-          fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
-            (response) => {
-              setAirplanes(response.data.flights);
-            }
-          );
-        } else {
-          fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
-            (response) => {
-              setAirplanes(response.data.flights);
-            }
-          );
-        }
-      }
-    } else {
-      if (source === "" || destination === "") {
-        toast.warn("Fill the details before search!", { theme: "colored" });
-      } else if (
-        source !== "" &&
-        destination !== "" &&
-        source.substring(0, 3) === destination.substring(0, 3)
-      ) {
-        toast.error(
-          "Inputs are either same or invalid!, provide correct inputs",
-          { theme: "colored" }
-        );
-      }
-    }
-  };
+  // const handleSearchClick = () => {
+  //   if (source !== "" && destination !== "") {
+  //     if (
+  //       source.substring(0, 3) !== destination.substring(0, 3) &&
+  //       cityNameCodes.includes(source.substring(0, 3)) &&
+  //       cityNameCodes.includes(destination.substring(0, 3)) &&
+  //       days.includes(departDay.substring(0, 3))
+  //     ) {
+  //       const sourceVal = source.substring(0, 3);
+  //       const destinationVal = destination.substring(0, 3);
+  //       const day = departDay.substring(0, 3);
+  //       if (sourceVal !== null && destinationVal !== null && day !== null) {
+  //         fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
+  //           (response) => {
+  //             setAirplanes(response.data.flights);
+  //           }
+  //         );
+  //       } else {
+  //         fetchFlights(sourceVal, destinationVal, day, 5, flightPage).then(
+  //           (response) => {
+  //             setAirplanes(response.data.flights);
+  //           }
+  //         );
+  //       }
+  //     }
+  //   } else {
+  //     if (source === "" || destination === "") {
+  //       toast.warn("Fill the details before search!", { theme: "colored" });
+  //     } else if (
+  //       source !== "" &&
+  //       destination !== "" &&
+  //       source.substring(0, 3) === destination.substring(0, 3)
+  //     ) {
+  //       toast.error(
+  //         "Inputs are either same or invalid!, provide correct inputs",
+  //         { theme: "colored" }
+  //       );
+  //     }
+  //   }
+  // };
 
   const flightSearch = {
     departvalue: {
@@ -131,7 +132,7 @@ export const FlightsSearchProvider = ({ children }) => {
       destinationRef,
     },
     searchPlane: {
-      handleSearchClick,
+      // handleSearchClick,
     },
     airplaneDetails: {
       airportNames,

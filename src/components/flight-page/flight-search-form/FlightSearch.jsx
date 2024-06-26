@@ -5,6 +5,7 @@ import { Typography, Box, Stack, Container, Paper } from "@mui/material";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import CloseIcon from "@mui/icons-material/Close";
+import { toast, ToastContainer } from "react-toastify";
 
 const FlightSearch = () => {
   const [adVisibility, setAdVisibility] = useState(true);
@@ -215,6 +216,8 @@ const FlightSearch = () => {
       ) : (
         ""
       )}
+
+      <ToastContainer />
     </Box>
   );
 };

@@ -44,13 +44,13 @@ const DateInputs = ({ departStyle, returnStyle }) => {
         customInput={<DepartDateInput departDay={departDay} />}
       />
       {/* RETURN DATE PICKER */}
-      <DatePicker
+      {/* <DatePicker
         className="date-picker-btn"
         required
         selected={returnDate}
         onChange={handleReturnDateChange}
         customInput={<ReturnDateInput returnDay={returnDay} />}
-      />
+      /> */}
     </ThemeProvider>
   );
 };

@@ -13,6 +13,7 @@ import Autocomplete from "../ui/Autocomplete";
 import { CheckInOutDate } from "../ui/CheckInOutDate";
 import AddRooms from "../ui/AddRooms";
 import styled from "@emotion/styled";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const LoginButton = styled(Button)({
   width: "8rem",
@@ -70,7 +71,21 @@ const HotelNavbar = () => {
             token ? handleLogout() : handleLoginOpen();
           }}
         >
-          {token ? "Log out" : "Log in / Sign up"}
+          {token ? (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: 2,
+              }}
+            >
+              <AccountCircleIcon />
+              <span>Log out</span>
+            </Box>
+          ) : (
+            "Log in / Sign up"
+          )}
         </LoginButton>
       </div>
       <LoginPage />
