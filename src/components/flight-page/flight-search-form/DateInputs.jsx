@@ -21,18 +21,20 @@ const DateButton = styled(Button)({
 const DateInputs = ({ departStyle, returnStyle }) => {
   const { departvalue, returnValue } = useFlightSearch();
   const { handleDepartDateChange, departDay, departDate } = departvalue;
-  const { handleReturnDateChange, returnDay, returnDate } = returnValue;
+  // const { handleReturnDateChange, returnDay, returnDate } = returnValue;
 
   const DepartDateInput = forwardRef(({ departDay, onClick }, ref) => (
     <DateButton sx={departStyle} onClick={onClick} ref={ref}>
       {departDay}
     </DateButton>
   ));
-  const ReturnDateInput = forwardRef(({ returnDay, onClick }, ref) => (
-    <DateButton sx={returnStyle} onClick={onClick} ref={ref}>
-      {returnDay}
-    </DateButton>
-  ));
+  // const ReturnDateInput = forwardRef(({ returnDay, onClick }, ref) => (
+  //   <DateButton sx={returnStyle} onClick={onClick} ref={ref}>
+  //     {returnDay}
+  //   </DateButton>
+  // ));
+
+  const today = new Date();
 
   return (
     <ThemeProvider theme={CustomTheme}>
@@ -41,6 +43,7 @@ const DateInputs = ({ departStyle, returnStyle }) => {
         required
         selected={departDate}
         onChange={handleDepartDateChange}
+        minDate={today} // Disable selection of past dates
         customInput={<DepartDateInput departDay={departDay} />}
       />
       {/* RETURN DATE PICKER */}

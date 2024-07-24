@@ -43,18 +43,21 @@ export const CheckInOutDate = ({ dateClass }) => {
     </CustomButton>
   ));
 
+  const today = new Date();
   return (
     <>
       <DatePicker
         required
         selected={checkInDate}
         onChange={handleCheckInDateChange}
+        minDate={today} // Disable selection of past dates
         customInput={<CheckInDateInput />}
       />
       <DatePicker
         required
         selected={checkOutDate}
         onChange={handleCheckOutDateChange}
+        minDate={today} // Disable selection of past dates
         customInput={<CheckOutDateInput />}
       />
     </>
