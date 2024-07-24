@@ -1,10 +1,12 @@
 import { Modal, Stack, Box } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import "../../styles/loginSignup.css";
 import { fetchSignup } from "../../Apis/LoginSignupApi";
 import { useAuth } from "../../contexts/AuthorizationProvider";
 import { toast } from "react-toastify";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 const closeBtn = {
   "&:hover": {
@@ -27,10 +29,13 @@ const SignupPage = () => {
     setIsSignup,
   } = signupDetails;
   const { setToken } = tokenDetails;
+  const [showPass, setShowPass] = useState(false);
+  const [showConstraints, setShowConstraints] = useState(false);
 
   const handleSignupSubmit = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#])[A-Za-z\d@#]{8,}$/;
+    const passRegex =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d@#]{8,}$/;
     if (name && regex.test(email) && passRegex.test(password)) {
       fetchSignup({ name, email, password, appType: "bookingportals" }).then(
         (response) => {
@@ -73,6 +78,17 @@ const SignupPage = () => {
   const handleSignupClose = () => {
     setIsSignup(false);
   };
+
+  const hasUpperCase = () => /[A-Z]/.test(password);
+
+  const hasLowerCase = () => /[a-z]/.test(password);
+
+  const hasNumber = () => /\d/.test(password);
+
+  const hasEightCharacter = () => password.length;
+
+  const hasSpecialChar = () => /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
   return (
     <div>
       <Modal
@@ -122,13 +138,78 @@ const SignupPage = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
-                <input
-                  type="password"
-                  placeholder="Create a password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
+                <div style={{ display: "flex", position: "relative" }}>
+                  <input
+                    type={showPass ? "text" : "password"}
+                    placeholder="Create a password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    onFocus={() => setShowConstraints(true)}
+                    required
+                  />
+                  <button
+                    onClick={() => setShowPass(!showPass)}
+                    style={{
+                      position: "absolute",
+                      right: 10,
+                      bottom: "35%",
+                      border: "none",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {showPass ? (
+                      <VisibilityOffIcon
+                        sx={{
+                          bgcolor: "white",
+                          border: "none",
+                        }}
+                      />
+                    ) : (
+                      <VisibilityIcon
+                        sx={{ bgcolor: "white", border: "none" }}
+                      />
+                    )}
+                  </button>
+                </div>
+                {showConstraints && (
+                  <div style={{ fontSize: 12 }}>
+                    <p
+                      style={{
+                        color: hasEightCharacter() >= 8 ? "green" : "red",
+                      }}
+                    >
+                      Password has to contains 8 character
+                    </p>
+                    <p
+                      style={{
+                        color: hasUpperCase() ? "green" : "red",
+                      }}
+                    >
+                      At least one Upper case letter(e.g A,B..)
+                    </p>
+                    <p
+                      style={{
+                        color: hasLowerCase() ? "green" : "red",
+                      }}
+                    >
+                      At least one Lower case letter(e.g a,b..)
+                    </p>
+                    <p
+                      style={{
+                        color: hasNumber() ? "green" : "red",
+                      }}
+                    >
+                      At least one Number(e.g 1,2,3..)
+                    </p>
+                    <p
+                      style={{
+                        color: hasSpecialChar() ? "green" : "red",
+                      }}
+                    >
+                      One Special Character(e.g @,#,&..)
+                    </p>
+                  </div>
+                )}
                 <input
                   type="button"
                   className="button"

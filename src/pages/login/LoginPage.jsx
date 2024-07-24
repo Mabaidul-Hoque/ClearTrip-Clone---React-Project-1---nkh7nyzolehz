@@ -1,11 +1,13 @@
 import { Modal, Stack } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import "../../styles/loginSignup.css";
 import { fetchLogin } from "../../Apis/LoginSignupApi";
 import { useAuth } from "../../contexts/AuthorizationProvider";
 import SignupPage from "./SignupPage";
 import { ToastContainer, toast } from "react-toastify";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 const closeBtn = {
   "&:hover": {
@@ -20,6 +22,7 @@ const LoginPage = () => {
   const { email, setEmail, password, setPassword, setIsSignup, isSignup } =
     signupDetails;
   const { setToken } = tokenDetails;
+  const [showPass, setShowPass] = useState(false);
 
   const handleLoginSubmit = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -101,13 +104,39 @@ const LoginPage = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                   />
-                  <input
-                    type="password"
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
+                  <div style={{ display: "flex", position: "relative" }}>
+                    <input
+                      type={showPass ? "text" : "password"}
+                      placeholder="Enter your password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                    <button
+                      onClick={() => setShowPass(!showPass)}
+                      style={{
+                        position: "absolute",
+                        right: 10,
+                        bottom: "35%",
+                        border: "none",
+                        cursor: "pointer",
+                      }}
+                    >
+                      {showPass ? (
+                        <VisibilityOffIcon
+                          sx={{
+                            bgcolor: "white",
+                            border: "none",
+                          }}
+                        />
+                      ) : (
+                        <VisibilityIcon
+                          sx={{ bgcolor: "white", border: "none" }}
+                        />
+                      )}
+                    </button>
+                  </div>
+
                   <input
                     type="button"
                     className="button"
